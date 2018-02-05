@@ -3,16 +3,83 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      Home
+    </ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content id="page1">
+  <img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+  <img src="assets/img/2.jpg" style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+  <h1 id="home-heading2" style="color:#003865;"></h1>
+  <ion-list id="home-list3">
+    <ion-item color="assertive" on-click="goToClassSchedule()" id="home-list-item19">
+      Web Application Development
+      <br />
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="assertive" on-click="goToClassSchedule()" id="home-list-item20">
+      Image Editing/Illustration
+      <br />
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="assertive" on-click="goToClassSchedule()" id="home-list-item16">
+      Web Development Capstone
+      <br />
+      <ion-note item-right></ion-note>
+    </ion-item>
+  </ion-list>
+  <button id="home-button2" ion-button color="positive" block small style="border-radius:0px 0px 0px 0px;" on-click="goToClassSchedule()">
+    <ion-icon name="list-box"></ion-icon>
+    View Full Schedule
+  </button>
+  <div id="home-container2">
+    <h1 id="home-heading4" style="color:#E10000;">
+      News
+    </h1>
+    <ion-list id="home-list4">
+      <ion-item color="positive" id="home-list-item24">
+        Open auditions for LCSC-produced
+        <br />
+      </ion-item>
+      <ion-item color="positive" id="home-list-item25">
+        Hypnotist Sailesh will perform at LCSC
+        <br />
+      </ion-item>
+      <ion-item color="positive" id="home-list-item26">
+        U.S. News & World Report highlights
+        <br />
+      </ion-item>
+    </ion-list>
+    <h1 id="home-heading3" style="color:#E10000;">
+      Events
+    </h1>
+    <ion-list id="home-list5">
+      <ion-item color="positive" id="home-list-item27">
+        ASLCSC Meeting
+        <ion-note item-right></ion-note>
+      </ion-item>
+      <ion-item color="positive" id="home-list-item28">
+        Climate Change Forum
+        <ion-note item-right></ion-note>
+      </ion-item>
+      <ion-item color="positive" id="home-list-item29">
+        Game Night!
+        <br />
+        <ion-note item-right></ion-note>
+      </ion-item>
+    </ion-list>
+  </div>
+  <h1 id="home-heading5" style="color:#003865;">
+    Resources
+  </h1>
+  <button id="home-button3" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://lcsc.blackboard.com">
+    Blackboard
+  </button>
+  <button id="home-button4" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://lcmail.lcsc.edu">
+    LCMail
+  </button>
+  <button id="home-button5" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://warriorweb.lcsc.edu">
+    WarriorWeb
+  </button>
 </ion-content>
