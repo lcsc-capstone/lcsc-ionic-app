@@ -9,6 +9,7 @@ import { NewsPage } from '../pages/news/news';
 import { CampusMapPage } from '../pages/campus-map/campus-map';
 import { AboutPage } from '../pages/about/about';
 import { RadioPage } from '../pages/radio/radio';
+import { CalendarPage } from '../pages/calendar/calendar';
 
 
 import { HomePage } from '../pages/home/home';
@@ -51,5 +52,8 @@ export class MyApp {
   }goToRadio(params){
     if (!params) params = {};
     this.navCtrl.setRoot(RadioPage);
+  }goToCalendar(params){
+    if( !params) params = {};
+    this.navCtrl.setRoot(CalendarPage);
   }
 }
