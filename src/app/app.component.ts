@@ -46,7 +46,10 @@ export class MyApp {
   }goToCampusMap(params){
     if (!params) params = {};
     this.navCtrl.setRoot(CampusMapPage);
-  }goToAbout(params){
+  }goToCalendar(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(CalendarPage);
+  }gotoAbout(params){
     if (!params) params = {};
     this.navCtrl.setRoot(AboutPage);
   }goToRadio(params){
