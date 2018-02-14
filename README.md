@@ -1,4 +1,4 @@
-# LCSC Capstone
+# LCSC Capstone Spring 2018 Semester
 
 Creating a new LCSC App
 
