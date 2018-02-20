@@ -1,3 +1,71 @@
 page-home {
 
+    .banner {
+        position: absolute;
+        top: 0;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 6em;
+    }
+
+    #home-schedule {
+        margin: -.75em 0 -1.5em 0;
+        padding: 0 .75em 0 .75em;
+    }
+
+    .home-button {
+        border-radius: 0;
+        height: 3em;
+        background-color: #003865;
+        font-size: 16px;
+        width: 93%;
+        color: white;
+        margin: 0 auto;
+        display: block;
+
+        ion-icon {
+            padding-right: .5em;
+        }
+    }
+
+    #home-news {
+        background-color: #F0F0F0;
+        margin: -.6em 0 -.6em 0;
+        padding: 0 .75em 0 .75em;
+        padding-bottom: 1em;
+
+        h1 {
+            font-weight: 400;
+            color: #E10000;
+            padding-top: .3em;
+        }
+
+        ion-item {
+            background-color: #F0F0F0;
+        }
+
+        h2 {
+            color: #003865;
+            padding-bottom: .4em;
+        }
+
+        ion-list {
+            margin-bottom: -1.3em;
+        }
+
+        #home-list-item29 {
+            margin-bottom: 1.5em;
+        }
+    }
+
+    #resources {
+        h1 {
+            padding-left: .3em;
+        }
+
+        button {
+            margin-bottom: .6em;
+        }
+    }
 }

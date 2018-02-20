@@ -14,3 +14,36 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+h1, h2, h3, ion-item, button {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    color: #003865;
+    font-weight: 700;
+    font-size: 35px;
+}
+
+ion-header {
+    font-family: 'Montserrat', sans-serif;
+
+    ion-icon {
+        color: #003865;
+    }
+}
+
+ion-list ion-item {
+    h2 {
+        color: #E10000;
+        padding-top: .4em;
+    }
+
+    p {
+        float: right;
+        color: #BBBCBC;
+        padding-bottom: .4em;
+    }
+}
