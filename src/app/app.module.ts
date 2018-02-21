@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { CalendarDropdownPage } from '../pages/calendar-dropdown/calendar-dropdown';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -25,7 +26,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ClassSchedulePage,
     CalendarPage,
     AboutPage,
-    RadioPage
+    RadioPage,
+    CalendarDropdownPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ClassSchedulePage,
     CalendarPage,
     AboutPage,
-    RadioPage
+    RadioPage,
+    CalendarDropdownPage
   ],
   providers: [
     StatusBar,
