@@ -1,85 +1,86 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>
+			Home
+		</ion-title>
+	</ion-navbar>
 </ion-header>
 <ion-content id="page1" no-bounce>
-  <img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
-  <img src="assets/img/2.jpg"  />
+	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
+	<img src="assets/img/2.jpg"  />
 
-  <div id="home-schedule">
-    <h1 id="home-heading">Here's Today...</h1>
-    <ion-list id="home-list3">
-      <ion-item on-click="goToClassSchedule()" id="home-list-item19">
-        <h2>Web Application Dev</h2>
-        <p>SGC 124 | 10:00am - 11:30am</p>
-      </ion-item>
-      <ion-item on-click="goToClassSchedule()" id="home-list-item20">
-        <h2>Image Editing/Illustration</h2>
-        <p>SGC 124 | 12:00pm - 1:30pm</p>
-      </ion-item>
-      <ion-item on-click="goToClassSchedule()" id="home-list-item16">
-        <h2>Web Development Capstone</h2>
-        <p>SGC 124 | 3:30pm - 4:30pm</p>
-      </ion-item>
-    </ion-list>
-  </div> 
+	<div id="home-schedule">
+		<h1 id="home-heading">Here's Today...</h1>
+		<ion-list id="home-list3">
+			<ion-item on-click="goToClassSchedule()" id="home-list-item19">
+				<h2>Web Application Dev</h2>
+				<p>SGC 124 | 10:00am - 11:30am</p>
+			</ion-item>
+			<ion-item on-click="goToClassSchedule()" id="home-list-item20">
+				<h2>Image Editing/Illustration</h2>
+				<p>SGC 124 | 12:00pm - 1:30pm</p>
+			</ion-item>
+			<ion-item on-click="goToClassSchedule()" id="home-list-item16">
+				<h2>Web Development Capstone</h2>
+				<p>SGC 124 | 3:30pm - 4:30pm</p>
+			</ion-item>
+		</ion-list>
+	</div>
 
-    <button class="home-button" on-click="goToClassSchedule()">
-      <ion-icon name="list-box"></ion-icon>
-      View Full Schedule
-    </button> 
+	<button class="home-button" on-click="goToClassSchedule()">
+		<ion-icon name="list-box"></ion-icon>
+		View Full Schedule
+	</button>
 
-  <div id="home-news">
-    <h1>
-      News
-    </h1>
-    <ion-list id="home-list4">
-      <ion-item id="home-list-item24">
-        <h2>Open auditions for LCSC-<br/>produced play will be held on<br/> Feb. 6</h2>
-      </ion-item>
-      <ion-item id="home-list-item25">
-        <h2>Hypnotist Sailesh will perform<br/> at LCSC on Jan. 24</h2>
-      </ion-item>
-      <ion-item id="home-list-item26">
-        <h2>U.S. News &amp; World Report<br/> highlights LCSC’s affordability</h2>
-      </ion-item>
-    </ion-list>
-    <h1 id="home-heading3" style="color:#E10000;">
-      Events
-    </h1>
-    <ion-list id="home-list5">
-      <ion-item id="home-list-item27">
-        <h2>ASLCSC Meeting</h2>
-        <p>Tuesday, January 30, 4:30PM – 5:30PM</p>
-      </ion-item>
-      <ion-item id="home-list-item28">
-        <h2>Climate Change Forum</h2>
-        <p>Tuesday, January 30, 6:00PM – 7:00PM</p>
-      </ion-item>
-      <ion-item id="home-list-item29">
-        <h2>Game Night!</h2>
-        <p>Tuesday, January 30, 7:00PM – 9:00PM</p>
-      </ion-item>
-    </ion-list>
-  </div>
-  <div id="resources">
-    <h1 id="home-heading5">
-      Resources
-    </h1>
-    <button class="home-button" href-inappbrowser="http://lcsc.blackboard.com">
-      Blackboard
-    </button>
-    <button class="home-button" href-inappbrowser="http://lcmail.lcsc.edu">
-      LCMail
-    </button>
-    <button class="home-button" href-inappbrowser="http://warriorweb.lcsc.edu">
-      WarriorWeb
-    </button>
-  </div>
+	<div id="home-news">
+		<h1>
+			News
+		</h1>
+		<ion-list id="home-list4">
+			<ion-item id="home-list-item24" text-wrap>
+				<h2>{{ news['1']['title'] }}</h2>
+			</ion-item>
+			<ion-item id="home-list-item25" text-wrap>
+				<h2>{{ news['2']['title'] }}</h2>
+			</ion-item>
+			<ion-item id="home-list-item26" text-wrap>
+				<h2>{{ news['3']['title'] }}</h2>
+			</ion-item>
+		</ion-list>
+		<h1 id="home-heading3" style="color:#E10000;">
+			Events
+		</h1>
+		<ion-list id="home-list5">
+			<ion-item id="home-list-item27">
+				<h2>ASLCSC Meeting</h2>
+				<p>Tuesday, January 30, 4:30PM – 5:30PM</p>
+			</ion-item>
+			<ion-item id="home-list-item28">
+				<h2>Climate Change Forum</h2>
+				<p>Tuesday, January 30, 6:00PM – 7:00PM</p>
+			</ion-item>
+			<ion-item id="home-list-item29">
+				<h2>Game Night!</h2>
+				<p>Tuesday, January 30, 7:00PM – 9:00PM</p>
+			</ion-item>
+		</ion-list>
+	</div>
+	<button ion-button (click)="gotoCalendarPage()">
+		View Events
+	</button>
+	<h1 id="home-heading5" style="color:#003865;">
+		Resources
+	</h1>
+	<button id="home-button3" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://lcsc.blackboard.com">
+		Blackboard
+	</button>
+	<button id="home-button4" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://lcmail.lcsc.edu">
+		LCMail
+	</button>
+	<button id="home-button5" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://warriorweb.lcsc.edu">
+		WarriorWeb
+	</button>
 </ion-content>
