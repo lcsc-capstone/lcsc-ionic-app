@@ -61,15 +61,11 @@ export class CalendarPage {
 			});
 	}
 
-
-
 	presentPopover(myEvent) {
 		let popover = this.popoverCtrl.create(CalendarDropdownPage);
 		popover.present({
 			ev: myEvent
 		});
 	}
-
-
 
 }

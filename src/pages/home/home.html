@@ -9,8 +9,36 @@
 	</ion-navbar>
 </ion-header>
 <ion-content id="page1" no-bounce>
-	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
-	<img src="assets/img/2.jpg"  />
+	
+	<div id="bg-img"></div>
+  	<!--<img src="assets/img/2.jpg" id="bg-img" />-->
+	  <img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
+	  
+	<div id="login-form">
+		<h2>Login to WarriorWeb</h2>
+		<form>
+
+			<div class="input">
+			<ion-icon name="person-outline" class="input-icon"></ion-icon>
+			<input type="text" name="userID" placeholder="Username"><br>
+			</div>
+
+			<div class="input">
+			<ion-icon name="lock-outline" class="input-icon"></ion-icon>
+			<input type="password" name="password" placeholder="Password"><br>
+			</div>
+
+			<button id="login">Login</button>
+
+			<!--<a href="https://warriorweb.lcsc.edu/WebAdvisor/WebAdvisor?TOKENIDX=6984373314&SS=1&APP=UT&CONSTITUENCY=WBDF>
+			Forgot Password?</a>-->
+		</form>
+  	</div>
+
+  <div id="guest">
+      <p>Don't have an account?</p>
+      <a>View as Guest</a>
+  </div>
 
 	<div id="home-schedule">
 		<h1 id="home-heading">Here's Today...</h1>
