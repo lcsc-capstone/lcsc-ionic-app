@@ -4,11 +4,5 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  },
-  "proxies": [
- 	 {
- 		 "path": "/news",
- 		 "proxyUrl": "http://www.lcsc.edu/news"
- 	 }
-  ]
+  }
 }

@@ -32,7 +32,7 @@ export class HomePage {
 		this.storage.get('last_time_news').then(val => {
 			if (val < midnight) {
 				// This code will fetch the most recent 3 news titles and links.
-				this.http.get(`http://localhost:8100/news`).subscribe(data => {
+				this.http.get(`http://www.lcsc.edu/news`).subscribe(data => {
 					let html = data['_body'];
 					let list = html.split(/<h4><a href="/g);
 					this.news['1']['link'] = list[1].split(/"/g)[0];
