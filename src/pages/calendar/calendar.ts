@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
-import { CalendarDropdownPage } from '../calendar-dropdown/calendar-dropdown';
+import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
+import { Storage } from '@ionic/storage';
 
 @Component({
 	selector: 'page-calendar',
@@ -22,8 +23,42 @@ import { CalendarDropdownPage } from '../calendar-dropdown/calendar-dropdown';
 
 @Component({})
 export class CalendarPage {
+	public Academics;
+	public Entertainment;
+	public Athletics;
+	public StudentActivities;
+	public ResidentLife;
+	public CampusRec;
 
-	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController) {
+	public Output: string[]=[];
+
+	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage) {
+	}
+
+	ionViewDidLoad() {
+	  this.storage.get('Academics').then(val1 => {
+			this.Academics = val1;
+			this.storage.get('Entertainment').then(val2=> {
+				this.Entertainment = val2;
+				this.storage.get('Athletics').then(val3 => {
+					this.Athletics = val3;
+					this.storage.get('StudentActivities').then(val4 => {
+						this.StudentActivities = val4;
+						this.storage.get('ResidentLife').then(val5 => {
+							this.ResidentLife = val5;
+							this.storage.get('CampusRec').then(val6 => {
+								this.CampusRec = val6;
+								//console.log(this.Academics.items);
+								for (var i = 0; i < this.Academics.items.length; i++) {
+									console.log(val1.items[i].summary);
+								}
+
+								});
+							});
+						});
+					});
+				});
+			});
 	}
 
 	presentPopover(myEvent) {
@@ -32,7 +67,5 @@ export class CalendarPage {
 			ev: myEvent
 		});
 	}
-
-
 
 }
