@@ -29,7 +29,6 @@ export class CalendarDropdownPage {
 @Component({
 	 template: `
     <ion-list>
-      <ion-list-header>Ionic</ion-list-header>
       <button ion-item (click)="close()">Learn Ionic</button>
       <button ion-item (click)="close()">Documentation</button>
       <button ion-item (click)="close()">Showcase</button>
@@ -38,14 +37,3 @@ export class CalendarDropdownPage {
    `
 })
 
-@Component({})
-class MyPage {
-  constructor(public popoverCtrl: PopoverController) {}
-
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(CalendarDropdownPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
-}
