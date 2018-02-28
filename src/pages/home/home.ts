@@ -33,7 +33,7 @@ export class HomePage {
 		let current_time = new Date().getTime();
 		let midnight = new Date(Math.floor(current_time/86400000)*86400000-57600000).getTime();
 		this.storage.get('last_time').then(val => {
-			if (val >= midnight) { // change back to < once error checking is done
+			if (!val || val >= midnight) { // TODO: change back to <= once error checking is done
 				// This code will fetch the most recent 3 news titles and links.
 				this.http.get(`http://www.lcsc.edu/news`).subscribe(data => {
 					let html = data['_body'];
