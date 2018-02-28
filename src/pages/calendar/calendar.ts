@@ -29,13 +29,15 @@ export class CalendarPage {
 	public StudentActivities;
 	public ResidentLife;
 	public CampusRec;
+	public merged = [];
+	public somthing =[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
 
-	public Output: string[]=[];
 
 	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage) {
 	}
 
 	ionViewDidLoad() {
+
 	  this.storage.get('Academics').then(val1 => {
 			this.Academics = val1;
 			this.storage.get('Entertainment').then(val2=> {
@@ -48,10 +50,28 @@ export class CalendarPage {
 							this.ResidentLife = val5;
 							this.storage.get('CampusRec').then(val6 => {
 								this.CampusRec = val6;
-								//console.log(this.Academics.items);
+
+
 								for (var i = 0; i < this.Academics.items.length; i++) {
-									console.log(val1.items[i].summary);
+									this.merged.push({StartDate: new Date((val1.items[i].start.dateTime || val1.items[i].start.date)).getTime(), EndDate: new Date((val1.items[i].end.dateTime || val1.items[i].end.date)).getTime(), Summary:val1.items[i].summary, Description:val1.items[i].description});
 								}
+								for (var i = 0; i < this.Entertainment.items.length; i++) {
+									this.merged.push({StartDate: new Date((val2.items[i].start.dateTime || val2.items[i].start.date)).getTime(), EndDate: new Date((val2.items[i].end.dateTime || val2.items[i].end.date)).getTime(), Summary:val2.items[i].summary, Description:val2.items[i].description});
+								}
+								for (var i = 0; i < this.Athletics.items.length; i++) {
+									this.merged.push({StartDate: new Date((val3.items[i].start.dateTime || val3.items[i].start.date)).getTime(), EndDate: new Date((val3.items[i].end.dateTime || val3.items[i].end.date)).getTime(), Summary:val3.items[i].summary, Description:val3.items[i].description});
+								}
+								for (var i = 0; i < this.StudentActivities.items.length; i++) {
+									this.merged.push({StartDate: new Date((val4.items[i].start.dateTime || val4.items[i].start.date)).getTime(), EndDate: new Date((val4.items[i].end.dateTime || val4.items[i].end.date)).getTime(), Summary:val4.items[i].summary, Description:val4.items[i].description});
+								}
+								for (var i = 0; i < this.ResidentLife.items.length; i++) {
+									this.merged.push({StartDate: new Date((val5.items[i].start.dateTime || val5.items[i].start.date)).getTime(), EndDate: new Date((val5.items[i].end.dateTime || val5.items[i].end.date)).getTime(), Summary:val5.items[i].summary, Description:val5.items[i].description});
+								}
+								for (var i = 0; i < this.CampusRec.items.length; i++) {
+									this.merged.push({StartDate: new Date((val6.items[i].start.dateTime || val6.items[i].start.date)).getTime(), EndDate: new Date((val6.items[i].end.dateTime || val6.items[i].end.date)).getTime(), Summary:val6.items[i].summary, Description:val6.items[i].description});
+								}
+								this.merged.sort(function(a,b){return a.StartDate - b.StartDate}) // sorts the calendar events by date
+								console.log(this.merged);
 
 								});
 							});

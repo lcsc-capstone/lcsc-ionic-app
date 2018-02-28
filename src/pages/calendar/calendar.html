@@ -27,25 +27,31 @@
 
 
 <ion-content padding id="page6">
-	<h1 background-color="stable">
-		MONTH DAY
-	</h1>
-	<ion-list id="home-list3">
-		<ion-item text-wrap background-color="stable">
-			Title: {{Academics?.items[4].summary}}
-			<br />
-			<ion-note item-right></ion-note>
-		</ion-item>
-		<ion-item text-wrap background-color="stable">
-			Description: {{Academics?.items[4].description}}
-			<br />
-			<ion-note item-right></ion-note>
-		</ion-item>
-		<ion-item background-color="stable">
-			Start: {{Academics?.items[4].start.dateTime}} End: {{Academics?.items[4].end.dateTime}}
-			<br />
-			<ion-note item-right></ion-note>
-		</ion-item>
-	</ion-list>
+
+	<li *ngFor="let item of merged">
+
+
+			<h1 background-color="stable">
+				MONTH DAY
+			</h1>
+		<ion-list id="home-list3">
+			<ion-item text-wrap background-color="stable">
+				Title: {{ item.Summary }}
+				<br />
+				<ion-note item-right></ion-note>
+			</ion-item>
+			<ion-item text-wrap background-color="stable">
+				Description: {{item.Description}}
+				<br />
+				<ion-note item-right></ion-note>
+			</ion-item>
+			<ion-item background-color="stable">
+				Start: {{ item.StartDate}} End: {{item.EndDate}}
+				<br />
+				<ion-note item-right></ion-note>
+			</ion-item>
+		</ion-list>
+
+    </li>
 
 </ion-content>
