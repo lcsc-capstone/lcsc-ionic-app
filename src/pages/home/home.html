@@ -9,11 +9,11 @@
 	</ion-navbar>
 </ion-header>
 <ion-content id="page1" no-bounce>
-	
+
 	<div id="bg-img"></div>
   	<!--<img src="assets/img/2.jpg" id="bg-img" />-->
 	  <img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
-	  
+
 	<div id="login-form">
 		<h2>Login to WarriorWeb</h2>
 		<form>
@@ -96,7 +96,8 @@
 			</ion-item>
 		</ion-list>
 	</div>
-	<button ion-button (click)="gotoCalendarPage()">
+	<button class="home-button" on-click="gotoCalendarPage()">
+		<ion-icon name="list-box"></ion-icon>
 		View Events
 	</button>
 	<h1 id="home-heading5" style="color:#003865;">
