@@ -74,7 +74,7 @@ export class CalendarPage {
 								console.log(this.merged);
 
 								});
-							});val2
+							});
 						});
 					});
 				});
