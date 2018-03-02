@@ -2,6 +2,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
+import { CalendarDropdownPage } from '../pages/calendar/calendar-dropdown';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -27,12 +29,19 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ClassSchedulePage,
     CalendarPage,
     AboutPage,
-    RadioPage
+    RadioPage,
+    CalendarDropdownPage
   ],
   imports: [
     BrowserModule,
+<<<<<<< HEAD
     HttpModule,
     IonicModule.forRoot(MyApp)
+=======
+    IonicModule.forRoot(MyApp),
+	 IonicStorageModule.forRoot(),
+	 HttpModule
+>>>>>>> c6860c75f7b4ae71885d60ab294b28465ebb6fcc
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +53,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ClassSchedulePage,
     CalendarPage,
     AboutPage,
-    RadioPage
+    RadioPage,
+    CalendarDropdownPage
   ],
   providers: [
     InAppBrowser,
