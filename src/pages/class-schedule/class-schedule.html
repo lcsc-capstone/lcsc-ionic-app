@@ -9,10 +9,12 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page5">
-  <h1 id="classSchedule-heading9" style="color:#000000;">
-    Class Schedule
-  </h1>
-  <ion-list id="classSchedule-list"> 
-      <ion-item *ngFor="let item of scheduleItems">{{item}}</ion-item>
-  </ion-list> 
+
+  <div id="schedule">
+    <h1>Class Schedule</h1>
+    <ion-list>
+        <ion-item *ngFor="let item of scheduleItems">{{item}}</ion-item>
+    </ion-list>
+  </div> 
+
 </ion-content>

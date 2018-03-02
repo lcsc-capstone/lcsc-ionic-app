@@ -15,10 +15,11 @@ import { RadioPage } from '../pages/radio/radio';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
-    MyApp, 
+    MyApp,
     HomePage,
     ProfilePage,
     NewsPage,
@@ -46,6 +47,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     RadioPage
   ],
   providers: [
+    InAppBrowser,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

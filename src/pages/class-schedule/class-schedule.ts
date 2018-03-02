@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
+import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+declare var cordova: any;
 
 @Component({
   selector: 'page-class-schedule',
@@ -11,81 +13,61 @@ import 'rxjs/Rx';
 export class ClassSchedulePage {
 
   scheduleItems: any;
+  scheduleData: any;
 
-  scheduleData: any; 
+  buttonClickSource: any;
+  loadScheduleDataSource: any;
 
-  constructor(public navCtrl: NavController, private http: Http) { 
-    
-    this.scheduleItems = [
-        "CITPT-111-60 Web Development Basics - Ford, N", 
-        "COMM-205-60 Logic/Argumentation - Ferguson, K",
-        "CS-480-01 Capstone Design - Peterson, N - Monday,Wednesday : 10:30AM - 11:45AM Meriwether Lewis Hall, 240; Friday Sam Glenn Complex, Friday : 11:00AM - 12:00PM Sam Glenn Complex 124",
-        "MATH-275-01 Calculus III - Moon, H - Monday,Tuesday,Wednesday,Thursday : 7:30AM - 8:30AM Activity Center West 133"
-    ]; 
-  } 
-  
-    getData() {
-        return this.http.get("data.json").map(res => res.json());
+  courseDataURL: any;
+  rawScheduleData: any;
+
+  constructor(public navCtrl: NavController, private inAppBrowser: InAppBrowser) {
+    this.rawScheduleData = "";
+    this.courseDataURL = "https://warriorwebss.lcsc.edu/Student/Planning/DegreePlans/PrintSchedule?termId=2018SP";
+    this.scheduleItems = [];
+    this.buttonClickSource = "function getInputByValue(value){var inputs = document.getElementsByTagName('input');for(var i = 0; i < inputs.length; i++){if(inputs[i].value == value){return inputs[i];}}return null;}getInputByValue('Sign In').click();";
+    this.loadScheduleDataSource = "var scripts = document.getElementsByTagName('script'); scripts[scripts.length - 1].innerHTML;";
+
+    const browser = this.inAppBrowser.create(this.courseDataURL, '_self', 'clearcache=yes,hidden=yes');
+    browser.on('loadstop').subscribe((ev : InAppBrowserEvent) => {
+        if(localStorage.getItem("schedLoad") == "false")
+        {
+            browser.executeScript({ code: "document.getElementById('UserName').value = 'fake';" });
+            browser.executeScript({ code: "document.getElementById('Password').value = 'fake';" });   
+            browser.executeScript({ code: this.buttonClickSource });
+            browser.executeScript({ code: this.loadScheduleDataSource }).then(
+            function(data) {
+                localStorage.setItem("schedData", data[0]);
+            });
+            localStorage.setItem("schedLoad", "false");
+        }
+        else
+        {
+            localStorage.setItem("schedLoad", "true");
+        }
+    });
+
+    this.rawScheduleData = localStorage.getItem("schedData").replace("var result =", "").replace("};","}");
+
+    let json = JSON.parse(this.rawScheduleData);
+
+    let termCode = "2018SP";
+
+    let currentTerm = null;
+
+    for(var term of json.Terms)
+    {
+        if(term.Code == termCode)
+        {
+            currentTerm = term;
+            break;
+        }
     }
 
-    getTerm() {
-        var today = new Date();
-        var year = today.getFullYear();
-        var month = today.getMonth();
-
-        if(month <= 5) {
-            return "SP";
-        }
-        else if(month > 5 && month < 8){
-            return "SU";
-        }
-        else {
-            return "FA";
-        }
-        return "ERR";
+    for(var course of currentTerm.PlannedCourses)
+    {
+        let item = course.CourseTitleDisplay + "--" + course.CourseName;
+        this.scheduleItems.push(item);
     }
-
-    getMatchingTerm(sourceJson, term) {
-        for(var term of sourceJson["Terms"]) {
-            if(term["Code"] == term) {
-                return term;
-            }
-        }
-        return "ERR";
-    }
-
-    parseScheduleDate(jsonData) {
-
-        data = [];
-        
-        for(var days of jsonData["Section"]["Meetings"]) {
-            for(var day of days) {
-                data.push(day, days["Room"], days["StartTime"], days["EndTime"]);
-            }
-        }
-
-        return data;
-    }
-
-    stringifySchedule(name, id, title, start, end, schedule) {
-        var data = [name, id, title, start, end, schedule.join(";")];
-        return data.join("-");
-    }
-
-    parseJSONObject(jsonData) {
-        var term = this.getTerm();
-
-        termObject = this.getMatchingTerm(jsonData, term);
-
-        for(var course of termObject["PlannedCourses"]) {
-            var courseName = course["CourseTitleDisplay"];
-            var courseId = course["CourseName"];
-            var courseTitle = course["Title"];
-            var startDate = course["Section"]["StartDate"];
-            var endDate = course["Section"]["StartDate"];
-            var scheduleData = this.parseScheduleData(course);
-
-            self.scheduleItems.push(this.stringify(courseName, courseId, courseTitle, startDate, endDate, scheduleData));
-        } 
-    } 
+  }
 }
