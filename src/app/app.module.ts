@@ -17,6 +17,8 @@ import { RadioPage } from '../pages/radio/radio';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
-	 IonicStorageModule.forRoot(),
-	 HttpModule
+    IonicStorageModule.forRoot(),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,6 +54,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     CalendarDropdownPage
   ],
   providers: [
+    InAppBrowser,
+    SecureStorage,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

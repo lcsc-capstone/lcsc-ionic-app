@@ -20,15 +20,15 @@
 
 			<div class="input">
 			<ion-icon name="person-outline" class="input-icon"></ion-icon>
-			<input type="text" name="userID" placeholder="Username"><br>
+			<input [(ngModel)]="loginUsername" type="text" name="userID" placeholder="Username"><br>
 			</div>
 
 			<div class="input">
 			<ion-icon name="lock-outline" class="input-icon"></ion-icon>
-			<input type="password" name="password" placeholder="Password"><br>
+			<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
 			</div>
 
-			<button id="login">Login</button>
+			<button id="login" (click)='storeCredentials()'>Login</button>
 
 			<!--<a href="https://warriorweb.lcsc.edu/WebAdvisor/WebAdvisor?TOKENIDX=6984373314&SS=1&APP=UT&CONSTITUENCY=WBDF>
 			Forgot Password?</a>-->
