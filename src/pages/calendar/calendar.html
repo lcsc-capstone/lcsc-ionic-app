@@ -1,15 +1,57 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Calendar
-    </ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>
+			Calendar
+		</ion-title>
+		<button class="dropdownbutton" ion-button icon-only (click)="presentPopover($event)">
+			<ion-icon name="ios-arrow-down" align></ion-icon>
+			<style type="text/css">
+			.dropdownbutton {
+				background-color: #FFF;
+				color: #003865;
+				position: relative;
+				float: right;
+			}
+			</style>
+		</button>
+	</ion-navbar>
+
 </ion-header>
+
+<!--
+<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showT=0&amp;showTz=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=0rn5mgclnhc7htmh0ht0cc5pgk%40group.calendar.google.com&amp;color=%234E5D6C&amp;src=h4j413d3q0uftb2crk0t92jjlc%40group.calendar.google.com&amp;color=%23125A12&amp;src=m6h2d5afcjfnmaj8qr7o96q89c%40group.calendar.google.com&amp;color=%23711616&amp;src=en.usa%23holiday%40group.v.calendar.google.com&amp;color=%23125A12&amp;src=gqv0n6j15pppdh0t8adgc1n1ts%40group.calendar.google.com&amp;color=%231B887A&amp;src=l9qpkh5gb7dhjqv8nm0mn098fk%40group.calendar.google.com&amp;color=%23AB8B00&amp;src=d6jbgjhudph2mpef1cguhn4g9g%40group.calendar.google.com&amp;color=%23060D5E&amp;ctz=America%2FLos_Angeles" style="border-width:0;position:absolute;bottom:0;" width=100% height=87% frameborder="0" scrolling="no"></iframe>
+-->
+
+
 <ion-content padding id="page6">
-  <h1 id="calendar-heading10" style="color:#000000;">
-    Calendar
-  </h1>
+
+	<li *ngFor="let item of merged">
+
+
+			<h1 background-color="stable">
+				MONTH DAY
+			</h1>
+		<ion-list id="home-list3">
+			<ion-item text-wrap background-color="stable">
+				Title: {{ item.Summary }}
+				<br />
+				<ion-note item-right></ion-note>
+			</ion-item>
+			<ion-item text-wrap background-color="stable">
+				Description: {{item.Description}}
+				<br />
+				<ion-note item-right></ion-note>
+			</ion-item>
+			<ion-item background-color="stable">
+				Start: {{ item.StartDate}} End: {{item.EndDate}}
+				<br />
+				<ion-note item-right></ion-note>
+			</ion-item>
+		</ion-list>
+
+    </li>
+
 </ion-content>
