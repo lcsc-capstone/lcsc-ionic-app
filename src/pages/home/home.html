@@ -64,21 +64,7 @@
 	</button>
 
 	<div id="home-news">
-		<h1>
-			News
-		</h1>
-		<ion-list id="home-list4">
-			<ion-item id="home-list-item24" text-wrap>
-				<h2>{{ news['1']['title'] }}</h2>
-			</ion-item>
-			<ion-item id="home-list-item25" text-wrap>
-				<h2>{{ news['2']['title'] }}</h2>
-			</ion-item>
-			<ion-item id="home-list-item26" text-wrap>
-				<h2>{{ news['3']['title'] }}</h2>
-			</ion-item>
-		</ion-list>
-		<h1 id="home-heading3" style="color:#E10000;">
+    <h1 id="home-heading3" style="color:#E10000;">
 			Events
 		</h1>
 		<ion-list id="home-list5">
@@ -94,6 +80,20 @@
 				<h2>{{ Events[2].Summary }}</h2>
 				<p>{{ Events[2].StartDate | date:'EEEE, MMMM d' }}</p>
 			</ion-item>
+		<h1>
+			News
+		</h1>
+		<ion-list id="home-list4">
+			<ion-item id="home-list-item24" text-wrap>
+				<h2>{{ news['1']['title'] }}</h2>
+			</ion-item>
+			<ion-item id="home-list-item25" text-wrap>
+				<h2>{{ news['2']['title'] }}</h2>
+			</ion-item>
+			<ion-item id="home-list-item26" text-wrapa>
+				<h2>{{ news['3']['title'] }}</h2>
+			</ion-item>
+		</ion-list>
 		</ion-list>
 	</div>
 	<button class="home-button" on-click="gotoCalendarPage()">
