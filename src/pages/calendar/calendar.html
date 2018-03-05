@@ -10,50 +10,22 @@
 </ion-header>
 
 <ion-content padding id="page6">
-<<<<<<< HEAD
-
-	<li *ngFor="let item of merged">
-
-
-			<h1 background-color="stable">
-				MONTH DAY
-			</h1>
-		<ion-list id="home-list3">
-			<ion-item text-wrap background-color="stable">
-				Title: {{ item.Summary }}
-				<br />
-				<ion-note item-right></ion-note>
-			</ion-item>
-			<ion-item text-wrap background-color="stable">
-				Description: <p [innerHTML]="item.Description"></p>
-				<br />
-				<ion-note item-right></ion-note>
-			</ion-item>
-			<ion-item background-color="stable">
-				Start: {{ item.StartDate}} End: {{item.EndDate}}
-				<br />
-				<ion-note item-right></ion-note>
-			</ion-item>
-		</ion-list>
-
-    </li>
-
-=======
 	<a *ngFor="let day of Days">
 		<div *ngIf="(Events[day] | json) != ({times: []} | json)">
 			<h1 background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
 			<div *ngFor="let time of Events[day]['times']">
 				<ion-list>
 					<ion-item text-wrap background-color="stable">
-						Title: {{ Events[day][time].Summary }}
+						<font size="2"><strong>{{ Events[day][time].Summary }}</strong></font>
 					</ion-item>
 					<ion-item text-wrap background-color="stable">
-						Description: <p [innerHTML]="Events[day][time].Description"></p>
+						<font size="2" color="#3399ff">{{Events[day][time].Description}}</font><br /><br />
+						<font size="2">{{Events[day][time].Location}}</font><br /><br />
+						<font size="2" color="#3399ff">{{ Events[day][time].LocalTime}}</font><br /><br />
 					</ion-item>
 				</ion-list>
 				<br/><br/>
 			</div>
 		</div>
 	</a>
->>>>>>> 8c1eb632c8838e5221d4aac3484b20450c0e0fed
 </ion-content>
