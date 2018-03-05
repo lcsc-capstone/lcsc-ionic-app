@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
-import { CalendarDropdownPage } from '../pages/calendar/calendar-dropdown';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -30,8 +29,7 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
     ClassSchedulePage,
     CalendarPage,
     AboutPage,
-    RadioPage,
-    CalendarDropdownPage
+    RadioPage
   ],
   imports: [
     BrowserModule,
@@ -50,8 +48,7 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
     ClassSchedulePage,
     CalendarPage,
     AboutPage,
-    RadioPage,
-    CalendarDropdownPage
+    RadioPage
   ],
   providers: [
     InAppBrowser,
