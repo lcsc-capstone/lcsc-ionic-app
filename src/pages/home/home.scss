@@ -3,11 +3,7 @@ page-home {
     overflow: hidden;
 
     #bg-img {
-        background: url('http://www.lcsc.edu/static/videos/poster.jpg');
-        background-size: cover;
-        background-position: center center;
-        height: 100vh;
-        margin-top: -3.15em;
+        width: 100%;
     }
 
     .banner {
@@ -15,6 +11,21 @@ page-home {
         top: 0;
         width: 100%;
         margin-top: 14vh;
+    }
+
+    button {
+        border-radius: 0;
+        height: 3em;
+        background-color: #003865;
+        font-size: 16px;
+        width: 93%;
+        color: white;
+        margin: 0 auto;
+        display: block;
+
+        ion-icon {
+            padding-right: .5em;
+        }
     }
 
     #login-form {
@@ -98,21 +109,6 @@ page-home {
         }
     }
 
-    .home-button {
-        border-radius: 0;
-        height: 3em;
-        background-color: #003865;
-        font-size: 16px;
-        width: 93%;
-        color: white;
-        margin: 0 auto;
-        display: block;
-
-        ion-icon {
-            padding-right: .5em;
-        }
-    }
-
     #home-news {
         background-color: #F0F0F0;
         margin: -.6em 0 -.6em 0;
@@ -135,15 +131,15 @@ page-home {
         }
 
         ion-list {
-            margin-bottom: -1.3em;
+            margin-bottom: -1.75em;
         }
 
         #home-list-item29 {
-            margin-bottom: 1.5em;
+            margin-bottom: 2em;
         }
     }
 
-    #resources {
+    #home-resources {
         h1 {
             padding-left: .3em;
         }

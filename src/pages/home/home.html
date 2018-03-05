@@ -10,35 +10,8 @@
 </ion-header>
 <ion-content id="page1" no-bounce>
 
-	<div id="bg-img"></div>
-  	<!--<img src="assets/img/2.jpg" id="bg-img" />-->
-	  <img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
-
-	<div id="login-form">
-		<h2>Login to WarriorWeb</h2>
-		<form>
-
-			<div class="input">
-			<ion-icon name="person-outline" class="input-icon"></ion-icon>
-			<input [(ngModel)]="loginUsername" type="text" name="userID" placeholder="Username"><br>
-			</div>
-
-			<div class="input">
-			<ion-icon name="lock-outline" class="input-icon"></ion-icon>
-			<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
-			</div>
-
-			<button id="login" (click)='storeCredentials()'>Login</button>
-
-			<!--<a href="https://warriorweb.lcsc.edu/WebAdvisor/WebAdvisor?TOKENIDX=6984373314&SS=1&APP=UT&CONSTITUENCY=WBDF>
-			Forgot Password?</a>-->
-		</form>
-  	</div>
-
-  <div id="guest">
-      <p>Don't have an account?</p>
-      <a>View as Guest</a>
-  </div>
+  <img src="assets/img/2.jpg" id="bg-img" />
+	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
 
 	<div id="home-schedule">
 		<h1 id="home-heading">Here's Today...</h1>
@@ -95,7 +68,27 @@
 			</ion-item>
 		</ion-list>
 		</ion-list>
+		<button class="home-button" on-click="gotoCalendarPage()">
+			<ion-icon name="list-box"></ion-icon>
+			View Events
+		</button>
 	</div>
+
+	<div id="home-resources">
+		<h1 id="home-heading5" style="color:#003865;">
+			Resources
+		</h1>
+		<button id="home-button3" href-inappbrowser="http://lcsc.blackboard.com">
+			Blackboard
+		</button>
+		<button id="home-button4" href-inappbrowser="http://lcmail.lcsc.edu">
+			LCMail
+		</button>
+		<button id="home-button5" href-inappbrowser="http://warriorweb.lcsc.edu">
+			WarriorWeb
+		</button>
+	</div>
+
 	<button class="home-button" on-click="gotoCalendarPage()">
 		<ion-icon name="list-box"></ion-icon>
 		View Events
@@ -112,4 +105,5 @@
 	<button id="home-button5" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://warriorweb.lcsc.edu">
 		WarriorWeb
 	</button>
+  
 </ion-content>

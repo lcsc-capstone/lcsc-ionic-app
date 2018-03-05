@@ -10,6 +10,7 @@ import { CampusMapPage } from '../pages/campus-map/campus-map';
 import { AboutPage } from '../pages/about/about';
 import { RadioPage } from '../pages/radio/radio';
 import { CalendarPage } from '../pages/calendar/calendar';
+import { LoginPage } from '../pages/login/login';
 
 
 import { HomePage } from '../pages/home/home';
@@ -21,7 +22,7 @@ import { HomePage } from '../pages/home/home';
 })
 export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
-    rootPage:any = HomePage;
+    rootPage:any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

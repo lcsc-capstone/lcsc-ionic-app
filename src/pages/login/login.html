@@ -1,19 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Profile
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding id="page2">
-  <h1 id="profile-heading6">
-    Your Profile
-  </h1>
 
-  <div id="login-form">
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div id="bg-img"></div>
+	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
+
+	<div id="login-form">
 		<h2>Login to WarriorWeb</h2>
 		<form>
 
@@ -34,7 +32,7 @@
 
   <div id="guest">
       <p>Don't have an account?</p>
-      <a>View as Guest</a>
+      <a on-click="goToHomePage()">View as Guest</a>
   </div>
 
 </ion-content>
