@@ -13,32 +13,7 @@
   <div id="schedule">
     <h1>Class Schedule</h1>
     <ion-list>
-
-      <ion-item>
-        <h2>Web Application Dev</h2>
-        <p>SGC 124 | 10:00am - 11:30am</p>
-      </ion-item>
-
-      <ion-item>
-        <h2>Image Editing/Illustration</h2>
-        <p>SGC 124 | 12:00pm - 1:30pm</p>
-      </ion-item>
-
-      <ion-item>
-        <h2>Web Development Capstone</h2>
-        <p>SGC 124 | 3:30pm - 4:30pm</p>
-      </ion-item>
-
-      <ion-item>
-          <h2>Class Title</h2>
-          <p>Room 123 | Time</p>
-      </ion-item>
-
-      <ion-item>
-          <h2>Class Title</h2>
-          <p>Room 123 | Time</p>
-      </ion-item>
-
+        <ion-item *ngFor="let item of scheduleItems">{{item}}</ion-item>
     </ion-list>
   </div> 
 

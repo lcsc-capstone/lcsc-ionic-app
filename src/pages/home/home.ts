@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { ClassSchedulePage } from '../class-schedule/class-schedule';
 import { CalendarPage } from '../calendar/calendar';
+import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
 @Component({
 	selector: 'page-home',
@@ -19,7 +20,10 @@ export class HomePage {
 	public CampusRec;
 	public Events = [{}, {}, {}];
 
-	constructor(public navCtrl: NavController, private http: Http, private storage: Storage) {
+	private loginUsername : string = "";
+	private loginPassword : string = "";
+
+	constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage) {
 	}
 	goToClassSchedule(params){
 		if (!params) params = {};
@@ -139,6 +143,13 @@ export class HomePage {
 					this.news = val;
 				});
 			}
+		});
+	}
+
+	storeCredentials() {
+		this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
+			storage.set("loginUsername", this.loginUsername).then(data => this.loginUsername="", err => this.loginPassword="");
+			storage.set("loginPassword", this.loginPassword).then(data => this.loginUsername="", err => this.loginPassword="");
 		});
 	}
 }
