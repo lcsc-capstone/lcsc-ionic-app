@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content id="page1" no-bounce>
 
-  	<img src="assets/img/2.jpg" id="bg-img" />
+  <img src="assets/img/2.jpg" id="bg-img" />
 	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
 
 	<div id="home-schedule">
@@ -37,6 +37,22 @@
 	</button>
 
 	<div id="home-news">
+    <h1 id="home-heading3" style="color:#E10000;">
+			Events
+		</h1>
+		<ion-list id="home-list5">
+			<ion-item id="home-list-item27" text-wrap>
+				<h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d' }}</p>
+			</ion-item>
+			<ion-item id="home-list-item28" text-wrap>
+				<h2>{{ Events[1].Summary }}</h2>
+				<p>{{ Events[1].StartDate | date:'EEEE, MMMM d' }}</p>
+			</ion-item>
+			<ion-item id="home-list-item29" text-wrap>
+				<h2>{{ Events[2].Summary }}</h2>
+				<p>{{ Events[2].StartDate | date:'EEEE, MMMM d' }}</p>
+			</ion-item>
 		<h1>
 			News
 		</h1>
@@ -47,26 +63,10 @@
 			<ion-item id="home-list-item25" text-wrap>
 				<h2>{{ news['2']['title'] }}</h2>
 			</ion-item>
-			<ion-item id="home-list-item26" text-wrap>
+			<ion-item id="home-list-item26" text-wrapa>
 				<h2>{{ news['3']['title'] }}</h2>
 			</ion-item>
 		</ion-list>
-		<h1 id="home-heading3" style="color:#E10000;">
-			Events
-		</h1>
-		<ion-list id="home-list5">
-			<ion-item id="home-list-item27">
-				<h2>ASLCSC Meeting</h2>
-				<p>Tuesday, January 30, 4:30PM – 5:30PM</p>
-			</ion-item>
-			<ion-item id="home-list-item28">
-				<h2>Climate Change Forum</h2>
-				<p>Tuesday, January 30, 6:00PM – 7:00PM</p>
-			</ion-item>
-			<ion-item id="home-list-item29">
-				<h2>Game Night!</h2>
-				<p>Tuesday, January 30, 7:00PM – 9:00PM</p>
-			</ion-item>
 		</ion-list>
 		<button class="home-button" on-click="gotoCalendarPage()">
 			<ion-icon name="list-box"></ion-icon>
@@ -88,4 +88,22 @@
 			WarriorWeb
 		</button>
 	</div>
+
+	<button class="home-button" on-click="gotoCalendarPage()">
+		<ion-icon name="list-box"></ion-icon>
+		View Events
+	</button>
+	<h1 id="home-heading5" style="color:#003865;">
+		Resources
+	</h1>
+	<button id="home-button3" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://lcsc.blackboard.com">
+		Blackboard
+	</button>
+	<button id="home-button4" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://lcmail.lcsc.edu">
+		LCMail
+	</button>
+	<button id="home-button5" ion-button color="positive" block style="border-radius:0px 0px 0px 0px;" href-inappbrowser="http://warriorweb.lcsc.edu">
+		WarriorWeb
+	</button>
+  
 </ion-content>
