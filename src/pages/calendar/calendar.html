@@ -41,7 +41,7 @@
 				<ion-note item-right></ion-note>
 			</ion-item>
 			<ion-item text-wrap background-color="stable">
-				Description: {{item.Description}}
+				Description: <p [innerHTML]="item.Description"></p>
 				<br />
 				<ion-note item-right></ion-note>
 			</ion-item>
