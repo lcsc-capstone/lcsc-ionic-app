@@ -13,7 +13,7 @@ declare var cordova: any;
 })
 export class ClassSchedulePage {
 
-  scheduleItems: any;
+  scheduleItems : any;
   scheduleData: any;
 
   readonly buttonClickSource : string = "function getInputByValue(value){var inputs = document.getElementsByTagName('input');for(var i = 0; i < inputs.length; i++){if(inputs[i].value == value){return inputs[i];}}return null;}getInputByValue('Sign In').click();";
@@ -75,7 +75,11 @@ export class ClassSchedulePage {
 
               for(var course of currentTerm.PlannedCourses)
               {
-                let item = course.CourseTitleDisplay + "--" + course.CourseName;
+                let item = {
+                  courseTitleDisplay : course.CourseTitleDisplay,
+                  courseName : course.CourseName,
+                  meets : course.Section.Meetings
+                };
                 this.zone.run(() => this.scheduleItems.push(item));
               }
             });
@@ -97,5 +101,21 @@ export class ClassSchedulePage {
 
   async loadScheduleJsonData(browser) : Promise<any> {
     return browser.executeScript({ code: this.loadScheduleDataSource });
+  }
+
+  mapDay(day : string) : string {
+    var dict = {};
+    dict['0'] = 'Sunday';
+    dict['1'] = 'Monday';
+    dict['2'] = 'Tuesday';
+    dict['3'] = 'Wednesday';
+    dict['4'] = 'Thursday';
+    dict['5'] = 'Friday';
+    dict['6'] = 'Saturday';
+    return dict[day];
+  }
+
+  formatTime(time : string) : string {
+    return time.substring(12,time.length);
   }
 }

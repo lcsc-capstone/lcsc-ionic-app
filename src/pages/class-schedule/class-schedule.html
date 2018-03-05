@@ -13,8 +13,19 @@
   <div id="schedule">
     <h1>Class Schedule</h1>
     <ion-list>
-        <ion-item *ngFor="let item of scheduleItems">{{item}}</ion-item>
+        <ion-item *ngFor="let item of scheduleItems">
+          <h2>{{item.courseTitleDisplay}}</h2>
+          <h4>{{item.courseName}}</h4>
+          <ion-item *ngFor="let meet of item.meets">
+            <h4>{{meet.Room}}</h4>
+            <h4>{{meet.StartTime}}</h4>
+            <h4>{{meet.EndTime}}</h4>
+            <h4 *ngFor="let day of meet.Days">
+              {{mapDay(day)}}
+            </h4>
+          </ion-item>
+        </ion-item>
     </ion-list>
-  </div> 
+  </div>
 
 </ion-content>
