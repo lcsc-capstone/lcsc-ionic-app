@@ -19,7 +19,7 @@
 						Title: {{ Events[day][time].Summary }}
 					</ion-item>
 					<ion-item text-wrap background-color="stable">
-						Description: <p>{{ Events[day][time].Description }}</p>
+						Description: <p [innerHTML]="Events[day][time].Description"></p>
 					</ion-item>
 				</ion-list>
 				<br/><br/>
