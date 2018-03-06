@@ -31,7 +31,6 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
     CalendarPage,
     AboutPage,
     RadioPage,
-    CalendarDropdownPage,
     LoginPage
   ],
   imports: [
@@ -52,7 +51,6 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
     CalendarPage,
     AboutPage,
     RadioPage,
-    CalendarDropdownPage,
     LoginPage
   ],
   providers: [
