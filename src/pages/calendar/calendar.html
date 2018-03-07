@@ -16,10 +16,12 @@
 			<div *ngFor="let time of Events[day]['times']">
 				<ion-list>
 					<ion-item text-wrap background-color="stable">
-						Title: {{ Events[day][time].Summary }}
+						<font size="2"><strong>{{ Events[day][time].Summary }}</strong></font>
 					</ion-item>
 					<ion-item text-wrap background-color="stable">
-						Description: <p [innerHTML]="Events[day][time].Description"></p>
+						<font size="2" color="#3399ff">{{Events[day][time].Description}}</font><br /><br />
+						<font size="2">{{Events[day][time].Location}}</font><br /><br />
+						<font size="2" color="#3399ff">{{ Events[day][time].LocalTime}}</font><br /><br />
 					</ion-item>
 				</ion-list>
 				<br/><br/>
