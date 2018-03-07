@@ -13,10 +13,12 @@
 	<a *ngFor="let day of Days">
 		<div *ngIf="(Events[day] | json) != ({times: []} | json)" >
 			<h1 background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
-			<div *ngFor="let time of Events[day]['times']" text-wrap (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+			<div *ngFor="let time of Events[day]['times']">
 				<ion-list>
-					<ion-item text-wrap background-color="stable">
+						<div  (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
 						<font size="2"><strong>{{ Events[day][time].Summary }}</strong></font>
+						</div>
+					<ion-item text-wrap background-color="stable">
 						<div *ngIf="isGroupShown(time)">
 							<font size="2" color="#3399ff">{{Events[day][time].Description}}</font><br />
 							<font size="2">{{Events[day][time].Location}}</font><br />
