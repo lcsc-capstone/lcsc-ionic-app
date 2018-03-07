@@ -1,0 +1,92 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>
+			Home
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content id="page1" no-bounce>
+
+  <img src="assets/img/2.jpg" id="bg-img" />
+	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
+
+	<div id="home-schedule">
+		<h1 id="home-heading">Here's Today...</h1>
+		<ion-list id="home-list3">
+			<ion-item on-click="goToClassSchedule()" id="home-list-item19">
+				<h2>Web Application Dev</h2>
+				<p>SGC 124 | 10:00am - 11:30am</p>
+			</ion-item>
+			<ion-item on-click="goToClassSchedule()" id="home-list-item20">
+				<h2>Image Editing/Illustration</h2>
+				<p>SGC 124 | 12:00pm - 1:30pm</p>
+			</ion-item>
+			<ion-item on-click="goToClassSchedule()" id="home-list-item16">
+				<h2>Web Development Capstone</h2>
+				<p>SGC 124 | 3:30pm - 4:30pm</p>
+			</ion-item>
+		</ion-list>
+	</div>
+
+	<button class="home-button" on-click="goToClassSchedule()">
+		<ion-icon name="list-box"></ion-icon>
+		View Full Schedule
+	</button>
+
+	<div id="home-news">
+    <h1 id="home-heading3" style="color:#E10000;">
+			Events
+		</h1>
+		<ion-list id="home-list5">
+			<ion-item id="home-list-item27" text-wrap>
+				<h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mm:ss' }}</p>
+			</ion-item>
+			<ion-item id="home-list-item28" text-wrap>
+				<h2>{{ Events[1].Summary }}</h2>
+				<p>{{ Events[1].StartDate | date:'EEEE, MMMM d  H:mm:ss' }}</p>
+			</ion-item>
+			<ion-item id="home-list-item29" text-wrap>
+				<h2>{{ Events[2].Summary }}</h2>
+				<p>{{ Events[2].StartDate | date:'EEEE, MMMM d  H:mm:ss' }}</p>
+			</ion-item>
+		<h1>
+			News
+		</h1>
+		<ion-list id="home-list4">
+			<ion-item id="home-list-item24" text-wrap>
+				<h2>{{ news['1']['title'] }}</h2>
+			</ion-item>
+			<ion-item id="home-list-item25" text-wrap>
+				<h2>{{ news['2']['title'] }}</h2>
+			</ion-item>
+			<ion-item id="home-list-item26" text-wrapa>
+				<h2>{{ news['3']['title'] }}</h2>
+			</ion-item>
+		</ion-list>
+		</ion-list>
+		<button class="home-button" on-click="gotoCalendarPage()">
+			<ion-icon name="list-box"></ion-icon>
+			View Events
+		</button>
+	</div>
+
+	<div id="home-resources">
+		<h1 id="home-heading5" style="color:#003865;">
+			Resources
+		</h1>
+		<button id="home-button3" href-inappbrowser="http://lcsc.blackboard.com">
+			Blackboard
+		</button>
+		<button id="home-button4" href-inappbrowser="http://lcmail.lcsc.edu">
+			LCMail
+		</button>
+		<button id="home-button5" href-inappbrowser="http://warriorweb.lcsc.edu">
+			WarriorWeb
+		</button>
+	</div>
+  
+</ion-content>

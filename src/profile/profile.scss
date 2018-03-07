@@ -1,0 +1,78 @@
+page-profile {
+
+    #login-form {
+        position: absolute;
+        top: 0;
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+        width: 80%;
+        margin-top: 20vh;
+
+        h2 {
+            color: white;
+        }
+
+        .input {
+            position: relative;
+        }
+
+        .input input {
+            font-size: 16px;
+            width: 100%;
+            background-color: rgba(0, 56, 101, 0.822);
+            border: none;
+            padding: .625em;
+            color: white;
+            margin-bottom: .75em;
+            text-indent: 32px;
+        }
+
+        ::placeholder {
+            color: #BBBCBC;
+        }
+
+        .input .input-icon { 
+        position: absolute;
+        top: 5px;
+        left: 12px;
+        color: #BBBCBC;
+        font-size: 28px;
+        }
+
+        button {
+            border-radius: 0;
+            height: 2.5em;
+            background-color: #003865;
+            font-size: 16px;
+            color: white;
+            width: 100%;
+        }
+
+        #guest {
+            width: 100%;
+            margin-top: 2em;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+    
+            p {
+                margin-bottom: .75em;
+            }
+    
+            a {
+                text-decoration: none;
+                color: #003865;
+                font-size: 16px;
+                font-weight: 700;
+            }
+        }
+    
+        @media (min-width: 700px) {
+            #login-form {
+                width: 50%;
+                margin-top: 40vh;
+            }
+        }
+    }
+}
