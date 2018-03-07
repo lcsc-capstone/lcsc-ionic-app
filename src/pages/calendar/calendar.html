@@ -11,21 +11,22 @@
 
 <ion-content padding id="page6">
 	<a *ngFor="let day of Days">
-		<div *ngIf="(Events[day] | json) != ({times: []} | json)">
+		<div *ngIf="(Events[day] | json) != ({times: []} | json)" >
 			<h1 background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
-			<div *ngFor="let time of Events[day]['times']">
+			<div *ngFor="let time of Events[day]['times']" text-wrap (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
 				<ion-list>
 					<ion-item text-wrap background-color="stable">
 						<font size="2"><strong>{{ Events[day][time].Summary }}</strong></font>
-					</ion-item>
-					<ion-item text-wrap background-color="stable">
-						<font size="2" color="#3399ff">{{Events[day][time].Description}}</font><br /><br />
-						<font size="2">{{Events[day][time].Location}}</font><br /><br />
-						<font size="2" color="#3399ff">{{ Events[day][time].LocalTime}}</font><br /><br />
+						<div *ngIf="isGroupShown(time)">
+							<font size="2" color="#3399ff">{{Events[day][time].Description}}</font><br />
+							<font size="2">{{Events[day][time].Location}}</font><br />
+							<font size="2" color="#3399ff">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
+							<a href="{{Events[day][time].Link}}"><ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon><br /></a>
+						</div>
 					</ion-item>
 				</ion-list>
-				<br/><br/>
 			</div>
 		</div>
 	</a>
+	
 </ion-content>
