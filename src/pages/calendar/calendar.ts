@@ -109,4 +109,16 @@ export class CalendarPage {
 			});
 		});
 	}
+  shownGroup = null;
+
+	toggleGroup(group) {
+		if (this.isGroupShown(group)) {
+			this.shownGroup = null;
+		} else {
+			this.shownGroup = group;
+		}
+	};
+	isGroupShown(group) {
+		return this.shownGroup === group;
+	};
 }
