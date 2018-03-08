@@ -6,23 +6,47 @@
 		<ion-title>
 			Calendar
 		</ion-title>
+		<button class="dropdownbutton" ion-button icon-only (click)="presentPopover($event)">
+			<ion-icon name="ios-arrow-dropdown" align></ion-icon>
+		</button>
 	</ion-navbar>
 </ion-header>
 
 <ion-content padding id="page6">
+	<style type="text/css">
+	    h1 {
+		    background-color: #F8F8F8;
+				border-bottom: ;
+				color: #000;
+				font-size: 12pt;
+				padding: 10px;
+				border: 3px;
+			}
+
+      .accordian {
+				font-family: "Open Sans";
+			}
+
+			.accordian-firstitem{
+				color: #3399ff;
+				
+			}
+		</style>
+
+
 	<a *ngFor="let day of Days">
 		<div *ngIf="(Events[day] | json) != ({times: []} | json)" >
 			<h1 background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
 			<div *ngFor="let time of Events[day]['times']">
 				<ion-list>
-						<div  (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+						<div (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
 						<font size="2"><strong>{{ Events[day][time].Summary }}</strong></font>
 						</div>
-					<ion-item text-wrap background-color="stable">
+					<ion-item class="accordian" text-wrap background-color="stable">
 						<div *ngIf="isGroupShown(time)">
-							<font size="2" color="#3399ff">{{Events[day][time].Description}}</font><br />
-							<font size="2">{{Events[day][time].Location}}</font><br />
-							<font size="2" color="#3399ff">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
+							<div class="accordian-firstitem">{{Events[day][time].Description}}</div><br />
+							{{Events[day][time].Location}}<br />
+							<font size="2pt" color="#BBBCBC">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
 							<a href="{{Events[day][time].Link}}"><ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon><br /></a>
 						</div>
 					</ion-item>
@@ -30,5 +54,9 @@
 			</div>
 		</div>
 	</a>
-	
+
+	<!---
+
+ -->
+
 </ion-content>
