@@ -7,8 +7,16 @@
 			Calendar
 		</ion-title>
 		<button class="dropdownbutton" ion-button icon-only (click)="presentPopover($event)">
-			<ion-icon name="ios-arrow-dropdown" align></ion-icon>
+			<ion-icon style="color:#003865" name="ios-arrow-dropdown" align></ion-icon>
 		</button>
+		<style type="text/css">
+			.dropdownbutton {
+				background-color: #F8F8F8;
+				position:relative ;
+				float: right;
+			}
+
+			</style>
 	</ion-navbar>
 </ion-header>
 
@@ -28,11 +36,13 @@
       .accordian {
 				font-family: "Open Sans";
 				color: #003865;
+				font-size: 11pt;
 			}
 
 			.accordian-firstitem{
 				color: #000;
 				font-weight: normal;
+				font-size: 11pt;
 			}
 
 		</style>
@@ -49,8 +59,8 @@
 					<ion-item text-wrap background-color="stable">
 						<div *ngIf="isGroupShown(time)">
 							<div class="accordian-firstitem">{{Events[day][time].Description}}</div><br />
-							{{Events[day][time].Location}}<br />
-							<font color="#2c2d2d" size="2pt">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
+							<div style="color:#000;font-size:11pt">{{Events[day][time].Location}}</div><br />
+							<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
 							<a href="{{Events[day][time].Link}}"><ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon><br /></a>
 						</div>
 					</ion-item>
