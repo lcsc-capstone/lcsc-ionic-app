@@ -15,6 +15,8 @@
 <ion-content padding id="page6">
 	<style type="text/css">
 	    h1 {
+				font-family: "Open Sans";
+				font-weight: 550;
 		    background-color: #F8F8F8;
 				border-bottom: ;
 				color: #000;
@@ -25,12 +27,14 @@
 
       .accordian {
 				font-family: "Open Sans";
+				color: #003865;
 			}
 
 			.accordian-firstitem{
-				color: #3399ff;
-				
+				color: #000;
+				font-weight: normal;
 			}
+
 		</style>
 
 
@@ -39,14 +43,14 @@
 			<h1 background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
 			<div *ngFor="let time of Events[day]['times']">
 				<ion-list>
-						<div (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
-						<font size="2"><strong>{{ Events[day][time].Summary }}</strong></font>
+						<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+						{{ Events[day][time].Summary }}
 						</div>
-					<ion-item class="accordian" text-wrap background-color="stable">
+					<ion-item text-wrap background-color="stable">
 						<div *ngIf="isGroupShown(time)">
 							<div class="accordian-firstitem">{{Events[day][time].Description}}</div><br />
 							{{Events[day][time].Location}}<br />
-							<font size="2pt" color="#BBBCBC">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
+							<font color="#2c2d2d" size="2pt">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
 							<a href="{{Events[day][time].Link}}"><ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon><br /></a>
 						</div>
 					</ion-item>
