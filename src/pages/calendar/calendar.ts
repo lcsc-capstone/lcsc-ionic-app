@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
 
 @Component({
 	selector: 'page-calendar',
@@ -121,4 +122,11 @@ export class CalendarPage {
 	isGroupShown(group) {
 		return this.shownGroup === group;
 	};
+
+	presentPopover(myEvent) {
+		let popover = this.popoverCtrl.create(CalendarDropdownPage);
+		popover.present({
+			ev: myEvent
+		});
+	}
 }
