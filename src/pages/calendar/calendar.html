@@ -23,20 +23,18 @@
 <ion-content padding id="page6">
 	<style type="text/css">
 	    h1 {
-				font-family: "Open Sans";
 				font-weight: 550;
-		    background-color: #F8F8F8;
+				background-color: #F8F8F8;
 				border-bottom: ;
 				color: #000;
-				font-size: 12pt;
+				font-size: 15;
 				padding: 10px;
 				border: 3px;
 			}
 
-      .accordian {
-				font-family: "Open Sans";
+			.accordian {
 				color: #003865;
-				font-size: 11pt;
+				font-size: 14pt;
 			}
 
 			.accordian-firstitem{
@@ -45,7 +43,7 @@
 				font-size: 11pt;
 			}
 
-		</style>
+	</style>
 
 
 	<a *ngFor="let day of Days">
@@ -53,24 +51,23 @@
 			<h1 background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
 			<div *ngFor="let time of Events[day]['times']">
 				<ion-list>
-						<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+					<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
 						{{ Events[day][time].Summary }}
-						</div>
+					</div>
+					<div *ngIf="isGroupShown(time)">
+					<a href="{{Events[day][time].Link}}"><ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon></a>
+					<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>
 					<ion-item text-wrap background-color="stable">
-						<div *ngIf="isGroupShown(time)">
-							<div class="accordian-firstitem">{{Events[day][time].Description}}</div><br />
-							<div style="color:#000;font-size:11pt">{{Events[day][time].Location}}</div><br />
-							<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
-							<a href="{{Events[day][time].Link}}"><ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon><br /></a>
-						</div>
+					
+							<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
+							<div style="color:#000;font-size:11pt">{{Events[day][time].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
 					</ion-item>
+					</div>
 				</ion-list>
 			</div>
 		</div>
 	</a>
 
-	<!---
 
- -->
 
 </ion-content>
