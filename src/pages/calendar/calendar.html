@@ -23,7 +23,6 @@
 <ion-content padding id="page6">
 	<style type="text/css">
 	    h1 {
-				font-family: "Open Sans";
 				font-weight: 550;
 		    background-color: #F8F8F8;
 				border-bottom: ;
@@ -34,7 +33,6 @@
 			}
 
       .accordian {
-				font-family: "Open Sans";
 				color: #003865;
 				font-size: 11pt;
 			}
@@ -52,9 +50,47 @@
 		<div *ngIf="(Events[day] | json) != ({times: []} | json)" >
 			<h1 background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
 			<div *ngFor="let time of Events[day]['times']">
+
+
 				<ion-list>
 						<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
-						{{ Events[day][time].Summary }}
+
+								<div *ngIf = "Events[day][time].Calendar == 'Warrior Athletics'">
+									<font color="#ca96e0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+								</div>
+
+								<div *ngIf = "Events[day][time].Calendar == 'Entertainment'">
+								<font color="#d18787"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+								</div>
+
+								<div *ngIf = "Events[day][time].Calendar == 'Student Activities'">
+								<font color="#F8C797"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+								</div>
+
+								<div *ngIf = "Events[day][time].Calendar == 'Residence Life'">
+								<font color="#8be0a6"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+								</div>
+
+								<div *ngIf = "Events[day][time].Calendar == 'Campus Rec'">
+								<font color="#80E0E0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+								</div>
+
+								<div *ngIf = "Events[day][time].Calendar == 'Academics'">
+								<font color="#80AFC8"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+								</div>
+
+
+<!--
+
+							<div ng-switch on="Events[day][time].Calendar">
+									<span ng-switch-when="Academics"><font color="#ca96e0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}</span>
+									<span ng-switch-when="Entertainment"><font color="#d18787"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}</span>
+									<span ng-switch-when="Student Activities"><font color="#F8C797"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}</span>
+									<span ng-switch-when="Campus Rec"><font color="#8be0a6"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}</span>
+									<span ng-switch-when="Residence Life"><font color="#80E0E0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}</span>
+									<span ng-switch-when="Warrior Athletics"><font color="#80AFC8"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}</span>
+							</div>
+-->
 						</div>
 					<ion-item text-wrap background-color="stable">
 						<div *ngIf="isGroupShown(time)">
@@ -65,6 +101,11 @@
 						</div>
 					</ion-item>
 				</ion-list>
+
+
+
+
+
 			</div>
 		</div>
 	</a>
