@@ -102,7 +102,7 @@ export class CalendarPage {
 										}
 										this.Events[Math.floor(((event.LocalDate.getTime()+16*3600000)/86400000))][event.Summary] = event;
 										this.Events[Math.floor(((event.LocalDate.getTime()+16*3600000)/86400000))]['times'].push(event.Summary);
-									});console.log(merged)
+									});
 								});
 							});
 						});
@@ -110,12 +110,12 @@ export class CalendarPage {
 				});
 			});
 		});
-		
-		
-		
+
+
+
 	}
     shownGroup = null;
-	
+
 
 	toggleGroup(group) {
 		if (this.isGroupShown(group)) {
@@ -124,7 +124,7 @@ export class CalendarPage {
 			this.shownGroup = group;
 		}
 	};
-	
+
 	isGroupShown(group) {
 		return this.shownGroup === group;
 	};
