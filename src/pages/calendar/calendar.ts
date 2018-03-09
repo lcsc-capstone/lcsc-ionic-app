@@ -41,7 +41,7 @@ export class CalendarPage {
 	public showCampusRec = true;
 
 	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events) {
-		events.subscribe('toggleAcademics', () => {
+		events.subscribe('toggleAcademic', () => {
 			this.showAcademic = !this.showAcademic;
 		});
 		events.subscribe('toggleEntertainment', () => {
@@ -146,19 +146,19 @@ export class CalendarPage {
 			ev: myEvent
 		});
 	}
-	
-	shownGroup = null;	
-	
-	
-	toggleGroup(group) {	
-		if (this.isGroupShown(group)) {	
-			this.shownGroup = null;	
-		} else {	
-			this.shownGroup = group;	
-		}	
-	};	
-	
-	isGroupShown(group) {	
-		return this.shownGroup === group;	
+
+	shownGroup = null;
+
+
+	toggleGroup(group) {
+		if (this.isGroupShown(group)) {
+			this.shownGroup = null;
+		} else {
+			this.shownGroup = group;
+		}
+	};
+
+	isGroupShown(group) {
+		return this.shownGroup === group;
 	};
 }

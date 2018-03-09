@@ -48,7 +48,7 @@ export class CalendarDropdownPage {
 	}
 
 	toggleWarriorAthletics(){
-		this.events.publish('toggleWarriorAthletics');
+		this.events.publish('toggleAthletics');
 	}
 
 
