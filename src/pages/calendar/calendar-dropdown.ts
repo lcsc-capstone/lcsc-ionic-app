@@ -30,7 +30,7 @@ export class CalendarDropdownPage {
 	showCampusRec = true;
 	showResidentLife = true;
 	showWarriorAthletics = true;
-	
+
 	toggleAcademic(){
 		if(this.showAcademic === true){
 			this.showAcademic = null;
@@ -38,7 +38,7 @@ export class CalendarDropdownPage {
 			this.showAcademic = true;
 		}
 	}
-	
+
 	toggleEntertainment(){
 		if(this.showEntertainment === true){
 			this.showEntertainment = null;
@@ -46,15 +46,15 @@ export class CalendarDropdownPage {
 			this.showEntertainment = true;
 		}
 	}
-	
+
 	toggleStudentAcivities(){
-		if(this.showStudentAcivities === true){
-			this.showStudentAcivities = null;
+		if(this.showStudentActivities === true){
+			this.showStudentActivities = null;
 		} else {
-			this.showStudentAcivities = true;
+			this.showStudentActivities = true;
 		}
 	}
-	
+
 	toggleCampusRec(){
 		if(this.showCampusRec === true){
 			this.showCampusRec = null;
@@ -70,7 +70,7 @@ export class CalendarDropdownPage {
 			this.showResidentLife = true;
 		}
 	}
-	
+
 	toggleWarriorAthletics(){
 		if(this.showWarriorAthletics === true){
 			this.showWarriorAthletics = null;
@@ -78,7 +78,7 @@ export class CalendarDropdownPage {
 			this.showWarriorAthletics = true;
 		}
 	}
-	
+
 
 }
 
