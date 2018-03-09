@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Tutoring
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page7">
+<!-- Start page for selecting class you need a tutor for or a specific tutor -->
+  <h1 id="tutoring-heading11" style="color:#000000;">
+    Tutoring
+  </h1>
+  <div id="tutoring-markdown1" class="show-list-numbers-and-dots">
+    <p style="color:#000000;">
+      <!--drop down box generated from school schedule or the schools class list-->
+      <ion-list>
+        <ion-item>
+          <ion-label>Select Class</ion-label>
+          <ion-select [(ngModel)]="classes">
+            <ion-option value="default">Classes</ion-option>
+            <ion-option value="2">Generated Class</ion-option> <!--Generated list -->
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <!--drop down box generated from tutors list-->
+      <ion-list>
+        <ion-item>
+          <ion-label>Select Tutor</ion-label>
+          <ion-select [(ngModel)]="tutors">
+            <ion-option value="default">Tutors</ion-option>
+            <ion-option value="2">Jane Doe</ion-option> <!--Generated list -->
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      <button ion-button>Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
+
+
+      <br><br>Note: * denotes online tutor.
+    </p>
+  </div>
+</ion-content>
