@@ -20,6 +20,12 @@ import { CalendarPage } from '../calendar/calendar';
 
 
 export class CalendarDropdownPage {
+	public showAcademic = true;
+	public showAthletics = true;
+	public showEntertainment = true;
+	public showStudentActivities = true;
+	public showCampusRec = true;
+	public showResidentLife = true;
 	constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events) {
 	}
 
@@ -29,26 +35,32 @@ export class CalendarDropdownPage {
 
 	toggleAcademic(){
 		this.events.publish('toggleAcademic');
+		this.showAcademic = !this.showAcademic;
 	}
 
 	toggleEntertainment(){
 		this.events.publish('toggleEntertainment');
+		this.showEntertainment = !this.showEntertainment;
 	}
 
 	toggleStudentActivities(){
 		this.events.publish('toggleStudentActivities');
+		this.showStudentActivities = !this.showStudentActivities;
 	}
 
 	toggleCampusRec(){
 		this.events.publish('toggleCampusRec');
+		this.showCampusRec = !this.showCampusRec;
 	}
 
 	toggleResidentLife(){
 		this.events.publish('toggleResidentLife');
+		this.showResidentLife = !this.showResidentLife;
 	}
 
 	toggleWarriorAthletics(){
 		this.events.publish('toggleAthletics');
+		this.showAthletics = !this.showAthletics;
 	}
 
 
