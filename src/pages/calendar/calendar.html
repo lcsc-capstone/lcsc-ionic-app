@@ -56,7 +56,7 @@ h1 {
 				<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
 
 					<div *ngIf = "Events[day][time].Calendar == 'Warrior Athletics'">
-						<font color="#ca96e0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+						<font color="#80AFC8"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
 					</div>
 
 					<div *ngIf = "Events[day][time].Calendar == 'Entertainment'">
@@ -76,7 +76,7 @@ h1 {
 					</div>
 
 					<div *ngIf = "Events[day][time].Calendar == 'Academics'">
-						<font color="#80AFC8"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+						<font color="#ca96e0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
 					</div>
 				</div>
 				<div *ngIf="isGroupShown(time)">
