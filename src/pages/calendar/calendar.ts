@@ -44,20 +44,20 @@ export class CalendarPage {
 		events.subscribe('toggleAcademics', () => {
 			this.showAcademic = !this.showAcademic;
 		});
-		events.subscribe('toggleAEntertainment', () => {
-			this.showAcademic = !this.showEntertainment;
+		events.subscribe('toggleEntertainment', () => {
+			this.showEntertainment = !this.showEntertainment;
 		});
 		events.subscribe('toggleAthletics', () => {
-			this.showAcademic = !this.showAthletics;
+			this.showAthletics = !this.showAthletics;
 		});
-		events.subscribe('toggleAStudentActivities', () => {
-			this.showAcademic = !this.showStudentActivities;
+		events.subscribe('toggleStudentActivities', () => {
+			this.showStudentActivities = !this.showStudentActivities;
 		});
-		events.subscribe('toggleAResidentLife', () => {
-			this.showAcademic = !this.showResidentLife;
+		events.subscribe('toggleResidentLife', () => {
+			this.showResidentLife = !this.showResidentLife;
 		});
-		events.subscribe('toggleACampusRec', () => {
-			this.showAcademic = !this.showCampusRec;
+		events.subscribe('toggleCampusRec', () => {
+			this.showCampusRec = !this.showCampusRec;
 		});
 	}
 
@@ -139,24 +139,26 @@ export class CalendarPage {
 
 
 	}
-	shownGroup = null;
 
-
-	toggleGroup(group) {
-		if (this.isGroupShown(group)) {
-			this.shownGroup = null;
-		} else {
-			this.shownGroup = group;
-		}
-	};
-
-	isGroupShown(group) {
-		return this.shownGroup === group;
-	};
 	presentPopover(myEvent) {
 		let popover = this.popoverCtrl.create(CalendarDropdownPage);
 		popover.present({
 			ev: myEvent
 		});
 	}
+	
+	shownGroup = null;	
+	
+	
+	toggleGroup(group) {	
+		if (this.isGroupShown(group)) {	
+			this.shownGroup = null;	
+		} else {	
+			this.shownGroup = group;	
+		}	
+	};	
+	
+	isGroupShown(group) {	
+		return this.shownGroup === group;	
+	};
 }
