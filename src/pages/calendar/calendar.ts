@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
@@ -109,8 +110,12 @@ export class CalendarPage {
 				});
 			});
 		});
+		
+		
+		
 	}
-  shownGroup = null;
+    shownGroup = null;
+	
 
 	toggleGroup(group) {
 		if (this.isGroupShown(group)) {
@@ -119,6 +124,7 @@ export class CalendarPage {
 			this.shownGroup = group;
 		}
 	};
+	
 	isGroupShown(group) {
 		return this.shownGroup === group;
 	};

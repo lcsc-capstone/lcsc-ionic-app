@@ -15,14 +15,70 @@ import { PopoverController } from 'ionic-angular';
   selector: 'page-calendar-dropdown',
   templateUrl: 'calendar-dropdown.html',
 })
-export class CalendarDropdownPage {
 
+
+export class CalendarDropdownPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalendarDropdownPage');
   }
+  	showAcademic = true;
+	showEntertainment = true;
+	showStudentActivities = true;
+	showCampusRec = true;
+	showResidentLife = true;
+	showWarriorAthletics = true;
+	
+	toggleAcademic(){
+		if(this.showAcademic === true){
+			this.showAcademic = null;
+		} else {
+			this.showAcademic = true;
+		}
+	}
+	
+	toggleEntertainment(){
+		if(this.showEntertainment === true){
+			this.showEntertainment = null;
+		} else {
+			this.showEntertainment = true;
+		}
+	}
+	
+	toggleStudentAcivities(){
+		if(this.showStudentAcivities === true){
+			this.showStudentAcivities = null;
+		} else {
+			this.showStudentAcivities = true;
+		}
+	}
+	
+	toggleCampusRec(){
+		if(this.showCampusRec === true){
+			this.showCampusRec = null;
+		} else {
+			this.showCampusRec = true;
+		}
+	}
+
+	toggleResidentLife(){
+		if(this.showResidentLife === true){
+			this.showResidentLife = null;
+		} else {
+			this.showResidentLife = true;
+		}
+	}
+	
+	toggleWarriorAthletics(){
+		if(this.showWarriorAthletics === true){
+			this.showWarriorAthletics = null;
+		} else {
+			this.showWarriorAthletics = true;
+		}
+	}
+	
 
 }
 
