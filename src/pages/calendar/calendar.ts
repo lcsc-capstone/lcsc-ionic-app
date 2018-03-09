@@ -1,7 +1,10 @@
+
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
 
 @Component({
 	selector: 'page-calendar',
@@ -30,8 +33,32 @@ export class CalendarPage {
 	public CampusRec;
 	public Days = [];
 	public Events = {};
+	public showAcademic = true;
+	public showEntertainment = true;
+	public showAthletics = true;
+	public showStudentActivities = true;
+	public showResidentLife = true;
+	public showCampusRec = true;
 
-	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage) {
+	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events) {
+		events.subscribe('toggleAcademic', () => {
+			this.showAcademic = !this.showAcademic;
+		});
+		events.subscribe('toggleEntertainment', () => {
+			this.showEntertainment = !this.showEntertainment;
+		});
+		events.subscribe('toggleAthletics', () => {
+			this.showAthletics = !this.showAthletics;
+		});
+		events.subscribe('toggleStudentActivities', () => {
+			this.showStudentActivities = !this.showStudentActivities;
+		});
+		events.subscribe('toggleResidentLife', () => {
+			this.showResidentLife = !this.showResidentLife;
+		});
+		events.subscribe('toggleCampusRec', () => {
+			this.showCampusRec = !this.showCampusRec;
+		});
 	}
 
 	ionViewDidLoad() {
@@ -108,8 +135,20 @@ export class CalendarPage {
 				});
 			});
 		});
+
+
+
 	}
-  shownGroup = null;
+
+	presentPopover(myEvent) {
+		let popover = this.popoverCtrl.create(CalendarDropdownPage);
+		popover.present({
+			ev: myEvent
+		});
+	}
+
+	shownGroup = null;
+
 
 	toggleGroup(group) {
 		if (this.isGroupShown(group)) {
@@ -118,6 +157,7 @@ export class CalendarPage {
 			this.shownGroup = group;
 		}
 	};
+
 	isGroupShown(group) {
 		return this.shownGroup === group;
 	};
