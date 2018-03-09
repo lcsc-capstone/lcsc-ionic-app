@@ -24,7 +24,7 @@ export class CalendarDropdownPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalendarDropdownPage');
   }
-  	showAcademic = true;
+  showAcademic = true;
 	showEntertainment = true;
 	showStudentActivities = true;
 	showCampusRec = true;
@@ -33,7 +33,7 @@ export class CalendarDropdownPage {
 
 	toggleAcademic(){
 		if(this.showAcademic === true){
-			this.showAcademic = null;
+			this.showAcademic = false;
 		} else {
 			this.showAcademic = true;
 		}
@@ -41,7 +41,7 @@ export class CalendarDropdownPage {
 
 	toggleEntertainment(){
 		if(this.showEntertainment === true){
-			this.showEntertainment = null;
+			this.showEntertainment = false;
 		} else {
 			this.showEntertainment = true;
 		}
@@ -49,7 +49,7 @@ export class CalendarDropdownPage {
 
 	toggleStudentAcivities(){
 		if(this.showStudentActivities === true){
-			this.showStudentActivities = null;
+			this.showStudentActivities = false;
 		} else {
 			this.showStudentActivities = true;
 		}
@@ -57,7 +57,7 @@ export class CalendarDropdownPage {
 
 	toggleCampusRec(){
 		if(this.showCampusRec === true){
-			this.showCampusRec = null;
+			this.showCampusRec = false;
 		} else {
 			this.showCampusRec = true;
 		}
@@ -65,7 +65,7 @@ export class CalendarDropdownPage {
 
 	toggleResidentLife(){
 		if(this.showResidentLife === true){
-			this.showResidentLife = null;
+			this.showResidentLife = false;
 		} else {
 			this.showResidentLife = true;
 		}
@@ -73,7 +73,7 @@ export class CalendarDropdownPage {
 
 	toggleWarriorAthletics(){
 		if(this.showWarriorAthletics === true){
-			this.showWarriorAthletics = null;
+			this.showWarriorAthletics = false;
 		} else {
 			this.showWarriorAthletics = true;
 		}
