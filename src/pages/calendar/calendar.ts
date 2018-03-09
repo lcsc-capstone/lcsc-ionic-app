@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
 
@@ -32,8 +33,32 @@ export class CalendarPage {
 	public CampusRec;
 	public Days = [];
 	public Events = {};
+	public showAcademic = true;
+	public showEntertainment = true;
+	public showAthletics = true;
+	public showStudentActivities = true;
+	public showResidentLife = true;
+	public showCampusRec = true;
 
-	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage) {
+	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events) {
+		events.subscribe('toggleAcademics', () => {
+			this.showAcademic = !this.showAcademic;
+		});
+		events.subscribe('toggleAEntertainment', () => {
+			this.showAcademic = !this.showEntertainment;
+		});
+		events.subscribe('toggleAthletics', () => {
+			this.showAcademic = !this.showAthletics;
+		});
+		events.subscribe('toggleAStudentActivities', () => {
+			this.showAcademic = !this.showStudentActivities;
+		});
+		events.subscribe('toggleAResidentLife', () => {
+			this.showAcademic = !this.showResidentLife;
+		});
+		events.subscribe('toggleACampusRec', () => {
+			this.showAcademic = !this.showCampusRec;
+		});
 	}
 
 	ionViewDidLoad() {
@@ -114,20 +139,6 @@ export class CalendarPage {
 
 
 	}
-    shownGroup = null;
-
-
-	toggleGroup(group) {
-		if (this.isGroupShown(group)) {
-			this.shownGroup = null;
-		} else {
-			this.shownGroup = group;
-		}
-	};
-
-	isGroupShown(group) {
-		return this.shownGroup === group;
-	};
 
 	presentPopover(myEvent) {
 		let popover = this.popoverCtrl.create(CalendarDropdownPage);

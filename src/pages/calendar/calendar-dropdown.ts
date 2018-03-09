@@ -1,107 +1,79 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
+import { CalendarPage } from '../calendar/calendar';
 
 
 /**
- * Generated class for the CalendarDropdownPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+* Generated class for the CalendarDropdownPage page.
+*
+* See https://ionicframework.com/docs/components/#navigation for more info on
+* Ionic pages and navigation.
+*/
 
 @IonicPage()
 @Component({
-  selector: 'page-calendar-dropdown',
-  templateUrl: 'calendar-dropdown.html',
+	selector: 'page-calendar-dropdown',
+	templateUrl: 'calendar-dropdown.html',
 })
 
 
 export class CalendarDropdownPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events) {
+	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CalendarDropdownPage');
-  }
-  showAcademic = true;
-	showEntertainment = true;
-	showStudentActivities = true;
-	showCampusRec = true;
-	showResidentLife = true;
-	showWarriorAthletics = true;
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad CalendarDropdownPage');
+	}
 
 	toggleAcademic(){
-		if(this.showAcademic === true){
-			this.showAcademic = false;
-		} else {
-			this.showAcademic = true;
-		}
+		this.events.publish('toggleAcademic');
 	}
 
 	toggleEntertainment(){
-		if(this.showEntertainment === true){
-			this.showEntertainment = false;
-		} else {
-			this.showEntertainment = true;
-		}
+		this.events.publish('toggleEntertainment');
 	}
 
 	toggleStudentAcivities(){
-		if(this.showStudentActivities === true){
-			this.showStudentActivities = false;
-		} else {
-			this.showStudentActivities = true;
-		}
+		this.events.publish('toggleStudentActivities');
 	}
 
 	toggleCampusRec(){
-		if(this.showCampusRec === true){
-			this.showCampusRec = false;
-		} else {
-			this.showCampusRec = true;
-		}
+		this.events.publish('toggleCampusRec');
 	}
 
 	toggleResidentLife(){
-		if(this.showResidentLife === true){
-			this.showResidentLife = false;
-		} else {
-			this.showResidentLife = true;
-		}
+		this.events.publish('toggleResidentLife');
 	}
 
 	toggleWarriorAthletics(){
-		if(this.showWarriorAthletics === true){
-			this.showWarriorAthletics = false;
-		} else {
-			this.showWarriorAthletics = true;
-		}
+		this.events.publish('toggleWarriorAthletics');
 	}
 
 
 }
 
 @Component({
-	 template: `
-    <ion-list>
-      <ion-list-header>Ionic</ion-list-header>
-      <button ion-item (click)="close()">Learn Ionic</button>
-      <button ion-item (click)="close()">Documentation</button>
-      <button ion-item (click)="close()">Showcase</button>
-      <button ion-item (click)="close()">GitHub Repo</button>
-    </ion-list>
-   `
+	template: `
+	<ion-list>
+	<ion-list-header>Ionic</ion-list-header>
+	<button ion-item (click)="close()">Learn Ionic</button>
+	<button ion-item (click)="close()">Documentation</button>
+	<button ion-item (click)="close()">Showcase</button>
+	<button ion-item (click)="close()">GitHub Repo</button>
+	</ion-list>
+	`
 })
 
 @Component({})
 class MyPage {
-  constructor(public popoverCtrl: PopoverController) {}
+	constructor(public popoverCtrl: PopoverController) {}
 
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(CalendarDropdownPage);
-    popover.present({
-      ev: myEvent
-    });
-  }
+	presentPopover(myEvent) {
+		let popover = this.popoverCtrl.create(CalendarDropdownPage);
+		popover.present({
+			ev: myEvent
+		});
+	}
 }
