@@ -49,25 +49,30 @@ page-profile {
             color: white;
             width: 100%;
         }
-    }
 
-    #guest {
-        position: absolute;
-        width: 100%;
-        bottom: 1.5em;
-        text-align: center;
-        font-family: 'Montserrat', sans-serif;
-
-        p {
-            margin-bottom: .75em;
+        #guest {
+            width: 100%;
+            margin-top: 2em;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+    
+            p {
+                margin-bottom: .75em;
+            }
+    
+            a {
+                text-decoration: none;
+                color: #003865;
+                font-size: 16px;
+                font-weight: 700;
+            }
         }
-
-        a {
-            text-decoration: none;
-            color: #003865;
-            font-size: 16px;
-            font-weight: 700;
+    
+        @media (min-width: 700px) {
+            #login-form {
+                width: 50%;
+                margin-top: 40vh;
+            }
         }
     }
-
 }
