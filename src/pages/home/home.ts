@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { ClassSchedulePage } from '../class-schedule/class-schedule';
 import { CalendarPage } from '../calendar/calendar';
+import { NewsPage }	from '../news/news';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
 @Component({
@@ -30,8 +31,11 @@ export class HomePage {
 		this.navCtrl.push(ClassSchedulePage);
 	}
 
-	gotoCalendarPage(){
+	goToCalendar(){
 		this.navCtrl.push(CalendarPage);
+	}
+	goToNews(){
+		this.navCtrl.push(NewsPage);
 	}
 
 	ionViewDidLoad() {
