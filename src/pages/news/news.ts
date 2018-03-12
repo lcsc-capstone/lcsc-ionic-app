@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 
 @Component({
   selector: 'page-news',
@@ -9,7 +10,7 @@ import { Storage } from '@ionic/storage';
 export class NewsPage {
 	public news = {'1': {}, '2': {}, '3': {}, '4': {}, '5': {}, '6': {}, '7': {}, '8': {}, '9': {}, '10': {}};
 
-  constructor(public navCtrl: NavController, private storage: Storage) {
+  constructor(public navCtrl: NavController, private storage: Storage, private inAppBrowser: InAppBrowser) {
   }
 
 
@@ -19,4 +20,7 @@ export class NewsPage {
 	  });
   }
 
+  openBrowser(link) {
+	const browser = this.inAppBrowser.create(this.news[link.toString()]['link'], '_self', 'location=no');
+  }
 }
