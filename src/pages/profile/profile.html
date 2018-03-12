@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="lcblue">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" color="light"></ion-icon>
     </button>
     <ion-title>
       Profile
@@ -13,8 +13,9 @@
     Your Profile
   </h1>
 
-  <div id="login-form">
-		<h2>Login to WarriorWeb</h2>
+	<div id="login-form">
+		<h2>View Your Schedule</h2>
+		<p>Login using WarriorWeb credentials</p>
 		<form>
 
 			<div class="input">
@@ -27,14 +28,14 @@
 			<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
 			</div>
 
-			<button id="login" (click)='storeCredentials()'>Login</button>
+			<button id="login" (tap)='storeCredentials()'>Login</button>
 
-    </form>
-    
-    <div id="guest">
-        <p>Don't have an account?</p>
-        <a>View as Guest</a>
-    </div>
+		</form>
+
+		<div id="guest">
+			<p>Don't have an account?</p>
+			<a (tap)="goToHomePage()">View as Guest</a>
+		</div>
   </div>
 
 </ion-content>

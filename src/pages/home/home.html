@@ -1,7 +1,7 @@
 <ion-header>
-	<ion-navbar>
+	<ion-navbar color="lcblue">
 		<button ion-button menuToggle>
-			<ion-icon name="menu"></ion-icon>
+			<ion-icon name="menu" color="light"></ion-icon>
 		</button>
 		<ion-title>
 			Home
@@ -11,27 +11,27 @@
 <ion-content id="page1" no-bounce>
 
   <img src="assets/img/2.jpg" id="bg-img" />
-	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
+	<img src="assets/img/banner.png" class="banner" />
 
 	<div id="home-schedule">
 		<h1 id="home-heading">Here's Today...</h1>
 		<ion-list id="home-list3">
-			<ion-item on-click="goToClassSchedule()" id="home-list-item19">
+			<ion-item (tap)="goToClassSchedule()" id="home-list-item19">
 				<h2>Web Application Dev</h2>
 				<p>SGC 124 | 10:00am - 11:30am</p>
 			</ion-item>
-			<ion-item on-click="goToClassSchedule()" id="home-list-item20">
+			<ion-item (tap)="goToClassSchedule()" id="home-list-item20">
 				<h2>Image Editing/Illustration</h2>
 				<p>SGC 124 | 12:00pm - 1:30pm</p>
 			</ion-item>
-			<ion-item on-click="goToClassSchedule()" id="home-list-item16">
+			<ion-item (tap)="goToClassSchedule()" id="home-list-item16">
 				<h2>Web Development Capstone</h2>
 				<p>SGC 124 | 3:30pm - 4:30pm</p>
 			</ion-item>
 		</ion-list>
 	</div>
 
-	<button class="home-button" on-click="goToClassSchedule()">
+	<button class="button2" on-click="goToClassSchedule()">
 		<ion-icon name="list-box"></ion-icon>
 		View Full Schedule
 	</button>
@@ -41,52 +41,93 @@
 			Events
 		</h1>
 		<ion-list id="home-list5">
-			<ion-item id="home-list-item27" text-wrap>
+			<!-- This is the code required to add the color dot to the side of the Title
+			<div *ngIf = "Events[0].Calendar == 'Warrior Athletics'">
+				<font color="#80AFC8"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</div>
+			<div *ngIf = "Events[0].Calendar == 'Entertainment'">
+				<font color="#d18787"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</div>
+			<div *ngIf = "Events[0].Calendar == 'Student Activities'">
+				<font color="#F8C797"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</div>
+			<div *ngIf = "Events[0].Calendar == 'Residence Life'">
+				<font color="#80E0E0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</div>
+			<div *ngIf = "Events[0].Calendar == 'Campus Rec'">
+				<font color="#8be0a6"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</div>
+			<div *ngIf = "Events[0].Calendar == 'Academics'">
+				<font color="#ca96e0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</div>
+			-->
+			<ion-item (tap)="goToCalendar()" id="home-list-item27" text-wrap>
 				<h2>{{ Events[0].Summary }}</h2>
-				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mm:ss' }}</p>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
 			</ion-item>
-			<ion-item id="home-list-item28" text-wrap>
+			<ion-item (tap)="goToCalendar()" id="home-list-item28" text-wrap>
 				<h2>{{ Events[1].Summary }}</h2>
-				<p>{{ Events[1].StartDate | date:'EEEE, MMMM d  H:mm:ss' }}</p>
+				<p>{{ Events[1].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
 			</ion-item>
-			<ion-item id="home-list-item29" text-wrap>
+			<ion-item (tap)="goToCalendar()" id="home-list-item29" text-wrap>
 				<h2>{{ Events[2].Summary }}</h2>
-				<p>{{ Events[2].StartDate | date:'EEEE, MMMM d  H:mm:ss' }}</p>
+				<p>{{ Events[2].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
 			</ion-item>
+		</ion-list>
 		<h1>
 			News
 		</h1>
 		<ion-list id="home-list4">
-			<ion-item id="home-list-item24" text-wrap>
-				<h2>{{ news['1']['title'] }}</h2>
+
+			<div *ngIf = "news != null; else noNews"> <!-- Added for simulator testing avoiding errors -->
+				<ion-item id="home-list-item24" (tap)="goToNews()" text-wrap>
+					<h2>{{ news['1']['title'] }}</h2>
+				</ion-item>
+				<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
+					<h2>{{ news['2']['title'] }}</h2>
+				</ion-item>
+				<ion-item id="home-list-item26" (tap)="goToNews()" text-wrapa>
+					<h2>{{ news['3']['title'] }}</h2>
+				</ion-item>
+		</div>
+		<ng-template #noNews>
+			<ion-item id="home-list-item24" (tap)="goToNews()" text-wrap>
+				<h2></h2>
 			</ion-item>
-			<ion-item id="home-list-item25" text-wrap>
-				<h2>{{ news['2']['title'] }}</h2>
+			<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
+				<h2></h2>
 			</ion-item>
-			<ion-item id="home-list-item26" text-wrapa>
-				<h2>{{ news['3']['title'] }}</h2>
+			<ion-item id="home-list-item26" (tap)="goToNews()" text-wrapa>
+				<h2></h2>
 			</ion-item>
+		</ng-template>
+
 		</ion-list>
-		</ion-list>
-		<button class="home-button" on-click="gotoCalendarPage()">
-			<ion-icon name="list-box"></ion-icon>
-			View Events
+
+		<button class="button" (tap)="goToCalendar()">
+			<ion-icon name="ios-calendar"></ion-icon>
+			View Calendar
 		</button>
 	</div>
 
 	<div id="home-resources">
-		<h1 id="home-heading5" style="color:#003865;">
+		<h1 id="home-heading5">
 			Resources
 		</h1>
-		<button id="home-button3" href-inappbrowser="http://lcsc.blackboard.com">
+		<button class="button2" id="home-button3" href-inappbrowser="http://lcsc.blackboard.com">
 			Blackboard
 		</button>
-		<button id="home-button4" href-inappbrowser="http://lcmail.lcsc.edu">
+		<button class="button2" id="home-button4" href-inappbrowser="http://lcmail.lcsc.edu">
 			LCMail
 		</button>
-		<button id="home-button5" href-inappbrowser="http://warriorweb.lcsc.edu">
+		<button class="button2" id="home-button5" href-inappbrowser="http://warriorweb.lcsc.edu">
 			WarriorWeb
 		</button>
 	</div>
-  
 </ion-content>
