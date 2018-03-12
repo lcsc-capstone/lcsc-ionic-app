@@ -164,6 +164,7 @@ export class CalendarPage {
 	};
 
 	addEvent(event) {
-		this.calendar.createEvent(event.Summary, event.Location, event.Description, event.StartDate, event.EndDate)
+		this.calendar.createEventInteractively(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate));
+
 	}
 }

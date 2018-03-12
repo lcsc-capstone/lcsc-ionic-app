@@ -86,4 +86,5 @@
     <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <plugin name="cordova-plugin-secure-storage" spec="^2.6.8" />
     <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
+    <engine name="ios" spec="~4.5.4" />
 </widget>

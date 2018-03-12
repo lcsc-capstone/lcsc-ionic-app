@@ -45,7 +45,7 @@
 							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
-								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[day][time])"></ion-icon>
 								<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>
 								<ion-item text-wrap background-color="stable">
 									<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
@@ -60,7 +60,7 @@
 							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
-								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[day][time])"></ion-icon>
 								<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>
 								<ion-item text-wrap background-color="stable">
 									<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
@@ -75,7 +75,7 @@
 							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
-								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[day][time])"></ion-icon>
 								<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>
 								<ion-item text-wrap background-color="stable">
 									<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
@@ -90,7 +90,7 @@
 							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
-								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[day][time])"></ion-icon>
 								<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>
 								<ion-item text-wrap background-color="stable">
 									<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
@@ -105,7 +105,7 @@
 							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
-								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[day][time])"></ion-icon>
 								<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>
 								<ion-item text-wrap background-color="stable">
 									<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
@@ -120,7 +120,7 @@
 							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
-								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[day][time])"></ion-icon>
 								<font style="color:#194b74;font-size:11pt">{{ Events[day][time].LocalTime}}</font>
 								<ion-item text-wrap background-color="stable">
 									<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
