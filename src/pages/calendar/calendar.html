@@ -39,9 +39,10 @@
 
 
 				<ion-list>
-					<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
 						<div *ngIf = "Events[day][time].Calendar == 'Warrior Athletics' && showAthletics == true">
-							<font color="#80AFC8"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+								<font color="#80AFC8"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
@@ -54,7 +55,9 @@
 						</div>
 
 						<div *ngIf = "Events[day][time].Calendar == 'Entertainment' && showEntertainment == true">
-							<font color="#d18787"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+								<font color="#d18787"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
@@ -67,7 +70,9 @@
 						</div>
 
 						<div *ngIf = "Events[day][time].Calendar == 'Student Activities' && showStudentActivities == true">
-							<font color="#F8C797"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+								<font color="#F8C797"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
@@ -80,7 +85,9 @@
 						</div>
 
 						<div *ngIf = "Events[day][time].Calendar == 'Residence Life' && showResidentLife == true">
-							<font color="#80E0E0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+								<font color="#80E0E0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
@@ -93,7 +100,9 @@
 						</div>
 
 						<div *ngIf = "Events[day][time].Calendar == 'Campus Rec' && showCampusRec == true">
-							<font color="#8be0a6"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+								<font color="#8be0a6"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
@@ -106,7 +115,9 @@
 						</div>
 
 						<div *ngIf = "Events[day][time].Calendar == 'Academics' && showAcademic == true">
-							<font color="#ca96e0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							<div class="accordian" (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
+								<font color="#ca96e0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>   {{ Events[day][time].Summary }}
+							</div>
 							<div *ngIf="isGroupShown(time)">
 								<!-- on-click="createEvent(Events[day][time].Summary , Events[day][time].Location , Events[day][time].Description , Events[day][time].StartDate , Events[day][time].EndDate )" -->
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
@@ -117,7 +128,6 @@
 								</ion-item>
 							</div>
 						</div>
-					</div>
 
 				</ion-list>
 
