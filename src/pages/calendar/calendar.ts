@@ -41,7 +41,7 @@ export class CalendarPage {
 	public showResidentLife = true;
 	public showCampusRec = true;
 
-	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events) {
+	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events, private calendar: Calendar) {
 		events.subscribe('toggleAcademic', () => {
 			this.showAcademic = !this.showAcademic;
 		});
@@ -162,4 +162,8 @@ export class CalendarPage {
 	isGroupShown(group) {
 		return this.shownGroup === group;
 	};
+
+	addEvent(event) {
+		this.calendar.createEvent(event.Summary, event.Location, event.Description, event.StartDate, event.EndDate)
+	}
 }

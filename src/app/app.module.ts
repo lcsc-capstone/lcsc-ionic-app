@@ -19,6 +19,7 @@ import { LoginPage } from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Calendar } from '@ionic-native/calendar';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
 @NgModule({
@@ -61,6 +62,7 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
     SecureStorage,
     StatusBar,
     SplashScreen,
+	 Calendar,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
