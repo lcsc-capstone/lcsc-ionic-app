@@ -47,7 +47,7 @@ export class MyApp {
   }goToCampusMap(params){
     if (!params) params = {};
     this.navCtrl.setRoot(CampusMapPage);
-  }gotoAbout(params){
+  }goToAbout(params){
     if (!params) params = {};
     this.navCtrl.setRoot(AboutPage);
   }goToRadio(params){

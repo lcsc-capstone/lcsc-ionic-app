@@ -27,6 +27,9 @@
 			<ion-item (tap)="goToClassSchedule()" id="home-list-item16">
 				<h2>Web Development Capstone</h2>
 				<p>SGC 124 | 3:30pm - 4:30pm</p>
+		<ion-list id="schedule_list">
+			<ion-item *ngFor="let item of scheduleItems">
+				{{item}}
 			</ion-item>
 		</ion-list>
 	</div>
@@ -92,7 +95,7 @@
 				<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
 					<h2>{{ news['2']['title'] }}</h2>
 				</ion-item>
-				<ion-item id="home-list-item26" (tap)="goToNews()" text-wrapa>
+				<ion-item id="home-list-item26" (tap)="goToNews()" text-wrap>
 					<h2>{{ news['3']['title'] }}</h2>
 				</ion-item>
 		</div>
@@ -103,7 +106,7 @@
 			<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
 				<h2></h2>
 			</ion-item>
-			<ion-item id="home-list-item26" (tap)="goToNews()" text-wrapa>
+			<ion-item id="home-list-item26" (tap)="goToNews()" text-wrap>
 				<h2></h2>
 			</ion-item>
 		</ng-template>
@@ -118,6 +121,7 @@
 
 	<div id="home-resources">
 		<h1 id="home-heading5">
+	</div>
 			Resources
 		</h1>
 		<button class="button2" id="home-button3" href-inappbrowser="http://lcsc.blackboard.com">
