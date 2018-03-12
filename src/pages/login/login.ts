@@ -17,7 +17,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage) {
   }
-  
+
 	goToHomePage(params){
     if (!params) params = {};
     this.navCtrl.setRoot(HomePage);
@@ -32,6 +32,8 @@ export class LoginPage {
 			storage.set("loginUsername", this.loginUsername).then(data => this.loginUsername="", err => this.loginPassword="");
 			storage.set("loginPassword", this.loginPassword).then(data => this.loginUsername="", err => this.loginPassword="");
 		});
+
+    this.navCtrl.setRoot(HomePage);
 	}
 
 }

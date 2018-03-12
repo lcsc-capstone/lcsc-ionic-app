@@ -5,6 +5,7 @@ import { PopoverController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
+import { Calendar } from '@ionic-native/calendar';
 
 @Component({
 	selector: 'page-calendar',
@@ -40,7 +41,7 @@ export class CalendarPage {
 	public showResidentLife = true;
 	public showCampusRec = true;
 
-	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events) {
+	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events, private calendar: Calendar) {
 		events.subscribe('toggleAcademic', () => {
 			this.showAcademic = !this.showAcademic;
 		});
@@ -161,4 +162,9 @@ export class CalendarPage {
 	isGroupShown(group) {
 		return this.shownGroup === group;
 	};
+
+	addEvent(event) {
+		this.calendar.createEventInteractively(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate));
+
+	}
 }
