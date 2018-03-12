@@ -5,6 +5,7 @@ import { PopoverController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
+import { Calendar } from '@ionic-native/calendar';
 
 @Component({
 	selector: 'page-calendar',
