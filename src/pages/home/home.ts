@@ -110,22 +110,22 @@ export class HomePage {
 										let n = 0;
 										let offset = 0
 
-										for (var i = 0; i < (this.Academics.items.length-(this.Academics.items.length-3)); i++) {
+										for (var i = 0; i < 3; i++) {
 											merged.push({StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Academics.items[i].summary, Description:this.Academics.items[i].description, Calendar:this.Academics.summary});
 										}
-										for (var i = 0; i < (this.Entertainment.items.length-(this.Entertainment.items.length-3)); i++) {
+										for (var i = 0; i < 3; i++) {
 											merged.push({StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Entertainment.items[i].summary, Description:this.Entertainment.items[i].description, Calendar:this.Entertainment.summary});
 										}
-										for (var i = 0; i < (this.Athletics.items.length-(this.Athletics.items.length-3)); i++) {
+										for (var i = 0; i < 3; i++) {
 											merged.push({StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Athletics.items[i].summary, Description:this.Athletics.items[i].description, Calendar:this.Athletics.summary});
 										}
-										for (var i = 0; i < (this.StudentActivities.items.length-(this.StudentActivities.items.length-3)); i++) {
+										for (var i = 0; i < 3; i++) {
 											merged.push({StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.StudentActivities.items[i].summary, Description:this.StudentActivities.items[i].description, Calendar:this.StudentActivities.summary});
 										}
-										for (var i = 0; i < (this.ResidentLife.items.length-(this.ResidentLife.items.length-3)); i++) {
+										for (var i = 0; i < 3; i++) {
 											merged.push({StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.ResidentLife.items[i].summary, Description:this.ResidentLife.items[i].description, Calendar:this.ResidentLife.summary});
 										}
-										for (var i = 0; i < (this.CampusRec.items.length-(this.CampusRec.items.length-3)); i++) {
+										for (var i = 0; i < 3; i++) {
 											merged.push({StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.CampusRec.items[i].summary, Description:this.CampusRec.items[i].description, Calendar:this.CampusRec.summary});
 										}
 										merged.sort(function(a,b){return a.StartDate - b.StartDate}).forEach(event => {
@@ -161,22 +161,22 @@ export class HomePage {
 											let n = 0;
 											let offset = 0
 
-											for (var i = 0; i < (this.Academics.items.length-(this.Academics.items.length-3)); i++) {
+											for (var i = 0; i < 3; i++) {
 												merged.push({StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Academics.items[i].summary, Description:this.Academics.items[i].description, Calendar:this.Academics.summary});
 											}
-											for (var i = 0; i < (this.Entertainment.items.length-(this.Entertainment.items.length-3)); i++) {
+											for (var i = 0; i < 3; i++) {
 												merged.push({StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Entertainment.items[i].summary, Description:this.Entertainment.items[i].description, Calendar:this.Entertainment.summary});
 											}
-											for (var i = 0; i < (this.Athletics.items.length-(this.Athletics.items.length-3)); i++) {
+											for (var i = 0; i < 3; i++) {
 												merged.push({StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Athletics.items[i].summary, Description:this.Athletics.items[i].description, Calendar:this.Athletics.summary});
 											}
-											for (var i = 0; i < (this.StudentActivities.items.length-(this.StudentActivities.items.length-3)); i++) {
+											for (var i = 0; i < 3; i++) {
 												merged.push({StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.StudentActivities.items[i].summary, Description:this.StudentActivities.items[i].description, Calendar:this.StudentActivities.summary});
 											}
-											for (var i = 0; i < (this.ResidentLife.items.length-(this.ResidentLife.items.length-3)); i++) {
+											for (var i = 0; i < 3; i++) {
 												merged.push({StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.ResidentLife.items[i].summary, Description:this.ResidentLife.items[i].description, Calendar:this.ResidentLife.summary});
 											}
-											for (var i = 0; i < (this.CampusRec.items.length-(this.CampusRec.items.length-3)); i++) {
+											for (var i = 0; i < 3; i++) {
 												merged.push({StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.CampusRec.items[i].summary, Description:this.CampusRec.items[i].description, Calendar:this.CampusRec.summary});
 											}
 											merged.sort(function(a,b){return a.StartDate - b.StartDate}).forEach(event => {
