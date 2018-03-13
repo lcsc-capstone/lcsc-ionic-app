@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content id="page1" no-bounce>
 
-  <img src="assets/img/2.jpg" id="bg-img" />
+    <img src="assets/img/2.jpg" id="bg-img" />
 	<img src="assets/img/banner.png" class="banner" />
 
 	<div id="home-schedule">
@@ -27,6 +27,8 @@
 			<ion-item (tap)="goToClassSchedule()" id="home-list-item16">
 				<h2>Web Development Capstone</h2>
 				<p>SGC 124 | 3:30pm - 4:30pm</p>
+			</ion-item>
+		</ion-list>
 		<ion-list id="schedule_list">
 			<ion-item *ngFor="let item of scheduleItems">
 				{{item}}
@@ -40,36 +42,11 @@
 	</button>
 
 	<div id="home-news">
-    <h1 id="home-heading3" style="color:#E10000;">
+    	<h1 id="home-heading3" style="color:#E10000;">
 			Events
 		</h1>
 		<ion-list id="home-list5">
-			<!-- This is the code required to add the color dot to the side of the Title
-			<div *ngIf = "Events[0].Calendar == 'Warrior Athletics'">
-				<font color="#80AFC8"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
-				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
-			</div>
-			<div *ngIf = "Events[0].Calendar == 'Entertainment'">
-				<font color="#d18787"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
-				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
-			</div>
-			<div *ngIf = "Events[0].Calendar == 'Student Activities'">
-				<font color="#F8C797"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
-				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
-			</div>
-			<div *ngIf = "Events[0].Calendar == 'Residence Life'">
-				<font color="#80E0E0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
-				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
-			</div>
-			<div *ngIf = "Events[0].Calendar == 'Campus Rec'">
-				<font color="#8be0a6"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
-				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
-			</div>
-			<div *ngIf = "Events[0].Calendar == 'Academics'">
-				<font color="#ca96e0"><ion-icon name="ios-radio-button-on-outline"></ion-icon></font>  <h2>{{ Events[0].Summary }}</h2>
-				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
-			</div>
-			-->
+
 			<ion-item (tap)="goToCalendar()" id="home-list-item27" text-wrap>
 				<h2>{{ Events[0].Summary }}</h2>
 				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
@@ -98,18 +75,19 @@
 				<ion-item id="home-list-item26" (tap)="goToNews()" text-wrap>
 					<h2>{{ news['3']['title'] }}</h2>
 				</ion-item>
-		</div>
-		<ng-template #noNews>
-			<ion-item id="home-list-item24" (tap)="goToNews()" text-wrap>
-				<h2></h2>
-			</ion-item>
-			<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
-				<h2></h2>
-			</ion-item>
-			<ion-item id="home-list-item26" (tap)="goToNews()" text-wrap>
-				<h2></h2>
-			</ion-item>
-		</ng-template>
+			</div>
+
+			<ng-template #noNews>
+				<ion-item id="home-list-item24" (tap)="goToNews()" text-wrap>
+					<h2></h2>
+				</ion-item>
+				<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
+					<h2></h2>
+				</ion-item>
+				<ion-item id="home-list-item26" (tap)="goToNews()" text-wrap>
+					<h2></h2>
+				</ion-item>
+			</ng-template>
 
 		</ion-list>
 
@@ -121,7 +99,6 @@
 
 	<div id="home-resources">
 		<h1 id="home-heading5">
-	</div>
 			Resources
 		</h1>
 		<button class="button2" id="home-button3" href-inappbrowser="http://lcsc.blackboard.com">
