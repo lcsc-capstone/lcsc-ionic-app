@@ -1,19 +1,18 @@
 <ion-header>
 
-  <ion-navbar color="lcblue">
+  <ion-navbar>
     <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content no-bounce>
+<ion-content>
 
   <div id="bg-img"></div>
-	<img src="assets/img/banner.png" class="banner" />
+	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
 
 	<div id="login-form">
-		<h2>View Your Schedule</h2>
-		<p>Login using WarriorWeb credentials</p>
+		<h2>Login to WarriorWeb</h2>
 		<form>
 
 			<div class="input">
@@ -26,13 +25,13 @@
 			<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
 			</div>
 
-			<button id="login" (tap)='storeCredentials()'>Login</button>
+			<button id="login" (click)='storeCredentials()'>Login</button>
 
 		</form>
 
 		<div id="guest">
 			<p>Don't have an account?</p>
-			<a (tap)="goToHomePage()">View as Guest</a>
+			<a on-click="goToHomePage()">View as Guest</a>
 		</div>
   </div>
 
