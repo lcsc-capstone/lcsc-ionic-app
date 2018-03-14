@@ -1,11 +1,9 @@
 
 <ion-header>
 	<ion-navbar>
-		<ion-buttons start>
 			<button ion-button menuToggle>
 				<ion-icon name="menu"></ion-icon>
 			</button>
-		</ion-buttons>
 
 		<ion-title>
 			Calendar
@@ -40,7 +38,7 @@
 						<ion-icon class="entertainment" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
 					</div>
 
-					<div *ngIf = "Events[day][time].Calendar == 'Student Activities' && showActivities == true">
+					<div *ngIf = "Events[day][time].Calendar == 'Student Activities' && showStudentActivities == true">
 						<ion-icon class="activities" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
 					</div>
 
@@ -52,8 +50,8 @@
 						<ion-icon class="campusrec" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
 					</div>
 
-					<div class="academics" *ngIf = "Events[day][time].Calendar == 'Academics' && showAcademic == true">
-						<ion-icon style="color:#ca96e0" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
+					<div *ngIf = "Events[day][time].Calendar == 'Academics' && showAcademic == true">
+						<ion-icon class="academics" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
 					</div>
 				</div>
 				<div class="accordian-time" *ngIf="isGroupShown(time)">

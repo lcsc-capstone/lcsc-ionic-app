@@ -63,6 +63,31 @@ export class CalendarPage {
 	}
 
 	ionViewDidLoad() {
+		this.storage.get('showAcademic').then(val => {
+			this.showAcademic = val;
+			if (val == null) this.showAcademic = true;
+			this.storage.get('showAthletics').then(val => {
+				this.showAthletics = val;
+				if (val == null) this.showAthletics = true;
+				this.storage.get('showEntertainment').then(val => {
+					this.showEntertainment = val;
+					if (val == null) this.showEntertainment = true;
+					this.storage.get('showStudentActivities').then(val => {
+						this.showStudentActivities = val;
+						if (val == null) this.showStudentActivities = true;
+						this.storage.get('showCampusRec').then(val => {
+							this.showCampusRec = val;
+							if (val == null) this.showCampusRec = true;
+							this.storage.get('showResidentLife').then(val => {
+								this.showResidentLife = val;
+								if (val == null) this.showResidentLife = true;
+								this.events.publish('toggleCalendars', this.showAcademic, this.showEntertainment, this.showStudentActivities, this.showCampusRec, this.showResidentLife, this.showAthletics);
+							});
+						});
+					});
+				});
+			});
+		});
 		this.storage.get('last_time').then(midnight => {
 			this.storage.get('Academics').then(val1 => {
 				this.Academics = val1;
@@ -139,6 +164,17 @@ export class CalendarPage {
 
 
 
+	}
+
+	ionViewWillEnter() {
+		this.events.subscribe('getCalendars', () => {
+			this.events.publish('toggleCalendars', this.showAcademic, this.showEntertainment, this.showStudentActivities, this.showCampusRec, this.showResidentLife, this.showAthletics);
+
+		});
+	}
+
+	ionViewWillUnload() {
+		this.events.unsubscribe('getCalendars')
 	}
 
 	presentPopover(myEvent) {
