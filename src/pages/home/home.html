@@ -46,39 +46,19 @@
 			Events
 		</h1>
 		<ion-list id="home-list5">
-			<div class="accordian" (click)="toggleGroup(0)" [ngClass]="{active: isGroupShown(0)}">
-				<h2> {{ Events[0].Summary }} </h2>
-			</div>
-			<div *ngIf="isGroupShown(0)">
-				<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[0].StartDate)"></ion-icon>
-				{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}
-				<ion-item text-wrap id="home-list-item27">
-					<div class="accordian-firstitem"><p [innerHTML]="Events[0].Description"></p></div><br />
-					<div style="color:#000;font-size:11pt">{{Events[0].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
-				</ion-item>
-			</div>
-			<div class="accordian" (click)="toggleGroup(1)" [ngClass]="{active: isGroupShown(1)}">
-				<h2> {{ Events[1].Summary }} </h2>
-			</div>
-			<div *ngIf="isGroupShown(1)">
-				<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[1].StartDate)"></ion-icon>
-				{{ Events[1].StartDate | date:'EEEE, MMMM d  H:mma' }}
-				<ion-item text-wrap id="home-list-item27">
-					<div class="accordian-firstitem"><p [innerHTML]="Events[1].Description"></p></div><br />
-					<div style="color:#000;font-size:11pt">{{Events[1].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
-				</ion-item>
-			</div>
-			<div class="accordian" (click)="toggleGroup(2)" [ngClass]="{active: isGroupShown(2)}">
-				<h2> {{ Events[2].Summary }} </h2>
-			</div>
-			<div *ngIf="isGroupShown(2)">
-				<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[2].StartDate)"></ion-icon>
-				{{ Events[2].StartDate | date:'EEEE, MMMM d  H:mma' }}
-				<ion-item text-wrap id="home-list-item27">
-					<div class="accordian-firstitem"><p [innerHTML]="Events[2].Description"></p></div><br />
-					<div style="color:#000;font-size:11pt">{{Events[2].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
-				</ion-item>
-			</div>
+
+			<ion-item (tap)="goToCalendar()" id="home-list-item27" text-wrap>
+				<h2>{{ Events[0].Summary }}</h2>
+				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</ion-item>
+			<ion-item (tap)="goToCalendar()" id="home-list-item28" text-wrap>
+				<h2>{{ Events[1].Summary }}</h2>
+				<p>{{ Events[1].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</ion-item>
+			<ion-item (tap)="goToCalendar()" id="home-list-item29" text-wrap>
+				<h2>{{ Events[2].Summary }}</h2>
+				<p>{{ Events[2].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
+			</ion-item>
 		</ion-list>
 		<h1>
 			News
