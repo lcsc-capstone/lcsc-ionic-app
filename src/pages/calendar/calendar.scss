@@ -1,21 +1,67 @@
 page-calendar {
-	h1 {
-		font-weight: 550;
-		background-color: #F8F8F8;
-		color: #000;
-		font-size: 15;
-		padding: 10px;
-		border: 3px;
-	}
 
-	.accordian {
-		color: #003865;
-		font-size: 14pt;
-	}
 
-	.accordian-firstitem{
-		color: #000;
-		font-weight: normal;
-		font-size: 11pt;
-	}
+  button {
+    background-color: #F8F8F8;
+    position:relative ;
+    float: right;
+  }
+
+  h1 {
+    font-family: sans-serif;
+  	font-weight: bold;
+  	background-color: #F8F8F8;
+  	color: #003865;
+  	font-size: 19px;
+  	padding: 10px;
+  	border: 3px;
+  }
+
+  .accordian {
+  	color: #000;
+  	font-size: 15px;
+  }
+
+  .accordian-time {
+    color: #000;
+    font-size: 11pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .accordian-firstitem{
+  	color: #000;
+  	font-weight: normal;
+  	font-size: 11pt;
+  }
+
+  .accordian-location {
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .warriors {
+    color: #80AFC8;
+  }
+
+  .entertainment {
+    color: #d18787;
+  }
+
+  .activities {
+    color: #F8C797;
+  }
+
+  .residence {
+    color: #80E0E0;
+  }
+
+  .campusrec {
+    color: #80E0E0;
+  }
+
+  .academics {
+    color: #ca96e0;
+  }
+
 }
