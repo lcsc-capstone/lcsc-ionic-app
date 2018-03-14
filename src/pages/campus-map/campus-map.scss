@@ -1,4 +1,12 @@
 page-campus-map {
+  html {
+    overflow: hidden;
+    height: 100%;
+}
+body {
+    height: 100%;
+    overflow: auto;
+}
 iframe {
 	position: absolute;
 	top:0;
