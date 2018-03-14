@@ -36,6 +36,7 @@ export class CalendarDropdownPage {
 	toggleAcademic(){
 		this.events.publish('toggleAcademic');
 		this.showAcademic = !this.showAcademic;
+
 	}
 
 	toggleEntertainment(){
