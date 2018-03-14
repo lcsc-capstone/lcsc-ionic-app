@@ -6,6 +6,7 @@ import { ClassSchedulePage } from '../class-schedule/class-schedule';
 import { CalendarPage } from '../calendar/calendar';
 import { NewsPage }	from '../news/news';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { Calendar } from '@ionic-native/calendar';
 
 @Component({
 	selector: 'page-home',
@@ -24,7 +25,7 @@ export class HomePage {
 	private loginUsername : string = "";
 	private loginPassword : string = "";
 
-	constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage) {
+	constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage, private calendar: Calendar) {
 	}
 	goToClassSchedule(params){
 		if (!params) params = {};
@@ -215,4 +216,10 @@ toggleGroup(group) {
 isGroupShown(group) {
 	return this.shownGroup === group;
 };
+
+addEvent(event) {
+	this.calendar.createEventInteractively(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate));
+
+}
+
 }
