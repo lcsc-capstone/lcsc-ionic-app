@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div class="accordian-time" *ngIf="isGroupShown(time)">
-					<a href="{{Events[day][time].Link}}"><ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon></a>
+					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[day])"></ion-icon>
 					{{ Events[day][time].LocalTime}}
 					<ion-item text-wrap background-color="stable">
 
