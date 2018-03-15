@@ -1,22 +1,5 @@
 page-profile {
 
-    overflow: hidden;
-
-    button {
-        border-radius: 0;
-        height: 3em;
-        background-color: #003865;
-        font-size: 16px;
-        width: 93%;
-        color: white;
-        margin: 0 auto;
-        display: block;
-
-        ion-icon {
-            padding-right: .5em;
-        }
-    }
-
     #login-form {
         position: absolute;
         top: 0;
@@ -28,17 +11,11 @@ page-profile {
         margin-top: 20vh;
 
         h2 {
-            color: #003865;
-            margin-bottom: -.25em;
-        }
-
-        p {
-            color: #003865;
+            color: white;
         }
 
         .input {
             position: relative;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .input input {
@@ -85,19 +62,17 @@ page-profile {
     
             a {
                 text-decoration: none;
-                text-transform: uppercase;
-                color: white;
-                font-size: 21px;
+                color: #003865;
+                font-size: 16px;
                 font-weight: 700;
-                text-shadow: 0 0 8px black;
             }
         }
-    }
-
-    @media (min-width: 700px) {
-        #login-form {
-            width: 50%;
-            margin-top: 40vh;
+    
+        @media (min-width: 700px) {
+            #login-form {
+                width: 50%;
+                margin-top: 40vh;
+            }
         }
     }
 }

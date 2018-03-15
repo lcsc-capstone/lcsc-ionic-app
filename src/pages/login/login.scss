@@ -3,12 +3,11 @@ page-login {
     overflow: hidden;
 
     #bg-img {
-        background: url('../assets/img/poster-white.png');
+        background: url('../assets/img/poster.jpg');
         background-size: cover;
         background-position: center center;
-        background-attachment: fixed;
-        height: 100%;
-        overflow: hidden;
+        height: 100vh;
+        margin-top: -3.1em;
     }
 
     .banner {
@@ -44,12 +43,7 @@ page-login {
         margin-top: 33vh;
 
         h2 {
-            color: #003865;
-            margin-bottom: -.25em;
-        }
-
-        p {
-            color: #003865;
+            color: white;
         }
 
         .input {
@@ -94,6 +88,7 @@ page-login {
             margin-top: 2em;
             text-align: center;
             font-family: 'Montserrat', sans-serif;
+            color: white;
     
             p {
                 margin-bottom: .75em;
@@ -101,19 +96,17 @@ page-login {
     
             a {
                 text-decoration: none;
-                text-transform: uppercase;
-                color: white;
-                font-size: 21px;
+                color: #003865;
+                font-size: 16px;
                 font-weight: 700;
-                text-shadow: 0 0 8px black;
             }
         }
-    }
-
-    @media (min-width: 700px) {
-        #login-form {
-            width: 50%;
-            margin-top: 40vh;
+    
+        @media (min-width: 700px) {
+            #login-form {
+                width: 50%;
+                margin-top: 40vh;
+            }
         }
     }
 }
