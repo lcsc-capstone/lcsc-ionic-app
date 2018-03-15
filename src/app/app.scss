@@ -48,6 +48,10 @@ ion-list ion-item {
     }
 }
 
+.menu-content ion-item {
+  color: #003865;
+}
+
 // workaround for https://github.com/ionic-team/ionic/issues/13294
 // probably breaks iPhone X support
 .ios ion-nav > .ion-page > .toolbar.statusbar-padding:first-child,
