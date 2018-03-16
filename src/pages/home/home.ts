@@ -62,7 +62,7 @@ export class HomePage {
 
 	ionViewDidLoad() {
 		let current_time = new Date().getTime();
-		let midnight = new Date(Math.floor(current_time/86400000)*86400000-57600000).getTime();
+		let midnight = new Date(Math.floor(current_time/86400000)*86400000-54000000).getTime();
 		this.storage.get('last_time').then(val => {
 			if (this.isConnected() && (!val || val <= midnight)) { // TODO: Make sure this is <= midnight for release.
 				// This code will fetch the most recent 3 news titles and links.
