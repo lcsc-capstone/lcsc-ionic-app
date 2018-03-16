@@ -13,18 +13,21 @@ page-home {
         margin-top: 14vh;
     }
 
-    button {
-        border-radius: 0;
-        height: 3em;
-        background-color: #003865;
-        font-size: 16px;
-        width: 93%;
-        color: white;
-        margin: 0 auto;
-        display: block;
+    ion-content {
 
-        ion-icon {
-            padding-right: .5em;
+        button {
+            border-radius: 0;
+            height: 3em;
+            background-color: #003865;
+            font-size: 16px;
+            width: 93%;
+            color: white;
+            margin: 0 auto;
+            display: block;
+    
+            ion-icon {
+                padding-right: .5em;
+            }
         }
     }
 
