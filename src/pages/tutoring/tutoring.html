@@ -18,28 +18,28 @@
       <!--drop down box generated from school schedule or the schools class list-->
       <ion-list>
         <ion-item>
-          <ion-label>Select Class</ion-label>
-          <ion-select [(ngModel)]="classes">
-            <ion-option value="default">Classes</ion-option>
-            <ion-option value="2">Generated Class</ion-option> <!--Generated list -->
-          </ion-select>
-        </ion-item>
+		<ion-label>Select Class</ion-label>
+	    	<ion-select>
+		  <ion-option *ngFor="let class of ClassList;" 
+		          [value]="category">{{class.name}}</ion-option>      
+	   	</ion-select>
+	</ion-item> 
       </ion-list>
       <!--drop down box generated from tutors list-->
       <ion-list>
         <ion-item>
-          <ion-label>Select Tutor</ion-label>
-          <ion-select [(ngModel)]="tutors">
-            <ion-option value="default">Tutors</ion-option>
-            <ion-option value="2">Jane Doe</ion-option> <!--Generated list -->
-          </ion-select>
-        </ion-item>
+		<ion-label>Select Tutor</ion-label>
+	    	<ion-select>
+		  <ion-option *ngFor="let tutor of TutorList;" 
+		          [value]="name">{{tutor.name}}</ion-option>      
+	   	</ion-select>
+	</ion-item> 
       </ion-list>
 
       <button ion-button>Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
 
 
-      <br><br>Note: * denotes online tutor.
+      <br><br>Note: * denotes online tutor
     </p>
   </div>
 </ion-content>
