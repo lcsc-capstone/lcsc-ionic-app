@@ -51,7 +51,10 @@ ion-list ion-item {
 
 #menu-heading1 {
   padding-left: 15px;
+}
 
+.menu-content ion-item {
+  color: #003865;
 }
 
 // workaround for https://github.com/ionic-team/ionic/issues/13294
