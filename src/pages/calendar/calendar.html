@@ -2,15 +2,16 @@
 <ion-header>
 	<ion-navbar>
 			<button ion-button menuToggle>
-				<ion-icon name="menu"></ion-icon>
+				<ion-icon id="menu" name="menu"></ion-icon>
 			</button>
 
 		<ion-title>
 			Calendar
 		</ion-title>
-		<!-- Removed: class="dropdownbutton" from button (see below)  -->
+		<!-- Removed: class="dropdownbutton" from button (see below)
+ -->
 		<ion-buttons end>
-			<button  ion-button icon-only (click)="presentPopover($event)">
+			<button class="dropdownbutton"  ion-button icon-only (click)="presentPopover($event)">
 				<ion-icon style="color:#003865" name="ios-arrow-dropdown" align></ion-icon>
 			</button>
 		</ion-buttons>
