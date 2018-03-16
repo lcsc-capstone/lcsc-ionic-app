@@ -8,6 +8,7 @@ import { NewsPage }	from '../news/news';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
+import { Network } from '@ionic-native/network';
 
 @Component({
 	selector: 'page-home',
@@ -38,8 +39,13 @@ export class HomePage {
   readonly SCHED_PAGE : string = "sched_page";
   page_stage : string = this.NONE;
 
-	constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage, private inAppBrowser: InAppBrowser, private zone : NgZone, private calendar: Calendar) {
+	constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage, private inAppBrowser: InAppBrowser, private zone : NgZone, private calendar: Calendar, private network: Network) {
 		this.loadScheduleData();
+	}
+
+	isConnected(): boolean {
+		let conntype = this.network.type;
+		return conntype && conntype !== 'unknown' && conntype !== 'none';
 	}
 
 	goToClassSchedule(params){
@@ -58,7 +64,7 @@ export class HomePage {
 		let current_time = new Date().getTime();
 		let midnight = new Date(Math.floor(current_time/86400000)*86400000-57600000).getTime();
 		this.storage.get('last_time').then(val => {
-			if (!val || val <= midnight) { // TODO: Make sure this is <= midnight for release.
+			if (this.isConnected() && (!val || val <= midnight)) { // TODO: Make sure this is <= midnight for release.
 				// This code will fetch the most recent 3 news titles and links.
 				this.storage.set('last_time', current_time);
 				this.http.get(`http://www.lcsc.edu/news`).subscribe(data => {
@@ -275,7 +281,7 @@ loadScheduleData() {
   async loadScheduleJsonData(browser) : Promise<any> {
     return browser.executeScript({ code: this.loadScheduleDataSource });
   }
-  
+
 	shownGroup = null;
 
 	toggleGroup(group) {

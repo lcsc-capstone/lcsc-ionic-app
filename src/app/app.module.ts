@@ -21,6 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { Network } from '@ionic-native/network';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
     StatusBar,
     SplashScreen,
 	 Calendar,
+	 Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
