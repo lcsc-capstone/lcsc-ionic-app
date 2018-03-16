@@ -36,8 +36,10 @@
 					<h2> {{ Events[0].Summary }} </h2>
 				</div>
 				<div *ngIf="isGroupShown(0)">
-					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[0].StartDate)"></ion-icon>
+					<div (click)="addEvent(Events[0].StartDate)">
+					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon>
 					{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}
+					</div>
 					<ion-item text-wrap id="home-list-item27">
 						<div class="accordian-firstitem"><p [innerHTML]="Events[0].Description"></p></div><br />
 						<div style="color:#000;font-size:11pt">{{Events[0].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -47,8 +49,10 @@
 					<h2> {{ Events[1].Summary }} </h2>
 				</div>
 				<div *ngIf="isGroupShown(1)">
-					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[1].StartDate)"></ion-icon>
+					<div (click)="addEvent(Events[1].StartDate)">
+					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 					{{ Events[1].StartDate | date:'EEEE, MMMM d  H:mma' }}
+					</div>
 					<ion-item text-wrap id="home-list-item27">
 						<div class="accordian-firstitem"><p [innerHTML]="Events[1].Description"></p></div><br />
 						<div style="color:#000;font-size:11pt">{{Events[1].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -58,8 +62,10 @@
 					<h2> {{ Events[2].Summary }} </h2>
 				</div>
 				<div *ngIf="isGroupShown(2)">
-					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" (click)="addEvent(Events[2].StartDate)"></ion-icon>
+					<div (click)="addEvent(Events[2].StartDate)">
+					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 					{{ Events[2].StartDate | date:'EEEE, MMMM d  H:mma' }}
+					</div>
 					<ion-item text-wrap id="home-list-item27">
 						<div class="accordian-firstitem"><p [innerHTML]="Events[2].Description"></p></div><br />
 						<div style="color:#000;font-size:11pt">{{Events[2].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
