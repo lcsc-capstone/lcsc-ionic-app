@@ -1,7 +1,7 @@
 <ion-header>
-	<ion-navbar>
-		<button ion-button menuToggle>
-			<ion-icon name="menu"></ion-icon>
+	<ion-navbar color="lcblue">
+	  <button ion-button menuToggle>
+		<ion-icon name="menu" color="light"></ion-icon>
 		</button>
 		<ion-title>
 			Home
@@ -11,7 +11,7 @@
 <ion-content id="page1" no-bounce>
 
   <img src="assets/img/2.jpg" id="bg-img" />
-	<img src="assets/img/KeUE2yRrSZargS3WNNyZ_IdC9YeIZTByelse8HT0l_Flag-Rich-Blue-White.png" class="banner" />
+	<img src="assets/img/banner.png" class="banner" />
 
 	<div id="home-schedule">
 		<h1 id="home-heading">Here's Today...</h1>
@@ -58,15 +58,15 @@
 				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}</p>
 			</div>
 			-->
-			<ion-item on-click="goToCalendar()" id="home-list-item27" text-wrap>
+			<ion-item (tap)="goToCalendar()" id="home-list-item27" text-wrap>
 				<h2>{{ Events[0].Summary }}</h2>
 				<p>{{ Events[0].StartDate | date:'EEEE, MMMM d  h:mma' }}</p>
 			</ion-item>
-			<ion-item on-click="goToCalendar()" id="home-list-item28" text-wrap>
+			<ion-item (tap)="goToCalendar()" id="home-list-item28" text-wrap>
 				<h2>{{ Events[1].Summary }}</h2>
 				<p>{{ Events[1].StartDate | date:'EEEE, MMMM d  h:mma' }}</p>
 			</ion-item>
-			<ion-item on-click="goToCalendar()" id="home-list-item29" text-wrap>
+			<ion-item (tap)="goToCalendar()" id="home-list-item29" text-wrap>
 				<h2>{{ Events[2].Summary }}</h2>
 				<p>{{ Events[2].StartDate | date:'EEEE, MMMM d  h:mma' }}</p>
 			</ion-item>
@@ -77,33 +77,38 @@
 		<ion-list id="home-list4">
 
 			<div *ngIf = "news != null; else noNews"> <!-- Added for simulator testing avoiding errors -->
-				<ion-item id="home-list-item24" on-click="goToNews()" text-wrap>
+				<ion-item id="home-list-item24" (tap)="goToNews()" text-wrap>
 					<h2>{{ news['1']['title'] }}</h2>
 				</ion-item>
-				<ion-item id="home-list-item25" on-click="goToNews()" text-wrap>
+				<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
 					<h2>{{ news['2']['title'] }}</h2>
 				</ion-item>
-				<ion-item id="home-list-item26" on-click="goToNews()" text-wrapa>
+				<ion-item id="home-list-item26" (tap)="goToNews()" text-wrap>
 					<h2>{{ news['3']['title'] }}</h2>
 				</ion-item>
 		</div>
 		<ng-template #noNews>
-			<ion-item id="home-list-item24" on-click="goToNews()" text-wrap>
+			<ion-item id="home-list-item24" (tap)="goToNews()" text-wrap>
 				<h2></h2>
 			</ion-item>
-			<ion-item id="home-list-item25" on-click="goToNews()" text-wrap>
+			<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
 				<h2></h2>
 			</ion-item>
-			<ion-item id="home-list-item26" on-click="goToNews()" text-wrapa>
+			<ion-item id="home-list-item26" (tap)="goToNews()" text-wrap>
 				<h2></h2>
 			</ion-item>
 		</ng-template>
 
 		</ion-list>
+
+		<button class="button" (tap)="goToCalendar()">
+			<ion-icon name="ios-calendar"></ion-icon>
+			View News
+		</button>
 	</div>
 
 	<div id="home-resources">
-		<h1 id="home-heading5" style="color:#E10000;">
+		<h1 id="home-heading5">
 			Resources
 		</h1>
 		<button class="button2" id="home-button3" href-inappbrowser="http://lcsc.blackboard.com">
@@ -116,9 +121,4 @@
 			WarriorWeb
 		</button>
 	</div>
-	<button class="button2" on-click="goToCalendar()">
-		<ion-icon name="list-box"></ion-icon>
-		View Events
-	</button>
-<br>
 </ion-content>
