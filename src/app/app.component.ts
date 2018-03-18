@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { ClassSchedulePage } from '../pages/class-schedule/class-schedule';
 import { ProfilePage } from '../pages/profile/profile';
@@ -24,37 +25,54 @@ export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
     rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private inAppBrowser: InAppBrowser) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
   }
+  
   goToHome(params){
     if (!params) params = {};
     this.navCtrl.setRoot(HomePage);
-  }goToClassSchedule(params){
+  }
+
+  goToClassSchedule(params){
     if (!params) params = {};
     this.navCtrl.setRoot(ClassSchedulePage);
-  }goToProfile(params){
+  }
+
+  goToProfile(params){
     if (!params) params = {};
     this.navCtrl.setRoot(ProfilePage);
-  }goToNews(params){
+  }
+
+  goToNews(params){
     if (!params) params = {};
     this.navCtrl.setRoot(NewsPage);
-  }goToCampusMap(params){
+  }
+
+  goToCampusMap(params){
     if (!params) params = {};
     this.navCtrl.setRoot(CampusMapPage);
-  }goToAbout(params){
+  }
+
+  goToAbout(params){
     if (!params) params = {};
     this.navCtrl.setRoot(AboutPage);
-  }goToRadio(params){
+  }
+
+  goToRadio(params){
     if (!params) params = {};
     this.navCtrl.setRoot(RadioPage);
-  }goToCalendar(params){
+  }
+
+  goToCalendar(params){
     if( !params) params = {};
     this.navCtrl.setRoot(CalendarPage);
+  }
+
+  openBrowser(link) {
+	  this.inAppBrowser.create(this.news[link.toString()]['link'], '_self', 'location=no');
   }
 }

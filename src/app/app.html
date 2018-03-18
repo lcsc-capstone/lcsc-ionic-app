@@ -1,70 +1,70 @@
 <ion-menu [content]="mainContent">
-  <ion-header>
-    <ion-toolbar color="lcblue">
-      <ion-title>
-        Menu
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content id="side-menu21" class="menu-content">
-    <ion-list id="menu-list1">
-      <ion-item color="positive" menuClose="" (tap)="goToHome()" id="menu-list-item1">
-        Home
-        <ion-icon name="home" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="positive" menuClose="" (tap)="goToProfile()" id="menu-list-item2">
-        Profile
-        <ion-icon name="person" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="positive" menuClose="" (tap)="goToCalendar()" id="menu-list-item9">
-        Calendar
-        <ion-icon name="calendar" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="positive" menuClose="" (tap)="goToNews()" id="menu-list-item3">
-        News
-        <ion-icon name="notifications" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="positive" menuClose="" (tap)="goToCampusMap()" id="menu-list-item4">
-        Campus Map
-        <ion-icon name="pin" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="positive" menuClose="" (tap)="goToClassSchedule()" id="menu-list-item5">
-        Class Schedule
-        <ion-icon name="list-box" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="positive" menuClose="" (tap)="goToAbout()" id="menu-list-item7">
-        About
-        <ion-icon name="bookmark" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="positive" menuClose="" (tap)="goToRadio()" id="menu-list-item8">
-        Radio
-        <ion-icon name="radio" item-right></ion-icon>
-      </ion-item>
-    </ion-list>
-    <h3 id="menu-heading1" style="color:#E10000;font-weight:400;">
-      Resources
-    </h3>
-    <ion-list id="menu-list2">
-      <ion-item color="positive" href-inappbrowser="http://lcsc.blackboard.com" id="menu-list-item8">
-        BlackBoard
-      </ion-item>
-      <ion-item color="positive" href-inappbrowser="http://lcmail.lcsc.edu" id="menu-list-item11">
-        LCMail
-      </ion-item>
-      <ion-item color="positive" href-inappbrowser="http://warriorweb.lcsc.edu" id="menu-list-item12">
-        WarriorWeb
-      </ion-item>
-      <ion-item color="positive" href-inappbrowser="http://www.lcwarriors.com" id="menu-list-item9">
-        Warrior Athletics
-      </ion-item>
-      <ion-item color="positive" href-inappbrowser="http://www,lcsc.edu" id="menu-list-item10">
-        LCSC Website
-      </ion-item>
-      <ion-item color="positive" href-inappbrowser="http://lcsc.college-tour.com/map.php" id="menu-list-item11">
-       LCSC Virtual Map
-      </ion-item>
-    </ion-list>
-  </ion-content>
+	<ion-header>
+		<ion-toolbar color="lcblue">
+			<ion-title>
+				Menu
+			</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content id="side-menu21" class="menu-content">
+		<ion-list id="menu-list1">
+			<ion-item color="positive" menuClose="" (tap)="goToHome()" id="menu-list-item1">
+				Home
+				<ion-icon name="home" item-right></ion-icon>
+			</ion-item>
+			<ion-item color="positive" menuClose="" (tap)="goToProfile()" id="menu-list-item2">
+				Profile
+				<ion-icon name="person" item-right></ion-icon>
+			</ion-item>
+			<ion-item color="positive" menuClose="" (tap)="goToCalendar()" id="menu-list-item9">
+				Calendar
+				<ion-icon name="calendar" item-right></ion-icon>
+			</ion-item>
+			<ion-item color="positive" menuClose="" (tap)="goToNews()" id="menu-list-item3">
+				News
+				<ion-icon name="notifications" item-right></ion-icon>
+			</ion-item>
+			<ion-item color="positive" menuClose="" (tap)="goToCampusMap()" id="menu-list-item4">
+				Campus Map
+				<ion-icon name="pin" item-right></ion-icon>
+			</ion-item>
+			<ion-item color="positive" menuClose="" (tap)="goToClassSchedule()" id="menu-list-item5">
+				Class Schedule
+				<ion-icon name="list-box" item-right></ion-icon>
+			</ion-item>
+			<ion-item color="positive" menuClose="" (tap)="goToAbout()" id="menu-list-item7">
+				About
+				<ion-icon name="bookmark" item-right></ion-icon>
+			</ion-item>
+			<ion-item color="positive" menuClose="" (tap)="goToRadio()" id="menu-list-item8">
+				Radio
+				<ion-icon name="radio" item-right></ion-icon>
+			</ion-item>
+		</ion-list>
+		<h3 id="menu-heading1" style="color:#E10000;font-weight:400;">
+			Resources
+		</h3>
+		<ion-list id="menu-list2">
+			<ion-item color="positive" (tap)="openBrowser('http://lcsc.blackboard.com')" id="menu-list-item8">
+				BlackBoard
+			</ion-item>
+			<ion-item color="positive" (tap)="openBrowser('http://lcmail.lcsc.edu')" id="menu-list-item11">
+				LCMail
+			</ion-item>
+			<ion-item color="positive" (tap)="openBrowser('http://warriorweb.lcsc.edu')" id="menu-list-item12">
+				WarriorWeb
+			</ion-item>
+			<ion-item color="positive" (tap)="openBrowser('http://www.lcwarriors.com')" id="menu-list-item9">
+				Warrior Athletics
+			</ion-item>
+			<ion-item color="positive" (tap)="openBrowser('http://www,lcsc.edu')" id="menu-list-item10">
+				LCSC Website
+			</ion-item>
+			<ion-item color="positive" (tap)="openBrowser('http://lcsc.college-tour.com/map.php')" id="menu-list-item11">
+				LCSC Virtual Map
+			</ion-item>
+		</ion-list>
+	</ion-content>
 </ion-menu>
 
 <ion-nav #mainContent [root]="rootPage"></ion-nav>

@@ -100,9 +100,9 @@ export class HomePage {
 
 				/* #######################################################################
 				Academics 					- 0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com
-				Entertainment 			- m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com
+				Entertainment 				- m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com
 				Athletics 					- d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com
-				StudentActivities 	- l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com
+				StudentActivities 		- l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com
 				ResidentLife 				- gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com
 				CampusRec 					- h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com
 				####################################################################### */
@@ -298,6 +298,9 @@ async loginToWarriorWeb(browser) : Promise<any> {
 
 	addEvent(event) {
 		this.calendar.createEventInteractively(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate));
+	}
 
+	openBrowser(link) {
+		this.inAppBrowser.create(this.news[link.toString()]['link'], '_self', 'location=no');
 	}
 }

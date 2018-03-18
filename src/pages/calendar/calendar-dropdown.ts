@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 
@@ -16,8 +15,6 @@ import { Storage } from '@ionic/storage';
 	selector: 'page-calendar-dropdown',
 	templateUrl: 'calendar-dropdown.html',
 })
-
-
 export class CalendarDropdownPage {
 	public showAcademic = true;
 	public showAthletics = true;
@@ -57,7 +54,6 @@ export class CalendarDropdownPage {
 	}
 
 	toggleStudentActivities(){
-		console.log(!this.showStudentActivities)
 		this.events.publish('toggleStudentActivities');
 		this.showStudentActivities = !this.showStudentActivities;
 		this.storage.set('showStudentActivities', this.showStudentActivities);
@@ -80,6 +76,4 @@ export class CalendarDropdownPage {
 		this.showAthletics = !this.showAthletics;
 		this.storage.set('showAthletics', this.showAthletics);
 	}
-
-
 }
