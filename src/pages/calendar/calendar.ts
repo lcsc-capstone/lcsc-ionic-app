@@ -103,46 +103,46 @@ export class CalendarPage {
 									let merged = [];
 									let offset = 0
 
-									for (var i = 0; i < this.Academics.items.length; i++) {
-										var localdate = new Date(new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-08:00')));
-										var ls = new Date(new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var le = new Date(new Date((val1.items[i].end.dateTime || val1.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var localtime = (ls+" - "+le);
+									for (let i = 0; i < this.Academics.items.length; i++) {
+										let localdate = new Date(new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-08:00')));
+										let ls = new Date(new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let le = new Date(new Date((val1.items[i].end.dateTime || val1.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let localtime = (ls+" - "+le);
 										merged.push({StartDate:new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset, EndDate:new Date((val1.items[i].end.dateTime || val1.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:val1.items[i].summary, Description:val1.items[i].description, Calendar:val1.summary, Location:val1.items[i].location, Link:val1.items[i].htmlLink, LocalTime:localtime, LocalDate:localdate});
 									}
-									for (var i = 0; i < this.Entertainment.items.length; i++) {
-										var localdate = new Date(new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-08:00')));
-										var ls = new Date(new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var le = new Date(new Date((val2.items[i].end.dateTime || val2.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var localtime = (ls+" - "+le);
+									for (let i = 0; i < this.Entertainment.items.length; i++) {
+										let localdate = new Date(new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-08:00')));
+										let ls = new Date(new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let le = new Date(new Date((val2.items[i].end.dateTime || val2.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let localtime = (ls+" - "+le);
 										merged.push({StartDate:new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset, EndDate:new Date((val2.items[i].end.dateTime || val2.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:val2.items[i].summary, Description:val2.items[i].description, Calendar:val2.summary, Location:val2.items[i].location, Link:val2.items[i].htmlLink, LocalTime:localtime, LocalDate:localdate});
 									}
-									for (var i = 0; i < this.Athletics.items.length; i++) {
-										var localdate = new Date(new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-08:00')));
-										var ls = new Date(new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var le = new Date(new Date((val3.items[i].end.dateTime || val3.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var localtime = (ls+" - "+le);
+									for (let i = 0; i < this.Athletics.items.length; i++) {
+										let localdate = new Date(new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-08:00')));
+										let ls = new Date(new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let le = new Date(new Date((val3.items[i].end.dateTime || val3.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let localtime = (ls+" - "+le);
 										merged.push({StartDate:new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset, EndDate:new Date((val3.items[i].end.dateTime || val3.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:val3.items[i].summary, Description:val3.items[i].description, Calendar:val3.summary, Location:val3.items[i].location, Link:val3.items[i].htmlLink, LocalTime:localtime, LocalDate:localdate});
 									}
-									for (var i = 0; i < this.StudentActivities.items.length; i++) {
-										var localdate = new Date(new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-08:00')));
-										var ls = new Date(new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var le = new Date(new Date((val4.items[i].end.dateTime || val4.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var localtime = (ls+" - "+le);
+									for (let i = 0; i < this.StudentActivities.items.length; i++) {
+										let localdate = new Date(new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-08:00')));
+										let ls = new Date(new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let le = new Date(new Date((val4.items[i].end.dateTime || val4.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let localtime = (ls+" - "+le);
 										merged.push({StartDate:new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset, EndDate:new Date((val4.items[i].end.dateTime || val4.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:val4.items[i].summary, Description:val4.items[i].description, Calendar:val4.summary, Location:val4.items[i].location, Link:val4.items[i].htmlLink, LocalTime:localtime, LocalDate:localdate});
 									}
-									for (var i = 0; i < this.ResidentLife.items.length; i++) {
-										var localdate = new Date(new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-08:00')));
-										var ls = new Date(new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var le = new Date(new Date((val5.items[i].end.dateTime || val5.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var localtime = (ls+" - "+le);
+									for (let i = 0; i < this.ResidentLife.items.length; i++) {
+										let localdate = new Date(new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-08:00')));
+										let ls = new Date(new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let le = new Date(new Date((val5.items[i].end.dateTime || val5.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let localtime = (ls+" - "+le);
 										merged.push({StartDate:new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset, EndDate:new Date((val5.items[i].end.dateTime || val5.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:val5.items[i].summary, Description:val5.items[i].description, Calendar:val5.summary, Location:val5.items[i].location, Link:val5.items[i].htmlLink, LocalTime:localtime, LocalDate:localdate});
 									}
-									for (var i = 0; i < this.CampusRec.items.length; i++) {
-										var localdate = new Date(new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-08:00')));
-										var ls = new Date(new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var le = new Date(new Date((val6.items[i].end.dateTime || val6.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-										var localtime = (ls+" - "+le);
+									for (let i = 0; i < this.CampusRec.items.length; i++) {
+										let localdate = new Date(new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-08:00')));
+										let ls = new Date(new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let le = new Date(new Date((val6.items[i].end.dateTime || val6.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+										let localtime = (ls+" - "+le);
 										merged.push({StartDate:new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-08:00')).getTime()+offset, EndDate:new Date((val6.items[i].end.dateTime || val6.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:val6.items[i].summary, Description:val6.items[i].description, Calendar:val6.summary, Location:val6.items[i].location, Link:val6.items[i].htmlLink, LocalTime:localtime, LocalDate:localdate});
 									}
 									merged.sort(function(a,b){return a.StartDate - b.StartDate}).forEach(event => {

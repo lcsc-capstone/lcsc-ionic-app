@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
   selector: 'page-news',
@@ -21,6 +21,6 @@ export class NewsPage {
   }
 
   openBrowser(link) {
-	const browser = this.inAppBrowser.create(this.news[link.toString()]['link'], '_self', 'location=no');
+	this.inAppBrowser.create(this.news[link.toString()]['link'], '_self', 'location=no');
   }
 }

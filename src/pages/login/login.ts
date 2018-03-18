@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
-import { Storage } from '@ionic/storage';
+import { IonicPage, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
@@ -16,10 +14,10 @@ export class LoginPage {
   private loginUsername : string = "";
 	private loginPassword : string = "";
 
-  constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage) {
-	  storage.get("loginUsername").then(data => {
-		  if (data) this.goToHomePage({isGuest: false});
-	  });
+  constructor(public navCtrl: NavController, private secureStorage: SecureStorage) {
+	  this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
+		 storage.get("loginUsername").then(data => this.goToHomePage({isGuest: false}), err => {});
+	 });
   }
 
 	goToHomePage(params){
@@ -35,9 +33,9 @@ export class LoginPage {
 		this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
 			storage.set("loginUsername", this.loginUsername).then(data => this.loginUsername="", err => this.loginPassword="");
 			storage.set("loginPassword", this.loginPassword).then(data => this.loginUsername="", err => this.loginPassword="");
-		});
 
-    this.navCtrl.setRoot(HomePage);
+			this.navCtrl.setRoot(HomePage, {isGuest: false});
+		});
 	}
 
 }

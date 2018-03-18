@@ -1,11 +1,8 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HttpClientModule, HttpClient } from '@angular/common/http'
-import { Http } from '@angular/http';
 import 'rxjs/Rx';
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
-declare var cordova: any;
 
 @Component({
   selector: 'page-class-schedule',
