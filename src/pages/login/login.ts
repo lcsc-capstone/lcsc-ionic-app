@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -16,11 +17,14 @@ export class LoginPage {
 	private loginPassword : string = "";
 
   constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage) {
+	  storage.get("loginUsername").then(data => {
+		  if (data) this.goToHomePage({isGuest: false});
+	  });
   }
 
 	goToHomePage(params){
-    if (!params) params = {};
-    this.navCtrl.setRoot(HomePage);
+    if (!params) params = {isGuest: true};
+    this.navCtrl.setRoot(HomePage, params);
   }
 
   ionViewDidLoad() {

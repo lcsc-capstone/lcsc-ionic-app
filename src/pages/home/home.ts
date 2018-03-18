@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { ClassSchedulePage } from '../class-schedule/class-schedule';
@@ -9,6 +9,7 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
 import { Network } from '@ionic-native/network';
+import { LoginPage } from '../login/login';
 
 @Component({
 	selector: 'page-home',
@@ -23,6 +24,7 @@ export class HomePage {
 	public ResidentLife;
 	public CampusRec;
 	public Events = [{}, {}, {}];
+	public guest = false;
 
 	private scheduleItems : any = [];
 	courseDataURL: any;
@@ -31,16 +33,17 @@ export class HomePage {
 	private stage         : string = "login";
 
 	readonly buttonClickSource : string = "function getInputByValue(value){var inputs = document.getElementsByTagName('input');for(var i = 0; i < inputs.length; i++){if(inputs[i].value == value){return inputs[i];}}return null;}getInputByValue('Sign In').click();";
-  readonly loadScheduleDataSource : string = "var scripts = document.getElementsByTagName('script');scripts[scripts.length - 1].innerHTML;";
+	readonly loadScheduleDataSource : string = "var scripts = document.getElementsByTagName('script');scripts[scripts.length - 1].innerHTML;";
 	readonly LOGIN : string = "login";
-  readonly LOAD_SCHEDULE : string = "LOAD_SCHEDULE";
+	readonly LOAD_SCHEDULE : string = "LOAD_SCHEDULE";
 	readonly NONE : string = "no_page";
-  readonly LOGIN_PAGE : string = "login_page";
-  readonly SCHED_PAGE : string = "sched_page";
-  page_stage : string = this.NONE;
+	readonly LOGIN_PAGE : string = "login_page";
+	readonly SCHED_PAGE : string = "sched_page";
+	page_stage : string = this.NONE;
 
-	constructor(public navCtrl: NavController, private http: Http, private storage: Storage, private secureStorage: SecureStorage, private inAppBrowser: InAppBrowser, private zone : NgZone, private calendar: Calendar, private network: Network) {
-		this.loadScheduleData();
+	constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private storage: Storage, private secureStorage: SecureStorage, private inAppBrowser: InAppBrowser, private zone : NgZone, private calendar: Calendar, private network: Network) {
+		if (navParams) this.guest = navParams.get('isGuest');
+		if (!this.guest) this.loadScheduleData();
 	}
 
 	isConnected(): boolean {
@@ -164,48 +167,47 @@ export class HomePage {
 			} else {
 				// This code will use the same news that is stored on the phone already.
 				this.storage.get('news').then(val => {
-					this.news = val;
-					this.storage.get('Academics').then(events => {
-						this.Academics = events;
-						this.storage.get('Entertainment').then(events => {
-							this.Entertainment = events;
-							this.storage.get('Athletics').then(events => {
-								this.Athletics = events;
-								this.storage.get('StudentActivities').then(events => {
-									this.StudentActivities = events;
-									this.storage.get('ResidentLife').then(events => {
-										this.ResidentLife = events;
-										this.storage.get('CampusRec').then(events => {
-											this.CampusRec = events;
+				this.news = val;
+				this.storage.get('Academics').then(events => {
+					this.Academics = events;
+					this.storage.get('Entertainment').then(events => {
+						this.Entertainment = events;
+						this.storage.get('Athletics').then(events => {
+							this.Athletics = events;
+							this.storage.get('StudentActivities').then(events => {
+								this.StudentActivities = events;
+								this.storage.get('ResidentLife').then(events => {
+									this.ResidentLife = events;
+									this.storage.get('CampusRec').then(events => {
+										this.CampusRec = events;
 
-											//TODO: This needs changes. Badly. There is no reason to sort every event when only the first 3 are used. It is slow and very inefficient.
-											let merged = [];
-											let n = 0;
-											let offset = 0
+										//TODO: This needs changes. Badly. There is no reason to sort every event when only the first 3 are used. It is slow and very inefficient.
+										let merged = [];
+										let n = 0;
+										let offset = 0
 
-											for (var i = 0; i < 3; i++) {
-												if (this.Academics.items[i]) merged.push({StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Academics.items[i].summary, Description:this.Academics.items[i].description, Calendar:this.Academics.summary, Location:this.Academics.items[i].location});
+										for (var i = 0; i < 3; i++) {
+											if (this.Academics.items[i]) merged.push({StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Academics.items[i].summary, Description:this.Academics.items[i].description, Calendar:this.Academics.summary, Location:this.Academics.items[i].location});
+										}
+										for (var i = 0; i < 3; i++) {
+											if (this.Entertainment.items[i]) merged.push({StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Entertainment.items[i].summary, Description:this.Entertainment.items[i].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[i].location});
+										}
+										for (var i = 0; i < 3; i++) {
+											if (this.Athletics.items[i]) merged.push({StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Athletics.items[i].summary, Description:this.Athletics.items[i].description, Calendar:this.Athletics.summary, Location:this.Athletics.items[i].location});
+										}
+										for (var i = 0; i < 3; i++) {
+											if (this.StudentActivities.items[i]) merged.push({StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.StudentActivities.items[i].summary, Description:this.StudentActivities.items[i].description, Calendar:this.StudentActivities.summary, Location:this.StudentActivities.items[i].location});
+										}
+										for (var i = 0; i < 3; i++) {
+											if (this.ResidentLife.items[i]) merged.push({StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.ResidentLife.items[i].summary, Description:this.ResidentLife.items[i].description, Calendar:this.ResidentLife.summary, Location:this.ResidentLife.items[i].location});
+										}
+										for (var i = 0; i < 3; i++) {
+											if (this.CampusRec.items[i]) merged.push({StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.CampusRec.items[i].summary, Description:this.CampusRec.items[i].description, Calendar:this.CampusRec.summary, Location:this.CampusRec.items[i].location});
+										}
+										merged.sort(function(a,b){return a.StartDate - b.StartDate}).forEach(event => {
+											if (n < 3) {
+												this.Events[n++] = event;
 											}
-											for (var i = 0; i < 3; i++) {
-												if (this.Entertainment.items[i]) merged.push({StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Entertainment.items[i].summary, Description:this.Entertainment.items[i].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[i].location});
-											}
-											for (var i = 0; i < 3; i++) {
-												if (this.Athletics.items[i]) merged.push({StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Athletics.items[i].summary, Description:this.Athletics.items[i].description, Calendar:this.Athletics.summary, Location:this.Athletics.items[i].location});
-											}
-											for (var i = 0; i < 3; i++) {
-												if (this.StudentActivities.items[i]) merged.push({StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.StudentActivities.items[i].summary, Description:this.StudentActivities.items[i].description, Calendar:this.StudentActivities.summary, Location:this.StudentActivities.items[i].location});
-											}
-											for (var i = 0; i < 3; i++) {
-												if (this.ResidentLife.items[i]) merged.push({StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.ResidentLife.items[i].summary, Description:this.ResidentLife.items[i].description, Calendar:this.ResidentLife.summary, Location:this.ResidentLife.items[i].location});
-											}
-											for (var i = 0; i < 3; i++) {
-												if (this.CampusRec.items[i]) merged.push({StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.CampusRec.items[i].summary, Description:this.CampusRec.items[i].description, Calendar:this.CampusRec.summary, Location:this.CampusRec.items[i].location});
-											}
-											merged.sort(function(a,b){return a.StartDate - b.StartDate}).forEach(event => {
-												if (n < 3) {
-													this.Events[n++] = event;
-												}
-											});
 										});
 									});
 								});
@@ -213,74 +215,76 @@ export class HomePage {
 						});
 					});
 				});
-			}
+			});
+		}
 	});
 }
 
 loadScheduleData() {
-	  this.courseDataURL = "https://warriorwebss.lcsc.edu/Student/Planning/DegreePlans/PrintSchedule?termId=2018SP";
-    this.scheduleItems = [];
+	console.log('sched')
+	this.courseDataURL = "https://warriorwebss.lcsc.edu/Student/Planning/DegreePlans/PrintSchedule?termId=2018SP";
+	this.scheduleItems = [];
 
-    this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
-      storage.get("loginUsername").then(data => this.loginUsername = data, err => alert(err));
-      storage.get("loginPassword").then(data => this.loginPassword = data, err => alert(err));
+	this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
+		storage.get("loginUsername").then(data => this.loginUsername = data, err => alert(err));
+		storage.get("loginPassword").then(data => this.loginPassword = data, err => alert(err));
 
-      const browser = this.inAppBrowser.create(this.courseDataURL, '_self', 'clearcache=yes,hidden=yes');
-      browser.on('loadstop').subscribe((ev : InAppBrowserEvent) => {
+		const browser = this.inAppBrowser.create(this.courseDataURL, '_self', 'clearcache=yes,hidden=yes');
+		browser.on('loadstop').subscribe((ev : InAppBrowserEvent) => {
 
-          if(this.page_stage == this.NONE) this.page_stage = this.LOGIN_PAGE;
-          else if(this.page_stage == this.LOGIN_PAGE) this.page_stage = this.SCHED_PAGE;
+			if(this.page_stage == this.NONE) this.page_stage = this.LOGIN_PAGE;
+			else if(this.page_stage == this.LOGIN_PAGE) this.page_stage = this.SCHED_PAGE;
 
-          if(this.stage == this.LOGIN && this.page_stage == this.LOGIN_PAGE)
-          {
-            this.loginToWarriorWeb(browser).then(data => this.stage = this.LOAD_SCHEDULE);
-          }
-          else if(this.stage == this.LOAD_SCHEDULE && this.page_stage == this.SCHED_PAGE)
-          {
-            this.loadScheduleJsonData(browser).then(data => {
-              // Don't leave credentials floating around in memory
-              this.loginUsername = "";
-              this.loginPassword = "";
+			if(this.stage == this.LOGIN && this.page_stage == this.LOGIN_PAGE)
+			{
+				this.loginToWarriorWeb(browser).then(data => this.stage = this.LOAD_SCHEDULE);
+			}
+			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage == this.SCHED_PAGE)
+			{
+				this.loadScheduleJsonData(browser).then(data => {
+					// Don't leave credentials floating around in memory
+					this.loginUsername = "";
+					this.loginPassword = "";
 
-              let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
-              let termCode : string = "2018SP"; // TODO this is easy to calculate, get to later
+					let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
+					let termCode : string = "2018SP"; // TODO this is easy to calculate, get to later
 
-              let currentTerm = null;
+					let currentTerm = null;
 
-              for(var term of json.Terms)
-              {
-                if(term.Code == termCode)
-                {
-                  currentTerm = term;
-                  break;
-                }
-              }
+					for(var term of json.Terms)
+					{
+						if(term.Code == termCode)
+						{
+							currentTerm = term;
+							break;
+						}
+					}
 
-              for(var course of currentTerm.PlannedCourses)
-              {
-                let item = course.CourseTitleDisplay + "--" + course.CourseName;
-                this.zone.run(() => this.scheduleItems.push(item));
-              }
-            });
-          }
-          // We may want to add a handler for this where we'd simply wait for the next page loadstop
-          // before loading the schedule data
-          else if(this.stage == this.LOAD_SCHEDULE && this.page_stage != this.SCHED_PAGE) {
-            alert('Bug: Attempting to load schedule before page ready. Please report');
-          }
-      });
-    });
+					for(var course of currentTerm.PlannedCourses)
+					{
+						let item = course.CourseTitleDisplay + "--" + course.CourseName;
+						this.zone.run(() => this.scheduleItems.push(item));
+					}
+				});
+			}
+			// We may want to add a handler for this where we'd simply wait for the next page loadstop
+			// before loading the schedule data
+			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage != this.SCHED_PAGE) {
+			alert('Bug: Attempting to load schedule before page ready. Please report');
+		}
+	});
+});
+}
+
+async loginToWarriorWeb(browser) : Promise<any> {
+	return await browser.executeScript({ code: "document.getElementById('UserName').value = '" + this.loginUsername + "';" }).then(
+		browser.executeScript({ code: "document.getElementById('Password').value = '" + this.loginPassword + "';" })).then(
+			browser.executeScript({ code: this.buttonClickSource }));
+		}
+
+	async loadScheduleJsonData(browser) : Promise<any> {
+		return browser.executeScript({ code: this.loadScheduleDataSource });
 	}
-
-	async loginToWarriorWeb(browser) : Promise<any> {
-    return await browser.executeScript({ code: "document.getElementById('UserName').value = '" + this.loginUsername + "';" }).then(
-      browser.executeScript({ code: "document.getElementById('Password').value = '" + this.loginPassword + "';" })).then(
-        browser.executeScript({ code: this.buttonClickSource }));
-  }
-
-  async loadScheduleJsonData(browser) : Promise<any> {
-    return browser.executeScript({ code: this.loadScheduleDataSource });
-  }
 
 	shownGroup = null;
 
