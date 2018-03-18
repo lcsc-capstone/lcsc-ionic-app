@@ -129,7 +129,6 @@ export class HomePage {
 										this.CampusRec = data.json();
 										this.storage.set('CampusRec', this.CampusRec);
 
-										//TODO: This needs changes. Badly. There is no reason to sort every event when only the first 3 are used. It is slow and very inefficient.
 										let merged = [];
 										let n = 0;
 										let offset = 0
@@ -180,7 +179,6 @@ export class HomePage {
 									this.storage.get('CampusRec').then(events => {
 										this.CampusRec = events;
 
-										//TODO: This needs changes. Badly. There is no reason to sort every event when only the first 3 are used. It is slow and very inefficient.
 										let merged = [];
 										let n = 0;
 										let offset = 0
