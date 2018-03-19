@@ -51,15 +51,16 @@ export class HomePage {
 	}
 
 	goToClassSchedule(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(ClassSchedulePage);
+  }
+	goToCalendar(params){
+		if( !params) params = {};
+		this.navCtrl.setRoot(CalendarPage);
+	}
+	goToNews(params){
 		if (!params) params = {};
-		this.navCtrl.push(ClassSchedulePage);
-	}
-
-	goToCalendar(){
-		this.navCtrl.push(CalendarPage);
-	}
-	goToNews(){
-		this.navCtrl.push(NewsPage);
+		this.navCtrl.setRoot(NewsPage);
 	}
 
 	ionViewDidLoad() {
