@@ -66,7 +66,7 @@ export class HomePage {
 		let current_time = new Date().getTime();
 		let midnight = new Date(Math.floor(current_time/86400000)*86400000-54000000).getTime();
 		this.storage.get('last_time').then(val => {
-			if (this.isConnected() && (!val || val <= midnight)) { // TODO: Make sure this is <= midnight for release.
+			if ((!val || val <= midnight) && this.isConnected()) { // TODO: Make sure this is <= midnight for release.
 				// This code will fetch the most recent 3 news titles and links.
 				this.storage.set('last_time', current_time);
 				this.http.get(`http://www.lcsc.edu/news`).subscribe(data => {
@@ -94,7 +94,6 @@ export class HomePage {
 					this.news['10']['title'] = list[10].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
 					this.storage.set('news', this.news);
 				}, err => {
-					console.error(err)
 				}, () => {
 				});
 
@@ -110,22 +109,22 @@ export class HomePage {
 				let curMonth = (new Date().getMonth()+1); //For some reason we are pulling 1 month behind current month?
 				let curYear = (new Date().getFullYear());
 
-				this.http.get(`https://www.googleapis.com/calendar/v3/calendars/0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-08:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
+				this.http.get(`https://www.googleapis.com/calendar/v3/calendars/0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
 					this.Academics = data.json();
 					this.storage.set('Academics', this.Academics);
-					this.http.get(`https://www.googleapis.com/calendar/v3/calendars/m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-08:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
+					this.http.get(`https://www.googleapis.com/calendar/v3/calendars/m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
 						this.Entertainment = data.json();
 						this.storage.set('Entertainment', this.Entertainment);
-						this.http.get(`https://www.googleapis.com/calendar/v3/calendars/d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-08:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
+						this.http.get(`https://www.googleapis.com/calendar/v3/calendars/d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
 							this.Athletics = data.json();
 							this.storage.set('Athletics', this.Athletics);
-							this.http.get(`https://www.googleapis.com/calendar/v3/calendars/l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-08:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
+							this.http.get(`https://www.googleapis.com/calendar/v3/calendars/l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
 								this.StudentActivities = data.json();
 								this.storage.set('StudentActivities', this.StudentActivities);
-								this.http.get(`https://www.googleapis.com/calendar/v3/calendars/gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-08:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
+								this.http.get(`https://www.googleapis.com/calendar/v3/calendars/gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
 									this.ResidentLife = data.json();
 									this.storage.set('ResidentLife', this.ResidentLife);
-									this.http.get(`https://www.googleapis.com/calendar/v3/calendars/h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-08:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
+									this.http.get(`https://www.googleapis.com/calendar/v3/calendars/h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
 										this.CampusRec = data.json();
 										this.storage.set('CampusRec', this.CampusRec);
 
@@ -134,22 +133,22 @@ export class HomePage {
 										let offset = 0
 
 										for (var x = 0; x < 3; x++) {
-											if (this.Academics.items[x]) merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											if (this.Academics.items[x]) merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
 										}
 										for (var y = 0; y < 3; y++) {
-											if (this.Entertainment.items[y]) merged.push({StartDate: new Date((this.Entertainment.items[y].start.dateTime || this.Entertainment.items[y].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Entertainment.items[y].end.dateTime || this.Entertainment.items[y].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Entertainment.items[y].summary, Description:this.Entertainment.items[y].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[y].location});
+											if (this.Entertainment.items[y]) merged.push({StartDate: new Date((this.Entertainment.items[y].start.dateTime || this.Entertainment.items[y].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Entertainment.items[y].end.dateTime || this.Entertainment.items[y].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Entertainment.items[y].summary, Description:this.Entertainment.items[y].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[y].location});
 										}
 										for (var z = 0; z < 3; z++) {
-											if (this.Athletics.items[z]) merged.push({StartDate: new Date((this.Athletics.items[z].start.dateTime || this.Athletics.items[z].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Athletics.items[z].end.dateTime || this.Athletics.items[z].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Athletics.items[z].summary, Description:this.Athletics.items[z].description, Calendar:this.Athletics.summary, Location:this.Athletics.items[z].location});
+											if (this.Athletics.items[z]) merged.push({StartDate: new Date((this.Athletics.items[z].start.dateTime || this.Athletics.items[z].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Athletics.items[z].end.dateTime || this.Athletics.items[z].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Athletics.items[z].summary, Description:this.Athletics.items[z].description, Calendar:this.Athletics.summary, Location:this.Athletics.items[z].location});
 										}
 										for (var i = 0; i < 3; i++) {
-											if (this.StudentActivities.items[i]) merged.push({StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.StudentActivities.items[i].summary, Description:this.StudentActivities.items[i].description, Calendar:this.StudentActivities.summary, Location:this.StudentActivities.items[i].location});
+											if (this.StudentActivities.items[i]) merged.push({StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.StudentActivities.items[i].summary, Description:this.StudentActivities.items[i].description, Calendar:this.StudentActivities.summary, Location:this.StudentActivities.items[i].location});
 										}
 										for (var j = 0; j < 3; j++) {
-											if (this.ResidentLife.items[j]) merged.push({StartDate: new Date((this.ResidentLife.items[j].start.dateTime || this.ResidentLife.items[j].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.ResidentLife.items[j].end.dateTime || this.ResidentLife.items[j].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.ResidentLife.items[j].summary, Description:this.ResidentLife.items[j].description, Calendar:this.ResidentLife.summary, Location:this.ResidentLife.items[j].location});
+											if (this.ResidentLife.items[j]) merged.push({StartDate: new Date((this.ResidentLife.items[j].start.dateTime || this.ResidentLife.items[j].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.ResidentLife.items[j].end.dateTime || this.ResidentLife.items[j].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.ResidentLife.items[j].summary, Description:this.ResidentLife.items[j].description, Calendar:this.ResidentLife.summary, Location:this.ResidentLife.items[j].location});
 										}
 										for (var k = 0; k < 3; k++) {
-											if (this.CampusRec.items[k]) merged.push({StartDate: new Date((this.CampusRec.items[k].start.dateTime || this.CampusRec.items[k].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.CampusRec.items[k].end.dateTime || this.CampusRec.items[k].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.CampusRec.items[k].summary, Description:this.CampusRec.items[k].description, Calendar:this.CampusRec.summary, Location:this.CampusRec.items[k].location});
+											if (this.CampusRec.items[k]) merged.push({StartDate: new Date((this.CampusRec.items[k].start.dateTime || this.CampusRec.items[k].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.CampusRec.items[k].end.dateTime || this.CampusRec.items[k].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.CampusRec.items[k].summary, Description:this.CampusRec.items[k].description, Calendar:this.CampusRec.summary, Location:this.CampusRec.items[k].location});
 										}
 										merged.sort(function(a,b){return a.StartDate - b.StartDate}).forEach(event => {
 											if (n < 3) {
@@ -184,22 +183,22 @@ export class HomePage {
 										let offset = 0
 
 										for (var x = 0; x < 3; x++) {
-											if (this.Academics.items[x]) merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											if (this.Academics.items[x]) merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
 										}
 										for (var y = 0; y < 3; y++) {
-											if (this.Entertainment.items[y]) merged.push({StartDate: new Date((this.Entertainment.items[y].start.dateTime || this.Entertainment.items[y].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Entertainment.items[y].end.dateTime || this.Entertainment.items[y].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Entertainment.items[y].summary, Description:this.Entertainment.items[y].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[y].location});
+											if (this.Entertainment.items[y]) merged.push({StartDate: new Date((this.Entertainment.items[y].start.dateTime || this.Entertainment.items[y].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Entertainment.items[y].end.dateTime || this.Entertainment.items[y].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Entertainment.items[y].summary, Description:this.Entertainment.items[y].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[y].location});
 										}
 										for (var z = 0; z < 3; z++) {
-											if (this.Athletics.items[z]) merged.push({StartDate: new Date((this.Athletics.items[z].start.dateTime || this.Athletics.items[z].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.Athletics.items[z].end.dateTime || this.Athletics.items[z].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.Athletics.items[z].summary, Description:this.Athletics.items[z].description, Calendar:this.Athletics.summary, Location:this.Athletics.items[z].location});
+											if (this.Athletics.items[z]) merged.push({StartDate: new Date((this.Athletics.items[z].start.dateTime || this.Athletics.items[z].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Athletics.items[z].end.dateTime || this.Athletics.items[z].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Athletics.items[z].summary, Description:this.Athletics.items[z].description, Calendar:this.Athletics.summary, Location:this.Athletics.items[z].location});
 										}
 										for (var i = 0; i < 3; i++) {
-											if (this.StudentActivities.items[i]) merged.push({StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.StudentActivities.items[i].summary, Description:this.StudentActivities.items[i].description, Calendar:this.StudentActivities.summary, Location:this.StudentActivities.items[i].location});
+											if (this.StudentActivities.items[i]) merged.push({StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.StudentActivities.items[i].summary, Description:this.StudentActivities.items[i].description, Calendar:this.StudentActivities.summary, Location:this.StudentActivities.items[i].location});
 										}
 										for (var j = 0; j < 3; j++) {
-											if (this.ResidentLife.items[j]) merged.push({StartDate: new Date((this.ResidentLife.items[j].start.dateTime || this.ResidentLife.items[j].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.ResidentLife.items[j].end.dateTime || this.ResidentLife.items[j].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.ResidentLife.items[j].summary, Description:this.ResidentLife.items[j].description, Calendar:this.ResidentLife.summary, Location:this.ResidentLife.items[j].location});
+											if (this.ResidentLife.items[j]) merged.push({StartDate: new Date((this.ResidentLife.items[j].start.dateTime || this.ResidentLife.items[j].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.ResidentLife.items[j].end.dateTime || this.ResidentLife.items[j].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.ResidentLife.items[j].summary, Description:this.ResidentLife.items[j].description, Calendar:this.ResidentLife.summary, Location:this.ResidentLife.items[j].location});
 										}
 										for (var k = 0; k < 3; k++) {
-											if (this.CampusRec.items[k]) merged.push({StartDate: new Date((this.CampusRec.items[k].start.dateTime || this.CampusRec.items[k].start.date + 'T00:00:00-08:01')).getTime()+offset, EndDate: new Date((this.CampusRec.items[k].end.dateTime || this.CampusRec.items[k].end.date + 'T00:00:00-08:00')).getTime()+offset, Summary:this.CampusRec.items[k].summary, Description:this.CampusRec.items[k].description, Calendar:this.CampusRec.summary, Location:this.CampusRec.items[k].location});
+											if (this.CampusRec.items[k]) merged.push({StartDate: new Date((this.CampusRec.items[k].start.dateTime || this.CampusRec.items[k].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.CampusRec.items[k].end.dateTime || this.CampusRec.items[k].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.CampusRec.items[k].summary, Description:this.CampusRec.items[k].description, Calendar:this.CampusRec.summary, Location:this.CampusRec.items[k].location});
 										}
 										merged.sort(function(a,b){return a.StartDate - b.StartDate}).forEach(event => {
 											if (n < 3) {

@@ -28,6 +28,7 @@
 			View Full Schedule
 		</button>
 	</div>
+	<div> {{ debug }} </div>
 	<div id="home-news">
 		<h1 id="home-heading3" style="color:#E10000;">
 			Events
@@ -37,9 +38,9 @@
 				<h2> {{ Events[0].Summary }} </h2>
 			</div>
 			<div *ngIf="isGroupShown(0)">
-				<div (tap)="addEvent(Events[0].StartDate)">
+				<div (tap)="addEvent(Events[0])">
 					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon>
-					{{ Events[0].StartDate | date:'EEEE, MMMM d  H:mma' }}
+					{{ Events[0].StartDate | date:'EEEE, MMMM d  h:mma' }}
 				</div>
 				<ion-item text-wrap id="home-list-item27">
 					<div class="accordian-firstitem"><p [innerHTML]="Events[0].Description"></p></div><br />
@@ -50,9 +51,9 @@
 				<h2> {{ Events[1].Summary }} </h2>
 			</div>
 			<div *ngIf="isGroupShown(1)">
-				<div (tap)="addEvent(Events[1].StartDate)">
+				<div (tap)="addEvent(Events[1])">
 					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
-					{{ Events[1].StartDate | date:'EEEE, MMMM d  H:mma' }}
+					{{ Events[1].StartDate | date:'EEEE, MMMM d  h:mma' }}
 				</div>
 				<ion-item text-wrap id="home-list-item27">
 					<div class="accordian-firstitem"><p [innerHTML]="Events[1].Description"></p></div><br />
@@ -63,9 +64,9 @@
 				<h2> {{ Events[2].Summary }} </h2>
 			</div>
 			<div *ngIf="isGroupShown(2)">
-				<div (tap)="addEvent(Events[2].StartDate)">
+				<div (tap)="addEvent(Events[2])">
 					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
-					{{ Events[2].StartDate | date:'EEEE, MMMM d  H:mma' }}
+					{{ Events[2].StartDate | date:'EEEE, MMMM d  h:mma' }}
 				</div>
 				<ion-item text-wrap id="home-list-item27">
 					<div class="accordian-firstitem"><p [innerHTML]="Events[2].Description"></p></div><br />

@@ -14,7 +14,7 @@
 	</ion-navbar>
 </ion-header>
 <ion-content padding id="page6">
-	<a *ngFor="let day of Days">
+	<a *ngFor="let day of LoadedDays">
 		<div *ngIf="(Events[day] | json) != ({times: []} | json)" >
 			<h1 class="header" background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
 			<div *ngFor="let time of Events[day]['times']">
@@ -45,7 +45,7 @@
 						</div>
 					</div>
 					<div class="accordian-time" *ngIf="isGroupShown(time)">
-						<div (tap)="addEvent(Events[day])">
+						<div (tap)="addEvent(Events[day][time])">
 							<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 							{{ Events[day][time].LocalTime}}
 						</div>
@@ -59,4 +59,7 @@
 			</div>
 		</div>
 	</a>
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
 </ion-content>
