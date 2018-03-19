@@ -6,8 +6,6 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'campus-map.html'
 })
 export class CampusMapPage {
-
   constructor(public navCtrl: NavController) {
   }
-  
 }
