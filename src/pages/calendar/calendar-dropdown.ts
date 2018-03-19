@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PopoverController } from 'ionic-angular';
-import { Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { CalendarPage } from '../calendar/calendar';
 
 
 /**
@@ -18,8 +15,6 @@ import { CalendarPage } from '../calendar/calendar';
 	selector: 'page-calendar-dropdown',
 	templateUrl: 'calendar-dropdown.html',
 })
-
-
 export class CalendarDropdownPage {
 	public showAcademic = true;
 	public showAthletics = true;
@@ -59,7 +54,6 @@ export class CalendarDropdownPage {
 	}
 
 	toggleStudentActivities(){
-		console.log(!this.showStudentActivities)
 		this.events.publish('toggleStudentActivities');
 		this.showStudentActivities = !this.showStudentActivities;
 		this.storage.set('showStudentActivities', this.showStudentActivities);
@@ -81,31 +75,5 @@ export class CalendarDropdownPage {
 		this.events.publish('toggleAthletics');
 		this.showAthletics = !this.showAthletics;
 		this.storage.set('showAthletics', this.showAthletics);
-	}
-
-
-}
-
-@Component({
-	template: `
-	<ion-list>
-	<ion-list-header>Ionic</ion-list-header>
-	<button ion-item (click)="close()">Learn Ionic</button>
-	<button ion-item (click)="close()">Documentation</button>
-	<button ion-item (click)="close()">Showcase</button>
-	<button ion-item (click)="close()">GitHub Repo</button>
-	</ion-list>
-	`
-})
-
-@Component({})
-class MyPage {
-	constructor(public popoverCtrl: PopoverController) {}
-
-	presentPopover(myEvent) {
-		let popover = this.popoverCtrl.create(CalendarDropdownPage);
-		popover.present({
-			ev: myEvent
-		});
 	}
 }

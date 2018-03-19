@@ -6,8 +6,6 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'radio.html'
 })
 export class RadioPage {
-
   constructor(public navCtrl: NavController) {
   }
-  
 }
