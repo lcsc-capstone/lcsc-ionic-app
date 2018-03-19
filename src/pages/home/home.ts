@@ -301,6 +301,6 @@ async loginToWarriorWeb(browser) : Promise<any> {
 	}
 
 	openBrowser(link) {
-		this.inAppBrowser.create(this.news[link.toString()]['link'], '_self', 'location=no');
+		this.inAppBrowser.create(link, '_self', 'location=no');
 	}
 }

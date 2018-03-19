@@ -31,7 +31,7 @@ export class MyApp {
       splashScreen.hide();
     });
   }
-  
+
   goToHome(params){
     if (!params) params = {};
     this.navCtrl.setRoot(HomePage);
@@ -73,6 +73,6 @@ export class MyApp {
   }
 
   openBrowser(link) {
-	  this.inAppBrowser.create(this.news[link.toString()]['link'], '_self', 'location=no');
+	  this.inAppBrowser.create(link, '_self', 'location=no');
   }
 }
