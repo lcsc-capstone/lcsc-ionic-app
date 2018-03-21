@@ -39,7 +39,7 @@ export class ClassSchedulePage {
       storage.get("loginUsername").then(data => this.username = data, err => alert(err));
       storage.get("loginPassword").then(data => this.password = data, err => alert(err));
 
-      const browser = this.inAppBrowser.create(this.courseDataURL, '_self', 'clearcache=yes,hidden=yes');
+      const browser = this.inAppBrowser.create(this.courseDataURL, '_blank', 'clearcache=yes,hidden=yes');
       browser.on('loadstop').subscribe((ev : InAppBrowserEvent) => {
 
           if(this.page_stage == this.NONE) this.page_stage = this.LOGIN_PAGE;

@@ -20,6 +20,6 @@ export class NewsPage {
 	}
 	
 	openBrowser(link) {
-		this.inAppBrowser.create(this.news[link.toString()]['link'], '_self', 'location=no');
+		this.inAppBrowser.create(this.news[link.toString()]['link'], '_blank', 'location=no');
 	}
 }
