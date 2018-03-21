@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {HttpModule} from '@angular/http';
-import * as papa from 'papaparse';
+import { Http } from '@angular/http';
 @Component({
   selector: 'page-tutoring',
   templateUrl: 'tutoring.html'
@@ -10,7 +10,8 @@ import * as papa from 'papaparse';
 export class TutoringPage {
 	public csvItems:any;
 
-	ClassList =[
+
+	public ClassList =[
 		 {
 		   name: '208'
 		 },
@@ -18,7 +19,7 @@ export class TutoringPage {
 		   name: '111'
 		 }
 	];
-	TutorList =[
+	public TutorList =[
 		 {
 		   name: 'Jack'
 		 },
@@ -26,14 +27,14 @@ export class TutoringPage {
 		   name: 'Jim'
 		 }
 	];
-private extractData() {
+extractData() {
 	//let parsedData
-  this.TutorList= papa.parse("http://isoptera.lcsc.edu/~jamcdonald/tutors.csv",{
-		download:true,
-		complete:function(results){
-			console.log(results)
-		}
-	});
+
+  this.http.get('http://isoptera.lcsc.edu/~jamcdonald/tutors.json')/*.map(res => { res.json()})*/.subscribe(data => {
+    //this.debug2 = JSON.parse(data['_body']).items[0].name;
+    this.TutorList = JSON.parse(data['_body']).items;
+  });
+  //alert(this.TutorList.toString());
   //this.TutorList=parsedData;
 	//for(let i=0;i<parsedData.;i++){
   //this.TutorList.push({
@@ -41,10 +42,12 @@ private extractData() {
   //});
   //}
 
+
 	}
-	constructor(public navCtrl: NavController){
-		this.extractData();
+	constructor(public navCtrl: NavController, public http: Http){
+    this.extractData();
 	}
+
 
 
 }
