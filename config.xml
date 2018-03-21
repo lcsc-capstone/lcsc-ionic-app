@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
@@ -88,4 +89,8 @@
     <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="~7.0.0" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <feature name="IntentAndNavigationFilter">
+        <param name="ios-package" value="CDVIntentAndNavigationFilter"/>
+        <param name="onload" value="true"/>
+    </feature>
 </widget>
