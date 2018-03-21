@@ -152,7 +152,7 @@ export class CalendarPage {
 										this.Events[Math.floor(((event.LocalDate.getTime()+16*3600000)/86400000))][event.Summary] = event;
 										this.Events[Math.floor(((event.LocalDate.getTime()+16*3600000)/86400000))]['times'].push(event.Summary);
 									});
-									for (let i = 0; i < 5; i++) {
+									for (let i = 0; i < 8; i++) {
 										this.LoadedDays.push(this.Days[i]);
 									}
 								});
@@ -166,7 +166,7 @@ export class CalendarPage {
 
 	doInfinite(infiniteScroll) {
 		setTimeout(() => {
-			let starting = this.LoadedDays.length-1;
+			let starting = this.LoadedDays.length;
 			for (let i = starting; i < starting+3; i++) {
 	        this.LoadedDays.push(this.Days[i]);
 	      }
