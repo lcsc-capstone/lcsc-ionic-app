@@ -8,28 +8,23 @@ import { Http } from '@angular/http';
 })
 
 export class TutoringPage {
-	public csvItems:any;
-
-
 	public ClassList =[
 		 {
-		   name: '208'
-		 },
-		 {
-		   name: '111'
+		   name: 'Could not Load Data'
 		 }
 	];
 	public TutorList =[
 		 {
-		   name: 'Jack'
-		 },
-		 {
-		   name: 'Jim'
+		   name: 'Could not Load Data'
 		 }
 	];
 extractData() {
 	//let parsedData
 
+  this.http.get('http://isoptera.lcsc.edu/~jamcdonald/classes.json')/*.map(res => { res.json()})*/.subscribe(data => {
+    //this.debug2 = JSON.parse(data['_body']).items[0].name;
+    this.ClassList = JSON.parse(data['_body']).items;
+  });
   this.http.get('http://isoptera.lcsc.edu/~jamcdonald/tutors.json')/*.map(res => { res.json()})*/.subscribe(data => {
     //this.debug2 = JSON.parse(data['_body']).items[0].name;
     this.TutorList = JSON.parse(data['_body']).items;
@@ -44,6 +39,7 @@ extractData() {
 
 
 	}
+
 	constructor(public navCtrl: NavController, public http: Http){
     this.extractData();
 	}
