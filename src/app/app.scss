@@ -15,10 +15,9 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 h1, h2, h3, h4, p, li, a, ion-item, button {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -28,7 +27,7 @@ h1 {
 }
 
 ion-header {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
 
     ion-icon {
         color: #003865;

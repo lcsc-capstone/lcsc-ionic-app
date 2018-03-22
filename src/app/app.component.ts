@@ -42,9 +42,9 @@ export class MyApp {
     this.navCtrl.setRoot(ClassSchedulePage);
   }
 
-  goToProfile(params){
+  goToLogin(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(ProfilePage);
+    this.navCtrl.setRoot(LoginPage);
   }
 
   goToNews(params){
