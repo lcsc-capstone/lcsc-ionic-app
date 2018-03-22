@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { ClassSchedulePage } from '../pages/class-schedule/class-schedule';
-import { ProfilePage } from '../pages/profile/profile';
 import { NewsPage } from '../pages/news/news';
 import { CampusMapPage } from '../pages/campus-map/campus-map';
 import { AboutPage } from '../pages/about/about';
