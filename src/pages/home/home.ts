@@ -107,7 +107,7 @@ export class HomePage {
 				CampusRec 					- h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com
 				####################################################################### */
 				let curDay = (new Date().getDate());
-				let curMonth = (new Date().getMonth()+1); //For some reason we are pulling 1 month behind current month?
+				let curMonth = (new Date().getMonth()+1); //Months are from 0-11 NOT 1-12
 				let curYear = (new Date().getFullYear());
 
 				this.http.get(`https://www.googleapis.com/calendar/v3/calendars/0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
