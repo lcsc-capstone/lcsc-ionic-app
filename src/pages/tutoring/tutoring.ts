@@ -32,7 +32,7 @@ extractData() {
   });
 
   }
-  
+  //check if field is populated and then submit value for that submit
   Submit( form: NgForm ){
     form.value.class;
   }

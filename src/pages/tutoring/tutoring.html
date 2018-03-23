@@ -14,7 +14,7 @@
     Tutoring
   </h1>
   <div id="tutoring-markdown1" class="show-list-numbers-and-dots">
-    <form #f="ngForm">
+    <form #f="ngForm"(ngSubmit)="Submit(f)">
     <p style="color:#000000;">
       <!--drop down box generated from school schedule or the schools class list-->
       <ion-list>
@@ -27,19 +27,18 @@
 	</ion-item> 
       </ion-list>
       <!--drop down box generated from tutors list-->
-      Or
+      OR
       <ion-list>
         <ion-item>
 		<ion-label>Select Tutor</ion-label>
 	    	<ion-select name = "tutor">
 		  <ion-option *ngFor="let tutor of TutorList;" 
-		          [value]="name">{{tutor.name}}</ion-option>      
+		  [value]="name">{{tutor.name}}</ion-option>      
 	   	</ion-select>
 	</ion-item> 
       </ion-list>
 
-      <button ion-button (ngSubmit)="Submit(f)">Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
-
+      <button ion-button type="submit">Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
 
       <br><br><b>Note: * denotes online tutor</b>
     </p>
