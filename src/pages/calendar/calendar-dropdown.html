@@ -6,45 +6,45 @@
 <ion-content>
 	 <ion-list>
 		 <div *ngIf = "showAcademic == true; else noAcademic">
-			 <button style="background-color:#ca96e0;" ion-item (click)="toggleAcademic()">Academic</button>
+			 <button style="background-color:#ca96e0;" ion-item>Academic</button>
 		 </div>
 		 <ng-template #noAcademic>
-			 <button style="background-color:#D3D3D3;" ion-item (click)="toggleAcademic()">Academic</button>
+			 <button style="background-color:#D3D3D3;" ion-item>Academic</button>
 		 </ng-template>
 
 		 <div *ngIf = "showEntertainment == true; else noEntertainment">
-			 <button style="background-color:#d18787;" ion-item (click)="toggleEntertainment()">Entertainment</button>
+			 <button style="background-color:#d18787;" ion-item (tap)="toggleEntertainment()">Entertainment</button>
 		 </div>
 		 <ng-template #noEntertainment>
-			 <button style="background-color:#D3D3D3;" ion-item (click)="toggleEntertainment()">Entertainment</button>
+			 <button style="background-color:#D3D3D3;" ion-item (tap)="toggleEntertainment()">Entertainment</button>
 		 </ng-template>
 
 			<div *ngIf = "showStudentActivities == true; else noStudentActivities">
-				<button style="background-color:#F8C797;" ion-item (click)="toggleStudentActivities()">Student Activities</button>
+				<button style="background-color:#F8C797;" ion-item (tap)="toggleStudentActivities()">Student Activities</button>
 			</div>
 			<ng-template #noStudentActivities>
-				<button style="background-color:#D3D3D3;" ion-item (click)="toggleStudentActivities()">Student Activities</button>
+				<button style="background-color:#D3D3D3;" ion-item (tap)="toggleStudentActivities()">Student Activities</button>
 			</ng-template>
 
 			<div *ngIf = "showCampusRec == true; else noStudentCampusRec">
-				<button style="background-color:#8be0a6;" ion-item (click)="toggleCampusRec()">Campus Rec</button>
+				<button style="background-color:#8be0a6;" ion-item (tap)="toggleCampusRec()">Campus Rec</button>
 			</div>
 			<ng-template #noStudentCampusRec>
-				<button style="background-color:#D3D3D3;" ion-item (click)="toggleCampusRec()">Campus Rec</button>
+				<button style="background-color:#D3D3D3;" ion-item (tap)="toggleCampusRec()">Campus Rec</button>
 			</ng-template>
 
 			<div *ngIf = "showResidentLife == true; else noResidentLife">
-				<button style="background-color:#80E0E0;" ion-item (click)="toggleResidentLife()">Resident Life</button>
+				<button style="background-color:#80E0E0;" ion-item (tap)="toggleResidentLife()">Resident Life</button>
 			</div>
 			<ng-template #noResidentLife>
-				<button style="background-color:#D3D3D3;" ion-item (click)="toggleResidentLife()">Resident Life</button>
+				<button style="background-color:#D3D3D3;" ion-item (tap)="toggleResidentLife()">Resident Life</button>
 			</ng-template>
 
 			<div *ngIf = "showAthletics == true; else noWarriorAthletics">
-				<button style="background-color:#80AFC8;" ion-item (click)="toggleWarriorAthletics()">Warrior Athletics</button>
+				<button style="background-color:#80AFC8;" ion-item (tap)="toggleWarriorAthletics()">Warrior Athletics</button>
 			</div>
 			<ng-template #noWarriorAthletics>
-				<button style="background-color:#D3D3D3;" ion-item (click)="toggleWarriorAthletics()">Warrior Athletics</button>
+				<button style="background-color:#D3D3D3;" ion-item (tap)="toggleWarriorAthletics()">Warrior Athletics</button>
 			</ng-template>
     </ion-list>
 </ion-content>

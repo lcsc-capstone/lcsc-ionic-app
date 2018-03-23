@@ -12,7 +12,10 @@ page-home {
         width: 100%;
         margin-top: 14vh;
     }
-
+    .interlock-Img {
+        width:24px;
+        height:25px;
+    }
     ion-content {
 
         button {
@@ -24,7 +27,7 @@ page-home {
             color: white;
             margin: 0 auto;
             display: block;
-    
+
             ion-icon {
                 padding-right: .5em;
             }
@@ -59,6 +62,7 @@ page-home {
         h2 {
             color: #003865;
             padding-bottom: .4em;
+            font-size: 11pt;
         }
 
         ion-list {

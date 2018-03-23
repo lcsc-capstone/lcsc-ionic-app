@@ -1,40 +1,40 @@
 <ion-header>
-  <ion-navbar color="lcblue">
-    <button ion-button menuToggle>
-      <ion-icon name="menu" color="light"></ion-icon>
-    </button>
-    <ion-title>
-      Login
-    </ion-title>
-  </ion-navbar>
+	<ion-navbar color="lcblue">
+		<button ion-button menuToggle>
+			<ion-icon name="menu" color="light"></ion-icon>
+		</button>
+		<ion-title>
+			Profile
+		</ion-title>
+	</ion-navbar>
 </ion-header>
 <ion-content padding id="page2">
-  <h1 id="profile-heading6">
-    Login to WarriorWeb
-  </h1>
-
-  <div id="login-form">
+	<h1 id="profile-heading6">
+		Your Profile
+	</h1>
+  
+	<div id="login-form">
 		<h2>Login to WarriorWeb</h2>
 		<form>
 
 			<div class="input">
-			<ion-icon name="person-outline" class="input-icon"></ion-icon>
-			<input [(ngModel)]="loginUsername" type="text" name="userID" placeholder="Username"><br>
+				<ion-icon name="person-outline" class="input-icon"></ion-icon>
+				<input [(ngModel)]="loginUsername" type="text" name="userID" placeholder="Username"><br>
 			</div>
 
 			<div class="input">
-			<ion-icon name="lock-outline" class="input-icon"></ion-icon>
-			<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
+				<ion-icon name="lock-outline" class="input-icon"></ion-icon>
+				<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
 			</div>
 
-			<button id="login" (click)='storeCredentials()'>Login</button>
+			<button id="login" (tap)='storeCredentials()'>Login</button>
 
-    </form>
-    
-    <div id="guest">
-        <p>Don't have an account?</p>
-        <a>View as Guest</a>
-    </div>
-  </div>
+		</form>
+
+		<div id="guest">
+			<p>Don't have an account?</p>
+			<a>View as Guest</a>
+		</div>
+	</div>
 
 </ion-content>

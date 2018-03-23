@@ -1,8 +1,8 @@
 <ion-header>
 
-  <ion-navbar color="lcblue">
-    <ion-title>Login</ion-title>
-  </ion-navbar>
+	<ion-navbar color="lcblue">
+		<ion-title>Login</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
@@ -17,13 +17,13 @@
 		<form>
 
 			<div class="input">
-			<ion-icon name="person-outline" class="input-icon"></ion-icon>
-			<input [(ngModel)]="loginUsername" type="text" name="userID" placeholder="Username"><br>
+				<ion-icon name="person-outline" class="input-icon"></ion-icon>
+				<input [(ngModel)]="loginUsername" type="text" name="userID" placeholder="Username"><br>
 			</div>
 
 			<div class="input">
-			<ion-icon name="lock-outline" class="input-icon"></ion-icon>
-			<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
+				<ion-icon name="lock-outline" class="input-icon"></ion-icon>
+				<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
 			</div>
 
 			<button id="login" (tap)='storeCredentials()'>Login</button>
@@ -34,6 +34,6 @@
 			<p>Don't have an account?</p>
 			<a (tap)="goToHomePage()">View as Guest</a>
 		</div>
-  </div>
+	</div>
 
 </ion-content>
