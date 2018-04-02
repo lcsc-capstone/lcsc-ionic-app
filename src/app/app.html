@@ -40,6 +40,12 @@
 				Radio
 				<ion-icon name="radio" item-right></ion-icon>
 			</ion-item>
+      <ion-item color="positive" id="menu-list-item12">
+		<ion-icon name="logo-facebook" item-left (tap)="openBrowser('https://www.facebook.com/LewisClarkState/')"></ion-icon>
+		<ion-icon name="logo-twitter" item-left (tap)="openBrowser('https://twitter.com/LCSC')"></ion-icon>
+		<ion-icon name="logo-instagram" item-left (tap)="openBrowser('instagram://user?username=lewisclarkstate')"></ion-icon>
+		<ion-icon name="logo-snapchat" item-left (tap)="openBrowser('https://www.snapchat.com/add/lewisclarkstate')"></ion-icon>
+	  </ion-item>
 		</ion-list>
 		<h3 id="menu-heading1" style="color:#E10000;font-weight:400;">
 			Resources
@@ -64,12 +70,7 @@
 				LCSC Virtual Map
 			</ion-item>
 		</ion-list>
-		<ion-item color="positive" id="menu-list-item12">
-		<ion-icon name="logo-facebook" item-left (tap)="openBrowser('https://www.facebook.com/LewisClarkState/')"></ion-icon>
-		<ion-icon name="logo-twitter" item-left (tap)="openBrowser('https://twitter.com/LCSC')"></ion-icon>
-		<ion-icon name="logo-instagram" item-left (tap)="openBrowser('instagram://user?username=lewisclarkstate')"></ion-icon>
-		<ion-icon name="logo-snapchat" item-left (tap)="openBrowser('https://www.snapchat.com/add/lewisclarkstate')"></ion-icon>
-	  </ion-item>
+		
 	</ion-content>
 </ion-menu>
 
