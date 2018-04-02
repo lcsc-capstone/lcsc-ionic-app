@@ -57,9 +57,9 @@ export class MyApp {
     this.navCtrl.setRoot(CampusMapPage);
   }
 
-  goToAbout(params){
+  goToTutoring(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(AboutPage);
+    this.navCtrl.setRoot(TutoringPage);
   }
 
   goToRadio(params){
