@@ -73,6 +73,6 @@ export class MyApp {
   }
 
   openBrowser(link) {
-	  this.inAppBrowser.create(link, '_system', 'location=no');
+	  this.inAppBrowser.create(link, '_system', 'location=yes');
   }
 }
