@@ -70,7 +70,8 @@ export class HomePage {
 			if ((!val || val <= midnight) && this.isConnected()) { // TODO: Make sure this is <= midnight for release.
 				// This code will fetch the most recent 3 news titles and links.
 				this.storage.set('last_time', current_time);
-				this.http.get(`http://www.lcsc.edu/news`).subscribe(data => {
+				this.http.get(`https://www.lcsc.edu/news`).subscribe(data => {
+					alert('News get');
 					let html = data['_body'];
 					let list = html.split(/<h4><a href="/g);
 					this.news['1']['link'] = list[1].split(/"/g)[0];
@@ -95,6 +96,7 @@ export class HomePage {
 					this.news['10']['title'] = list[10].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
 					this.storage.set('news', this.news);
 				}, err => {
+					alert(err);
 				}, () => {
 				});
 
@@ -222,21 +224,29 @@ loadScheduleData() {
 	this.scheduleItems = [];
 
 	this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
+		alert('Logging in');
 		storage.get("loginUsername").then(data => this.loginUsername = data, err => alert(err));
 		storage.get("loginPassword").then(data => this.loginPassword = data, err => alert(err));
 
 		const browser = this.inAppBrowser.create(this.courseDataURL, '_blank', 'clearcache=yes,hidden=yes');
 		browser.on('loadstop').subscribe((ev : InAppBrowserEvent) => {
 
-			if(this.page_stage == this.NONE) this.page_stage = this.LOGIN_PAGE;
-			else if(this.page_stage == this.LOGIN_PAGE) this.page_stage = this.SCHED_PAGE;
+			if(this.page_stage == this.NONE) {
+				this.page_stage = this.LOGIN_PAGE;
+			}
+			else if(this.page_stage == this.LOGIN_PAGE) 
+			{
+				this.page_stage = this.SCHED_PAGE;
+			}
 
 			if(this.stage == this.LOGIN && this.page_stage == this.LOGIN_PAGE)
 			{
-				this.loginToWarriorWeb(browser).then(data => this.stage = this.LOAD_SCHEDULE);
+				this.loginToWarriorWeb(browser);
+				this.stage = this.LOAD_SCHEDULE;
 			}
 			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage == this.SCHED_PAGE)
 			{
+				alert('Loading schedule stage');
 				this.loadScheduleJsonData(browser).then(data => {
 					// Don't leave credentials floating around in memory
 					this.loginUsername = "";
@@ -266,7 +276,6 @@ loadScheduleData() {
 			// We may want to add a handler for this where we'd simply wait for the next page loadstop
 			// before loading the schedule data
 			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage != this.SCHED_PAGE) {
-			alert('Bug: Attempting to load schedule before page ready. Please report');
 		}
 	});
 });
