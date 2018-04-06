@@ -220,7 +220,6 @@ loadScheduleData() {
 	this.scheduleItems = [];
 
 	this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
-		alert('Logging in');
 		storage.get("loginUsername").then(data => this.loginUsername = data, err => alert(err));
 		storage.get("loginPassword").then(data => this.loginPassword = data, err => alert(err));
 
@@ -242,7 +241,6 @@ loadScheduleData() {
 			}
 			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage == this.SCHED_PAGE)
 			{
-				alert('Loading schedule stage');
 				this.loadScheduleJsonData(browser).then(data => {
 					// Don't leave credentials floating around in memory
 					this.loginUsername = "";
