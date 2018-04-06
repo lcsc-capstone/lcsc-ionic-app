@@ -9,6 +9,8 @@ import {NgForm} from '@angular/forms';
 })
 
 export class TutoringPage {
+  public classKey=""
+  public tutorKey=""
 	public ClassList =[
 		 {
 		   name: 'Could not Load Data'
@@ -43,14 +45,11 @@ extractData() {
 
 	}
   Submit( form: NgForm ){
-    alert("Full Functionality not yet Implimented");
+    alert(this.classKey+"\n"+this.tutorKey);
 
   //  form.value.class;
   }
 
-  public submit(){
-    alert("Full Functionality not yet Implimented");
-  }
 	constructor(public navCtrl: NavController, public http: Http){
     this.extractData();
 	}
