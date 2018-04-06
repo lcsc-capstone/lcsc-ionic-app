@@ -220,21 +220,29 @@ loadScheduleData() {
 	this.scheduleItems = [];
 
 	this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
+		alert('Logging in');
 		storage.get("loginUsername").then(data => this.loginUsername = data, err => alert(err));
 		storage.get("loginPassword").then(data => this.loginPassword = data, err => alert(err));
 
 		const browser = this.inAppBrowser.create(this.courseDataURL, '_blank', 'clearcache=yes,hidden=yes');
 		browser.on('loadstop').subscribe((ev : InAppBrowserEvent) => {
 
-			if(this.page_stage == this.NONE) this.page_stage = this.LOGIN_PAGE;
-			else if(this.page_stage == this.LOGIN_PAGE) this.page_stage = this.SCHED_PAGE;
+			if(this.page_stage == this.NONE) {
+				this.page_stage = this.LOGIN_PAGE;
+			}
+			else if(this.page_stage == this.LOGIN_PAGE)
+			{
+				this.page_stage = this.SCHED_PAGE;
+			}
 
 			if(this.stage == this.LOGIN && this.page_stage == this.LOGIN_PAGE)
 			{
-				this.loginToWarriorWeb(browser).then(data => this.stage = this.LOAD_SCHEDULE);
+				this.loginToWarriorWeb(browser);
+				this.stage = this.LOAD_SCHEDULE;
 			}
 			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage == this.SCHED_PAGE)
 			{
+				alert('Loading schedule stage');
 				this.loadScheduleJsonData(browser).then(data => {
 					// Don't leave credentials floating around in memory
 					this.loginUsername = "";
@@ -264,7 +272,6 @@ loadScheduleData() {
 			// We may want to add a handler for this where we'd simply wait for the next page loadstop
 			// before loading the schedule data
 			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage != this.SCHED_PAGE) {
-			alert('Bug: Attempting to load schedule before page ready. Please report');
 		}
 	});
 });
