@@ -67,10 +67,10 @@ export class HomePage {
 		let current_time = new Date().getTime();
 		let midnight = new Date(Math.floor(current_time/86400000)*86400000-54000000).getTime();
 		this.storage.get('last_time').then(val => {
-			if ((!val || val <= midnight) && this.isConnected()) { // TODO: Make sure this is <= midnight for release.
+			if ((!val || val/* <= midnight*/) && this.isConnected()) { // TODO: Make sure this is <= midnight for release.
 				// This code will fetch the most recent 3 news titles and links.
 				this.storage.set('last_time', current_time);
-				this.http.get(`http://www.lcsc.edu/news`, {}, {}).then(data => {
+				this.http.get(`https://www.lcsc.edu/news`, {}, {}).then(data => {
 					let html = data.data;
 					let list = html.split(/<h4><a href="/g);
 					this.news['1']['link'] = list[1].split(/"/g)[0];
@@ -94,7 +94,7 @@ export class HomePage {
 					this.news['10']['link'] = list[10].split(/"/g)[0];
 					this.news['10']['title'] = list[10].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
 					this.storage.set('news', this.news);
-				}).catch(err => { alert(err)});
+				}).catch(err => { alert(err) });
 
 				/* #######################################################################
 				Academics 					- 0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com
