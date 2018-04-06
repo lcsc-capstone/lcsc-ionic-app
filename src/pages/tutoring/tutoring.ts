@@ -44,7 +44,7 @@ extractData() {
 	}
   Submit( form: NgForm ){
     alert("Full Functionality not yet Implimented");
-
+    
   //  form.value.class;
   }
 
