@@ -75,7 +75,7 @@ export class HomePage {
 					let list = html.split(/<h4><a href="/g);
 					this.news['1']['link'] = list[1].split(/"/g)[0];
 					this.news['1']['title'] = list[1].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
-					this.news['2']['link'] = list[2];
+					this.news['2']['link'] = list[2].split(/"/g)[0];
 					this.news['2']['title'] = list[2].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
 					this.news['3']['link'] = list[3].split(/"/g)[0];
 					this.news['3']['title'] = list[3].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
