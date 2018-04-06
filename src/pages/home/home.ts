@@ -67,7 +67,7 @@ export class HomePage {
 		let current_time = new Date().getTime();
 		let midnight = new Date(Math.floor(current_time/86400000)*86400000-54000000).getTime();
 		this.storage.get('last_time').then(val => {
-			if ((!val || val/* <= midnight*/) && this.isConnected()) { // TODO: Make sure this is <= midnight for release.
+			if ((!val || val <= midnight) && this.isConnected()) { // TODO: Make sure this is <= midnight for release.
 				// This code will fetch the most recent 3 news titles and links.
 				this.storage.set('last_time', current_time);
 				this.http.get(`https://www.lcsc.edu/news`, {}, {}).then(data => {
