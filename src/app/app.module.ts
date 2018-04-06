@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
+import { HTTP, HTTPResponse } from '@ionic-native/http'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -41,8 +42,7 @@ import { Network } from '@ionic-native/network';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
-    HttpModule
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,6 +65,7 @@ import { Network } from '@ionic-native/network';
     SplashScreen,
 	 Calendar,
 	 Network,
+	 HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
