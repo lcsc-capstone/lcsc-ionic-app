@@ -38,7 +38,7 @@
 	</ion-item> 
       </ion-list>
 
-      <button ion-button type="submit">Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
+      <button ion-button type="submit">Submit</button> <!--Cout take you to tutorTimes.html or tutors.html, but adds list to bottom according to submission-->
 
       <br><br><b>Note: * denotes online tutor</b>
     </p>
@@ -54,7 +54,7 @@
       <ion-item>{{Time.times}}</ion-item>
     </ion-list>
 
-    <button ion-button full *ngIf="isOnline">Book Online Session</button> <!--Links to tutorsClass.html -->
+    <button ion-button full *ngIf="isOnline">Book Online Session</button> <!--Could Link to tutorsClass.html, but is linked to tutoring.ts now -->
   
   </div>
 
