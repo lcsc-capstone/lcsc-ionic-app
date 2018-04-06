@@ -48,9 +48,6 @@ extractData() {
   //  form.value.class;
   }
 
-  public submit(){
-    alert("Full Functionality not yet Implimented");
-  }
 	constructor(public navCtrl: NavController, public http: Http){
     this.extractData();
 	}
