@@ -70,9 +70,8 @@ export class HomePage {
 			if ((!val || val <= midnight) && this.isConnected()) { // TODO: Make sure this is <= midnight for release.
 				// This code will fetch the most recent 3 news titles and links.
 				this.storage.set('last_time', current_time);
-				this.http.get(`https://www.lcsc.edu/news`).subscribe(data => {
-					alert('News get');
-					let html = data['_body'];
+				this.http.get(`http://www.lcsc.edu/news`, {}, {}).then(data => {
+					let html = data.data;
 					let list = html.split(/<h4><a href="/g);
 					this.news['1']['link'] = list[1].split(/"/g)[0];
 					this.news['1']['title'] = list[1].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
@@ -95,10 +94,7 @@ export class HomePage {
 					this.news['10']['link'] = list[10].split(/"/g)[0];
 					this.news['10']['title'] = list[10].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
 					this.storage.set('news', this.news);
-				}, err => {
-					alert(err);
-				}, () => {
-				});
+				}).catch(err => { alert(err)});
 
 				/* #######################################################################
 				Academics 					- 0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com
@@ -234,7 +230,7 @@ loadScheduleData() {
 			if(this.page_stage == this.NONE) {
 				this.page_stage = this.LOGIN_PAGE;
 			}
-			else if(this.page_stage == this.LOGIN_PAGE) 
+			else if(this.page_stage == this.LOGIN_PAGE)
 			{
 				this.page_stage = this.SCHED_PAGE;
 			}
