@@ -48,7 +48,7 @@ export class ClassSchedulePage {
           if(this.stage == this.LOGIN && this.page_stage == this.LOGIN_PAGE)
           {
 	    this.loginToWarriorWeb(browser);
-	    this.stsage = this.LOAD_SCHEDULE;
+	    this.stage = this.LOAD_SCHEDULE;
           }
           else if(this.stage == this.LOAD_SCHEDULE && this.page_stage == this.SCHED_PAGE)
           {
