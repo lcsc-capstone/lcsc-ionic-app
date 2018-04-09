@@ -1,34 +1,130 @@
 <ion-header>
-	<ion-navbar>
+	<ion-navbar color="lcblue">
 		<button ion-button menuToggle>
-			<ion-icon name="menu"></ion-icon>
+			<ion-icon id="menu" name="menu" color="light"></ion-icon>
 		</button>
 		<ion-title>
 			Calendar
 		</ion-title>
+		<ion-buttons end>
+			<button class="dropdownbutton"  ion-button icon-only (tap)="presentPopover($event)">
+				<ion-icon color="light" name="ios-arrow-dropdown" align></ion-icon>
+			</button>
+		</ion-buttons>
 	</ion-navbar>
 </ion-header>
-
 <ion-content padding id="page6">
-	<a *ngFor="let day of Days">
+	<a *ngFor="let day of LoadedDays">
 		<div *ngIf="(Events[day] | json) != ({times: []} | json)" >
-			<h1 background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
+			<h1 class="header" background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
 			<div *ngFor="let time of Events[day]['times']">
 				<ion-list>
-						<div  (click)="toggleGroup(time)" [ngClass]="{active: isGroupShown(time)}">
-						<font size="2"><strong>{{ Events[day][time].Summary }}</strong></font>
+					<div *ngIf = "Events[day][time].Calendar == 'Warrior Athletics' && showAthletics == true">
+						<div class="accordian" (tap)="toggleGroup(Events[day][time])" [ngClass]="{active: isGroupShown(Events[day][time])}">
+						<ion-icon class="warriors" name="ios-radio-button-on-outline"></ion-icon> {{ Events[day][time].Summary }}
 						</div>
-					<ion-item text-wrap background-color="stable">
-						<div *ngIf="isGroupShown(time)">
-							<font size="2" color="#3399ff">{{Events[day][time].Description}}</font><br />
-							<font size="2">{{Events[day][time].Location}}</font><br />
-							<font size="2" color="#3399ff">{{ Events[day][time].LocalTime}}</font>&emsp;&emsp;&emsp;&emsp;&emsp;
-							<a href="{{Events[day][time].Link}}"><ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon><br /></a>
+						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
+							<div (tap)="addEvent(Events[day][time])">
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								{{ Events[day][time].LocalTime}}
+							</div>
+							<ion-item text-wrap background-color="stable">
+
+								<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
+								<div class="accordian-location">{{Events[day][time].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+							</ion-item>
 						</div>
-					</ion-item>
+					</div>
+
+					<div *ngIf = "Events[day][time].Calendar == 'Entertainment' && showEntertainment == true">
+						<div class="accordian" (tap)="toggleGroup(Events[day][time])" [ngClass]="{active: isGroupShown(Events[day][time])}">
+							<ion-icon class="entertainment" name="ios-radio-button-on-outline"></ion-icon> {{ Events[day][time].Summary }}
+						</div>
+						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
+							<div (tap)="addEvent(Events[day][time])">
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								{{ Events[day][time].LocalTime}}
+							</div>
+							<ion-item text-wrap background-color="stable">
+
+								<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
+								<div class="accordian-location">{{Events[day][time].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+							</ion-item>
+						</div>
+					</div>
+
+					<div *ngIf = "Events[day][time].Calendar == 'Student Activities' && showStudentActivities == true">
+						<div class="accordian" (tap)="toggleGroup(Events[day][time])" [ngClass]="{active: isGroupShown(Events[day][time])}">
+							<ion-icon class="activities" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
+						</div>
+						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
+							<div (tap)="addEvent(Events[day][time])">
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								{{ Events[day][time].LocalTime}}
+							</div>
+							<ion-item text-wrap background-color="stable">
+
+								<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
+								<div class="accordian-location">{{Events[day][time].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+							</ion-item>
+						</div>
+					</div>
+
+					<div *ngIf = "Events[day][time].Calendar == 'Residence Life' && showResidentLife == true">
+						<div class="accordian" (tap)="toggleGroup(Events[day][time])" [ngClass]="{active: isGroupShown(Events[day][time])}">
+							<ion-icon class="residence" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
+						</div>
+						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
+							<div (tap)="addEvent(Events[day][time])">
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								{{ Events[day][time].LocalTime}}
+							</div>
+							<ion-item text-wrap background-color="stable">
+
+								<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
+								<div class="accordian-location">{{Events[day][time].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+							</ion-item>
+						</div>
+					</div>
+
+					<div *ngIf = "Events[day][time].Calendar == 'Campus Rec' && showCampusRec == true">
+						<div class="accordian" (tap)="toggleGroup(Events[day][time])" [ngClass]="{active: isGroupShown(Events[day][time])}">
+							<ion-icon class="campusrec" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
+						</div>
+						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
+							<div (tap)="addEvent(Events[day][time])">
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								{{ Events[day][time].LocalTime}}
+							</div>
+							<ion-item text-wrap background-color="stable">
+
+								<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
+								<div class="accordian-location">{{Events[day][time].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+							</ion-item>
+						</div>
+					</div>
+
+					<div *ngIf = "Events[day][time].Calendar == 'Academics' && showAcademic == true">
+						<div class="accordian" (tap)="toggleGroup(Events[day][time])" [ngClass]="{active: isGroupShown(Events[day][time])}">
+							<ion-icon class="academics" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
+						</div>
+						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
+							<div (tap)="addEvent(Events[day][time])">
+								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+								{{ Events[day][time].LocalTime}}
+							</div>
+							<ion-item text-wrap background-color="stable">
+
+								<div class="accordian-firstitem"><p [innerHTML]="Events[day][time].Description"></p></div><br />
+								<div class="accordian-location">{{Events[day][time].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+							</ion-item>
+						</div>
+					</div>
 				</ion-list>
 			</div>
 		</div>
 	</a>
-	
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
 </ion-content>

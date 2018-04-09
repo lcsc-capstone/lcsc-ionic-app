@@ -1,11 +1,8 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HttpClientModule, HttpClient } from '@angular/common/http'
-import { Http } from '@angular/http';
 import 'rxjs/Rx';
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
-declare var cordova: any;
 
 @Component({
   selector: 'page-class-schedule',
@@ -42,7 +39,7 @@ export class ClassSchedulePage {
       storage.get("loginUsername").then(data => this.username = data, err => alert(err));
       storage.get("loginPassword").then(data => this.password = data, err => alert(err));
 
-      const browser = this.inAppBrowser.create(this.courseDataURL, '_self', 'clearcache=yes,hidden=yes');
+      const browser = this.inAppBrowser.create(this.courseDataURL, '_blank', 'clearcache=yes,hidden=yes');
       browser.on('loadstop').subscribe((ev : InAppBrowserEvent) => {
 
           if(this.page_stage == this.NONE) this.page_stage = this.LOGIN_PAGE;
@@ -50,7 +47,8 @@ export class ClassSchedulePage {
 
           if(this.stage == this.LOGIN && this.page_stage == this.LOGIN_PAGE)
           {
-            this.loginToWarriorWeb(browser).then(data => this.stage = this.LOAD_SCHEDULE);
+            this.loginToWarriorWeb(browser);
+            this.stage = this.LOAD_SCHEDULE;
           }
           else if(this.stage == this.LOAD_SCHEDULE && this.page_stage == this.SCHED_PAGE)
           {
