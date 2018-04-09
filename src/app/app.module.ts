@@ -23,6 +23,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
 import { SecureStorage } from '@ionic-native/secure-storage';
 import { Network } from '@ionic-native/network';
+import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { Network } from '@ionic-native/network';
 	 Calendar,
 	 Network,
 	 HTTP,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ScheduleServiceProvider
   ]
 })
 export class AppModule {}
