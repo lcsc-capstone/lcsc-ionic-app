@@ -26,6 +26,11 @@ export class ScheduleServiceProvider {
 
   async getClassScheduleData(handler : (data : any) => any) : Promise<any> {
 
+    if(this.courses.length > 0) {
+      handler(this.courses);
+      return;
+    }
+
     let courseDataURL = "https://warriorwebss.lcsc.edu/Student/Planning/DegreePlans/PrintSchedule?termId=" + this.getCurrentTermId();
 
     let username = await this.credentialsProvider.getWarriorWebUsername();
@@ -36,11 +41,11 @@ export class ScheduleServiceProvider {
     let browser = this.inAppBrowser.create(courseDataURL, '_blank', 'clearcache=yes,hidden=yes');
 
     browser.on('loadstop').subscribe(async (ev : InAppBrowserEvent) => {
-      if(load_counter == 1)
+      if(load_counter == 0)
       {
-        await this.loginToWarriorWeb(browser, username, password);
+        this.loginToWarriorWeb(browser, username, password);
       }
-      else if(load_counter == 2)
+      else if(load_counter == 1)
       {
         let data = await this.loadScheduleData(browser);
         let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
@@ -56,6 +61,12 @@ export class ScheduleServiceProvider {
       }
 
       load_counter++;
+    });
+  }
+
+  async getTodaysClassScheduleData(handler : (data : any) => any) : Promise<any> {
+    return this.getClassScheduleData((data) => {
+      handler(data); // TODO filter out courses not happening on the day
     });
   }
 
