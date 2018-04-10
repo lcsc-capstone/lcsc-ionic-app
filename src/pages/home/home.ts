@@ -10,6 +10,7 @@ import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
 import { Network } from '@ionic-native/network';
 import { ScheduleServiceProvider } from '../../providers/schedule-service/schedule-service';
+import { AlertController } from 'ionic-angular';
 
 @Component({
 	selector: 'page-home',
@@ -29,6 +30,7 @@ export class HomePage {
 	private scheduleItems : any = [];
 
 	constructor(
+		public atrCtrl: AlertController,
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private http: HTTP,
@@ -242,5 +244,29 @@ export class HomePage {
 
 	openBrowser(link) {
 		this.inAppBrowser.create(link, '_blank', 'location=no');
+	}
+		
+	showConfirmAlert(event) {
+		let alertConfirm = this.atrCtrl.create({
+			title: 'Add to Calendar',
+			message: 'Add event to you calendar?',
+			buttons: [
+			  {
+				text: 'Cancel',
+				role: 'cancel',
+				handler: () => {
+				  console.log('No clicked');
+				}
+			  },
+			  {
+				text: 'Add',
+				handler: () => {
+					this.calendar.createEvent(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate));
+			
+				}
+			  }
+			]
+			});
+			alertConfirm.present();
 	}
 }
