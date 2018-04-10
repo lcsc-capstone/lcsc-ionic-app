@@ -14,9 +14,11 @@ export class LoginPage {
 	private loginPassword : string = "";
 
 	constructor(public navCtrl: NavController, private secureStorage: SecureStorage, private credentialsProvider : CredentialsProvider) {
-		/*this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
-			storage.get("loginUsername").then(data => this.goToHomePage({isGuest: false}), err => {});
-		});*/
+		this.credentialsProvider.warriorWebCredentialsExist().then(status => {
+			if(status) {
+				this.goToHomePage({isGuest : false});
+			}
+		});
 	}
 
 	goToHomePage(params){
@@ -28,13 +30,6 @@ export class LoginPage {
 	}
 
 	storeCredentials() {
-		/*this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
-			storage.set("loginUsername", this.loginUsername).then(data => this.loginUsername="", err => this.loginPassword="");
-			storage.set("loginPassword", this.loginPassword).then(data => this.loginUsername="", err => this.loginPassword="");
-
-			this.navCtrl.setRoot(HomePage, {isGuest: false});
-		});*/
-
 		this.credentialsProvider.setWarriorWebUsername(this.loginUsername);
 		this.credentialsProvider.setWarriorWebPassword(this.loginPassword);
 

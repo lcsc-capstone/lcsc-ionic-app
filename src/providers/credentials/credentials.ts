@@ -38,4 +38,10 @@ export class CredentialsProvider {
     let storage = await this.secureStorage.create(this.credentials_warriorweb);
     return storage.get(this.password_warriorweb);
   }
+
+  async warriorWebCredentialsExist() : Promise<boolean> {
+    let storage = await this.secureStorage.create(this.credentials_warriorweb);
+    let keys = await storage.keys();
+    return (keys.indexOf(this.username_warriorweb) != -1) && (keys.indexOf(this.password_warriorweb) != -1);
+  }
 }
