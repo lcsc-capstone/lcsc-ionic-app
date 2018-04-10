@@ -222,7 +222,7 @@ export class CalendarPage {
 			  {
 				text: 'Add',
 				handler: () => {
-					this.calendar.createEvent(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate));
+					this.calendar.createEventWithOptions(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate), );
 			
 				}
 			  }

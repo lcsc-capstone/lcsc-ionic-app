@@ -67,8 +67,7 @@
 				<h2> &emsp;{{ Events[2].Summary }} </h2>
 			</div>
 			<div *ngIf="isGroupShown(2)">
-				<div (tap)="showConfirmAlert(Events[2
-				])">
+				<div (tap)="showConfirmAlert(Events[2])">
 					<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 					{{ Events[2].StartDate | date:'EEEE, MMMM d  h:mma' }}
 				</div>
