@@ -41,12 +41,10 @@ export class ScheduleServiceProvider {
 
       if(load_counter == 1)
       {
-        alert("Got login page");
         await this.loginToWarriorWeb(browser, username, password);
       }
       else if(load_counter == 2)
       {
-        alert("Got schedule page");
         let data = await this.loadScheduleData(browser);
         let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
         let termId = this.getCurrentTermId();
@@ -55,14 +53,9 @@ export class ScheduleServiceProvider {
         if(currentTerm != null)
         {
           this.courses = this.selectCourses(currentTerm);
-          alert("Got courses data, let handler take over");
           handler(this.courses);
           browser.close();
         }
-      }
-      else
-      {
-        alert('neither');
       }
 
       load_counter++;
@@ -113,7 +106,6 @@ export class ScheduleServiceProvider {
   }
 
   selectCourses(term : any) : any[] {
-    alert('Selecting courses');
     let result = [];
 
     for(var course of term.PlannedCourses)
@@ -122,7 +114,6 @@ export class ScheduleServiceProvider {
         title : course.CourseTitleDisplay,
         name  :course.CourseName,
       };
-      alert('got item ' + item.title + ' ' + item.name);
 
       result.push(item);
     }
