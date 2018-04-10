@@ -39,8 +39,13 @@ export class MyApp {
   }
 
   goToLogin(params){
-    if (!params) params = {};
-    this.navCtrl.setRoot(LoginPage);
+    if (!params) params = { reuse : true };
+    this.navCtrl.setRoot(LoginPage, params);
+  }
+
+  goToLoginNoReuse() {
+    let params = { reuse : false };
+    this.goToLogin(params);
   }
 
   goToNews(params){

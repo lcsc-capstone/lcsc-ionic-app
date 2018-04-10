@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { CredentialsProvider } from "../../providers/credentials/credentials";
@@ -13,12 +13,18 @@ export class LoginPage {
 	private loginUsername : string = "";
 	private loginPassword : string = "";
 
-	constructor(public navCtrl: NavController, private secureStorage: SecureStorage, private credentialsProvider : CredentialsProvider) {
-		this.credentialsProvider.warriorWebCredentialsExist().then(status => {
-			if(status) {
-				this.goToHomePage({isGuest : false});
-			}
-		});
+	constructor(public navCtrl: NavController, private secureStorage: SecureStorage, private credentialsProvider : CredentialsProvider, navParams : NavParams) {
+		let reuse : boolean = true;
+
+		if (navParams && navParams.get('reuse') != null) { reuse = navParams.get('reuse') };
+
+		if(reuse) {
+			this.credentialsProvider.warriorWebCredentialsExist().then(status => {
+				if(status) {
+					this.goToHomePage({isGuest : false});
+				}
+			});
+		}
 	}
 
 	goToHomePage(params){
