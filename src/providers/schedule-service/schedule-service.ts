@@ -36,9 +36,6 @@ export class ScheduleServiceProvider {
     let browser = this.inAppBrowser.create(courseDataURL, '_blank', 'clearcache=yes,hidden=yes');
 
     browser.on('loadstop').subscribe(async (ev : InAppBrowserEvent) => {
-      let isLoginPage = await this.loginPageIsLoaded(browser);
-      let isSchedulePage = await this.schedulePageIsLoaded(browser);
-
       if(load_counter == 1)
       {
         await this.loginToWarriorWeb(browser, username, password);
@@ -71,16 +68,6 @@ export class ScheduleServiceProvider {
 
   async loadScheduleData(browser : InAppBrowserObject) : Promise<any> {
     return browser.executeScript({code : this.loadScheduleDataSource});
-  }
-
-  async loginPageIsLoaded(browser : InAppBrowserObject) : Promise<boolean> {
-    //let loaded_url : string = await browser.executeScript({ code : this.getUrlScript });
-    return browser.executeScript({ code : this.isLoginPageScript });
-  }
-
-  async schedulePageIsLoaded(browser : InAppBrowserObject) : Promise<boolean> {
-    //let loaded_url : string = await browser.executeScript({ code : this.getUrlScript });
-    return browser.executeScript({ code : this.isSchedulePageScript });
   }
 
   getCurrentTermId() : string {
