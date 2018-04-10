@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
-
+import { CredentialsProvider } from "../../providers/credentials/credentials";
 
 @IonicPage()
 @Component({
@@ -13,10 +13,10 @@ export class LoginPage {
 	private loginUsername : string = "";
 	private loginPassword : string = "";
 
-	constructor(public navCtrl: NavController, private secureStorage: SecureStorage) {
-		this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
+	constructor(public navCtrl: NavController, private secureStorage: SecureStorage, private credentialsProvider : CredentialsProvider) {
+		/*this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
 			storage.get("loginUsername").then(data => this.goToHomePage({isGuest: false}), err => {});
-		});
+		});*/
 	}
 
 	goToHomePage(params){
@@ -28,11 +28,16 @@ export class LoginPage {
 	}
 
 	storeCredentials() {
-		this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
+		/*this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
 			storage.set("loginUsername", this.loginUsername).then(data => this.loginUsername="", err => this.loginPassword="");
 			storage.set("loginPassword", this.loginPassword).then(data => this.loginUsername="", err => this.loginPassword="");
 
 			this.navCtrl.setRoot(HomePage, {isGuest: false});
-		});
+		});*/
+
+		this.credentialsProvider.setWarriorWebUsername(this.loginUsername);
+		this.credentialsProvider.setWarriorWebPassword(this.loginPassword);
+
+		this.goToHomePage({isGuest : false});
 	}
 }

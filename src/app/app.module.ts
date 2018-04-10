@@ -24,6 +24,7 @@ import { Calendar } from '@ionic-native/calendar';
 import { SecureStorage } from '@ionic-native/secure-storage';
 import { Network } from '@ionic-native/network';
 import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-service';
+import { CredentialsProvider } from '../providers/credentials/credentials';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-
 	 Network,
 	 HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ScheduleServiceProvider
+    ScheduleServiceProvider,
+    CredentialsProvider
   ]
 })
 export class AppModule {}
