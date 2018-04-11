@@ -206,7 +206,7 @@ export class CalendarPage {
 		return this.shownGroup === group;
 	};
 
-	
+
 	showConfirmAlert(event) {
 		let alertConfirm = this.atrCtrl.create({
 			title: 'Add to Calendar',
@@ -223,7 +223,7 @@ export class CalendarPage {
 				text: 'Add',
 				handler: () => {
 					this.calendar.createEventWithOptions(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate), );
-			
+
 				}
 			  }
 			]
