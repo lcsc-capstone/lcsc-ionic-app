@@ -9,6 +9,7 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
 import { Network } from '@ionic-native/network';
+import { ScheduleServiceProvider } from '../../providers/schedule-service/schedule-service';
 import { AlertController } from 'ionic-angular';
 
 @Component({
