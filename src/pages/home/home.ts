@@ -298,11 +298,11 @@ async loginToWarriorWeb(browser) : Promise<any> {
 	isGroupShown(group) {
 		return this.shownGroup === group;
 	};
-
+	
 	openBrowser(link) {
 		this.inAppBrowser.create(link, '_blank', 'location=no');
 	}
-
+	
 	showConfirmAlert(event) {
 		let alertConfirm = this.atrCtrl.create({
 			title: 'Add to Calendar',
