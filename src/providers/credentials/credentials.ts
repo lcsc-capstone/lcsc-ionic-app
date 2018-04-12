@@ -69,7 +69,7 @@ export class CredentialsProvider {
       }
       else if(load_count == 2) {
         await browser.executeScript({code : this.getLoginUsernameFillInScript(username) });
-        await browser.executeScript({code : this.getLoginPasswordFillInScript(username) });
+        await browser.executeScript({code : this.getLoginPasswordFillInScript(password) });
         await browser.executeScript({code : 'document.querySelector(\'[value="SUBMIT"]\').click();' });
       }
       else if(load_count == 3) {
