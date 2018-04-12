@@ -24,6 +24,7 @@ export class HomePage {
 	public ResidentLife;
 	public CampusRec;
 	public Events = [{}, {}, {}];
+	public AcademicArr = [{},{},{}];
 	public guest = false;
 
 	private scheduleItems : any = [];
@@ -129,11 +130,15 @@ export class HomePage {
 										this.storage.set('CampusRec', this.CampusRec);
 
 										let merged = [];
+										let acMerged = [];
 										let n = 0;
 										let offset = 0
 
 										for (var x = 0; x < 3; x++) {
-											if (this.Academics.items[x]) merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											if (this.Academics.items[x]){
+												merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+												acMerged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											}
 										}
 										for (var y = 0; y < 3; y++) {
 											if (this.Entertainment.items[y]) merged.push({StartDate: new Date((this.Entertainment.items[y].start.dateTime || this.Entertainment.items[y].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Entertainment.items[y].end.dateTime || this.Entertainment.items[y].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Entertainment.items[y].summary, Description:this.Entertainment.items[y].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[y].location});
@@ -155,6 +160,9 @@ export class HomePage {
 												this.Events[n++] = event;
 											}
 										});
+										for(let n = 0;  n < 3; n++){
+											this.AcademicArr[n] = acMerged[n];
+										}
 									});
 								});
 							});
@@ -179,11 +187,15 @@ export class HomePage {
 										this.CampusRec = events;
 
 										let merged = [];
+										let acMerged = [];
 										let n = 0;
 										let offset = 0
 
 										for (var x = 0; x < 3; x++) {
-											if (this.Academics.items[x]) merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											if (this.Academics.items[x]){
+												merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+												acMerged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											}
 										}
 										for (var y = 0; y < 3; y++) {
 											if (this.Entertainment.items[y]) merged.push({StartDate: new Date((this.Entertainment.items[y].start.dateTime || this.Entertainment.items[y].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Entertainment.items[y].end.dateTime || this.Entertainment.items[y].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Entertainment.items[y].summary, Description:this.Entertainment.items[y].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[y].location});
@@ -205,6 +217,9 @@ export class HomePage {
 												this.Events[n++] = event;
 											}
 										});
+										for(let n = 0;  n < 3; n++){
+											this.AcademicArr[n] = acMerged[n];
+										}
 									});
 								});
 							});
@@ -298,11 +313,11 @@ async loginToWarriorWeb(browser) : Promise<any> {
 	isGroupShown(group) {
 		return this.shownGroup === group;
 	};
-	
+
 	openBrowser(link) {
 		this.inAppBrowser.create(link, '_blank', 'location=no');
 	}
-	
+
 	showConfirmAlert(event) {
 		let alertConfirm = this.atrCtrl.create({
 			title: 'Add to Calendar',
@@ -319,7 +334,7 @@ async loginToWarriorWeb(browser) : Promise<any> {
 				text: 'Add',
 				handler: () => {
 					this.calendar.createEventWithOptions(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate), );
-			
+
 				}
 			  }
 			]

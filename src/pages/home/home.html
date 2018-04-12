@@ -119,4 +119,66 @@
 		</button>
 	</div>
 
+	<div *ngIf = "Events[0].Calendar == 'Academics'">
+	</div>
+
+
+	<div id="home-calendar">
+	<h1>
+		Acedemic Calendar
+	</h1>
+	<ion-list id="home-list5">
+
+		<div class="accordian" (tap)="toggleGroup(0)" [ngClass]="{active: isGroupShown(0)}">
+			<h2> &emsp;{{ AcademicArr[0].Summary }} </h2>
+		</div>
+		<div *ngIf="isGroupShown(0)">
+			<div (tap)="showConfirmAlert(AcademicArr[0])">
+				<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar"></ion-icon>
+				{{ AcademicArr[0].StartDate | date:'EEEE, MMMM d  h:mma' }}
+			</div>
+			<ion-item text-wrap id="home-list-item27">
+				<div class="accordian-firstitem"><p [innerHTML]="AcademicArr[0].Description"></p></div><br />
+				<div style="color:#000;font-size:11pt">{{AcademicArr[0].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+			</ion-item>
+		</div>
+
+		<hr>
+
+		<div class="accordian" (tap)="toggleGroup(1)" [ngClass]="{active: isGroupShown(1)}">
+			<h2> &emsp;{{ AcademicArr[1].Summary }} </h2>
+		</div>
+		<div *ngIf="isGroupShown(1)">
+			<div (tap)="showConfirmAlert(AcademicArr[1])">
+				<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+				{{ AcademicArr[1].StartDate | date:'EEEE, MMMM d  h:mma' }}
+			</div>
+			<ion-item text-wrap id="home-list-item27">
+				<div class="accordian-firstitem"><p [innerHTML]="AcademicArr[1].Description"></p></div><br />
+				<div style="color:#000;font-size:11pt">{{AcademicArr[1].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+			</ion-item>
+		</div>
+
+		<hr>
+
+		<div class="accordian" (tap)="toggleGroup(2)" [ngClass]="{active: isGroupShown(2)}">
+			<h2> &emsp;{{ AcademicArr[2].Summary }} </h2>
+		</div>
+		<div *ngIf="isGroupShown(2)">
+			<div (tap)="showConfirmAlert(AcademicArr[2])">
+				<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
+				{{ AcademicArr[2].StartDate | date:'EEEE, MMMM d  h:mma' }}
+			</div>
+			<ion-item text-wrap id="home-list-item27">
+				<div class="accordian-firstitem"><p [innerHTML]="AcademicArr[2].Description"></p></div><br />
+				<div style="color:#000;font-size:11pt">{{AcademicArr[2].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
+			</ion-item>
+		</div>
+
+	</ion-list>
+	</div>
+
+
+
+
 </ion-content>
