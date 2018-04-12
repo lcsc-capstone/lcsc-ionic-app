@@ -56,7 +56,7 @@ export class CredentialsProvider {
     let username = await this.getWarriorWebUsername();
     let password = await this.getWarriorWebPassword();
 
-    let browser : InAppBrowserObject = this.inAppBrowser.create(this.warrior_web_link, '_blank', 'clearcache=yes,hidden=no');
+    let browser : InAppBrowserObject = this.inAppBrowser.create(this.warrior_web_link, '_blank', 'clearcache=yes,hidden=yes');
 
     let load_count = 0;
 
