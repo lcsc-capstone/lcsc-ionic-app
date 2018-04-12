@@ -21,7 +21,7 @@ export class LoginPage {
 		if(reuse) {
 			this.credentialsProvider.warriorWebCredentialsExist().then(status => {
 				if(status) {
-					this.goToHomePage({isGuest : false});
+					this.handleLogin();
 				}
 			});
 		}
@@ -39,6 +39,17 @@ export class LoginPage {
 		this.credentialsProvider.setWarriorWebUsername(this.loginUsername);
 		this.credentialsProvider.setWarriorWebPassword(this.loginPassword);
 
-		this.goToHomePage({isGuest : false});
+		this.handleLogin();
+	}
+
+	handleLogin() {
+		this.credentialsProvider.warriorWebAccessible((isGood : boolean) => {
+			if(isGood) {
+				this.goToHomePage({isGuest : false});
+			}
+			else {
+				alert('Login failed');
+			}
+		});
 	}
 }

@@ -1,5 +1,5 @@
 import { NavController } from 'ionic-angular';
-import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-native/in-app-browser';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { Injectable } from '@angular/core';
 
@@ -12,11 +12,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CredentialsProvider {
 
+  warrior_web_link = 'http://www.lcsc.edu/warriorweb/';
+  warrior_web_enter_selector = 'document.querySelector(\'[title="WarriorWeb"]\').click();';
+  warrior_web_login_selector = "document.getElementById('acctLogin').childNodes[1].click();"
+  warrior_web_error_check = 'document.querySelector(\'[class="errorText"]\') == null;';
+
+
   credentials_warriorweb = 'credentialsWarriorWeb';
   username_warriorweb = 'warriorWebUsername';
   password_warriorweb = 'passwordWarriorWeb';
 
-  constructor(private secureStorage: SecureStorage) {
+  constructor(private secureStorage : SecureStorage, private inAppBrowser : InAppBrowser) {
   }
 
   async setWarriorWebUsername(value : string) {
@@ -43,5 +49,45 @@ export class CredentialsProvider {
     let storage = await this.secureStorage.create(this.credentials_warriorweb);
     let keys = await storage.keys();
     return (keys.indexOf(this.username_warriorweb) != -1) && (keys.indexOf(this.password_warriorweb) != -1);
+  }
+
+  async warriorWebAccessible(handler : (good : boolean) => void) {
+
+    let username = await this.getWarriorWebUsername();
+    let password = await this.getWarriorWebPassword();
+
+    let browser : InAppBrowserObject = this.inAppBrowser.create(this.warrior_web_link, '_blank', 'clearcache=yes,hidden=yes');
+
+    let load_count = 0;
+
+    browser.on('loadstop').subscribe(async (ev : InAppBrowserEvent) => {
+      if(load_count == 0) {
+        await browser.executeScript({ code : this.warrior_web_enter_selector });
+      }
+      else if(load_count == 1) {
+        await browser.executeScript({ code : this.warrior_web_login_selector });
+      }
+      else if(load_count == 2) {
+        await browser.executeScript({code : this.getLoginUsernameFillInScript(username) });
+        await browser.executeScript({code : this.getLoginPasswordFillInScript(username) });
+        await browser.executeScript({code : 'document.querySelector(\'[value="SUBMIT"]\').click();' });
+      }
+      else if(load_count == 3) {
+        await browser.executeScript({code : this.warrior_web_error_check}).then(result => {
+          handler(result.toString() == "true"); // Implicit bool conversion any -> boolean seems to fail :/
+          browser.close();
+        });
+      }
+
+      load_count++;
+    });
+  }
+
+  getLoginUsernameFillInScript(username : string) {
+    return 'document.getElementById("USER_NAME").value = "' + username + '";';
+  }
+
+  getLoginPasswordFillInScript(password : string) {
+    return 'document.getElementById("CURR_PWD").value = "' + password + '";';
   }
 }
