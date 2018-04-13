@@ -6,7 +6,7 @@ page-home {
 		color: #000;
 		font-size: 12pt;
 	}
-  
+
 	.calendarIcon {
 		margin-right: 5px;
     }
@@ -14,7 +14,15 @@ page-home {
 	.titleControl {
 		margin: 5px;
 	}
-	
+
+  .item-content {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    height: 0px;
+  }
+
     #bg-img {
         width: 100%;
     }
@@ -48,18 +56,33 @@ page-home {
     }
 
     #home-schedule {
-        margin: -.5em 0 -1.5em 0;
-        padding: 0 .75em .5em .75em;
+      margin: -.6em 0 -.6em 0;
+      padding: 0 .75em 0 .75em;
+      padding-bottom: 1em;
 
-        #item-top {
-            margin-top: 0;
-        }
-        h2 {
-            color: #003865;
-            padding-bottom: .4em;
-            font-size: 11pt;
-            font-weight: normal;
-        }
+      #item-top {
+          margin-top: 0;
+      }
+      h2 {
+        color: #003865;
+        padding: 0px!important;
+        margin: 5px;
+        font-size: 11pt;
+        font-weight: normal;
+      }
+      ion-list {
+        margin-top: -0.2em;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 0.6em;
+      }
+      ion-item {
+          padding: 0px!important;
+          background-color: white;
+      }
+      button {
+          width: 100%;
+      }
     }
 
     #home-news {
@@ -75,23 +98,24 @@ page-home {
         }
 
         ion-item {
+            padding: 0px!important;
             background-color: #F0F0F0;
         }
 
         h2 {
             color: #003865;
-            padding-bottom: .4em;
+            padding: 0px!important;
+            margin: 5px;
             font-size: 11pt;
             font-weight: normal;
         }
-
         ion-list {
-            margin-bottom: -1.75em;
+          margin-top: -0.2em;
+          margin: 0;
+          padding: 0;
+          margin-bottom: 0.6em;
         }
 
-        #home-list-item29 {
-            margin-bottom: 2em;
-        }
 
         button {
             width: 100%;
