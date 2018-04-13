@@ -56,6 +56,7 @@ extractData() {
 
 	}
   Submit( form: NgForm ){
+    console.log("test");
     if(this.classKey!=""){
       this.ListName=this.classKey
     }else if(this.tutorKey!=""){
