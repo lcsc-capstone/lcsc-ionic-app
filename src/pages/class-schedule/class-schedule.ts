@@ -1,8 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import 'rxjs/Rx';
-import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { ScheduleServiceProvider } from '../../providers/schedule-service/schedule-service';
 
 @Component({
