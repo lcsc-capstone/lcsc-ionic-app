@@ -25,7 +25,7 @@
 		</div>
 		<button class="button2" (tap)="goToClassSchedule()">
 			<ion-icon name="list-box"></ion-icon>
-			View Full Schedule 
+			View Full Schedule
 		</button>
 	</div>
 	<div> {{ debug }} </div>
@@ -98,7 +98,7 @@
 					</div>
 					<div class="accordian-firstitem"><p [innerHTML]="Events[0].Description"></p></div><br />
 					<div style="color:#000;font-size:11pt">{{Events[0].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
-				</ion-item> 
+				</ion-item>
 			</div>
 			<hr>
 			<div class="accordian" (tap)="toggleGroup(5)" [ngClass]="{active: isGroupShown(5)}">
