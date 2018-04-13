@@ -35,7 +35,7 @@ import { CredentialsProvider } from '../providers/credentials/credentials';
     CampusMapPage,
     ClassSchedulePage,
     CalendarPage,
-	 CalendarDropdownPage,
+	  CalendarDropdownPage,
     TutoringPage,
     RadioPage,
     LoginPage
@@ -43,7 +43,26 @@ import { CredentialsProvider } from '../providers/credentials/credentials';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      platforms: {
+        android: {
+    			backButtonText: "",
+    			backButtonIcon: "md-arrow-back",
+    			iconMode: "md",
+    			modalEnter: "modal-md-slide-in",
+    			modalLeave: "modal-md-slide-out",
+    			pageTransition: "md",
+	      },
+        ios: {
+          backButtonText: "",
+			    backButtonIcon: "ios-arrow-back",
+        	iconMode: "ios",
+    			modalEnter: "modal-ios-slide-in",
+    			modalLeave: "modal-ios-slide-out",
+    			pageTransition: "ios",
+        }
+      }
+    }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

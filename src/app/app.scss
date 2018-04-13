@@ -40,6 +40,10 @@ ion-header {
     }
 }
 
+ion-header ion-icon.back-button-icon.icon {
+    color: #ffffff;
+}
+
 ion-list ion-item {
     h2 {
         color: #E10000;
