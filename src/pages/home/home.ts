@@ -260,6 +260,9 @@ export class HomePage {
 	openBrowser(link) {
 		this.inAppBrowser.create(link, '_blank', 'location=no');
 	}
+	openNews(link) {
+		this.inAppBrowser.create(this.news[link.toString()]['link'], '_system', 'location=yes');
+	}
 
 
 	showConfirmAlert(event) {
