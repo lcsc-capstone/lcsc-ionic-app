@@ -261,7 +261,7 @@ export class HomePage {
 		this.inAppBrowser.create(link, '_blank', 'location=no');
 	}
 
-	
+
 	showConfirmAlert(event) {
 		let alertConfirm = this.atrCtrl.create({
 			title: 'Add to Calendar',
