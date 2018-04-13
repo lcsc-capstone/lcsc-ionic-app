@@ -144,15 +144,15 @@
 		<ion-list id="home-list4">
 			<div *ngIf = "news != null; else noNews"> <!-- Added for simulator testing avoiding errors -->
 				<ion-item class="item-content" id="home-list-item24" (tap)="openNews(1)" text-wrap>
-					<h2>{{ news['1']['title'] }}</h2>
+					<h2 class="News">{{ news['1']['title'] }}</h2>
 				</ion-item>
 				<ion-item class="item-content" id="home-list-item25" (tap)="openNews(2)" text-wrap>
 					<hr>
-					<h2>{{ news['2']['title'] }}</h2>
+					<h2 class="News">{{ news['2']['title'] }}</h2>
 				</ion-item>
 				<ion-item class="item-content" id="home-list-item26" (tap)="openNews(3)" text-wrap>
 					<hr>
-					<h2>{{ news['3']['title'] }}</h2>
+					<h2 class="News">{{ news['3']['title'] }}</h2>
 				</ion-item>
 			</div>
 			<ng-template #noNews>
