@@ -20,7 +20,7 @@
       <ion-list>
         <ion-item>
 		<ion-label>Select Class</ion-label>
-	    	<ion-select name = "class">
+	    	<ion-select name = "class" [(ngModel)]="classKey">
 		  <ion-option *ngFor="let class of ClassList;" 
 		          [value]="category">{{class.name}}</ion-option>      
 	   	</ion-select>
@@ -31,7 +31,7 @@
       <ion-list>
         <ion-item>
 		<ion-label>Select Tutor</ion-label>
-	    	<ion-select name = "tutor">
+	    	<ion-select name = "tutor" [(ngModel)]="tutorKey">
 		  <ion-option *ngFor="let tutor of TutorList;" 
 		  [value]="name">{{tutor.name}}</ion-option>      
 	   	</ion-select>
@@ -41,7 +41,23 @@
       <button ion-button type="submit">Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
 
       <br><br><b>Note: * denotes online tutor</b>
-    </p>
+   </p>
     </form>
   </div>
+
+  <div *ngIf="isSubmitted">
+    <h1>
+      {{ListName}}
+    </h1>
+
+    <ion-list>
+<ion-item *ngFor="let slot of Time;" 
+		  >{{slot}}</ion-item>      
+    
+    </ion-list>
+
+    <button ion-button full *ngIf="isOnline">Book Online Session</button> <!--Could Link to tutorsClass.html, but is linked to tutoring.ts now -->
+  
+  </div>
+
 </ion-content>

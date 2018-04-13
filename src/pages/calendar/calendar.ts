@@ -3,6 +3,7 @@ import { NavController, PopoverController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
 import { Calendar } from '@ionic-native/calendar';
+import { AlertController } from 'ionic-angular';
 
 @Component({
 	selector: 'page-calendar',
@@ -39,7 +40,7 @@ export class CalendarPage {
 	public showResidentLife = true;
 	public showCampusRec = true;
 
-	constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events, private calendar: Calendar) {
+	constructor(public atrCtrl: AlertController, public navCtrl: NavController, public popoverCtrl: PopoverController, private storage: Storage, public events: Events, private calendar: Calendar) {
 		events.subscribe('toggleAcademic', () => {
 			this.showAcademic = !this.showAcademic;
 		});
@@ -205,7 +206,28 @@ export class CalendarPage {
 		return this.shownGroup === group;
 	};
 
-	addEvent(event) {
-		this.calendar.createEventInteractively(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate));
+
+	showConfirmAlert(event) {
+		let alertConfirm = this.atrCtrl.create({
+			title: 'Add to Calendar',
+			message: 'Add event to you calendar?',
+			buttons: [
+			  {
+				text: 'Cancel',
+				role: 'cancel',
+				handler: () => {
+				  console.log('No clicked');
+				}
+			  },
+			  {
+				text: 'Add',
+				handler: () => {
+					this.calendar.createEventWithOptions(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate), );
+
+				}
+			  }
+			]
+			});
+			alertConfirm.present();
 	}
 }

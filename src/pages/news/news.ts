@@ -18,8 +18,8 @@ export class NewsPage {
 			this.news = val;
 		});
 	}
-	
+
 	openBrowser(link) {
-		this.inAppBrowser.create(this.news[link.toString()]['link'], '_blank', 'location=no');
+		this.inAppBrowser.create(this.news[link.toString()]['link'], '_system', 'location=yes');
 	}
 }

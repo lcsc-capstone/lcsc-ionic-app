@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HTTP } from '@ionic-native/http';
 import { Storage } from '@ionic/storage';
 import { ClassSchedulePage } from '../class-schedule/class-schedule';
 import { CalendarPage } from '../calendar/calendar';
@@ -9,6 +9,8 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
 import { Network } from '@ionic-native/network';
+import { ScheduleServiceProvider } from '../../providers/schedule-service/schedule-service';
+import { AlertController } from 'ionic-angular';
 
 @Component({
 	selector: 'page-home',
@@ -23,26 +25,35 @@ export class HomePage {
 	public ResidentLife;
 	public CampusRec;
 	public Events = [{}, {}, {}];
+	public AcademicArr = [{},{},{}];
 	public guest = false;
 
 	private scheduleItems : any = [];
-	courseDataURL: any;
-	private loginUsername : string = "";
-	private loginPassword : string = "";
-	private stage         : string = "login";
 
-	readonly buttonClickSource : string = "function getInputByValue(value){var inputs = document.getElementsByTagName('input');for(var i = 0; i < inputs.length; i++){if(inputs[i].value == value){return inputs[i];}}return null;}getInputByValue('Sign In').click();";
-	readonly loadScheduleDataSource : string = "var scripts = document.getElementsByTagName('script');scripts[scripts.length - 1].innerHTML;";
-	readonly LOGIN : string = "login";
-	readonly LOAD_SCHEDULE : string = "LOAD_SCHEDULE";
-	readonly NONE : string = "no_page";
-	readonly LOGIN_PAGE : string = "login_page";
-	readonly SCHED_PAGE : string = "sched_page";
-	page_stage : string = this.NONE;
+	constructor(
+		public atrCtrl: AlertController,
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		private http: HTTP,
+		private storage: Storage,
+		private secureStorage: SecureStorage,
+		private inAppBrowser: InAppBrowser,
+		private zone : NgZone,
+		private calendar: Calendar,
+		private network: Network,
+		private scheduleServiceProvider : ScheduleServiceProvider) {
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private storage: Storage, private secureStorage: SecureStorage, private inAppBrowser: InAppBrowser, private zone : NgZone, private calendar: Calendar, private network: Network) {
 		if (navParams) this.guest = navParams.get('isGuest');
-		if (!this.guest) this.loadScheduleData();
+		if (!this.guest) {
+			scheduleServiceProvider.getTodaysClassScheduleData(data => {
+				this.zone.run(() => {
+					for(var course of data) {
+						let item = course.title + ": " + course.name;
+						this.scheduleItems.push(item);
+				}
+				});
+			});
+		}
 	}
 
 	isConnected(): boolean {
@@ -75,7 +86,7 @@ export class HomePage {
 					let list = html.split(/<h4><a href="/g);
 					this.news['1']['link'] = list[1].split(/"/g)[0];
 					this.news['1']['title'] = list[1].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
-					this.news['2']['link'] = list[2];
+					this.news['2']['link'] = list[2].split(/"/g)[0];
 					this.news['2']['title'] = list[2].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
 					this.news['3']['link'] = list[3].split(/"/g)[0];
 					this.news['3']['title'] = list[3].split(/title="/g)[1].split(/"/g)[0].replace(/&amp;/g, '&');
@@ -108,31 +119,35 @@ export class HomePage {
 				let curMonth = (new Date().getMonth()+1); //Months are from 0-11 NOT 1-12
 				let curYear = (new Date().getFullYear());
 
-				this.http.get(`https://www.googleapis.com/calendar/v3/calendars/0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
-					this.Academics = data.json();
+				this.http.get(`https://www.googleapis.com/calendar/v3/calendars/0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear+1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {} , {}).then(data => {
+					this.Academics = JSON.parse(data.data);
 					this.storage.set('Academics', this.Academics);
-					this.http.get(`https://www.googleapis.com/calendar/v3/calendars/m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
-						this.Entertainment = data.json();
+					this.http.get(`https://www.googleapis.com/calendar/v3/calendars/m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear+1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+						this.Entertainment = JSON.parse(data.data);
 						this.storage.set('Entertainment', this.Entertainment);
-						this.http.get(`https://www.googleapis.com/calendar/v3/calendars/d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
-							this.Athletics = data.json();
+						this.http.get(`https://www.googleapis.com/calendar/v3/calendars/d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear+1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+							this.Athletics = JSON.parse(data.data);
 							this.storage.set('Athletics', this.Athletics);
-							this.http.get(`https://www.googleapis.com/calendar/v3/calendars/l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
-								this.StudentActivities = data.json();
+							this.http.get(`https://www.googleapis.com/calendar/v3/calendars/l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear+1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+								this.StudentActivities = JSON.parse(data.data);
 								this.storage.set('StudentActivities', this.StudentActivities);
-								this.http.get(`https://www.googleapis.com/calendar/v3/calendars/gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
-									this.ResidentLife = data.json();
+								this.http.get(`https://www.googleapis.com/calendar/v3/calendars/gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear+1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+									this.ResidentLife = JSON.parse(data.data);
 									this.storage.set('ResidentLife', this.ResidentLife);
-									this.http.get(`https://www.googleapis.com/calendar/v3/calendars/h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`).subscribe(data => {
-										this.CampusRec = data.json();
+									this.http.get(`https://www.googleapis.com/calendar/v3/calendars/h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear+1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+										this.CampusRec = JSON.parse(data.data);
 										this.storage.set('CampusRec', this.CampusRec);
 
 										let merged = [];
+										let acMerged = [];
 										let n = 0;
 										let offset = 0
 
 										for (var x = 0; x < 3; x++) {
-											if (this.Academics.items[x]) merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											if (this.Academics.items[x]){
+												merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+												acMerged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											}
 										}
 										for (var y = 0; y < 3; y++) {
 											if (this.Entertainment.items[y]) merged.push({StartDate: new Date((this.Entertainment.items[y].start.dateTime || this.Entertainment.items[y].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Entertainment.items[y].end.dateTime || this.Entertainment.items[y].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Entertainment.items[y].summary, Description:this.Entertainment.items[y].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[y].location});
@@ -154,6 +169,9 @@ export class HomePage {
 												this.Events[n++] = event;
 											}
 										});
+										for(let n = 0;  n < 3; n++){
+											this.AcademicArr[n] = acMerged[n];
+										}
 									});
 								});
 							});
@@ -178,11 +196,15 @@ export class HomePage {
 										this.CampusRec = events;
 
 										let merged = [];
+										let acMerged = [];
 										let n = 0;
 										let offset = 0
 
 										for (var x = 0; x < 3; x++) {
-											if (this.Academics.items[x]) merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											if (this.Academics.items[x]){
+												merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+												acMerged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
+											}
 										}
 										for (var y = 0; y < 3; y++) {
 											if (this.Entertainment.items[y]) merged.push({StartDate: new Date((this.Entertainment.items[y].start.dateTime || this.Entertainment.items[y].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Entertainment.items[y].end.dateTime || this.Entertainment.items[y].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Entertainment.items[y].summary, Description:this.Entertainment.items[y].description, Calendar:this.Entertainment.summary, Location:this.Entertainment.items[y].location});
@@ -204,6 +226,9 @@ export class HomePage {
 												this.Events[n++] = event;
 											}
 										});
+										for(let n = 0;  n < 3; n++){
+											this.AcademicArr[n] = acMerged[n];
+										}
 									});
 								});
 							});
@@ -214,79 +239,6 @@ export class HomePage {
 		}
 	});
 }
-
-loadScheduleData() {
-	this.courseDataURL = "https://warriorwebss.lcsc.edu/Student/Planning/DegreePlans/PrintSchedule?termId=2018SP";
-	this.scheduleItems = [];
-
-	this.secureStorage.create('credentials').then((storage : SecureStorageObject) => {
-		alert('Logging in');
-		storage.get("loginUsername").then(data => this.loginUsername = data, err => alert(err));
-		storage.get("loginPassword").then(data => this.loginPassword = data, err => alert(err));
-
-		const browser = this.inAppBrowser.create(this.courseDataURL, '_blank', 'clearcache=yes,hidden=yes');
-		browser.on('loadstop').subscribe((ev : InAppBrowserEvent) => {
-
-			if(this.page_stage == this.NONE) {
-				this.page_stage = this.LOGIN_PAGE;
-			}
-			else if(this.page_stage == this.LOGIN_PAGE)
-			{
-				this.page_stage = this.SCHED_PAGE;
-			}
-
-			if(this.stage == this.LOGIN && this.page_stage == this.LOGIN_PAGE)
-			{
-				this.loginToWarriorWeb(browser);
-				this.stage = this.LOAD_SCHEDULE;
-			}
-			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage == this.SCHED_PAGE)
-			{
-				alert('Loading schedule stage');
-				this.loadScheduleJsonData(browser).then(data => {
-					// Don't leave credentials floating around in memory
-					this.loginUsername = "";
-					this.loginPassword = "";
-
-					let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
-					let termCode : string = "2018SP"; // TODO this is easy to calculate, get to later
-
-					let currentTerm = null;
-
-					for(var term of json.Terms)
-					{
-						if(term.Code == termCode)
-						{
-							currentTerm = term;
-							break;
-						}
-					}
-
-					for(var course of currentTerm.PlannedCourses)
-					{
-						let item = course.CourseTitleDisplay + "--" + course.CourseName;
-						this.zone.run(() => this.scheduleItems.push(item));
-					}
-				});
-			}
-			// We may want to add a handler for this where we'd simply wait for the next page loadstop
-			// before loading the schedule data
-			else if(this.stage == this.LOAD_SCHEDULE && this.page_stage != this.SCHED_PAGE) {
-		}
-	});
-});
-}
-
-async loginToWarriorWeb(browser) : Promise<any> {
-	return await browser.executeScript({ code: "document.getElementById('UserName').value = '" + this.loginUsername + "';" }).then(
-		browser.executeScript({ code: "document.getElementById('Password').value = '" + this.loginPassword + "';" })).then(
-			browser.executeScript({ code: this.buttonClickSource }));
-		}
-
-	async loadScheduleJsonData(browser) : Promise<any> {
-		return browser.executeScript({ code: this.loadScheduleDataSource });
-	}
-
 	shownGroup = null;
 
 	toggleGroup(group) {
@@ -307,5 +259,30 @@ async loginToWarriorWeb(browser) : Promise<any> {
 
 	openBrowser(link) {
 		this.inAppBrowser.create(link, '_blank', 'location=no');
+	}
+
+
+	showConfirmAlert(event) {
+		let alertConfirm = this.atrCtrl.create({
+			title: 'Add to Calendar',
+			message: 'Add event to you calendar?',
+			buttons: [
+			  {
+				text: 'Cancel',
+				role: 'cancel',
+				handler: () => {
+				  console.log('No clicked');
+				}
+			  },
+			  {
+				text: 'Add',
+				handler: () => {
+					this.calendar.createEventWithOptions(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate), );
+
+				}
+			  }
+			]
+			});
+			alertConfirm.present();
 	}
 }

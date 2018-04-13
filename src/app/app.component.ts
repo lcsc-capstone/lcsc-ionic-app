@@ -21,7 +21,9 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private inAppBrowser: InAppBrowser) {
     platform.ready().then(() => {
-      statusBar.styleDefault();
+		statusBar.overlaysWebView(false);
+      statusBar.styleLightContent();
+		statusBar.backgroundColorByHexString('#003865');
       splashScreen.hide();
     });
   }
@@ -37,8 +39,13 @@ export class MyApp {
   }
 
   goToLogin(params){
-    if (!params) params = {};
-    this.navCtrl.setRoot(LoginPage);
+    if (!params) params = { reuse : true };
+    this.navCtrl.setRoot(LoginPage, params);
+  }
+
+  goToLoginNoReuse() {
+    let params = { reuse : false };
+    this.goToLogin(params);
   }
 
   goToNews(params){

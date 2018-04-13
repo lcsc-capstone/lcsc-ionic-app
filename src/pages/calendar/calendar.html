@@ -24,7 +24,7 @@
 						<ion-icon class="warriors" name="ios-radio-button-on-outline"></ion-icon> {{ Events[day][time].Summary }}
 						</div>
 						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
-							<div (tap)="addEvent(Events[day][time])">
+							<div (tap)="showConfirmAlert(Events[day][time])">
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 								{{ Events[day][time].LocalTime}}
 							</div>
@@ -41,7 +41,7 @@
 							<ion-icon class="entertainment" name="ios-radio-button-on-outline"></ion-icon> {{ Events[day][time].Summary }}
 						</div>
 						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
-							<div (tap)="addEvent(Events[day][time])">
+							<div (tap)="showConfirmAlert(Events[day][time])">
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 								{{ Events[day][time].LocalTime}}
 							</div>
@@ -58,7 +58,7 @@
 							<ion-icon class="activities" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
 						</div>
 						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
-							<div (tap)="addEvent(Events[day][time])">
+							<div (tap)="showConfirmAlert(Events[day][time])">
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 								{{ Events[day][time].LocalTime}}
 							</div>
@@ -75,7 +75,7 @@
 							<ion-icon class="residence" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
 						</div>
 						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
-							<div (tap)="addEvent(Events[day][time])">
+							<div (tap)="showConfirmAlert(Events[day][time])">
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 								{{ Events[day][time].LocalTime}}
 							</div>
@@ -92,7 +92,7 @@
 							<ion-icon class="campusrec" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
 						</div>
 						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
-							<div (tap)="addEvent(Events[day][time])">
+							<div (tap)="showConfirmAlert(Events[day][time])">
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 								{{ Events[day][time].LocalTime}}
 							</div>
@@ -109,7 +109,7 @@
 							<ion-icon class="academics" name="ios-radio-button-on-outline"></ion-icon>   {{ Events[day][time].Summary }}
 						</div>
 						<div class="accordian-time" *ngIf="isGroupShown(Events[day][time])">
-							<div (tap)="addEvent(Events[day][time])">
+							<div (tap)="showConfirmAlert(Events[day][time])">
 								<ion-icon item-right="" name="calendar" role="img" class="icon icon-ios ion-ios-calendar item-icon" aria-label="calendar" ng-reflect-name="calendar" ></ion-icon>
 								{{ Events[day][time].LocalTime}}
 							</div>
