@@ -145,7 +145,6 @@ export class HomePage {
 
 										for (var x = 0; x < 3; x++) {
 											if (this.Academics.items[x]){
-												merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
 												acMerged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
 											}
 										}
@@ -202,7 +201,6 @@ export class HomePage {
 
 										for (var x = 0; x < 3; x++) {
 											if (this.Academics.items[x]){
-												merged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
 												acMerged.push({StartDate: new Date((this.Academics.items[x].start.dateTime || this.Academics.items[x].start.date + 'T00:00:00-07:00')).getTime()+offset, EndDate: new Date((this.Academics.items[x].end.dateTime || this.Academics.items[x].end.date + 'T00:00:00-07:00')).getTime()+offset, Summary:this.Academics.items[x].summary, Description:this.Academics.items[x].description, Calendar:this.Academics.summary, Location:this.Academics.items[x].location});
 											}
 										}
