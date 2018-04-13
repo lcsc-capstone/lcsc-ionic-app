@@ -72,7 +72,7 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
       "cordova-plugin-advanced-http": {}
     }
   }
