@@ -1,6 +1,5 @@
-import { NavController } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-native/in-app-browser';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { SecureStorage } from '@ionic-native/secure-storage';
 import { Injectable } from '@angular/core';
 
 /*

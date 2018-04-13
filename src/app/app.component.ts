@@ -35,7 +35,7 @@ export class MyApp {
 
   goToClassSchedule(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(ClassSchedulePage);
+    this.navCtrl.push(ClassSchedulePage);
   }
 
   goToLogin(params){
@@ -50,27 +50,27 @@ export class MyApp {
 
   goToNews(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(NewsPage);
+    this.navCtrl.push(NewsPage);
   }
 
   goToCampusMap(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(CampusMapPage);
+    this.navCtrl.push(CampusMapPage);
   }
 
   goToTutoring(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(TutoringPage);
+    this.navCtrl.push(TutoringPage);
   }
 
   goToRadio(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(RadioPage);
+    this.navCtrl.push(RadioPage);
   }
 
   goToCalendar(params){
     if( !params) params = {};
-    this.navCtrl.setRoot(CalendarPage);
+    this.navCtrl.push(CalendarPage);
   }
 
   openBrowser(link) {

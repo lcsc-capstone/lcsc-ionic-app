@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { CredentialsProvider } from "../../providers/credentials/credentials";
 
 @IonicPage()
@@ -13,7 +12,7 @@ export class LoginPage {
 	private loginUsername : string = "";
 	private loginPassword : string = "";
 
-	constructor(public navCtrl: NavController, private secureStorage: SecureStorage, private credentialsProvider : CredentialsProvider, navParams : NavParams) {
+	constructor(public navCtrl: NavController, private credentialsProvider : CredentialsProvider, navParams : NavParams) {
 		let reuse : boolean = true;
 
 		if (navParams && navParams.get('reuse') != null) { reuse = navParams.get('reuse') };
