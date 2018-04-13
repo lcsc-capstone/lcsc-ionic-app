@@ -5,8 +5,7 @@ import { Storage } from '@ionic/storage';
 import { ClassSchedulePage } from '../class-schedule/class-schedule';
 import { CalendarPage } from '../calendar/calendar';
 import { NewsPage }	from '../news/news';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
-import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
 import { Network } from '@ionic-native/network';
 import { ScheduleServiceProvider } from '../../providers/schedule-service/schedule-service';
@@ -36,7 +35,6 @@ export class HomePage {
 		public navParams: NavParams,
 		private http: HTTP,
 		private storage: Storage,
-		private secureStorage: SecureStorage,
 		private inAppBrowser: InAppBrowser,
 		private zone : NgZone,
 		private calendar: Calendar,
@@ -63,15 +61,15 @@ export class HomePage {
 
 	goToClassSchedule(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(ClassSchedulePage);
+    this.navCtrl.push(ClassSchedulePage);
   }
 	goToCalendar(params){
 		if( !params) params = {};
-		this.navCtrl.setRoot(CalendarPage);
+		this.navCtrl.push(CalendarPage);
 	}
 	goToNews(params){
 		if (!params) params = {};
-		this.navCtrl.setRoot(NewsPage);
+		this.navCtrl.push(NewsPage);
 	}
 
 	ionViewDidLoad() {
