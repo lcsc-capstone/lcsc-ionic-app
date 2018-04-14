@@ -10,6 +10,7 @@
 </ion-header>
 <ion-content padding id="page7">
 <!-- Start page for selecting class you need a tutor for or a specific tutor -->
+
   <h1 id="tutoring-heading11">
     Free Tutoring
   </h1>
@@ -19,20 +20,18 @@
       <!--drop down box generated from school schedule or the schools class list-->
       <ion-list>
         <ion-item>
-		<ion-label>Search by Class</ion-label>
+		<ion-label>Select Class</ion-label>
 	    	<ion-select name = "class" [(ngModel)]="classKey">
 		  <ion-option *ngFor="let class of ClassList;"
 		          [value]="category">{{class.name}}</ion-option>
 	   	</ion-select>
 	</ion-item>
       </ion-list>
-
-      <button ion-button type="submit">Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
-
       <!--drop down box generated from tutors list-->
+      OR
       <ion-list>
         <ion-item>
-		<ion-label>Search by Tutor</ion-label>
+		<ion-label>Select Tutor</ion-label>
 	    	<ion-select name = "tutor" [(ngModel)]="tutorKey">
 		  <ion-option *ngFor="let tutor of TutorList;"
 		  [value]="name">{{tutor.name}}</ion-option>
