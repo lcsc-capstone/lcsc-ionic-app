@@ -33,7 +33,7 @@ export class TutoringPage {
 extractData() {
 	//let parsedData
 
-  this.http.get('http://isoptera.lcsc.edu/~jamcdonald/combined.json', {}, {})/*.map(res => { res.json()})*/.then(data => {
+  this.http.get('http://isoptera.lcsc.edu/~seniorprojectweb/combined.json', {}, {})/*.map(res => { res.json()})*/.then(data => {
     //this.debug2 = JSON.parse(data['_body']).items[0].name;
     this.ClassList= JSON.parse(data.data)["classes"];
     this.TutorList= JSON.parse(data.data)["tutors"];
