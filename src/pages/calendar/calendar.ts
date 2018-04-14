@@ -214,7 +214,7 @@ export class CalendarPage {
 		}
 	};
 
-	isGroupShown(group) {
+	isGroupShown(group) { 
 		return this.shownGroup === group;
 	};
 
