@@ -10,6 +10,7 @@ import {NgForm} from '@angular/forms';
 export class TutoringPage {
   public classKey=""
   public tutorKey=""
+  public selection="Tutor"
   public Time=["Sample Time","Sample Time"];
   public Times={"key":["time","time"]}
   public ListName=""
@@ -33,7 +34,7 @@ export class TutoringPage {
 extractData() {
 	//let parsedData
 
-  this.http.get('http://isoptera.lcsc.edu/~seniorprojectweb/combined.json', {}, {})/*.map(res => { res.json()})*/.then(data => {
+  this.http.get('http://isoptera.lcsc.edu/~jamcdonald/combined.json', {}, {})/*.map(res => { res.json()})*/.then(data => {
     //this.debug2 = JSON.parse(data['_body']).items[0].name;
     this.ClassList= JSON.parse(data.data)["classes"];
     this.TutorList= JSON.parse(data.data)["tutors"];
@@ -56,10 +57,9 @@ extractData() {
 
 	}
   Submit( form: NgForm ){
-    console.log("test");
-    if(this.classKey!=""){
+    if(this.selection=="Class"){
       this.ListName=this.classKey
-    }else if(this.tutorKey!=""){
+    }else if(this.selection=="Tutor"){
       this.ListName=this.tutorKey
 
     }
