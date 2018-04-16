@@ -1,4 +1,3 @@
-import { NavController } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-native/in-app-browser';
 import { Injectable } from '@angular/core';
 import { CredentialsProvider } from '../credentials/credentials';
