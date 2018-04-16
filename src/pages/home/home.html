@@ -84,7 +84,7 @@
 	<!-- Calendar Start-->
 	<div id="home-calendar">
 		<h1>
-			Calendar
+			Events
 		</h1>
 		<ion-list id="home-list5">
 			<div class="accordian" (tap)="toggleGroup(4)" [ngClass]="{active: isGroupShown(4)}">
@@ -132,45 +132,47 @@
 		<br><br>
 		<button class="button" (tap)="goToCalendar()">
 			<ion-icon name="ios-calendar"></ion-icon>
-			View Calendar
+			View Events
 		</button>
 	</div>
 
 	<!-- News Start-->
-	<div id="home-news">
+	<div id="home-calendar">
 		<h1>
 			News
 		</h1>
-		<ion-list id="home-list4">
+		<ion-list id="home-list5">
 			<div *ngIf = "news != null; else noNews"> <!-- Added for simulator testing avoiding errors -->
-				<ion-item class="item-content" id="home-list-item24" (tap)="openNews(1)" text-wrap>
-					<h2 class="News">{{ news['1']['title'] }}</h2>
-				</ion-item>
-				<ion-item class="item-content" id="home-list-item25" (tap)="openNews(2)" text-wrap>
-					<hr>
-					<h2 class="News">{{ news['2']['title'] }}</h2>
-				</ion-item>
-				<ion-item class="item-content" id="home-list-item26" (tap)="openNews(3)" text-wrap>
-					<hr>
-					<h2 class="News">{{ news['3']['title'] }}</h2>
-				</ion-item>
+				<div>
+					<h2 class="titleControl"> {{ news['1']['title'] }} </h2>
+				</div>
+				<hr>
+				<div >
+					<h2 class="titleControl"> {{ news['2']['title'] }} </h2>
+				</div>
+				<hr>
+				<div >
+					<h2 class="titleControl"> {{ news['3']['title'] }} </h2>
+				</div>
 			</div>
 			<ng-template #noNews>
-				<ion-item id="home-list-item24" (tap)="goToNews()" text-wrap>
+				<div>
 					<h2></h2>
-				</ion-item>
-				<ion-item id="home-list-item25" (tap)="goToNews()" text-wrap>
+				</div>
+				<hr>
+				<div>
 					<h2></h2>
-				</ion-item>
-				<ion-item id="home-list-item26" (tap)="goToNews()" text-wrap>
+				</div>
+				<hr>
+				<div>
 					<h2></h2>
-				</ion-item>
+				</div>
 			</ng-template>
 		</ion-list>
+		<br><br>
 		<button class="button" (tap)="goToNews()">
 			<ion-icon name="ios-calendar"></ion-icon>
 			View News
 		</button>
 	</div>
-
 </ion-content>
