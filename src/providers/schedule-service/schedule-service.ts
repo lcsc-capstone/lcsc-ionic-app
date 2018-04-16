@@ -2,6 +2,7 @@ import { NavController } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-native/in-app-browser';
 import { Injectable } from '@angular/core';
 import { CredentialsProvider } from '../credentials/credentials';
+import { LoadingController } from 'ionic-angular';
 
 /*
   Generated class for the ScheduleServiceProvider provider.
@@ -20,13 +21,35 @@ export class ScheduleServiceProvider {
   readonly isSchedulePageScript : string = "window.location.href.indexOf('PrintSchedule?') != -1;"
 
   courses = [];
+  hasCacheData = false;
 
-  constructor(private credentialsProvider : CredentialsProvider, private inAppBrowser: InAppBrowser) {
+  courseDataDayLookup = {};
+
+  constructor(private credentialsProvider : CredentialsProvider,
+              private inAppBrowser: InAppBrowser,
+              private loadingController : LoadingController) {
+  }
+
+  async getClassScheduleDataOnLoader(handler : (data : any) => any) : Promise<any> {
+    if(this.hasCacheData) {
+      return await this.getClassScheduleData(handler);
+    }
+    else {
+      let loader = this.loadingController.create({
+        content : "Loading student info..."
+      });
+
+      loader.present().then(async () => {
+        let result = await this.getClassScheduleData(handler);
+        loader.dismiss();
+        return result;
+      });
+    }
   }
 
   async getClassScheduleData(handler : (data : any) => any) : Promise<any> {
 
-    if(this.courses.length > 0) {
+    if(this.hasCacheData) {
       handler(this.courses);
       return;
     }
@@ -57,6 +80,7 @@ export class ScheduleServiceProvider {
           this.courses = this.selectCourses(currentTerm);
           handler(this.courses);
           browser.close();
+          this.hasCacheData = true;
         }
       }
 
@@ -65,8 +89,13 @@ export class ScheduleServiceProvider {
   }
 
   async getTodaysClassScheduleData(handler : (data : any) => any) : Promise<any> {
-    return this.getClassScheduleData((data) => {
-      handler(data); // TODO filter out courses not happening on the day
+    return this.getClassScheduleDataOnLoader((data) => {
+
+      let day = new Date().getDay();
+
+      let meetings = this.courseDataDayLookup[day];
+
+      handler(meetings); // TODO filter out courses not happening on the day
     });
   }
 
@@ -104,18 +133,57 @@ export class ScheduleServiceProvider {
   }
 
   selectCourses(term : any) : any[] {
+    //alert('Selecting courses');
     let result = [];
 
     for(var course of term.PlannedCourses)
     {
+      if(!course.HasRegisteredSection) continue;
+
+      let meetings = [];
+
+      for(var meeting of course.Section.PlannedMeetings) {
+        let startTime = meeting.StartTime == null ? "N/A" : meeting.StartTime;
+        let endTime = meeting.EndTime == null ? "N/A" : meeting.EndTime;
+        let building = meeting.Building == null ? "N/A" : meeting.Building;
+        let room = meeting.Room == null ? "N/A" : meeting.Room;
+        let days = meeting.Days;
+
+        let meeting_obj = {
+          startTime: startTime,
+          endTime: endTime,
+          building : building,
+          room : room,
+          days : days,
+          title : course.Title,
+          name : course.Name,
+        };
+
+        meetings.push(meeting_obj);
+
+        for(var day of days) {
+          this.appendToCourseDailyData(day, meeting_obj);
+        }
+      }
+
       let item = {
-        title : course.CourseTitleDisplay,
+        title : course.Title,
         name  :course.CourseName,
+        meetings : meetings,
       };
 
       result.push(item);
     }
 
     return result;
+  }
+
+  appendToCourseDailyData(day : number, data : any) {
+
+    if(this.courseDataDayLookup[day] == null) {
+      this.courseDataDayLookup[day] = [];
+    }
+
+    this.courseDataDayLookup[day].push(data);
   }
 }

@@ -25,6 +25,7 @@ import { SecureStorage } from '@ionic-native/secure-storage';
 import { Network } from '@ionic-native/network';
 import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-service';
 import { CredentialsProvider } from '../providers/credentials/credentials';
+import { UserStateProvider } from '../providers/user-state/user-state';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { CredentialsProvider } from '../providers/credentials/credentials';
 	 HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ScheduleServiceProvider,
-    CredentialsProvider
+    CredentialsProvider,
+    UserStateProvider
   ]
 })
 export class AppModule {}

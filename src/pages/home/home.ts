@@ -30,7 +30,7 @@ export class HomePage {
 	private scheduleItems : any = [];
 
 	constructor(
-		public atrCtrl: AlertController, 
+		public atrCtrl: AlertController,
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private http: HTTP,
@@ -46,10 +46,10 @@ export class HomePage {
 		if (!this.guest) {
 			scheduleServiceProvider.getTodaysClassScheduleData(data => {
 				this.zone.run(() => {
-					for(var course of data) {
-						let item = course.title + ": " + course.name;
+					/*for(var item of data) {
 						this.scheduleItems.push(item);
-				}
+					}*/
+					this.scheduleItems = data;
 				});
 			});
 		}
@@ -246,7 +246,7 @@ export class HomePage {
 		this.inAppBrowser.create(link, '_blank', 'location=no');
 	}
 
-	
+
 	showConfirmAlert(event) {
 		let alertConfirm = this.atrCtrl.create({
 			title: 'Add to Calendar',
@@ -263,7 +263,7 @@ export class HomePage {
 				text: 'Add',
 				handler: () => {
 					this.calendar.createEventWithOptions(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate), );
-			
+
 				}
 			  }
 			]

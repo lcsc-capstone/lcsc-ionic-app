@@ -12,6 +12,9 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 
+import { UserStateProvider, UserState } from '../providers/user-state/user-state';
+import { CredentialsProvider } from '../providers/credentials/credentials';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -19,7 +22,13 @@ export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
     rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private inAppBrowser: InAppBrowser) {
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen,
+              private inAppBrowser: InAppBrowser,
+              private userState : UserStateProvider,
+              private credentialsProvider : CredentialsProvider) {
+
     platform.ready().then(() => {
 		statusBar.overlaysWebView(false);
       statusBar.styleLightContent();
@@ -75,5 +84,18 @@ export class MyApp {
 
   openBrowser(link) {
 	  this.inAppBrowser.create(link, '_system', 'location=yes');
+  }
+
+  isCredentialed() : boolean {
+    return this.userState.getUserState() == UserState.Credentialed;
+  }
+
+  isGuest() : boolean {
+    return this.userState.getUserState() == UserState.Guest;
+  }
+
+  logout() {
+    this.credentialsProvider.clearWarriorWebCredentials();
+    this.goToLogin({});
   }
 }

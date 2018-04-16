@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { CredentialsProvider } from "../../providers/credentials/credentials";
+import { UserStateProvider, UserState } from "../../providers/user-state/user-state";
 
 @IonicPage()
 @Component({
@@ -13,7 +14,12 @@ export class LoginPage {
 	private loginUsername : string = "";
 	private loginPassword : string = "";
 
-	constructor(public navCtrl: NavController, private secureStorage: SecureStorage, private credentialsProvider : CredentialsProvider, navParams : NavParams) {
+	constructor(public navCtrl: NavController,
+							private secureStorage: SecureStorage,
+							private credentialsProvider : CredentialsProvider,
+							private navParams : NavParams,
+						  private userState : UserStateProvider) {
+
 		let reuse : boolean = true;
 
 		if (navParams && navParams.get('reuse') != null) { reuse = navParams.get('reuse') };
@@ -28,7 +34,10 @@ export class LoginPage {
 	}
 
 	goToHomePage(params){
-		if (!params) params = {isGuest: true};
+		if (!params) {
+			params = {isGuest: true};
+			this.userState.updateUserState(UserState.Guest);
+		}
 		this.navCtrl.setRoot(HomePage, params);
 	}
 
@@ -45,6 +54,7 @@ export class LoginPage {
 	handleLogin() {
 		this.credentialsProvider.warriorWebAccessible((isGood : boolean) => {
 			if(isGood) {
+				this.userState.updateUserState(UserState.Credentialed);
 				this.goToHomePage({isGuest : false});
 			}
 			else {

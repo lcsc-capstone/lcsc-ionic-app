@@ -16,10 +16,7 @@ export class ClassSchedulePage {
   constructor(private scheduleServiceProvider : ScheduleServiceProvider, private zone: NgZone) {
     scheduleServiceProvider.getClassScheduleData((data) => {
       this.zone.run(() => {
-        for(var course of data) {
-          let item = course.title + "--" + course.name;
-          this.scheduleItems.push(item);
-        }
+        this.scheduleItems = data;
       });
     });
   }
