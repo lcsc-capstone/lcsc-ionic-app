@@ -14,6 +14,7 @@ import { HomePage } from '../pages/home/home';
 
 import { UserStateProvider, UserState } from '../providers/user-state/user-state';
 import { CredentialsProvider } from '../providers/credentials/credentials';
+import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-service';
 
 @Component({
   templateUrl: 'app.html'

@@ -185,4 +185,10 @@ export class ScheduleServiceProvider {
 
     this.courseDataDayLookup[day].push(data);
   }
+
+  clearCache() {
+    this.hasCacheData = false;
+    this.courseDataDayLookup = {};
+    this.courses = [];
+  }
 }
