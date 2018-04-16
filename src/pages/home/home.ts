@@ -45,13 +45,14 @@ export class HomePage {
 		if (!this.guest) {
 			scheduleServiceProvider.getTodaysClassScheduleData(data => {
 				this.zone.run(() => {
-					/*for(var item of data) {
-						this.scheduleItems.push(item);
-					}*/
 					this.scheduleItems = data;
 				});
 			});
 		}
+	}
+
+	hasScheduleDataForToday() : boolean {
+		return this.scheduleItems.toString() != "";
 	}
 
 	isConnected(): boolean {

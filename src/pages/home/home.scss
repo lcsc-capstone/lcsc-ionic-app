@@ -18,7 +18,7 @@ page-home {
 	.News{
 		margin-bottom: 5px;
 	}
-	
+
   .item-content {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -66,6 +66,12 @@ page-home {
 
       #item-top {
           margin-top: 0;
+      }
+      h1 { //TODO FIX ASTHETICS FOR CLASSES,  RED - E10000
+        color: #003865;
+        padding: 0px!important;
+        margin: 5px;
+        font-weight: bold;
       }
       h2 {
         color: #003865;

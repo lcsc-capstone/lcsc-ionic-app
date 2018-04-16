@@ -28,7 +28,8 @@ export class MyApp {
               splashScreen: SplashScreen,
               private inAppBrowser: InAppBrowser,
               private userState : UserStateProvider,
-              private credentialsProvider : CredentialsProvider) {
+              private credentialsProvider : CredentialsProvider,
+              private scheduleServiceProvider : ScheduleServiceProvider) {
 
     platform.ready().then(() => {
 		statusBar.overlaysWebView(false);
@@ -97,6 +98,7 @@ export class MyApp {
 
   logout() {
     this.credentialsProvider.clearWarriorWebCredentials();
+    this.scheduleServiceProvider.clearCache();
     this.goToLogin({});
   }
 }

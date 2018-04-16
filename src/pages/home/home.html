@@ -14,17 +14,22 @@
 	<img src="assets/img/banner.png" class="banner" />
 
 	<!-- Schedule Start-->
-	<div *ngIf="!guest">
+	<div *ngIf="!guest && hasScheduleDataForToday(); else noClasses">
 		<div id="home-schedule">
 			<h1 id="home-heading">Here's Today...</h1>
 			<ion-list id="schedule_list">
 				<ion-item *ngFor="let item of scheduleItems">
-					<h2> {{item.title}} </h2>
-					<p> {{item.building}} : {{item.room}} </p><br>
-					<p> {{item.startTime}} - {{item.endTime}} </p><br>
+					<h1> {{item.title}} </h1>
+					<div align="left">
+						{{item.building}} : {{item.room}}<br>
+						{{item.startTime}} - {{item.endTime}}<br>
+				</div>
 				</ion-item>
 			</ion-list>
 		</div>
+		<ng-template #noClasses>
+			<h2>No classes today</h2>
+		</ng-template>
 		<button class="button2" (tap)="goToClassSchedule()">
 			<ion-icon name="list-box"></ion-icon>
 			View Full Schedule
