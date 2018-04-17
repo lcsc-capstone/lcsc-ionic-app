@@ -45,13 +45,24 @@ export class HomePage {
 		if (!this.guest) {
 			scheduleServiceProvider.getTodaysClassScheduleData(data => {
 				this.zone.run(() => {
-					for(var course of data) {
-						let item = course.title + ": " + course.name;
-						this.scheduleItems.push(item);
-				}
+					this.scheduleItems = data;
+
+					this.scheduleItems.sort((a,b) : number => {
+          	if(a.daySecond > b.daySecond) {
+            	return 1;
+          	}
+          	else if(a.daySecond == b.daySecond) {
+            	return 0;
+          	}
+          	return -1;
+        	});
 				});
 			});
 		}
+	}
+
+	hasScheduleDataForToday() : boolean {
+		return this.scheduleItems.length > 0;
 	}
 
 	isConnected(): boolean {
@@ -269,6 +280,7 @@ export class HomePage {
 	openNews(link) {
 		this.inAppBrowser.create(this.news[link.toString()]['link'], '_system', 'location=yes');
 	}
+
 
 
 	showConfirmAlert(event) {
