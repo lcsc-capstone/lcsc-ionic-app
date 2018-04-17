@@ -62,7 +62,7 @@ export class HomePage {
 	}
 
 	hasScheduleDataForToday() : boolean {
-		return this.scheduleItems.toString() != "";
+		return this.scheduleItems.length > 0;
 	}
 
 	isConnected(): boolean {
