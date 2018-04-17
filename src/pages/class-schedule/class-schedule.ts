@@ -17,4 +17,8 @@ export class ClassSchedulePage {
       });
     });
   }
+
+  meetingHasTime(meeting) {
+    return meeting.startTime != "";
+  }
 }

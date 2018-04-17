@@ -19,7 +19,7 @@
 			<h1 id="home-heading">Here's Today...</h1>
 			<ion-list id="schedule_list">
 				<ion-item *ngFor="let item of scheduleItems">
-					<h1> {{item.title}} </h1>
+					<h1 id="class-name-header"> {{item.title}} </h1>
 					<div align="left">
 						{{item.building}} : {{item.room}}<br>
 						{{item.startTime}} - {{item.endTime}}<br>

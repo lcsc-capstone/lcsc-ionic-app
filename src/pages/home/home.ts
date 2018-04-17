@@ -46,6 +46,16 @@ export class HomePage {
 			scheduleServiceProvider.getTodaysClassScheduleData(data => {
 				this.zone.run(() => {
 					this.scheduleItems = data;
+
+					this.scheduleItems.sort((a,b) : number => {
+          	if(a.daySecond > b.daySecond) {
+            	return 1;
+          	}
+          	else if(a.daySecond == b.daySecond) {
+            	return 0;
+          	}
+          	return -1;
+        	});
 				});
 			});
 		}

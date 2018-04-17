@@ -34,6 +34,7 @@ export class ScheduleServiceProvider {
       return await this.getClassScheduleData(handler);
     }
     else {
+
       let loader = this.loadingController.create({
         content : "Loading student info..."
       });
@@ -142,11 +143,19 @@ export class ScheduleServiceProvider {
       let meetings = [];
 
       for(var meeting of course.Section.PlannedMeetings) {
+
+        if(meeting.StartTime == null || meeting.StartTime == "") {
+          continue;
+        }
+
         let startTime = meeting.StartTime == null ? "N/A" : meeting.StartTime;
         let endTime = meeting.EndTime == null ? "N/A" : meeting.EndTime;
+
         let building = meeting.Building == null ? "N/A" : meeting.Building;
         let room = meeting.Room == null ? "N/A" : meeting.Room;
         let days = meeting.Days;
+
+        let daySecond = (meeting.StartTimeHour * 60 * 60) + (meeting.StartTimeMinute * 60);
 
         let meeting_obj = {
           startTime: startTime,
@@ -156,6 +165,7 @@ export class ScheduleServiceProvider {
           days : days,
           title : course.Title,
           name : course.Name,
+          daySecond : daySecond
         };
 
         meetings.push(meeting_obj);
