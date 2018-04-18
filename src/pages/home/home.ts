@@ -18,7 +18,7 @@ import { AlertController } from 'ionic-angular';
 export class HomePage {
 	public news = {'1': {}, '2': {}, '3': {}, '4': {}, '5': {}, '6': {}, '7': {}, '8': {}, '9': {}, '10': {}};
 	public Academics;
-	public Entertainment;
+	public Entertainment; 
 	public Athletics;
 	public StudentActivities;
 	public ResidentLife;

@@ -20,10 +20,10 @@
 			<ion-list id="schedule_list">
 				<ion-item *ngFor="let item of scheduleItems">
 					<h1 id="class-name-header"> {{item.title}} </h1>
-					<div align="left">
+					<div id="right">
 						{{item.building}} : {{item.room}}<br>
 						{{item.startTime}} - {{item.endTime}}<br>
-				</div>
+					</div>
 				</ion-item>
 			</ion-list>
 		</div>
