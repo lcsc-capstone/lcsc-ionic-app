@@ -61,6 +61,10 @@ export class HomePage {
 		}
 	}
 
+	scheduleCached() : boolean {
+		return this.scheduleServiceProvider.hasCacheData;
+	}
+
 	hasScheduleDataForToday() : boolean {
 		return this.scheduleItems.length > 0;
 	}
