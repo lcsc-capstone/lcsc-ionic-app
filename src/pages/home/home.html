@@ -86,8 +86,11 @@
 					<div style="color:#000;font-size:11pt">{{AcademicArr[2].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
 				</ion-item>
 			</div>
-			<br>
 		</ion-list>
+		<br>
+		<button ion-button clear class="c-more-link" (tap)="openBrowser('http://www.lcsc.edu/registrar/academic-calendar/')">
+			more important dates  <ion-icon name="play" class="iconRed"></ion-icon>
+		</button>
 	</div>
 
 	<!-- Calendar Start-->
@@ -145,7 +148,7 @@
 	</div>
 
 	<!-- News Start-->
-	<div id="home-calendar">
+	<div id="home-news">
 		<h1>
 			News
 		</h1>
@@ -183,7 +186,6 @@
 				</div>
 			</ng-template>
 		</ion-list>
-		<br>
 		<button ion-button clear class="c-more-link" (tap)="goToNews()">
 			more news headlines  <ion-icon name="play" class="iconRed"></ion-icon>
 		</button>
