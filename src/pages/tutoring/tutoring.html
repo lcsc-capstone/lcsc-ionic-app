@@ -15,10 +15,11 @@
   </h1>
   <div id="tutoring-markdown1" class="show-list-numbers-and-dots">
     <form #f="ngForm"(ngSubmit)="Submit(f)">
-    <p style="color:#000000;">
+    
+<p style="color:#000000;">
 
 	Select by
-	<ion-list radio-group [(ngModel)]="selectionButtons">
+	<ion-list radio-group>
 	  <ion-item>
 	    <ion-label>Tutors</ion-label>
 	    <ion-radio value="Tutor" (ionSelect)="selection='Tutor'" checked></ion-radio>
