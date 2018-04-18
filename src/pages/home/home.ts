@@ -18,7 +18,7 @@ import { AlertController } from 'ionic-angular';
 export class HomePage {
 	public news = {'1': {}, '2': {}, '3': {}, '4': {}, '5': {}, '6': {}, '7': {}, '8': {}, '9': {}, '10': {}};
 	public Academics;
-	public Entertainment;
+	public Entertainment; 
 	public Athletics;
 	public StudentActivities;
 	public ResidentLife;
@@ -59,6 +59,10 @@ export class HomePage {
 				});
 			});
 		}
+	}
+
+	scheduleCached() : boolean {
+		return this.scheduleServiceProvider.hasCacheData;
 	}
 
 	hasScheduleDataForToday() : boolean {
@@ -275,10 +279,10 @@ export class HomePage {
 	}
 
 	openBrowser(link) {
-		this.inAppBrowser.create(link, '_blank', 'location=no');
+		this.inAppBrowser.create(link, '_system');
 	}
 	openNews(link) {
-		this.inAppBrowser.create(this.news[link.toString()]['link'], '_system', 'location=yes');
+		this.inAppBrowser.create(this.news[link.toString()]['link'], '_system');
 	}
 
 

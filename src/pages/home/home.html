@@ -20,22 +20,23 @@
 			<ion-list id="schedule_list">
 				<ion-item *ngFor="let item of scheduleItems">
 					<h1 id="class-name-header"> {{item.title}} </h1>
-					<div align="left">
+					<div id="right">
 						{{item.building}} : {{item.room}}<br>
 						{{item.startTime}} - {{item.endTime}}<br>
-				</div>
+					</div>
 				</ion-item>
 			</ion-list>
 		</div>
-		<button class="button2" (tap)="goToClassSchedule()">
-			<ion-icon name="list-box"></ion-icon>
-			View Full Schedule
+		<button ion-button clear class="c-more-link" (tap)="goToClassSchedule()">
+			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
 		</button>
 	</div>
 	<ng-template #noClasses>
-		<h1 id="no-classes-header">You have no classes today</h1>
+		<h1 id="no-classes-header" *ngIf="!guest && scheduleCached()">You have no classes today</h1>
+		<button ion-button clear class="c-more-link" (tap)="goToClassSchedule()" *ngIf="!guest && scheduleCached()">
+			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
+		</button>
 	</ng-template>
-	<div> {{ debug }} </div>
 
 	<!-- Academic Calendar Start-->
 	<div id="home-academic">
