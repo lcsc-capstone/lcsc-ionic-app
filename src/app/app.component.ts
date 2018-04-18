@@ -12,6 +12,10 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 
+import { UserStateProvider, UserState } from '../providers/user-state/user-state';
+import { CredentialsProvider } from '../providers/credentials/credentials';
+import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-service';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -19,7 +23,14 @@ export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
     rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private inAppBrowser: InAppBrowser) {
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen,
+              private inAppBrowser: InAppBrowser,
+              private userState : UserStateProvider,
+              private credentialsProvider : CredentialsProvider,
+              private scheduleServiceProvider : ScheduleServiceProvider) {
+
     platform.ready().then(() => {
 		statusBar.overlaysWebView(false);
       statusBar.styleLightContent();
@@ -35,7 +46,7 @@ export class MyApp {
 
   goToClassSchedule(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(ClassSchedulePage);
+    this.navCtrl.push(ClassSchedulePage);
   }
 
   goToLogin(params){
@@ -50,30 +61,44 @@ export class MyApp {
 
   goToNews(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(NewsPage);
+    this.navCtrl.push(NewsPage);
   }
 
   goToCampusMap(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(CampusMapPage);
+    this.navCtrl.push(CampusMapPage);
   }
 
   goToTutoring(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(TutoringPage);
+    this.navCtrl.push(TutoringPage);
   }
 
   goToRadio(params){
     if (!params) params = {};
-    this.navCtrl.setRoot(RadioPage);
+    this.navCtrl.push(RadioPage);
   }
 
   goToCalendar(params){
     if( !params) params = {};
-    this.navCtrl.setRoot(CalendarPage);
+    this.navCtrl.push(CalendarPage);
   }
 
   openBrowser(link) {
 	  this.inAppBrowser.create(link, '_system', 'location=yes');
+  }
+
+  isCredentialed() : boolean {
+    return this.userState.getUserState() == UserState.Credentialed;
+  }
+
+  isGuest() : boolean {
+    return this.userState.getUserState() == UserState.Guest;
+  }
+
+  logout() {
+    this.credentialsProvider.clearWarriorWebCredentials();
+    this.scheduleServiceProvider.clearCache();
+    this.goToLogin({});
   }
 }

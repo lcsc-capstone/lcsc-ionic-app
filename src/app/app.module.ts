@@ -3,10 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
-import { HTTP, HTTPResponse } from '@ionic-native/http'
+import { HTTP } from '@ionic-native/http'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ProfilePage } from '../pages/profile/profile';
 import { NewsPage } from '../pages/news/news';
 import { CampusMapPage } from '../pages/campus-map/campus-map';
 import { ClassSchedulePage } from '../pages/class-schedule/class-schedule';
@@ -25,17 +24,17 @@ import { SecureStorage } from '@ionic-native/secure-storage';
 import { Network } from '@ionic-native/network';
 import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-service';
 import { CredentialsProvider } from '../providers/credentials/credentials';
+import { UserStateProvider } from '../providers/user-state/user-state';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ProfilePage,
     NewsPage,
     CampusMapPage,
     ClassSchedulePage,
     CalendarPage,
-	 CalendarDropdownPage,
+	  CalendarDropdownPage,
     TutoringPage,
     RadioPage,
     LoginPage
@@ -43,14 +42,32 @@ import { CredentialsProvider } from '../providers/credentials/credentials';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      platforms: {
+        android: {
+    			backButtonText: "",
+    			backButtonIcon: "md-arrow-back",
+    			iconMode: "md",
+    			modalEnter: "modal-md-slide-in",
+    			modalLeave: "modal-md-slide-out",
+    			pageTransition: "md",
+	      },
+        ios: {
+          backButtonText: "",
+			    backButtonIcon: "ios-arrow-back",
+        	iconMode: "ios",
+    			modalEnter: "modal-ios-slide-in",
+    			modalLeave: "modal-ios-slide-out",
+    			pageTransition: "ios",
+        }
+      }
+    }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ProfilePage,
     NewsPage,
     CampusMapPage,
     ClassSchedulePage,
@@ -70,7 +87,8 @@ import { CredentialsProvider } from '../providers/credentials/credentials';
 	 HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ScheduleServiceProvider,
-    CredentialsProvider
+    CredentialsProvider,
+    UserStateProvider
   ]
 })
 export class AppModule {}

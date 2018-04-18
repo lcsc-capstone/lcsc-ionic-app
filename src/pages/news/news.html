@@ -1,12 +1,12 @@
 <ion-header>
-	<ion-navbar color="lcblue">
+	<ion-toolbar color="lcblue">
 		<button ion-button menuToggle>
 			<ion-icon name="menu" color="light"></ion-icon>
 		</button>
 		<ion-title>
 			News
 		</ion-title>
-	</ion-navbar>
+	</ion-toolbar>
 </ion-header>
 <ion-content padding id="page3">
 	<h1 id="news-heading7" color="lcblue">
@@ -17,34 +17,44 @@
 
 		<ion-list id="news-list6">
 			<ion-item color="none" id="news-list-item1" text-wrap (tap)="openBrowser(1)">
-				{{ news['1']['title'] }}
+				{{ news['1']['title'] }}<br>
+				<i>{{ news['1']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item2" text-wrap (tap)="openBrowser(2)">
-				{{ news['2']['title'] }}
+				{{ news['2']['title'] }}<br>
+				<i>{{ news['2']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item3" text-wrap (tap)="openBrowser(3)">
-				{{ news['3']['title'] }}
+				{{ news['3']['title'] }}<br>
+				<i>{{ news['3']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item4" text-wrap (tap)="openBrowser(4)">
-				{{ news['4']['title'] }}
+				{{ news['4']['title'] }}<br>
+				<i>{{ news['4']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item5" text-wrap (tap)="openBrowser(5)">
-				{{ news['5']['title'] }}
+				{{ news['5']['title'] }}<br>
+				<i>{{ news['5']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item6" text-wrap (tap)="openBrowser(6)">
-				{{ news['6']['title'] }}
+				{{ news['6']['title'] }}<br>
+				<i>{{ news['6']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item7" text-wrap (tap)="openBrowser(7)">
-				{{ news['7']['title'] }}
+				{{ news['7']['title'] }}<br>
+				<i>{{ news['7']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item8" text-wrap (tap)="openBrowser(8)">
-				{{ news['8']['title'] }}
+				{{ news['8']['title'] }}<br>
+				<i>{{ news['8']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item9" text-wrap (tap)="openBrowser(9)">
-				{{ news['9']['title'] }}
+				{{ news['9']['title'] }}<br>
+				<i>{{ news['9']['date'] }}</i>
 			</ion-item>
 			<ion-item color="none" id="news-list-item10" text-wrap (tap)="openBrowser(10)">
-				{{ news['10']['title'] }}
+				{{ news['10']['title'] }}<br>
+				<i>{{ news['10']['date'] }}</i>
 			</ion-item>
 		</ion-list>
 

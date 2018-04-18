@@ -10,6 +10,7 @@ import {NgForm} from '@angular/forms';
 export class TutoringPage {
   public classKey=""
   public tutorKey=""
+  public selection="Tutor"
   public Time=["Sample Time","Sample Time"];
   public Times={"key":["time","time"]}
   public ListName=""
@@ -56,9 +57,9 @@ extractData() {
 
 	}
   Submit( form: NgForm ){
-    if(this.classKey!=""){
+    if(this.selection=="Class"){
       this.ListName=this.classKey
-    }else if(this.tutorKey!=""){
+    }else if(this.selection=="Tutor"){
       this.ListName=this.tutorKey
 
     }
