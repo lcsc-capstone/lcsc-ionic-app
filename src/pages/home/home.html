@@ -33,7 +33,11 @@
 		</button>
 	</div>
 	<ng-template #noClasses>
-		<h1 id="no-classes-header">You have no classes today</h1>
+		<h1 id="no-classes-header" *ngIf="!guest">You have no classes today</h1>
+		<button class="button2" (tap)="goToClassSchedule()" *ngIf="!guest">
+			<ion-icon name="list-box"></ion-icon>
+			View Full Schedule
+		</button>
 	</ng-template>
 	<div> {{ debug }} </div>
 
