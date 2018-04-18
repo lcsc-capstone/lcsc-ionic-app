@@ -1,19 +1,27 @@
 <ion-header>
-	<ion-navbar color="lcblue">
+	<ion-toolbar color="lcblue">
 		<button ion-button menuToggle>
 			<ion-icon name="menu" color="light"></ion-icon>
 		</button>
 		<ion-title>
 			Class Schedule
 		</ion-title>
-	</ion-navbar>
+	</ion-toolbar>
 </ion-header>
 <ion-content padding id="page5">
 
 	<div id="schedule">
 		<h1>Class Schedule</h1>
 		<ion-list>
-			<ion-item *ngFor="let item of scheduleItems">{{item}}</ion-item>
+			<ion-item *ngFor="let item of scheduleItems">
+				<h2>{{item.name}}</h2>
+				<div *ngFor="let meeting of item.meetings">
+					<h3>{{meeting.building}}</h3>
+					<h3>Room {{meeting.room}}</h3>
+					<h4>{{meeting.startTime}} - {{meeting.endTime}}</h4>
+					<br>
+				</div>
+			</ion-item>
 		</ion-list>
 	</div>
 
