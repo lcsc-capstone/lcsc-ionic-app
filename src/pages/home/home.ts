@@ -279,10 +279,10 @@ export class HomePage {
 	}
 
 	openBrowser(link) {
-		this.inAppBrowser.create(link, '_blank', 'location=no');
+		this.inAppBrowser.create(link, '_system');
 	}
 	openNews(link) {
-		this.inAppBrowser.create(this.news[link.toString()]['link'], '_system', 'location=yes');
+		this.inAppBrowser.create(this.news[link.toString()]['link'], '_system');
 	}
 
 
