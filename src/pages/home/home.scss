@@ -46,9 +46,10 @@ page-home {
 
     #no-classes-header {
       color : #E10000;
-      padding: 0px!important;
-      maring: 5px;
-      font-weight: bold;
+      padding: 5px!important;
+      margin: 5px;
+      font-weight: 450;
+      font-size: 26px;
     }
 
     #home-schedule {
@@ -95,7 +96,6 @@ page-home {
         margin: -.6em 0 -.6em 0;
         padding: 0 .75em 0 .75em;
         padding-bottom: 1em;
-
         h1 {
             font-weight: 400;
             color: #E10000;
@@ -106,7 +106,6 @@ page-home {
             padding: 0px!important;
             background-color: #F0F0F0;
         }
-
         h2 {
             color: #003865;
             padding: 0px!important;
