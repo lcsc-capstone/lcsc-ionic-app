@@ -52,7 +52,7 @@
 					<h2 class="titleControl"> {{ AcademicArr[0].Summary }} </h2>
 				</div>
 				<div *ngIf="isGroupShown(0)">
-					<ion-item text-wrap id="home-list-item27">
+					<ion-item no-lines text-wrap id="home-list-item27">
 						<div class="addToCalendar" (tap)="showConfirmAlert(Events[0])">
 							<img class="calendarIcon" src="assets/img/calendar.png"/>
 							{{ AcademicArr[0].StartDate | date:'EEEE, MMMM d  h:mma' }}
@@ -66,7 +66,7 @@
 					<h2 class="titleControl">{{ AcademicArr[1].Summary }} </h2>
 				</div>
 				<div *ngIf="isGroupShown(1)">
-					<ion-item text-wrap id="home-list-item27">
+					<ion-item no-lines text-wrap id="home-list-item27">
 						<div class="addToCalendar" (tap)="showConfirmAlert(Events[0])">
 							<img class="calendarIcon" src="assets/img/calendar.png"/>
 							{{ AcademicArr[1].StartDate | date:'EEEE, MMMM d  h:mma' }}
@@ -111,7 +111,7 @@
 					<h2 class="titleControl"> {{ Events[0].Summary }} </h2>
 				</div>
 				<div *ngIf="isGroupShown(4)">
-					<ion-item text-wrap id="home-list-item27">
+					<ion-item no-lines text-wrap id="home-list-item27">
 						<div class="addToCalendar" (tap)="showConfirmAlert(Events[0])">
 							<img class="calendarIcon" src="assets/img/calendar.png"/>
 							{{ Events[0].StartDate | date:'EEEE, MMMM d  h:mma' }}
@@ -125,7 +125,7 @@
 					<h2 class="titleControl"> {{ Events[1].Summary }} </h2>
 				</div>
 				<div *ngIf="isGroupShown(5)">
-					<ion-item text-wrap id="home-list-item27">
+					<ion-item no-lines text-wrap id="home-list-item27">
 						<div class="addToCalendar" (tap)="showConfirmAlert(Events[1])">
 							<img class="calendarIcon" src="assets/img/calendar.png"/>
 							{{ Events[1].StartDate | date:'EEEE, MMMM d  h:mma' }}
