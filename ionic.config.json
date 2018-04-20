@@ -1,0 +1,8 @@
+{
+  "name": "lcsc-app",
+  "app_id": "8eeb6992",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

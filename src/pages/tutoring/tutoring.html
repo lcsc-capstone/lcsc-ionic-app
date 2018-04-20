@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Tutoring
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding id="page7">
+<!-- Start page for selecting class you need a tutor for or a specific tutor -->
+  <h1 id="tutoring-heading11" style="color:#000000;">
+    Tutoring
+  </h1>
+  <div id="tutoring-markdown1" class="show-list-numbers-and-dots">
+    <form #f="ngForm"(ngSubmit)="Submit(f)">
+    
+<p style="color:#000000;">
+
+	Select by
+	<ion-list radio-group>
+	  <ion-item>
+	    <ion-label>Tutors</ion-label>
+	    <ion-radio value="Tutor" (ionSelect)="selection='Tutor'" checked></ion-radio>
+	  </ion-item>
+	  <ion-item>
+	    <ion-label>Classes</ion-label>
+	    <ion-radio value="Class" (ionSelect)="selection='Class'"></ion-radio>
+	  </ion-item>
+	 </ion-list>
+      <!--drop down box generated from school schedule or the schools class list-->
+      <ion-list *ngIf="selection==='Class'">
+        <ion-item>
+		<ion-label>Select Class</ion-label>
+	    	<ion-select name = "class" [(ngModel)]="classKey">
+		  <ion-option *ngFor="let class of ClassList;"
+		          [value]="category">{{class.name}}</ion-option>
+	   	</ion-select>
+	</ion-item>
+      </ion-list>
+      <!--drop down box generated from tutors list-->
+      <ion-list *ngIf="selection==='Tutor'">
+        <ion-item>
+		<ion-label>Select Tutor</ion-label>
+	    	<ion-select name = "tutor" [(ngModel)]="tutorKey">
+		  <ion-option *ngFor="let tutor of TutorList;"
+		  [value]="name">{{tutor.name}}</ion-option>
+	   	</ion-select>
+	</ion-item>
+      </ion-list>
+
+      <button ion-button type="submit">Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
+
+      <br><br><b>Note: * denotes online tutor</b>
+   </p>
+    </form>
+  </div>
+
+  <div *ngIf="isSubmitted">
+    <h1>
+      {{ListName}}
+    </h1>
+
+    <ion-list>
+<ion-item *ngFor="let slot of Time;"
+		  >{{slot}}</ion-item>
+
+    </ion-list>
+
+    <button ion-button full *ngIf="isOnline">Book Online Session</button> <!--Could Link to tutorsClass.html, but is linked to tutoring.ts now -->
+
+  </div>
+
+</ion-content>

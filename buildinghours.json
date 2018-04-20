@@ -1,0 +1,132 @@
+{
+    "buildings": {
+        "SUB" : {
+            "short" : "SUB" ,
+            "long" : "Student Union Building",
+            "sunday" : {
+                "open":"10:00 am",
+                "close":"11:00 pm"
+            },
+            "monday" : {
+                "open":"7:00 am",
+                "close":"11:00 pm"
+            },
+            "tuesday" : {
+                "open":"7:00 am",
+                "close":"11:00 pm"
+            },
+            "wednesday" : {
+                "open":"7:00 am",
+                "close":"11:00 pm"
+            },
+            "thursday" : {
+                "open":"7:00 am",
+                "close":"11:00 pm"
+            },
+            "friday" : {
+                "open":"7:00 am",
+                "close":"8:00 pm"
+            },
+            "saturday" : {
+                "open":"10:00 am",
+                "close":"8:00 pm"
+            }
+        },
+        "LIB" : {
+            "short" : "LIB" ,
+            "long" : "Library",
+            "sunday" : {
+                "open":"12:00 pm",
+                "close":"9:55 pm"
+            },
+            "monday" : {
+                "open":"7:30 am",
+                "close":"9:55 pm"
+            },
+            "tuesday" : {
+                "open":"7:30 am",
+                "close":"9:55 pm"
+            },
+            "wednesday" : {
+                "open":"7:30 am",
+                "close":"9:55 pm"
+            },
+            "thursday" : {
+                "open":"7:30 am",
+                "close":"9:55 pm"
+            },
+            "friday" : {
+                "open":"8:00 am",
+                "close":"5:55 pm"
+            },
+            "saturday" : {
+                "open":"12:00 pm",
+                "close":"5:55 pm"
+            }
+        },
+        "TEN" : {
+            "short" : "TEN" ,
+            "long" : "Tennis Center",
+            "sunday" : {
+                "open":"1:00 pm",
+                "close":"6:00 pm"
+            },
+            "monday" : {
+                "open":"9:00 am",
+                "close":"9:00 pm"
+            },
+            "tuesday" : {
+                "open":"9:00 am",
+                "close":"9:00 pm"
+            },
+            "wednesday" : {
+                "open":"9:00 am",
+                "close":"9:00 pm"
+            },
+            "thursday" : {
+                "open":"9:00 am",
+                "close":"9:00 pm"
+            },
+            "friday" : {
+                "open":"9:00 am",
+                "close":"9:00 pm"
+            },
+            "saturday" : {
+                "open":"9:00 am",
+                "close":"6:00 pm"
+            }
+        },
+        "FIT" : {
+            "short" : "FIT" ,
+            "long" : "Fitness Center",
+            "sunday" : {
+                "open":"12:00 pm",
+                "close":"4:00 pm"
+            },
+            "monday" : {
+                "open":"5:45 am",
+                "close":"10:00 pm"
+            },
+            "tuesday" : {
+                "open":"5:45 am",
+                "close":"10:00 pm"
+            },
+            "wednesday" : {
+                "open":"5:45 am",
+                "close":"10:00 pm"
+            },
+            "thursday" : {
+                "open":"5:45 am",
+                "close":"10:00 pm"
+            },
+            "friday" : {
+                "open":"5:45 am",
+                "close":"8:00 pm"
+            },
+            "saturday" : {
+                "open":"9:00 am",
+                "close":"1:00 pm"
+            }
+        }
+    }
+}
