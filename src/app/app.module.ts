@@ -1,9 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
-import { HTTP } from '@ionic-native/http'
+import { HTTP } from '@ionic-native/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NewsPage } from '../pages/news/news';
@@ -14,6 +15,8 @@ import { CalendarDropdownPage } from '../pages/calendar/calendar-dropdown';
 import { TutoringPage } from '../pages/tutoring/tutoring';
 import { RadioPage } from '../pages/radio/radio';
 import { LoginPage } from '../pages/login/login';
+import { BuildingHoursPage } from '../pages/building-hours/building-hours';		
+import { BuildingDetailsPage } from '../pages/building-details/building-details';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -37,11 +40,14 @@ import { UserStateProvider } from '../providers/user-state/user-state';
 	  CalendarDropdownPage,
     TutoringPage,
     RadioPage,
-    LoginPage
+    LoginPage,
+    BuildingHoursPage,		
+	  BuildingDetailsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp,{
       platforms: {
         android: {
@@ -75,7 +81,9 @@ import { UserStateProvider } from '../providers/user-state/user-state';
 	 CalendarDropdownPage,
     TutoringPage,
     RadioPage,
-    LoginPage
+    LoginPage,
+    BuildingHoursPage,		
+	  BuildingDetailsPage
   ],
   providers: [
     InAppBrowser,
