@@ -10,6 +10,7 @@ import { Calendar } from '@ionic-native/calendar';
 import { Network } from '@ionic-native/network';
 import { ScheduleServiceProvider } from '../../providers/schedule-service/schedule-service';
 import { AlertController } from 'ionic-angular';
+import { UserStateProvider, UserState } from '../../providers/user-state/user-state';
 
 @Component({
 	selector: 'page-home',
@@ -18,14 +19,13 @@ import { AlertController } from 'ionic-angular';
 export class HomePage {
 	public news = {'1': {}, '2': {}, '3': {}, '4': {}, '5': {}, '6': {}, '7': {}, '8': {}, '9': {}, '10': {}};
 	public Academics;
-	public Entertainment; 
+	public Entertainment;
 	public Athletics;
 	public StudentActivities;
 	public ResidentLife;
 	public CampusRec;
 	public Events = [{}, {}, {}];
 	public AcademicArr = [{},{},{}];
-	public guest = false;
 
 	private scheduleItems : any = [];
 
@@ -39,10 +39,10 @@ export class HomePage {
 		private zone : NgZone,
 		private calendar: Calendar,
 		private network: Network,
-		private scheduleServiceProvider : ScheduleServiceProvider) {
+		private scheduleServiceProvider : ScheduleServiceProvider,
+	  private userStateProvider : UserStateProvider) {
 
-		if (navParams) this.guest = navParams.get('isGuest');
-		if (!this.guest) {
+		if (this.isCredentialed()) {
 			scheduleServiceProvider.getTodaysClassScheduleData(data => {
 				this.zone.run(() => {
 					this.scheduleItems = data;
@@ -59,6 +59,14 @@ export class HomePage {
 				});
 			});
 		}
+	}
+
+	isGuest() : boolean {
+		return this.userStateProvider.getUserState() == UserState.Guest;
+	}
+
+	isCredentialed() : boolean {
+		return this.userStateProvider.getUserState() == UserState.Credentialed;
 	}
 
 	scheduleCached() : boolean {
