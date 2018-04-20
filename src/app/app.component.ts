@@ -15,6 +15,7 @@ import { HomePage } from '../pages/home/home';
 import { UserStateProvider, UserState } from '../providers/user-state/user-state';
 import { CredentialsProvider } from '../providers/credentials/credentials';
 import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-service';
+import { AppAvailability } from '@ionic-native/app-availability';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,14 +23,16 @@ import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-
 export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
     rootPage:any = LoginPage;
+	hasFacebook: string = 'Dont know';
 
-  constructor(platform: Platform,
+  constructor(private platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
               private inAppBrowser: InAppBrowser,
               private userState : UserStateProvider,
               private credentialsProvider : CredentialsProvider,
-              private scheduleServiceProvider : ScheduleServiceProvider) {
+              private scheduleServiceProvider : ScheduleServiceProvider,
+			  private appAvailability: AppAvailability){
 
     platform.ready().then(() => {
 		statusBar.overlaysWebView(false);
@@ -85,9 +88,34 @@ export class MyApp {
   }
 
   openBrowser(link) {
-	  this.inAppBrowser.create(link, '_system', 'location=yes');
+	  this.inAppBrowser.create(link, '_system', 'location=no');
   }
 
+  checkFacebook(){
+  let app;
+ 
+    if (this.platform.is('ios')) {
+      app = 'fb://';
+    } else if (this.platform.is('android')) {
+      app = 'com.facebook.katana';
+    }
+ 
+    this.appAvailability.check(app)
+      .then(
+      (yes: boolean) => this.hasFacebook='Available',
+      (no: boolean) => this.hasFacebook='Not Available'
+      );
+  }
+  
+  openFacebook(){
+	this.checkFacebook();
+	if(this.hasFacebook=='Available'){
+	this.inAppBrowser.create("fb://page/59960515055",'_system','location=yes');}
+	else{
+	this.inAppBrowser.create("https://www.facebook.com/LewisClarkState/",'_system','location=no');
+	}
+  }
+  
   isCredentialed() : boolean {
     return this.userState.getUserState() == UserState.Credentialed;
   }

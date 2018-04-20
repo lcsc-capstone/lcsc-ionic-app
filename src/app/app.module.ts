@@ -25,6 +25,7 @@ import { Network } from '@ionic-native/network';
 import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-service';
 import { CredentialsProvider } from '../providers/credentials/credentials';
 import { UserStateProvider } from '../providers/user-state/user-state';
+import { AppAvailability } from '@ionic-native/app-availability';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { UserStateProvider } from '../providers/user-state/user-state';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ScheduleServiceProvider,
     CredentialsProvider,
-    UserStateProvider
+    UserStateProvider,
+	AppAvailability
   ]
 })
 export class AppModule {}
