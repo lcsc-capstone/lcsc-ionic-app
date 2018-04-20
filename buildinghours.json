@@ -126,6 +126,38 @@
             "saturday" : {
                 "open":"9:00 am",
                 "close":"1:00 pm"
+            },
+            "LRC" : {
+                "short" : "LRC" ,
+                "long" : "Learning Resource Center",
+                "sunday" : {
+                    "open":"closed",
+                    "close":"closed"
+                },
+                "monday" : {
+                    "open":"8:00 am",
+                    "close":"5:00 pm"
+                },
+                "tuesday" : {
+                    "open":"8:00 am",
+                    "close":"5:00 pm"
+                },
+                "wednesday" : {
+                    "open":"8:00 am",
+                    "close":"5:00 pm"
+                },
+                "thursday" : {
+                    "open":"8:00 am",
+                    "close":"5:00 pm"
+                },
+                "friday" : {
+                    "open":"10:00 am",
+                    "close":"2:00 pm"
+                },
+                "saturday" : {
+                    "open":"closed",
+                    "close":"closed"
+                }
             }
         }
     }
