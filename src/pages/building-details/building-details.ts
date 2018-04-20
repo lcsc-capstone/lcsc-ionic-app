@@ -9,7 +9,7 @@ export class BuildingDetailsPage {
 
   building: any;
   sundayClosed: boolean = false;
-  saturdayClose: boolean = false;
+  saturdayClosed: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams){
     this.building = this.navParams.get('data');
