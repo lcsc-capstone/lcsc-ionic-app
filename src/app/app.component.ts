@@ -11,6 +11,7 @@ import { RadioPage } from '../pages/radio/radio';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+import { BuildingHoursPage } from '../pages/building-hours/building-hours';
 
 import { UserStateProvider, UserState } from '../providers/user-state/user-state';
 import { CredentialsProvider } from '../providers/credentials/credentials';
@@ -82,6 +83,11 @@ export class MyApp {
   goToCalendar(params){
     if( !params) params = {};
     this.navCtrl.push(CalendarPage);
+  }
+  
+  goToBuildingHours(params){
+	  if( !params) params = {};
+	  this.navCtrl.setRoot(BuildingHoursPage);
   }
 
   openBrowser(link) {
