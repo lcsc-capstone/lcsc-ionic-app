@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "lcblue">
     <button ion-button menuToggle>
-      <ion-icon name="menu" color = "light"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
       Tutoring
@@ -18,7 +18,7 @@
     
 <p style="color:#000000;">
 
-	<h2>Step 1:</h2>
+	Select by
 	<ion-list radio-group>
 	  <ion-item>
 	    <ion-label>Tutors</ion-label>
@@ -30,7 +30,6 @@
 	  </ion-item>
 	 </ion-list>
       <!--drop down box generated from school schedule or the schools class list-->
-    <h2>Step 2:</h2>
       <ion-list *ngIf="selection==='Class'">
         <ion-item>
 		<ion-label>Select Class</ion-label>
