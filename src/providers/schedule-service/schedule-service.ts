@@ -1,6 +1,7 @@
 import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-native/in-app-browser';
 import { Injectable } from '@angular/core';
 import { CredentialsProvider } from '../credentials/credentials';
+import { UserStateProvider, UserState } from '../user-state/user-state';
 import { LoadingController } from 'ionic-angular';
 
 /*
@@ -26,7 +27,8 @@ export class ScheduleServiceProvider {
 
   constructor(private credentialsProvider : CredentialsProvider,
               private inAppBrowser: InAppBrowser,
-              private loadingController : LoadingController) {
+              private loadingController : LoadingController,
+              private userStateProvider : UserStateProvider) {
   }
 
   async getClassScheduleDataOnLoader(handler : (data : any) => any) : Promise<any> {
@@ -51,6 +53,11 @@ export class ScheduleServiceProvider {
 
     if(this.hasCacheData) {
       handler(this.courses);
+      return;
+    }
+
+    if(this.userStateProvider.getUserState() == UserState.Guest) {
+      handler([]);
       return;
     }
 

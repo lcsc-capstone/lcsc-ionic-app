@@ -1,7 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="lcblue">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" color="light"></ion-icon>
+
     </button>
     <ion-title>
       Tutoring
@@ -9,51 +10,48 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding id="page7">
-<!-- Start page for selecting class you need a tutor for or a specific tutor -->
-  <h1 id="tutoring-heading11" style="color:#000000;">
-    Tutoring
-  </h1>
+  <!-- Start page for selecting class you need a tutor for or a specific tutor -->
+
   <div id="tutoring-markdown1" class="show-list-numbers-and-dots">
-    <form #f="ngForm"(ngSubmit)="Submit(f)">
-    
-<p style="color:#000000;">
+    <form #f="ngForm" (ngSubmit)="Submit(f)">
+      
+        <h2>Step 1:</h2>
+        <ion-list radio-group>
+          <ion-item>
+            <ion-label>Tutors</ion-label>
+            <ion-radio value="Tutor" (ionSelect)="selection='Tutor'" checked></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Classes</ion-label>
+            <ion-radio value="Class" (ionSelect)="selection='Class'"></ion-radio>
+          </ion-item>
+        </ion-list>
+        <!--drop down box generated from school schedule or the schools class list-->
+        <h2>Step 2:</h2>
+        <ion-list *ngIf="selection==='Class'">
+          <ion-item>
+            <ion-label>Select Class</ion-label>
+            <ion-select name="class" [(ngModel)]="classKey">
+              <ion-option *ngFor="let class of ClassList;" [value]="category">{{class.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <!--drop down box generated from tutors list-->
+        <ion-list *ngIf="selection==='Tutor'">
+          <ion-item>
+            <ion-label>Select Tutor</ion-label>
+            <ion-select name="tutor" [(ngModel)]="tutorKey">
+              <ion-option *ngFor="let tutor of TutorList;" [value]="name">{{tutor.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
 
-	Select by
-	<ion-list radio-group>
-	  <ion-item>
-	    <ion-label>Tutors</ion-label>
-	    <ion-radio value="Tutor" (ionSelect)="selection='Tutor'" checked></ion-radio>
-	  </ion-item>
-	  <ion-item>
-	    <ion-label>Classes</ion-label>
-	    <ion-radio value="Class" (ionSelect)="selection='Class'"></ion-radio>
-	  </ion-item>
-	 </ion-list>
-      <!--drop down box generated from school schedule or the schools class list-->
-      <ion-list *ngIf="selection==='Class'">
-        <ion-item>
-		<ion-label>Select Class</ion-label>
-	    	<ion-select name = "class" [(ngModel)]="classKey">
-		  <ion-option *ngFor="let class of ClassList;"
-		          [value]="category">{{class.name}}</ion-option>
-	   	</ion-select>
-	</ion-item>
-      </ion-list>
-      <!--drop down box generated from tutors list-->
-      <ion-list *ngIf="selection==='Tutor'">
-        <ion-item>
-		<ion-label>Select Tutor</ion-label>
-	    	<ion-select name = "tutor" [(ngModel)]="tutorKey">
-		  <ion-option *ngFor="let tutor of TutorList;"
-		  [value]="name">{{tutor.name}}</ion-option>
-	   	</ion-select>
-	</ion-item>
-      </ion-list>
+        <button ion-button type="submit">Submit</button>
+        <!--Takes you to tutorTimes.html or tutors.html-->
 
-      <button ion-button type="submit">Submit</button> <!--Takes you to tutorTimes.html or tutors.html-->
-
-      <br><br><b>Note: * denotes online tutor</b>
-   </p>
+        <p>
+          <b>Note: * denotes online tutor</b>
+        </p>
     </form>
   </div>
 
@@ -63,12 +61,12 @@
     </h1>
 
     <ion-list>
-<ion-item *ngFor="let slot of Time;"
-		  >{{slot}}</ion-item>
+      <ion-item *ngFor="let slot of Time;">{{slot}}</ion-item>
 
     </ion-list>
 
-    <button ion-button full *ngIf="isOnline">Book Online Session</button> <!--Could Link to tutorsClass.html, but is linked to tutoring.ts now -->
+    <button ion-button full *ngIf="isOnline">Book Online Session</button>
+    <!--Could Link to tutorsClass.html, but is linked to tutoring.ts now -->
 
   </div>
 
