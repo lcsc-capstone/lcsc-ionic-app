@@ -26,13 +26,13 @@
 				<input [(ngModel)]="loginPassword" type="password" name="password" placeholder="Password"><br>
 			</div>
 
-			<button id="login" (tap)='storeCredentials()'>Login</button>
+			<button id="login" (click)='storeCredentials()'>Login</button>
 
 		</form>
 
 		<div id="guest">
 			<p>Don't have an account?</p>
-			<a (tap)="goToHomePage()">View as Guest</a>
+			<a (click)="goToHomePage()">View as Guest</a>
 		</div>
 	</div>
 
