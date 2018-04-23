@@ -14,10 +14,10 @@ import { AlertController } from 'ionic-angular';
 	template: `
 	<ion-list>
 	<ion-list-header>Ionic</ion-list-header>
-	<button ion-item (tap)="close()">Learn Ionic</button>
-	<button ion-item (tap)="close()">Documentation</button>
-	<button ion-item (tap)="close()">Showcase</button>
-	<button ion-item (tap)="close()">GitHub Repo</button>
+	<button ion-item (click)="close()">Learn Ionic</button>
+	<button ion-item (click)="close()">Documentation</button>
+	<button ion-item (click)="close()">Showcase</button>
+	<button ion-item (click)="close()">GitHub Repo</button>
 	</ion-list>
 	`
 })
