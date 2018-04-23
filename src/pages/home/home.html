@@ -1,18 +1,12 @@
 <ion-header>
-	<ion-toolbar color="lcblue">
-		<button ion-button menuToggle>
+	<ion-toolbar color="lcblue"> <button ion-button menuToggle>
 			<ion-icon name="menu" color="light"></ion-icon>
 		</button>
-		<ion-title>
-			<img class="interlock-Img" src="assets/img/interlocking-lc-white.png">
-		</ion-title>
+		<ion-title> <img class="interlock-Img" src="assets/img/interlocking-lc-white.png"> </ion-title>
 	</ion-toolbar>
 </ion-header>
-<ion-content id="page1" no-bounce>
-
-  <img src="assets/img/school-banner.jpg" id="bg-img" />
+<ion-content id="page1" no-bounce> <img src="assets/img/school-banner.jpg" id="bg-img" />
 	<!-- <img src="assets/img/banner.png" class="banner" /> -->
-
 	<!-- Schedule Start-->
 	<div *ngIf="isCredentialed() && hasScheduleDataForToday(); else noClasses">
 		<div id="home-schedule">
@@ -20,84 +14,59 @@
 			<ion-list id="schedule_list">
 				<ion-item *ngFor="let item of scheduleItems">
 					<h1 id="class-name-header"> {{item.title}} </h1>
-					<div id="right">
-						{{item.building}} : {{item.room}}<br>
-						{{item.startTime}} - {{item.endTime}}<br>
-					</div>
+					<div id="right"> {{item.building}} : {{item.room}}<br> {{item.startTime}} - {{item.endTime}}<br> </div>
 				</ion-item>
 			</ion-list>
-		</div>
-		<button ion-button clear class="c-more-link" (click)="goToClassSchedule()">
+		</div> <button ion-button clear class="c-more-link" (click)="goToClassSchedule()">
 			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
-		</button>
-	</div>
+		</button> </div>
 	<ng-template #noClasses>
-		<h1 id="no-classes-header" *ngIf="isCredentialed() && scheduleCached()">You have no classes today</h1>
-		<button ion-button clear class="c-more-link" (click)="goToClassSchedule()" *ngIf="isCredentialed() && scheduleCached()">
+		<h1 id="no-classes-header" *ngIf="isCredentialed() && scheduleCached()">You have no classes today</h1> <button ion-button clear class="c-more-link" (click)="goToClassSchedule()" *ngIf="isCredentialed() && scheduleCached()">
 			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
-		</button>
-	</ng-template>
-
+		</button> </ng-template>
 	<!-- Academic Calendar Start-->
 	<div id="home-academic">
 		<h1>
 			Academic Calendar
 		</h1>
-		<div>{{ debug }}</div>
 		<div *ngIf="(AcademicArr[0] | json) == '{}'">
 			<ion-spinner name="crescent"></ion-spinner>
 		</div>
 		<div *ngIf="(AcademicArr[0] | json) != '{}'">
 			<ion-list id="home-list5">
 				<div class="accordian" (click)="toggleGroup(0)" [ngClass]="{active: isGroupShown(0)}">
-					<h2 class="titleControl"> {{ AcademicArr[0].Summary }} </h2>
-				</div>
+					<h2 class="titleControl"> {{ AcademicArr[0].Summary }} </h2> </div>
 				<div *ngIf="isGroupShown(0)">
 					<ion-item no-lines text-wrap id="home-list-item27">
-						<div class="addToCalendar" (click)="showConfirmAlert(AcademicArr[0])">
-							<img class="calendarIcon" src="assets/img/calendar.png"/>
-							{{ AcademicArr[0].StartDate | date:'EEEE, MMMM d  h:mma' }}
-						</div>
+						<div class="addToCalendar" (click)="showConfirmAlert(AcademicArr[0])"> <img class="calendarIcon" src="assets/img/calendar.png" /> {{ AcademicArr[0].StartDate | date:'EEEE, MMMM d h:mma' }} </div>
 						<!-- <div class="accordian-firstitem"><p [innerHTML]="AcademicArr[0].Description"></p></div><br />  Un-needed right now but keep for future -->
 						<!-- <div style="color:#000;font-size:11pt">{{AcademicArr[0].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;  -->
 					</ion-item>
 				</div>
 				<hr>
 				<div class="accordian" (click)="toggleGroup(1)" [ngClass]="{active: isGroupShown(1)}">
-					<h2 class="titleControl">{{ AcademicArr[1].Summary }} </h2>
-				</div>
+					<h2 class="titleControl">{{ AcademicArr[1].Summary }} </h2> </div>
 				<div *ngIf="isGroupShown(1)">
 					<ion-item no-lines text-wrap id="home-list-item27">
-						<div class="addToCalendar" (click)="showConfirmAlert(AcademicArr[1])">
-							<img class="calendarIcon" src="assets/img/calendar.png"/>
-							{{ AcademicArr[1].StartDate | date:'EEEE, MMMM d  h:mma' }}
-						</div>
+						<div class="addToCalendar" (click)="showConfirmAlert(AcademicArr[1])"> <img class="calendarIcon" src="assets/img/calendar.png" /> {{ AcademicArr[1].StartDate | date:'EEEE, MMMM d h:mma' }} </div>
 						<!-- <div class="accordian-firstitem"><p [innerHTML]="AcademicArr[1].Description"></p></div><br /> Un-needed right now but keep for future -->
 						<!-- <div style="color:#000;font-size:11pt">{{AcademicArr[1].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;  -->
 					</ion-item>
 				</div>
 				<hr>
 				<div class="accordian" (click)="toggleGroup(2)" [ngClass]="{active: isGroupShown(2)}">
-					<h2 class="titleControl">{{ AcademicArr[2].Summary }} </h2>
-				</div>
+					<h2 class="titleControl">{{ AcademicArr[2].Summary }} </h2> </div>
 				<div *ngIf="isGroupShown(2)">
 					<ion-item text-wrap id="home-list-item27">
-						<div class="addToCalendar" (click)="showConfirmAlert(AcademicArr[2])">
-							<img class="calendarIcon" src="assets/img/calendar.png"/>
-							{{ AcademicArr[2].StartDate | date:'EEEE, MMMM d  h:mma' }}
-						</div>
+						<div class="addToCalendar" (click)="showConfirmAlert(AcademicArr[2])"> <img class="calendarIcon" src="assets/img/calendar.png" /> {{ AcademicArr[2].StartDate | date:'EEEE, MMMM d h:mma' }} </div>
 						<!-- <div class="accordian-firstitem"><p [innerHTML]="AcademicArr[2].Description"></p></div><br /> Un-needed right now but keep for future -->
 						<!-- <div style="color:#000;font-size:11pt">{{AcademicArr[2].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;  -->
 					</ion-item>
 				</div>
 			</ion-list>
-		</div>
-		<br>
-		<button ion-button clear class="c-more-link" (click)="openBrowser('http://www.lcsc.edu/registrar/academic-calendar/')">
+		</div> <br> <button ion-button clear class="c-more-link" (click)="openBrowser('http://www.lcsc.edu/registrar/academic-calendar/')">
 			more important dates  <ion-icon name="play" class="iconRed"></ion-icon>
-		</button>
-	</div>
-
+		</button> </div>
 	<!-- Calendar Start-->
 	<div id="home-calendar">
 		<h1>
@@ -109,54 +78,41 @@
 		<div *ngIf="(Events[0] | json) != ('{}' | json)">
 			<ion-list id="home-list5">
 				<div class="accordian" (click)="toggleGroup(4)" [ngClass]="{active: isGroupShown(4)}">
-					<h2 class="titleControl"> {{ Events[0].Summary }} </h2>
-				</div>
+					<h2 class="titleControl"> {{ Events[0].Summary }} </h2> </div>
 				<div *ngIf="isGroupShown(4)">
 					<ion-item no-lines text-wrap id="home-list-item27">
-						<div class="addToCalendar" (click)="showConfirmAlert(Events[0])">
-							<img class="calendarIcon" src="assets/img/calendar.png"/>
-							{{ Events[0].StartDate | date:'EEEE, MMMM d  h:mma' }}
-						</div>
-						<div class="accordian-firstitem"><p [innerHTML]="Events[0].Description"></p></div><br />
-						<div style="color:#000;font-size:11pt">{{Events[0].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
-					</ion-item>
+						<div class="addToCalendar" (click)="showConfirmAlert(Events[0])"> <img class="calendarIcon" src="assets/img/calendar.png" /> {{ Events[0].StartDate | date:'EEEE, MMMM d h:mma' }} </div>
+						<div class="accordian-firstitem">
+							<p [innerHTML]="Events[0].Description"></p>
+						</div><br />
+						<div style="color:#000;font-size:11pt">{{Events[0].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp; </ion-item>
 				</div>
 				<hr>
 				<div class="accordian" (click)="toggleGroup(5)" [ngClass]="{active: isGroupShown(5)}">
-					<h2 class="titleControl"> {{ Events[1].Summary }} </h2>
-				</div>
+					<h2 class="titleControl"> {{ Events[1].Summary }} </h2> </div>
 				<div *ngIf="isGroupShown(5)">
 					<ion-item no-lines text-wrap id="home-list-item27">
-						<div class="addToCalendar" (click)="showConfirmAlert(Events[1])">
-							<img class="calendarIcon" src="assets/img/calendar.png"/>
-							{{ Events[1].StartDate | date:'EEEE, MMMM d  h:mma' }}
-						</div>
-						<div class="accordian-firstitem"><p [innerHTML]="Events[1].Description"></p></div><br />
-						<div style="color:#000;font-size:11pt">{{Events[1].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
-					</ion-item>
+						<div class="addToCalendar" (click)="showConfirmAlert(Events[1])"> <img class="calendarIcon" src="assets/img/calendar.png" /> {{ Events[1].StartDate | date:'EEEE, MMMM d h:mma' }} </div>
+						<div class="accordian-firstitem">
+							<p [innerHTML]="Events[1].Description"></p>
+						</div><br />
+						<div style="color:#000;font-size:11pt">{{Events[1].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp; </ion-item>
 				</div>
 				<hr>
 				<div class="accordian" (click)="toggleGroup(6)" [ngClass]="{active: isGroupShown(6)}">
-					<h2 class="titleControl"> {{ Events[2].Summary }} </h2>
-				</div>
+					<h2 class="titleControl"> {{ Events[2].Summary }} </h2> </div>
 				<div *ngIf="isGroupShown(6)">
 					<ion-item text-wrap id="home-list-item27">
-						<div class="addToCalendar" (click)="showConfirmAlert(Events[1])">
-							<img class="calendarIcon" src="assets/img/calendar.png"/>
-							{{ Events[2].StartDate | date:'EEEE, MMMM d  h:mma' }}
-						</div>
-						<div class="accordian-firstitem"><p [innerHTML]="Events[2].Description"></p></div><br />
-						<div style="color:#000;font-size:11pt">{{Events[2].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp;
-					</ion-item>
+						<div class="addToCalendar" (click)="showConfirmAlert(Events[1])"> <img class="calendarIcon" src="assets/img/calendar.png" /> {{ Events[2].StartDate | date:'EEEE, MMMM d h:mma' }} </div>
+						<div class="accordian-firstitem">
+							<p [innerHTML]="Events[2].Description"></p>
+						</div><br />
+						<div style="color:#000;font-size:11pt">{{Events[2].Location}}</div><br />&emsp;&emsp;&emsp;&emsp;&emsp; </ion-item>
 				</div>
 			</ion-list>
-		</div>
-		<br>
-		<button ion-button clear class="c-more-link" (click)="goToCalendar()">
+		</div> <br> <button ion-button clear class="c-more-link" (click)="goToCalendar()">
 			more upcoming events  <ion-icon name="play" class="iconRed"></ion-icon>
-		</button>
-	</div>
-
+		</button> </div>
 	<!-- News Start-->
 	<div id="home-news">
 		<h1>
@@ -167,42 +123,35 @@
 		</div>
 		<div *ngIf="(news['1'] | json) != '{}'">
 			<ion-list id="home-list5">
-				<div *ngIf = "news != null; else noNews"> <!-- Added for simulator testing avoiding errors -->
+				<div *ngIf="news != null; else noNews">
+					<!-- Added for simulator testing avoiding errors -->
 					<div (click)=openNews(1)>
 						<h2 class="titleControl"> {{ news['1']['title'] }}<br>
 							<i>{{ news['1']['date'] }}</i>
-						</h2>
-					</div >
+						</h2> </div>
 					<hr>
 					<div (click)=openNews(2)>
 						<h2 class="titleControl"> {{ news['2']['title'] }}<br>
 							<i>{{ news['2']['date'] }}</i>
-						</h2>
-					</div>
+						</h2> </div>
 					<hr>
 					<div (click)=openNews(3)>
 						<h2 class="titleControl"> {{ news['3']['title'] }}<br>
 							<i>{{ news['3']['date'] }}</i>
-						</h2>
-					</div>
+						</h2> </div>
 				</div>
 				<ng-template #noNews>
 					<div>
-						<h2></h2>
-					</div>
+						<h2></h2> </div>
 					<hr>
 					<div>
-						<h2></h2>
-					</div>
+						<h2></h2> </div>
 					<hr>
 					<div>
-						<h2></h2>
-					</div>
+						<h2></h2> </div>
 				</ng-template>
 			</ion-list>
-		</div>
-		<button ion-button clear class="c-more-link" (click)="goToNews()">
+		</div> <button ion-button clear class="c-more-link" (click)="goToNews()">
 			more news headlines  <ion-icon name="play" class="iconRed"></ion-icon>
-		</button>
-	</div>
+		</button> </div>
 </ion-content>
