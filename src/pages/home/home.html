@@ -14,7 +14,7 @@
 	<!-- <img src="assets/img/banner.png" class="banner" /> -->
 
 	<!-- Schedule Start-->
-	<div *ngIf="isCredentialed() && hasScheduleDataForToday(); else noClasses">
+	<div *ngIf="isCredentialed() && hasScheduleDataForToday()">
 		<div id="home-schedule">
 			<h1 id="home-heading">Here's Today...</h1>
 			<ion-list id="schedule_list">
@@ -31,12 +31,13 @@
 			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
 		</button>
 	</div>
-	<ng-template #noClasses>
-		<h1 id="no-classes-header" *ngIf="isCredentialed() && scheduleCached()">You have no classes today</h1>
-		<button ion-button clear class="c-more-link" (tap)="goToClassSchedule()" *ngIf="isCredentialed() && scheduleCached()">
+
+	<div *ngIf="isCredentialed() && !hasScheduleDataForToday() && scheduleCached()">
+		<h1 id="no-classes-header" *ngIf="isCredentialed()">You have no classes today</h1>
+		<button ion-button clear class="c-more-link" (tap)="goToClassSchedule()" *ngIf="isCredentialed()">
 			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
 		</button>
-	</ng-template>
+	</div>
 
 	<!-- Academic Calendar Start-->
 	<div id="home-academic">
