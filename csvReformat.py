@@ -124,7 +124,7 @@ for tutor in tutors[2:]:
 			classes[c]=classData(c);
 		classes[c].tutors.append(tutor.name)
 		for time in tutor.times:		
-			classes[c].times.append(time)
+			classes[c].times.append((time,tutor.name))
 	
 classesList=[]
 for c in classes:
@@ -145,6 +145,9 @@ for tutor in tutors:
 	#timeStretch
 	day=""
 	assemble+="\""+tutor.name+"\":["
+	if tutor.name=="":
+		assemble+=("],\n");
+		continue
 	for i in range(0,len(tutor.times)-1):
 		prepTime=tutor.times[i][1].split('-')
 		
@@ -187,7 +190,8 @@ for tutor in tutors:
 	assemble+=("],\n");
 
 	
-
+dayOrder=tempList[8][2:8]
+print dayOrder 
 for tutor in classesList:
 	
 	build=[]
@@ -197,8 +201,9 @@ for tutor in classesList:
 	#timeStretch
 	day=""
 	assemble+="\""+tutor.name+"\":["
+
 	for i in range(0,len(tutor.times)-1):
-		prepTime=tutor.times[i][1].split('-')
+		prepTime=tutor.times[i][0][1].split('-')
 		
 		if endChain:
 			
@@ -208,24 +213,24 @@ for tutor in classesList:
 			endChain=False
 		#print people[person][i][0],people[person][i+1][0],people[person][i][0]==people[person][i+1][0]
 		#print prepTime[1] , people[person][i+1][1],prepTime[1] in people[person][i+1][1]
-		if tutor.times[i][0]==tutor.times[i+1][0] and prepTime[1] in tutor.times[i+1][1]:
+		if tutor.times[i][0][0]==tutor.times[i+1][0][0] and prepTime[1] in tutor.times[i+1][0][1]:
 			#print "merging time "+str(people[person][i])+" with "+str(people[person][i+1])
 			#print startTime+"-"+ people[person][i+1][1].split("-")[1]
-			endTime=tutor.times[i+1][1].split("-")[1]
+			endTime=tutor.times[i+1][0][1].split("-")[1]
 				
 			pass
 		else:
 			
 			endChain=True
-			if not endTime in tutor.times[i][1]:
+			if not endTime in tutor.times[i][0][1]:
 				
 				print tutor.times[i]
-		day=tutor.times[i][0]
+		day=tutor.times[i][0][0]
 		if endChain:
-			temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"\","
+			temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"      Tutor: "+tutor.times[i][1]+"\","
 			if len(temp)>10:
 				assemble+=(temp)
-	temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"\","	
+	temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"      Tutor: "+tutor.times[i][1]+"\","	
 	if len(temp)>10:
 		assemble+=(temp)	
   	
