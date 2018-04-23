@@ -43,6 +43,7 @@
 		<h1>
 			Academic Calendar
 		</h1>
+		<div>{{ debug }}</div>
 		<div *ngIf="(AcademicArr[0] | json) == '{}'">
 			<ion-spinner name="crescent"></ion-spinner>
 		</div>
@@ -53,7 +54,7 @@
 				</div>
 				<div *ngIf="isGroupShown(0)">
 					<ion-item no-lines text-wrap id="home-list-item27">
-						<div class="addToCalendar" (tap)="showConfirmAlert(Events[0])">
+						<div class="addToCalendar" (tap)="showConfirmAlert(AcademicArr[0])">
 							<img class="calendarIcon" src="assets/img/calendar.png"/>
 							{{ AcademicArr[0].StartDate | date:'EEEE, MMMM d  h:mma' }}
 						</div>
@@ -67,7 +68,7 @@
 				</div>
 				<div *ngIf="isGroupShown(1)">
 					<ion-item no-lines text-wrap id="home-list-item27">
-						<div class="addToCalendar" (tap)="showConfirmAlert(Events[0])">
+						<div class="addToCalendar" (tap)="showConfirmAlert(AcademicArr[1])">
 							<img class="calendarIcon" src="assets/img/calendar.png"/>
 							{{ AcademicArr[1].StartDate | date:'EEEE, MMMM d  h:mma' }}
 						</div>
@@ -81,7 +82,7 @@
 				</div>
 				<div *ngIf="isGroupShown(2)">
 					<ion-item text-wrap id="home-list-item27">
-						<div class="addToCalendar" (tap)="showConfirmAlert(Events[0])">
+						<div class="addToCalendar" (tap)="showConfirmAlert(AcademicArr[2])">
 							<img class="calendarIcon" src="assets/img/calendar.png"/>
 							{{ AcademicArr[2].StartDate | date:'EEEE, MMMM d  h:mma' }}
 						</div>

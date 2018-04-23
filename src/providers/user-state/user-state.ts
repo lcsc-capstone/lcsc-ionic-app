@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -10,22 +9,22 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserStateProvider {
 
-  user_state : UserState;
+	user_state: UserState;
 
-  constructor() {
-  }
+	constructor() {
+	}
 
-  getUserState() : UserState {
-    return this.user_state;
-  }
+	getUserState(): UserState {
+		return this.user_state;
+	}
 
-  updateUserState(userState : UserState) {
-    this.user_state = userState;
-  }
+	updateUserState(userState: UserState) {
+		this.user_state = userState;
+	}
 
 }
 
 export enum UserState {
-  Guest,
-  Credentialed,
+	Guest,
+	Credentialed,
 }
