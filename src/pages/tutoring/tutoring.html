@@ -31,7 +31,7 @@
         <ion-list *ngIf="selection==='Class'">
           <ion-item>
             <ion-label>Select Class</ion-label>
-            <ion-select name="class" [(ngModel)]="classKey">
+            <ion-select name="class" [(ngModel)]="classKey" (ionChange)="Submit(f)">
               <ion-option *ngFor="let class of ClassList;" [value]="category">{{class.name}}</ion-option>
             </ion-select>
           </ion-item>
@@ -40,13 +40,13 @@
         <ion-list *ngIf="selection==='Tutor'">
           <ion-item>
             <ion-label>Select Tutor</ion-label>
-            <ion-select name="tutor" [(ngModel)]="tutorKey">
+            <ion-select name="tutor" [(ngModel)]="tutorKey" (ionChange)="Submit(f)">
               <ion-option *ngFor="let tutor of TutorList;" [value]="name">{{tutor.name}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-list>
 
-        <button ion-button type="submit">Submit</button>
+        <!-- <button ion-button type="submit">Submit</button> -->
         <!--Takes you to tutorTimes.html or tutors.html-->
 
         <p>
