@@ -99,6 +99,8 @@ export class ScheduleServiceProvider {
 
 			let meetings = this.courseDataDayLookup[day];
 
+			meetings = (meetings == null) ? [] : meetings;
+
 			handler(meetings);
 		});
 	}
@@ -166,7 +168,8 @@ export class ScheduleServiceProvider {
 					days: days,
 					title: course.Title,
 					name: course.Name,
-					daySecond: daySecond
+					daySecond: daySecond,
+					daysStr : this._computeDaysStr(days),
 				};
 
 				meetings.push(meeting_obj);
@@ -180,11 +183,43 @@ export class ScheduleServiceProvider {
 				title: course.Title,
 				name: course.CourseName,
 				meetings: meetings,
+				faculty: course.Section.Faculty,
+				description : course.Description,
 			};
 
 			result.push(item);
 		}
 
+		return result;
+	}
+
+	_computeDaysStr(days) {
+		let result = "";
+		for(var day of days) {
+			if(day == 0) {
+				result += "Sunday,";
+			}
+			else if(day == 1) {
+				result += "Monday,";
+			}
+			else if(day == 2) {
+				result += "Tuesday,";
+			}
+			else if(day == 3) {
+			  result += "Wednesday,";
+			}
+			else if(day == 4) {
+				result += "Thursday,";
+			}
+			else if(day == 5) {
+			 result += "Friday,";
+			}
+			else if(day == 6) {
+			  result += "Saturday,";
+			}
+		}
+
+		result = (result.endsWith(",")) ? result.substring(0, result.length - 1) : result;
 		return result;
 	}
 

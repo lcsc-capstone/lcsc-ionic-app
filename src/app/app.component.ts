@@ -87,7 +87,7 @@ export class MyApp {
     if( !params) params = {};
     this.navCtrl.push(CalendarPage);
   }
-  
+
   goToBuildingHours(params){
 	  if( !params) params = {};
 	  this.navCtrl.setRoot(BuildingHoursPage);
@@ -99,20 +99,20 @@ export class MyApp {
 
   checkFacebook(){
   let app;
- 
+
     if (this.platform.is('ios')) {
       app = 'fb://';
     } else if (this.platform.is('android')) {
       app = 'com.facebook.katana';
     }
- 
+
     this.appAvailability.check(app)
       .then(
       (yes: boolean) => this.hasFacebook='Available',
       (no: boolean) => this.hasFacebook='Not Available'
       );
   }
-  
+
   openFacebook(){
 	this.checkFacebook();
 	if(this.hasFacebook=='Available'){
@@ -121,7 +121,7 @@ export class MyApp {
 	this.inAppBrowser.create("https://www.facebook.com/LewisClarkState/",'_system','location=no');
 	}
   }
-  
+
   isCredentialed() : boolean {
     return this.userState.getUserState() == UserState.Credentialed;
   }
@@ -133,6 +133,6 @@ export class MyApp {
   logout() {
     this.credentialsProvider.clearWarriorWebCredentials();
     this.scheduleServiceProvider.clearCache();
-    this.goToLogin({});
+    this.goToLoginNoReuse();
   }
 }

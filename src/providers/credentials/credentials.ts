@@ -29,6 +29,7 @@ export class CredentialsProvider {
 
   async clearWarriorWebCredentials() {
     let storage = await this.secureStorage.create(this.credentials_warriorweb);
+    storage.clear();
     await storage.remove(this.username_warriorweb);
     await storage.remove(this.password_warriorweb);
   }
