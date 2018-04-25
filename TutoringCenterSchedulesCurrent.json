@@ -1,24 +1,218 @@
 {
-"times":{"Aaron":["Sample Time","Sample Time"]},"tutors":[{"name":"Aaron", "classes":"MATH 015, MATH 025, MATH 108, MATH 147/147A/147B, MATH 170, MATH 300, CHEM 111, PHYS 211"}
-,{"name":"Abby*", "classes":"MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, CHEM 102, CHEM 105, CHEM 111, CHEM 112, CHEM 305, CHEM 306, CHEM 325, CHEM 371, CHEM 372, CHEM 463, CHEM 481, BIOL 175, BIOL 181, BIOL 182, BIOL 252, BIOL 253, BIOL 320, BIOL 362, BIOL 420, NS 150, PHYS 111, PHYS 112"}
-,{"name":"Alyissa", "classes":"MATH 130, MATH 170, MATH 186, CS 108, CS 111, CS 213, CS 226, CS 228, CS 250, CS 360, CS 430, CS 445, CITPT 111, PSYC 300 / ECON 300 / SS 300"}
-,{"name":"Brooke", "classes":"MATH 015, MATH 023, MATH 025, MATH 108, MATH 147A/147B/147"}
-,{"name":"Brycen", "classes":"MATH 015, MATH 025, MATH 157, MATH 257"}
-,{"name":"Chase", "classes":"MATH 023, MATH 025, MATH 108, MATH 123, MATH 147"}
-,{"name":"Damien*", "classes":"MATH 015, MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, MATH 175, CHEM 102, CHEM 105, CHEM 111, CHEM 112, CHEM 325, CHEM 371, CHEM 372, CHEM 463, BIOL 181, NS 150, PHYS 111, CS 101"}
-,{"name":"Gates*", "classes":"MATH 025, MATH 108, MATH 147A/147B/147, MATH 153, MATH 157, MATH170, MATH 257, CHEM 111, PHYS 111, PHYS 112, PSYC 300 / ECON 300 / SS 300, GEOL 100, GEOL 120, GEOL 202, GEOL 313, GEOL 314"}
-,{"name":"Hali", "classes":"MATH 015, MATH 025, MATH 108, MATH 157, MATH 257"}
-,{"name":"Jason", "classes":"MATH 015, MATH 023, MATH 025, MATH 108, MATH 123, MATH 130, MATH 147, MATH 157"}
-,{"name":"Jesse", "classes":"MATH 025, MATH 108, MATH 147A/147B/147, MATH 175, MATH 300, CS 101, CS 108, CS 111, CS 213, CS 226, CS 250, CS 312, CS 430, CS 435, CS 475"}
-,{"name":"Jiahong", "classes":"MATH 015, MATH 025, MATH 108, MATH 130, MATH 147A/147B/147, MATH 170, MATH 175, MATH 275, MATH 285, MATH 345, CHEM 105, CHEM 111, CHEM 112, CHEM 305, CHEM 306, CHEM 371, CHEM 372, CHEM 454, CHEM 463, PHYS 111, PHYS 112, PHYS 211, PHYS 212"}
-,{"name":"Kate", "classes":"MATH 015, MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, MATH 175, MATH 275, MATH 285, MATH 300, PHYS 211"}
-,{"name":"Kea", "classes":"MATH 157, MATH 257"}
-,{"name":"Laithan", "classes":"MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, CHEM 105, PHYS 111, PHYS 112, PHYS 202, GEOL 100, GEOL 120, GEOL 202, GEOL 313"}
-,{"name":"Liz", "classes":"MATH 015, MATH 023, MATH 025, MATH 108, MATH 123, MATH 147A/147B/147, MATH 170"}
-,{"name":"Madeleine H.*", "classes":"MATH 015, MATH 023, MATH 025, MATH 108, MATH 123, MATH 130, MATH 153"}
-,{"name":"Madeline V.", "classes":"MATH 015, MATH 025, MATH 108, MATH 147/147A/147B, MATH 170, MATH 175, MATH 186, MATH 340, MATH 345, CHEM 105, CHEM 111, CHEM 112, CHEM 305, CHEM 306, CHEM 325, CHEM 371, CHEM 372, CHEM 463, NS 150, PHYS 111, PHYS 112"}
-,{"name":"Rachel", "classes":"MATH 025, MATH 108, MATH 147, MATH 170, MATH 175, MATH 275, MATH 345, PHYS 211, PHYS 212, ENGR 105, ENGR 120, ENGR 210, ENGR 220, ENGR 330"}
-,{"name":"Rebecca", "classes":"MATH 015, MATH 025, MATH 157, MATH 257"}
-,{"name":"Savannah", "classes":"MATH 015, MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, MATH 175, MATH 275, MATH 300, MATH 320, MATH 460, CHEM 111, CHEM 112, PHYS 211"}
-],
-"classes":[{"name":"BIOL 175"},{"name":"BIOL 181"},{"name":"BIOL 182"},{"name":"BIOL 252"},{"name":"BIOL 253"},{"name":"BIOL 320"},{"name":"BIOL 362"},{"name":"BIOL 420"},{"name":"CHEM 102"},{"name":"CHEM 105"},{"name":"CHEM 111"},{"name":"CHEM 112"},{"name":"CHEM 305"},{"name":"CHEM 306"},{"name":"CHEM 325"},{"name":"CHEM 371"},{"name":"CHEM 372"},{"name":"CHEM 454"},{"name":"CHEM 463"},{"name":"CHEM 481"},{"name":"CITPT 111"},{"name":"CS 101"},{"name":"CS 108"},{"name":"CS 111"},{"name":"CS 213"},{"name":"CS 226"},{"name":"CS 228"},{"name":"CS 250"},{"name":"CS 312"},{"name":"CS 360"},{"name":"CS 430"},{"name":"CS 435"},{"name":"CS 445"},{"name":"CS 475"},{"name":"ENGR 105"},{"name":"ENGR 120"},{"name":"ENGR 210"},{"name":"ENGR 220"},{"name":"ENGR 330"},{"name":"GEOL 100"},{"name":"GEOL 120"},{"name":"GEOL 202"},{"name":"GEOL 313"},{"name":"GEOL 314"},{"name":"MATH 015"},{"name":"MATH 023"},{"name":"MATH 025"},{"name":"MATH 108"},{"name":"MATH 123"},{"name":"MATH 130"},{"name":"MATH 147"},{"name":"MATH 147/147A/147B"},{"name":"MATH 147A/147B/147"},{"name":"MATH 153"},{"name":"MATH 157"},{"name":"MATH 170"},{"name":"MATH 175"},{"name":"MATH 186"},{"name":"MATH 257"},{"name":"MATH 275"},{"name":"MATH 285"},{"name":"MATH 300"},{"name":"MATH 320"},{"name":"MATH 340"},{"name":"MATH 345"},{"name":"MATH 460"},{"name":"MATH170"},{"name":"NS 150"},{"name":"PHYS 111"},{"name":"PHYS 112"},{"name":"PHYS 202"},{"name":"PHYS 211"},{"name":"PHYS 212"},{"name":"PSYC 300 / ECON 300 / SS 300"}]}
+	"times": {
+		"Aaron": ["Sample Time", "Sample Time"]
+	},
+	"tutors": [{
+		"name": "Aaron",
+		"classes": "MATH 015, MATH 025, MATH 108, MATH 147/147A/147B, MATH 170, MATH 300, CHEM 111, PHYS 211"
+	}, {
+		"name": "Abby*",
+		"classes": "MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, CHEM 102, CHEM 105, CHEM 111, CHEM 112, CHEM 305, CHEM 306, CHEM 325, CHEM 371, CHEM 372, CHEM 463, CHEM 481, BIOL 175, BIOL 181, BIOL 182, BIOL 252, BIOL 253, BIOL 320, BIOL 362, BIOL 420, NS 150, PHYS 111, PHYS 112"
+	}, {
+		"name": "Alyissa",
+		"classes": "MATH 130, MATH 170, MATH 186, CS 108, CS 111, CS 213, CS 226, CS 228, CS 250, CS 360, CS 430, CS 445, CITPT 111, PSYC 300 / ECON 300 / SS 300"
+	}, {
+		"name": "Brooke",
+		"classes": "MATH 015, MATH 023, MATH 025, MATH 108, MATH 147A/147B/147"
+	}, {
+		"name": "Brycen",
+		"classes": "MATH 015, MATH 025, MATH 157, MATH 257"
+	}, {
+		"name": "Chase",
+		"classes": "MATH 023, MATH 025, MATH 108, MATH 123, MATH 147"
+	}, {
+		"name": "Damien*",
+		"classes": "MATH 015, MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, MATH 175, CHEM 102, CHEM 105, CHEM 111, CHEM 112, CHEM 325, CHEM 371, CHEM 372, CHEM 463, BIOL 181, NS 150, PHYS 111, CS 101"
+	}, {
+		"name": "Gates*",
+		"classes": "MATH 025, MATH 108, MATH 147A/147B/147, MATH 153, MATH 157, MATH170, MATH 257, CHEM 111, PHYS 111, PHYS 112, PSYC 300 / ECON 300 / SS 300, GEOL 100, GEOL 120, GEOL 202, GEOL 313, GEOL 314"
+	}, {
+		"name": "Hali",
+		"classes": "MATH 015, MATH 025, MATH 108, MATH 157, MATH 257"
+	}, {
+		"name": "Jason",
+		"classes": "MATH 015, MATH 023, MATH 025, MATH 108, MATH 123, MATH 130, MATH 147, MATH 157"
+	}, {
+		"name": "Jesse",
+		"classes": "MATH 025, MATH 108, MATH 147A/147B/147, MATH 175, MATH 300, CS 101, CS 108, CS 111, CS 213, CS 226, CS 250, CS 312, CS 430, CS 435, CS 475"
+	}, {
+		"name": "Jiahong",
+		"classes": "MATH 015, MATH 025, MATH 108, MATH 130, MATH 147A/147B/147, MATH 170, MATH 175, MATH 275, MATH 285, MATH 345, CHEM 105, CHEM 111, CHEM 112, CHEM 305, CHEM 306, CHEM 371, CHEM 372, CHEM 454, CHEM 463, PHYS 111, PHYS 112, PHYS 211, PHYS 212"
+	}, {
+		"name": "Kate",
+		"classes": "MATH 015, MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, MATH 175, MATH 275, MATH 285, MATH 300, PHYS 211"
+	}, {
+		"name": "Kea",
+		"classes": "MATH 157, MATH 257"
+	}, {
+		"name": "Laithan",
+		"classes": "MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, CHEM 105, PHYS 111, PHYS 112, PHYS 202, GEOL 100, GEOL 120, GEOL 202, GEOL 313"
+	}, {
+		"name": "Liz",
+		"classes": "MATH 015, MATH 023, MATH 025, MATH 108, MATH 123, MATH 147A/147B/147, MATH 170"
+	}, {
+		"name": "Madeleine H.*",
+		"classes": "MATH 015, MATH 023, MATH 025, MATH 108, MATH 123, MATH 130, MATH 153"
+	}, {
+		"name": "Madeline V.",
+		"classes": "MATH 015, MATH 025, MATH 108, MATH 147/147A/147B, MATH 170, MATH 175, MATH 186, MATH 340, MATH 345, CHEM 105, CHEM 111, CHEM 112, CHEM 305, CHEM 306, CHEM 325, CHEM 371, CHEM 372, CHEM 463, NS 150, PHYS 111, PHYS 112"
+	}, {
+		"name": "Rachel",
+		"classes": "MATH 025, MATH 108, MATH 147, MATH 170, MATH 175, MATH 275, MATH 345, PHYS 211, PHYS 212, ENGR 105, ENGR 120, ENGR 210, ENGR 220, ENGR 330"
+	}, {
+		"name": "Rebecca",
+		"classes": "MATH 015, MATH 025, MATH 157, MATH 257"
+	}, {
+		"name": "Savannah",
+		"classes": "MATH 015, MATH 025, MATH 108, MATH 147A/147B/147, MATH 170, MATH 175, MATH 275, MATH 300, MATH 320, MATH 460, CHEM 111, CHEM 112, PHYS 211"
+	}],
+	"classes": [{
+		"name": "BIOL 175"
+	}, {
+		"name": "BIOL 181"
+	}, {
+		"name": "BIOL 182"
+	}, {
+		"name": "BIOL 252"
+	}, {
+		"name": "BIOL 253"
+	}, {
+		"name": "BIOL 320"
+	}, {
+		"name": "BIOL 362"
+	}, {
+		"name": "BIOL 420"
+	}, {
+		"name": "CHEM 102"
+	}, {
+		"name": "CHEM 105"
+	}, {
+		"name": "CHEM 111"
+	}, {
+		"name": "CHEM 112"
+	}, {
+		"name": "CHEM 305"
+	}, {
+		"name": "CHEM 306"
+	}, {
+		"name": "CHEM 325"
+	}, {
+		"name": "CHEM 371"
+	}, {
+		"name": "CHEM 372"
+	}, {
+		"name": "CHEM 454"
+	}, {
+		"name": "CHEM 463"
+	}, {
+		"name": "CHEM 481"
+	}, {
+		"name": "CITPT 111"
+	}, {
+		"name": "CS 101"
+	}, {
+		"name": "CS 108"
+	}, {
+		"name": "CS 111"
+	}, {
+		"name": "CS 213"
+	}, {
+		"name": "CS 226"
+	}, {
+		"name": "CS 228"
+	}, {
+		"name": "CS 250"
+	}, {
+		"name": "CS 312"
+	}, {
+		"name": "CS 360"
+	}, {
+		"name": "CS 430"
+	}, {
+		"name": "CS 435"
+	}, {
+		"name": "CS 445"
+	}, {
+		"name": "CS 475"
+	}, {
+		"name": "ENGR 105"
+	}, {
+		"name": "ENGR 120"
+	}, {
+		"name": "ENGR 210"
+	}, {
+		"name": "ENGR 220"
+	}, {
+		"name": "ENGR 330"
+	}, {
+		"name": "GEOL 100"
+	}, {
+		"name": "GEOL 120"
+	}, {
+		"name": "GEOL 202"
+	}, {
+		"name": "GEOL 313"
+	}, {
+		"name": "GEOL 314"
+	}, {
+		"name": "MATH 015"
+	}, {
+		"name": "MATH 023"
+	}, {
+		"name": "MATH 025"
+	}, {
+		"name": "MATH 108"
+	}, {
+		"name": "MATH 123"
+	}, {
+		"name": "MATH 130"
+	}, {
+		"name": "MATH 147"
+	}, {
+		"name": "MATH 147/147A/147B"
+	}, {
+		"name": "MATH 147A/147B/147"
+	}, {
+		"name": "MATH 153"
+	}, {
+		"name": "MATH 157"
+	}, {
+		"name": "MATH 170"
+	}, {
+		"name": "MATH 175"
+	}, {
+		"name": "MATH 186"
+	}, {
+		"name": "MATH 257"
+	}, {
+		"name": "MATH 275"
+	}, {
+		"name": "MATH 285"
+	}, {
+		"name": "MATH 300"
+	}, {
+		"name": "MATH 320"
+	}, {
+		"name": "MATH 340"
+	}, {
+		"name": "MATH 345"
+	}, {
+		"name": "MATH 460"
+	}, {
+		"name": "MATH170"
+	}, {
+		"name": "NS 150"
+	}, {
+		"name": "PHYS 111"
+	}, {
+		"name": "PHYS 112"
+	}, {
+		"name": "PHYS 202"
+	}, {
+		"name": "PHYS 211"
+	}, {
+		"name": "PHYS 212"
+	}, {
+		"name": "PSYC 300 / ECON 300 / SS 300"
+	}]
+}

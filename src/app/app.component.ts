@@ -19,120 +19,121 @@ import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-
 import { AppAvailability } from '@ionic-native/app-availability';
 
 @Component({
-  templateUrl: 'app.html'
+	templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) navCtrl: Nav;
-    rootPage:any = LoginPage;
+	@ViewChild(Nav) navCtrl: Nav;
+	rootPage: any = LoginPage;
 	hasFacebook: string = 'Dont know';
 
-  constructor(private platform: Platform,
-              statusBar: StatusBar,
-              splashScreen: SplashScreen,
-              private inAppBrowser: InAppBrowser,
-              private userState : UserStateProvider,
-              private credentialsProvider : CredentialsProvider,
-              private scheduleServiceProvider : ScheduleServiceProvider,
-			  private appAvailability: AppAvailability){
+	constructor(private platform: Platform,
+		statusBar: StatusBar,
+		splashScreen: SplashScreen,
+		private inAppBrowser: InAppBrowser,
+		private userState: UserStateProvider,
+		private credentialsProvider: CredentialsProvider,
+		private scheduleServiceProvider: ScheduleServiceProvider,
+		private appAvailability: AppAvailability) {
 
-    platform.ready().then(() => {
-		statusBar.overlaysWebView(false);
-      statusBar.styleLightContent();
-		statusBar.backgroundColorByHexString('#003865');
-      splashScreen.hide();
-    });
-  }
-
-  goToHome(params){
-    if (!params) params = {};
-    this.navCtrl.setRoot(HomePage);
-  }
-
-  goToClassSchedule(params){
-    if (!params) params = {};
-    this.navCtrl.push(ClassSchedulePage);
-  }
-
-  goToLogin(params){
-    if (!params) params = { reuse : true };
-    this.navCtrl.setRoot(LoginPage, params);
-  }
-
-  goToLoginNoReuse() {
-    let params = { reuse : false };
-    this.goToLogin(params);
-  }
-
-  goToNews(params){
-    if (!params) params = {};
-    this.navCtrl.push(NewsPage);
-  }
-
-  goToCampusMap(params){
-    if (!params) params = {};
-    this.navCtrl.push(CampusMapPage);
-  }
-
-  goToTutoring(params){
-    if (!params) params = {};
-    this.navCtrl.push(TutoringPage);
-  }
-
-  goToRadio(params){
-    if (!params) params = {};
-    this.navCtrl.push(RadioPage);
-  }
-
-  goToCalendar(params){
-    if( !params) params = {};
-    this.navCtrl.push(CalendarPage);
-  }
-
-  goToBuildingHours(params){
-	  if( !params) params = {};
-	  this.navCtrl.setRoot(BuildingHoursPage);
-  }
-
-  openBrowser(link) {
-	  this.inAppBrowser.create(link, '_system', 'location=no');
-  }
-
-  checkFacebook(){
-  let app;
-
-    if (this.platform.is('ios')) {
-      app = 'fb://';
-    } else if (this.platform.is('android')) {
-      app = 'com.facebook.katana';
-    }
-
-    this.appAvailability.check(app)
-      .then(
-      (yes: boolean) => this.hasFacebook='Available',
-      (no: boolean) => this.hasFacebook='Not Available'
-      );
-  }
-
-  openFacebook(){
-	this.checkFacebook();
-	if(this.hasFacebook=='Available'){
-	this.inAppBrowser.create("fb://page/59960515055",'_system','location=yes');}
-	else{
-	this.inAppBrowser.create("https://www.facebook.com/LewisClarkState/",'_system','location=no');
+		platform.ready().then(() => {
+			statusBar.overlaysWebView(false);
+			statusBar.styleLightContent();
+			statusBar.backgroundColorByHexString('#003865');
+			splashScreen.hide();
+		});
 	}
-  }
 
-  isCredentialed() : boolean {
-    return this.userState.getUserState() == UserState.Credentialed;
-  }
+	goToHome(params) {
+		if (!params) params = {};
+		this.navCtrl.setRoot(HomePage);
+	}
 
-  isGuest() : boolean {
-    return this.userState.getUserState() == UserState.Guest;
-  }
+	goToClassSchedule(params) {
+		if (!params) params = {};
+		this.navCtrl.push(ClassSchedulePage);
+	}
 
-  logout() {
-    this.credentialsProvider.clearWarriorWebCredentials();
-    this.scheduleServiceProvider.clearCache();
-    this.goToLoginNoReuse();
-  }
+	goToLogin(params) {
+		if (!params) params = { reuse: true };
+		this.navCtrl.setRoot(LoginPage, params);
+	}
+
+	goToLoginNoReuse() {
+		let params = { reuse: false };
+		this.goToLogin(params);
+	}
+
+	goToNews(params) {
+		if (!params) params = {};
+		this.navCtrl.push(NewsPage);
+	}
+
+	goToCampusMap(params) {
+		if (!params) params = {};
+		this.navCtrl.push(CampusMapPage);
+	}
+
+	goToTutoring(params) {
+		if (!params) params = {};
+		this.navCtrl.push(TutoringPage);
+	}
+
+	goToRadio(params) {
+		if (!params) params = {};
+		this.navCtrl.push(RadioPage);
+	}
+
+	goToCalendar(params) {
+		if (!params) params = {};
+		this.navCtrl.push(CalendarPage);
+	}
+
+	goToBuildingHours(params) {
+		if (!params) params = {};
+		this.navCtrl.setRoot(BuildingHoursPage);
+	}
+
+	openBrowser(link) {
+		this.inAppBrowser.create(link, '_system', 'location=no');
+	}
+
+	checkFacebook() {
+		let app;
+
+		if (this.platform.is('ios')) {
+			app = 'fb://';
+		} else if (this.platform.is('android')) {
+			app = 'com.facebook.katana';
+		}
+
+		this.appAvailability.check(app)
+			.then(
+				(yes: boolean) => this.hasFacebook = 'Available',
+				(no: boolean) => this.hasFacebook = 'Not Available'
+			);
+	}
+
+	openFacebook() {
+		this.checkFacebook();
+		if (this.hasFacebook == 'Available') {
+			this.inAppBrowser.create("fb://page/59960515055", '_system', 'location=yes');		
+}
+		else {
+			this.inAppBrowser.create("https://www.facebook.com/LewisClarkState/", '_system', 'location=no');
+		}
+	}
+
+	isCredentialed(): boolean {
+		return this.userState.getUserState() == UserState.Credentialed;
+	}
+
+	isGuest(): boolean {
+		return this.userState.getUserState() == UserState.Guest;
+	}
+
+	logout() {
+		this.credentialsProvider.clearWarriorWebCredentials();
+		this.scheduleServiceProvider.clearCache();
+		this.goToLoginNoReuse();
+	}
 }

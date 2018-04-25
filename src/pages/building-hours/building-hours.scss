@@ -1,15 +1,14 @@
 page-building-hours {
+	td {
+		font-size: 80%;
+	}
 
-    td {
-        font-size: 80%;
-    }
+	td:not(:first-child),
+	th:not(:first-child) {
+		text-align: center;
+	}
 
-    th:not(:first-child), td:not(:first-child) {
-        text-align: center;
-    }
-
-    th {
-        text-transform: uppercase;
-    }
-
+	th {
+		text-transform: uppercase;
+	}
 }
