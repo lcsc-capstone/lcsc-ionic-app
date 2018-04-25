@@ -29,6 +29,8 @@ export class HomePage {
 
 	private scheduleItems: any = [];
 
+	schedulePulled = false;
+
 	constructor(
 		public atrCtrl: AlertController,
 		public navCtrl: NavController,
@@ -42,8 +44,13 @@ export class HomePage {
 		private scheduleServiceProvider: ScheduleServiceProvider,
 		private userStateProvider: UserStateProvider) {
 
+		this.zone.run(() => {
+			this.schedulePulled = false;
+		});
+
 		if (this.isCredentialed()) {
-			scheduleServiceProvider.getTodaysClassScheduleData(data => {
+
+			this.scheduleServiceProvider.getTodaysClassScheduleData(data => {
 				this.zone.run(() => {
 					this.scheduleItems = data;
 
@@ -56,6 +63,7 @@ export class HomePage {
 						}
 						return -1;
 					});
+					this.schedulePulled = true;
 				});
 			});
 		}
@@ -70,7 +78,7 @@ export class HomePage {
 	}
 
 	scheduleCached(): boolean {
-		return this.scheduleServiceProvider.hasCacheData;
+		return this.schedulePulled;
 	}
 
 	hasScheduleDataForToday(): boolean {
