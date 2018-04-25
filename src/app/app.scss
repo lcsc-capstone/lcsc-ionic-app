@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/v2/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -15,97 +13,107 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-
-h1, h2, h3, h4, p, li, a, ion-item, button {
-    font-family: 'Roboto', sans-serif;
+a,
+button,
+h1,
+h2,
+h3,
+h4,
+ion-item,
+li,
+p {
+	font-family: "Roboto", sans-serif;
 }
 
 h1 {
-    color: #003865;
-    font-weight: 700;
-    font-size: 24px;
+	color      : #003865;
+	font-weight: 700;
+	font-size  : 24px;
 }
 
 a {
-	text-decoration : none;
-	color : #003865;
-	font-size: 30px;
+	text-decoration: none;
+	color          : #003865;
+	font-size      : 30px;
 }
 
 ion-header {
-    font-family: 'Roboto', sans-serif;
+	font-family: "Roboto", sans-serif;
 
-    ion-icon {
-        color: #003865;
-    }
+	ion-icon {
+		color: #003865;
+	}
 }
 
 ion-header ion-icon.back-button-icon.icon {
-    color: #ffffff;
+	color: #ffffff;
 }
 
 ion-list ion-item {
-    h2 {
-        color: #E10000;
-        padding-top: .4em;
-    }
+	h2 {
+		color      : #E10000;
+		padding-top: 0.4em;
+	}
 
-    p {
-        float: right;
-        color: #BBBCBC;
-        padding-bottom: .4em;
-    }
-
+	p {
+		float         : right;
+		color         : #BBBCBC;
+		padding-bottom: 0.4em;
+	}
 }
 
 #menu-heading1 {
-  padding-left: 15px;
+	padding-left: 15px;
 }
 
 .menu-content ion-item {
-  color: #003865;
+	color: #003865;
 }
-
 // workaround for https://github.com/ionic-team/ionic/issues/13294
 // probably breaks iPhone X support
+
+.ios ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child,
+.ios ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child,
 .ios ion-nav > .ion-page > .toolbar.statusbar-padding:first-child,
 .ios ion-nav > .ion-page > ion-header > .toolbar.statusbar-padding:first-child,
 .ios ion-tab > .ion-page > .toolbar.statusbar-padding:first-child,
 .ios ion-tab > .ion-page > ion-header > .toolbar.statusbar-padding:first-child,
-.ios ion-tabs > .ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child,
-.ios ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child,
-.ios ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child {
-  padding-top: calc(20px + 4px) !important;
-  min-height: calc(44px + 20px) !important;
+.ios ion-tabs > .ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child {
+	padding-top: calc(20px + 4px) !important;
+	min-height : calc(44px + 20px) !important;
 }
 
+.ios ion-menu > .menu-inner > ion-content.statusbar-padding:first-child .scroll-content,
+.ios ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child .scroll-content,
 .ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child .scroll-content,
 .ios ion-nav > .ion-page > ion-header > ion-content.statusbar-padding:first-child .scroll-content,
 .ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child .scroll-content,
 .ios ion-tab > .ion-page > ion-header > ion-content.statusbar-padding:first-child .scroll-content,
-.ios ion-tabs > .ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child .scroll-content,
-.ios ion-menu > .menu-inner > ion-content.statusbar-padding:first-child .scroll-content,
-.ios ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child .scroll-content {
-  padding-top: 20px !important;
+.ios ion-tabs > .ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child .scroll-content {
+	padding-top: 20px !important;
 }
 
-.ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child[padding] .scroll-content,
-.ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
-.ios ion-nav > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content,
-.ios ion-nav > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
-.ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child[padding] .scroll-content,
-.ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
-.ios ion-tab > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content,
-.ios ion-tab > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
-.ios ion-tabs > .ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content,
-.ios ion-tabs > .ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
-.ios ion-menu > .menu-inner > ion-content.statusbar-padding:first-child[padding] .scroll-content,
 .ios ion-menu > .menu-inner > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
+.ios ion-menu > .menu-inner > ion-content.statusbar-padding:first-child[padding] .scroll-content,
+.ios ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
 .ios ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content,
-.ios ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content {
-  padding-top: calc(16px + 20px) !important;
+.ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
+.ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child[padding] .scroll-content,
+.ios ion-nav > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
+.ios ion-nav > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content,
+.ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
+.ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child[padding] .scroll-content,
+.ios ion-tab > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
+.ios ion-tab > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content,
+.ios ion-tabs > .ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
+.ios ion-tabs > .ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content {
+	padding-top: calc(16px + 20px) !important;
 }
 
+.ios ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child ion-segment,
+.ios ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child ion-title,
+.ios ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
+.ios ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child ion-title,
 .ios ion-nav > .ion-page > .toolbar.statusbar-padding:first-child ion-segment,
 .ios ion-nav > .ion-page > .toolbar.statusbar-padding:first-child ion-title,
 .ios ion-nav > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
@@ -115,32 +123,30 @@ ion-list ion-item {
 .ios ion-tab > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
 .ios ion-tab > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-title,
 .ios ion-tabs > .ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
-.ios ion-tabs > .ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child ion-title,
-.ios ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child ion-segment,
-.ios ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child ion-title,
-.ios ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
-.ios ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child ion-title {
-  padding-top: 20px !important;
-  height: calc(44px + 20px) !important;
-  min-height: calc(44px + 20px) !important;
+.ios ion-tabs > .ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child ion-title {
+	padding-top: 20px !important;
+	height     : calc(44px + 20px) !important;
+	min-height : calc(44px + 20px) !important;
 }
-
 @media only screen and (max-width: 767px) {
-  .ios .modal-wrapper > .ion-page > ion-header > .toolbar.statusbar-padding:first-child {
-    padding-top: calc(20px + 4px) !important;
-    min-height: calc(44px + 20px) !important;
-  }
-  .ios .modal-wrapper > .ion-page > ion-header > ion-content.statusbar-padding:first-child .scroll-content {
-    padding-top: 20px !important;
-  }
-  .ios .modal-wrapper > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content,
-  .ios .modal-wrapper > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content {
-    padding-top: calc(16px + 20px) !important;
-  }
-  .ios .modal-wrapper > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
-  .ios .modal-wrapper > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-title {
-    padding-top: 20px !important;
-    height: calc(44px + 20px) !important;
-    min-height: calc(44px + 20px) !important;
-  }
+	.ios .modal-wrapper > .ion-page > ion-header > .toolbar.statusbar-padding:first-child {
+		padding-top: calc(20px + 4px) !important;
+		min-height : calc(44px + 20px) !important;
+	}
+
+	.ios .modal-wrapper > .ion-page > ion-header > ion-content.statusbar-padding:first-child .scroll-content {
+		padding-top: 20px !important;
+	}
+
+	.ios .modal-wrapper > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding-top] .scroll-content,
+	.ios .modal-wrapper > .ion-page > ion-header > ion-content.statusbar-padding:first-child[padding] .scroll-content {
+		padding-top: calc(16px + 20px) !important;
+	}
+
+	.ios .modal-wrapper > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-segment,
+	.ios .modal-wrapper > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-title {
+		padding-top: 20px !important;
+		height     : calc(44px + 20px) !important;
+		min-height : calc(44px + 20px) !important;
+	}
 }

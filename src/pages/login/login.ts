@@ -18,7 +18,7 @@ export class LoginPage {
 		private credentialsProvider: CredentialsProvider,
 		navParams: NavParams,
 		private userState: UserStateProvider,
-		private platform : Platform) {
+		private platform: Platform) {
 
 		this.platform.ready().then((source) => {
 			let reuse: boolean = true;

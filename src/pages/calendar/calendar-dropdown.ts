@@ -41,37 +41,37 @@ export class CalendarDropdownPage {
 		this.events.unsubscribe('toggleCalendars');
 	}
 
-	toggleAcademic(){
+	toggleAcademic() {
 		this.events.publish('toggleAcademic');
 		this.showAcademic = !this.showAcademic;
 		this.storage.set('showAcademic', this.showAcademic);
 	}
 
-	toggleEntertainment(){
+	toggleEntertainment() {
 		this.events.publish('toggleEntertainment');
 		this.showEntertainment = !this.showEntertainment;
 		this.storage.set('showEntertainment', this.showEntertainment);
 	}
 
-	toggleStudentActivities(){
+	toggleStudentActivities() {
 		this.events.publish('toggleStudentActivities');
 		this.showStudentActivities = !this.showStudentActivities;
 		this.storage.set('showStudentActivities', this.showStudentActivities);
 	}
 
-	toggleCampusRec(){
+	toggleCampusRec() {
 		this.events.publish('toggleCampusRec');
 		this.showCampusRec = !this.showCampusRec;
 		this.storage.set('showCampusRec', this.showCampusRec);
 	}
 
-	toggleResidentLife(){
+	toggleResidentLife() {
 		this.events.publish('toggleResidentLife');
 		this.showResidentLife = !this.showResidentLife;
 		this.storage.set('showResidentLife', this.showResidentLife);
 	}
 
-	toggleWarriorAthletics(){
+	toggleWarriorAthletics() {
 		this.events.publish('toggleAthletics');
 		this.showAthletics = !this.showAthletics;
 		this.storage.set('showAthletics', this.showAthletics);

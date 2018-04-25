@@ -21,11 +21,9 @@
 			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
 		</button> </div>
 	<div *ngIf="isCredentialed() && !hasScheduleDataForToday() && schedulePulled">
-		<h1 id="no-classes-header">You have no classes today</h1>
-		<button ion-button clear class="c-more-link" (click)="goToClassSchedule()">
+		<h1 id="no-classes-header">You have no classes today</h1> <button ion-button clear class="c-more-link" (click)="goToClassSchedule()">
 			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
-		</button>
-	</div>
+		</button> </div>
 	<!-- Academic Calendar Start-->
 	<div id="home-academic">
 		<h1>
