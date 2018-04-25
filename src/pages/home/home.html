@@ -8,7 +8,7 @@
 <ion-content id="page1" no-bounce> <img src="assets/img/school-banner.jpg" id="bg-img" />
 	<!-- <img src="assets/img/banner.png" class="banner" /> -->
 	<!-- Schedule Start-->
-	<div *ngIf="isCredentialed() && hasScheduleDataForToday(); else noClasses">
+	<div *ngIf="isCredentialed() && hasScheduleDataForToday()">
 		<div id="home-schedule">
 			<h1 id="home-heading">Here's Today...</h1>
 			<ion-list id="schedule_list">
@@ -20,10 +20,12 @@
 		</div> <button ion-button clear class="c-more-link" (click)="goToClassSchedule()">
 			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
 		</button> </div>
-	<ng-template #noClasses>
-		<h1 id="no-classes-header" *ngIf="isCredentialed() && scheduleCached()">You have no classes today</h1> <button ion-button clear class="c-more-link" (click)="goToClassSchedule()" *ngIf="isCredentialed() && scheduleCached()">
+	<div *ngIf="isCredentialed() && !hasScheduleDataForToday() && schedulePulled">
+		<h1 id="no-classes-header">You have no classes today</h1>
+		<button ion-button clear class="c-more-link" (click)="goToClassSchedule()">
 			View Full Schedule  <ion-icon name="play" class="iconRed"></ion-icon>
-		</button> </ng-template>
+		</button>
+	</div>
 	<!-- Academic Calendar Start-->
 	<div id="home-academic">
 		<h1>
