@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { CredentialsProvider } from "../../providers/credentials/credentials";
 import { UserStateProvider, UserState } from "../../providers/user-state/user-state";
+import { Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -16,19 +17,20 @@ export class LoginPage {
 	constructor(public navCtrl: NavController,
 		private credentialsProvider: CredentialsProvider,
 		navParams: NavParams,
-		private userState: UserStateProvider) {
+		private userState: UserStateProvider,
+		private platform : Platform) {
 
-		let reuse: boolean = true;
-
-		if (navParams && navParams.get('reuse') != null) { reuse = navParams.get('reuse') };
-
-		if (reuse) {
-			this.credentialsProvider.warriorWebCredentialsExist().then(status => {
-				if (status) {
-					this.handleLogin();
-				}
-			});
-		}
+		this.platform.ready().then((source) => {
+			let reuse: boolean = true;
+			if (navParams && navParams.get('reuse') != null) { reuse = navParams.get('reuse') };
+			if (reuse) {
+				this.credentialsProvider.warriorWebCredentialsExist().then(status => {
+					if (status) {
+						this.handleLogin();
+					}
+				});
+			}
+		});
 	}
 
 	goToHomePage(params) {
