@@ -169,7 +169,7 @@ export class ScheduleServiceProvider {
 					title: course.Title,
 					name: course.Name,
 					daySecond: daySecond,
-					daysStr: this._computeDaysStr(days),
+					daysStr : this._computeDaysStr(days),
 				};
 
 				meetings.push(meeting_obj);
@@ -184,7 +184,7 @@ export class ScheduleServiceProvider {
 				name: course.CourseName,
 				meetings: meetings,
 				faculty: course.Section.Faculty,
-				description: course.Description,
+				description : course.Description,
 			};
 
 			result.push(item);
@@ -195,31 +195,31 @@ export class ScheduleServiceProvider {
 
 	_computeDaysStr(days) {
 		let result = "";
-		for (var day of days) {
-			if (day == 0) {
-				result += "Sunday,";
+		for(var day of days) {
+			if(day == 0) {
+				result += "Sunday, ";
 			}
-			else if (day == 1) {
-				result += "Monday,";
+			else if(day == 1) {
+				result += "Monday, ";
 			}
-			else if (day == 2) {
-				result += "Tuesday,";
+			else if(day == 2) {
+				result += "Tuesday, ";
 			}
-			else if (day == 3) {
-				result += "Wednesday,";
+			else if(day == 3) {
+			  result += "Wednesday, ";
 			}
-			else if (day == 4) {
-				result += "Thursday,";
+			else if(day == 4) {
+				result += "Thursday, ";
 			}
-			else if (day == 5) {
-				result += "Friday,";
+			else if(day == 5) {
+			 result += "Friday, ";
 			}
-			else if (day == 6) {
-				result += "Saturday,";
+			else if(day == 6) {
+			  result += "Saturday, ";
 			}
 		}
 
-		result = (result.endsWith(",")) ? result.substring(0, result.length - 1) : result;
+		result = (result.endsWith(", ")) ? result.substring(0, result.length - 2) : result;
 		return result;
 	}
 
