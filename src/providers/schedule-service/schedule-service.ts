@@ -197,29 +197,29 @@ export class ScheduleServiceProvider {
 		let result = "";
 		for(var day of days) {
 			if(day == 0) {
-				result += "Sunday,";
+				result += "Sunday, ";
 			}
 			else if(day == 1) {
-				result += "Monday,";
+				result += "Monday, ";
 			}
 			else if(day == 2) {
-				result += "Tuesday,";
+				result += "Tuesday, ";
 			}
 			else if(day == 3) {
-			  result += "Wednesday,";
+			  result += "Wednesday, ";
 			}
 			else if(day == 4) {
-				result += "Thursday,";
+				result += "Thursday, ";
 			}
 			else if(day == 5) {
-			 result += "Friday,";
+			 result += "Friday, ";
 			}
 			else if(day == 6) {
-			  result += "Saturday,";
+			  result += "Saturday, ";
 			}
 		}
 
-		result = (result.endsWith(",")) ? result.substring(0, result.length - 1) : result;
+		result = (result.endsWith(", ")) ? result.substring(0, result.length - 2) : result;
 		return result;
 	}
 

@@ -12,6 +12,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { BuildingHoursPage } from '../pages/building-hours/building-hours';
+import { LoadingController } from 'ionic-angular';
 
 import { UserStateProvider, UserState } from '../providers/user-state/user-state';
 import { CredentialsProvider } from '../providers/credentials/credentials';
@@ -28,7 +29,7 @@ export class MyApp {
 
   readonly getInputByValueScript: string = "function getInputByValue(value){var inputs = document.getElementsByTagName('input');for(var i = 0; i < inputs.length; i++){if(inputs[i].value == value){return inputs[i];}}return null;}";
   readonly buttonClickSource: string = this.getInputByValueScript + "getInputByValue('Sign In').click();";
-  student_planning_link = 'https://warriorwebss.lcsc.edu/Student/Planning'; 
+  student_planning_link = 'https://warriorwebss.lcsc.edu/Student/Planning';
 
   constructor(private platform: Platform,
               statusBar: StatusBar,
@@ -37,7 +38,8 @@ export class MyApp {
               private userState : UserStateProvider,
               private credentialsProvider : CredentialsProvider,
               private scheduleServiceProvider : ScheduleServiceProvider,
-			  private appAvailability: AppAvailability){
+			        private appAvailability: AppAvailability,
+              private loadingController : LoadingController){
 
     platform.ready().then(() => {
 		statusBar.overlaysWebView(false);
@@ -99,31 +101,36 @@ export class MyApp {
 
   openBrowser(link) {
 	  this.inAppBrowser.create(link, '_system', 'location=no');
-  } 
+  }
 
   async handleStudentPlanningOpen() {
-    
+
+    let loader = this.loadingController.create({ content : 'Accessing student planning...'});
+    loader.present();
+
     let browser : InAppBrowserObject = this.inAppBrowser.create(this.student_planning_link, '_blank', 'clearcache=yes,hidden=yes');
 
     if(this.userState.getUserState() == UserState.Guest) {
       browser.show();
+      loader.dismiss();
       return;
     }
-    
+
     let username = await this.credentialsProvider.getWarriorWebUsername();
     let password = await this.credentialsProvider.getWarriorWebPassword();
 
     let load_count = 0;
-    browser.on('loadstop').subscribe(async (ev : InAppBrowserEvent) => {   
+    browser.on('loadstop').subscribe(async (ev : InAppBrowserEvent) => {
       load_count++;
       if(load_count == 1) {
-        await this.loginToWarriorWeb(browser, username, password);  
+        await this.loginToWarriorWeb(browser, username, password);
       }
       else if(load_count == 2) {
         browser.show();
+        loader.dismiss();
       }
     });
-  } 
+  }
 
   async loginToWarriorWeb(browser, username, password): Promise<any> {
 		return await
