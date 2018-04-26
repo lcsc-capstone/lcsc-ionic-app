@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-native/in-app-browser';
 import { ClassSchedulePage } from '../pages/class-schedule/class-schedule';
 import { NewsPage } from '../pages/news/news';
 import { CampusMapPage } from '../pages/campus-map/campus-map';
@@ -25,6 +25,10 @@ export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
     rootPage:any = LoginPage;
 	hasFacebook: string = 'Dont know';
+
+  readonly getInputByValueScript: string = "function getInputByValue(value){var inputs = document.getElementsByTagName('input');for(var i = 0; i < inputs.length; i++){if(inputs[i].value == value){return inputs[i];}}return null;}";
+  readonly buttonClickSource: string = this.getInputByValueScript + "getInputByValue('Sign In').click();";
+  student_planning_link = 'https://warriorwebss.lcsc.edu/Student/Planning'; 
 
   constructor(private platform: Platform,
               statusBar: StatusBar,
@@ -95,6 +99,37 @@ export class MyApp {
 
   openBrowser(link) {
 	  this.inAppBrowser.create(link, '_system', 'location=no');
+  } 
+
+  async handleStudentPlanningOpen() {
+    
+    let browser : InAppBrowserObject = this.inAppBrowser.create(this.student_planning_link, '_blank', 'clearcache=yes,hidden=yes');
+
+    if(this.userState.getUserState() == UserState.Guest) {
+      browser.show();
+      return;
+    }
+    
+    let username = await this.credentialsProvider.getWarriorWebUsername();
+    let password = await this.credentialsProvider.getWarriorWebPassword();
+
+    let load_count = 0;
+    browser.on('loadstop').subscribe(async (ev : InAppBrowserEvent) => {   
+      load_count++;
+      if(load_count == 1) {
+        await this.loginToWarriorWeb(browser, username, password);  
+      }
+      else if(load_count == 2) {
+        browser.show();
+      }
+    });
+  } 
+
+  async loginToWarriorWeb(browser, username, password): Promise<any> {
+		return await
+			browser.executeScript({ code: "document.getElementById('UserName').value = '" + username + "';" }).then(
+				browser.executeScript({ code: "document.getElementById('Password').value = '" + password + "';" })).then(
+					browser.executeScript({ code: this.buttonClickSource }));
   }
 
   checkFacebook(){
