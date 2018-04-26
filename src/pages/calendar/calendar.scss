@@ -1,80 +1,78 @@
 page-calendar {
+	#menu {
+		float: left;
+	}
 
-  #menu {
-    float: left;
-  }
+	button {
+		background-color: #F8F8F8;
+		position        : relative;
+		float           : left;
+	}
 
-  button {
-    background-color: #F8F8F8;
-    position:relative;
-    float: left;
-  }
+	h1 {
+		font-family     : sans-serif;
+		font-weight     : bold;
+		background-color: #F8F8F8;
+		color           : #003865;
+		font-size       : 19px;
+		padding         : 10px;
+		border          : 3px;
+	}
 
-  h1 {
-    font-family: sans-serif;
-  	font-weight: bold;
-  	background-color: #F8F8F8;
-  	color: #003865;
-  	font-size: 19px;
-  	padding: 10px;
-  	border: 3px;
-  }
-  
-  .addToCalendar {
-	color: #000;
-	font-size: 12pt;
-	margin-left: 17px;
-  }
-  
-  .calendarIcon {
-	margin-right: 5px;
-  }
+	.addToCalendar {
+		color      : #000;
+		font-size  : 12pt;
+		margin-left: 17px;
+	}
 
-  .accordian {
-  	color: #000;
-  	font-size: 15px;
-  }
+	.calendarIcon {
+		margin-right: 5px;
+	}
 
-  .accordian-time {
-    color: #000;
-    font-size: 11pt;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+	.accordian {
+		color    : #000;
+		font-size: 15px;
+	}
 
-  .accordian-firstitem{
-  	color: #000;
-  	font-weight: normal;
-  	font-size: 11pt;
-  }
+	.accordian-time {
+		color        : #000;
+		font-size    : 11pt;
+		margin-top   : 10px;
+		margin-bottom: 10px;
+	}
 
-  .accordian-location {
-    color: #000;
-    font-size: 11pt;
-  }
+	.accordian-firstitem {
+		color      : #000;
+		font-weight: normal;
+		font-size  : 11pt;
+	}
 
-  .warriors {
-    color: #80AFC8;
-  }
+	.accordian-location {
+		color    : #000;
+		font-size: 11pt;
+	}
 
-  .entertainment {
-    color: #d18787;
-  }
+	.warriors {
+		color: #80AFC8;
+	}
 
-  .activities {
-    color: #F8C797;
-  }
+	.entertainment {
+		color: #d18787;
+	}
 
-  .residence {
-    color: #80E0E0;
-  }
+	.activities {
+		color: #F8C797;
+	}
 
-  .campusrec {
-    color: #8be0a6;
-  }
+	.residence {
+		color: #80E0E0;
+	}
 
-  .academics {
-    color: #ca96e0;
-  }
+	.campusrec {
+		color: #8be0a6;
+	}
 
+	.academics {
+		color: #ca96e0;
+	}
 }

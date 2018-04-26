@@ -29,7 +29,7 @@ export class MyApp {
 
   readonly getInputByValueScript: string = "function getInputByValue(value){var inputs = document.getElementsByTagName('input');for(var i = 0; i < inputs.length; i++){if(inputs[i].value == value){return inputs[i];}}return null;}";
   readonly buttonClickSource: string = this.getInputByValueScript + "getInputByValue('Sign In').click();";
-  student_planning_link = 'https://warriorwebss.lcsc.edu/Student/Planning';
+  student_planning_link = 'https://warriorwebss.lcsc.edu/Student/';
 
   constructor(private platform: Platform,
               statusBar: StatusBar,

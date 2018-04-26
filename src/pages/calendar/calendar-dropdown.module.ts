@@ -3,11 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { CalendarDropdownPage } from './calendar-dropdown';
 
 @NgModule({
-  declarations: [
-    CalendarDropdownPage,
-  ],
-  imports: [
-    IonicPageModule.forChild(CalendarDropdownPage),
-  ],
+	declarations: [
+		CalendarDropdownPage,
+	],
+	imports: [
+		IonicPageModule.forChild(CalendarDropdownPage),
+	],
 })
-export class CalendarDropdownPageModule {}
+export class CalendarDropdownPageModule { }
