@@ -8,13 +8,13 @@ class classData:
 		ret="\""+str(self.name)+"\":["
 		for time in self.times:
 			ret+="\""+str(time)+"\","
-		if not ret[-1]=="[":		
+		if not ret[-1]=="[":
 			ret=ret[:-1]
 
 		ret+="]"
-		return ret 
+		return ret
 
-		 
+
 	def __str__(self):
 		tutorString=""
 		for tutor in self.tutors:
@@ -36,13 +36,13 @@ class Tutor:
 		ret="\""+str(self.name)+"\":["
 		for time in self.times:
 			ret+="\""+str(time)+"\","
-		if not ret[-1]=="[":		
+		if not ret[-1]=="[":
 			ret=ret[:-1]
-		
-		ret+="]"
-		return ret 
 
-		 
+		ret+="]"
+		return ret
+
+
 	def __str__(self):
 		classString=""
 		for c in self.classes:
@@ -69,20 +69,20 @@ for i in range(2,8):
 	build=[]
 	build.append(tempList[8][i])
 	people=[]
-	for row in tempList[9:]:	
+	for row in tempList[9:]:
 		if row[1]!="":
 			build.append(people)
-			day.append(build)			
+			day.append(build)
 			build=[]
 			people=[]
-			build.append(row[1])			
-		people.append(row[i])	
+			build.append(row[1])
+		people.append(row[i])
 	week.append(day)
 	day=[]
 
 #for d in week[1:2]:
 #	for time in d:
-#		print time		
+#		print time
 people={}
 for day in week:
 	wDay=day[0][0]
@@ -90,8 +90,8 @@ for day in week:
 		for tutor in time[1]:
 			if not tutor in people:
 				people[tutor]=[]
-			
-			people[tutor].append((wDay,time[0])) 	
+
+			people[tutor].append((wDay,time[0]))
 
 
 tutors=[]
@@ -107,7 +107,7 @@ for tutor in tutors:
 		tutor.times=people[tutor.name]
 	if len(tutor.name)>1 and tutor.name[-1]=="*" and tutor.name[:-1] in people:
 		tutor.times=people[tutor.name[:-1]]
-	
+
 out=open("combined.json",'w')
 
 assemble="{\"tutors\":["
@@ -123,9 +123,9 @@ for tutor in tutors[2:]:
 		if not c in classes:
 			classes[c]=classData(c);
 		classes[c].tutors.append(tutor.name)
-		for time in tutor.times:		
+		for time in tutor.times:
 			classes[c].times.append((time,tutor.name))
-	
+
 classesList=[]
 for c in classes:
 
@@ -137,11 +137,11 @@ for c in classesList:
 assemble=assemble[:-2]
 assemble+="],\"times\":{"
 for tutor in tutors:
-	
+
 	build=[]
 	endChain=True
 	startTime=""
-	endTime=""	
+	endTime=""
 	#timeStretch
 	day=""
 	assemble+="\""+tutor.name+"\":["
@@ -150,9 +150,9 @@ for tutor in tutors:
 		continue
 	for i in range(0,len(tutor.times)-1):
 		prepTime=tutor.times[i][1].split('-')
-		
+
 		if endChain:
-			
+
 			endTime=""
 			startTime=prepTime[0]
 			prepTime[1]=prepTime[1].strip()
@@ -163,50 +163,50 @@ for tutor in tutors:
 			#print "merging time "+str(people[person][i])+" with "+str(people[person][i+1])
 			#print startTime+"-"+ people[person][i+1][1].split("-")[1]
 			endTime=tutor.times[i+1][1].split("-")[1]
-				
+
 			pass
 		else:
-			
+
 			endChain=True
 			if not endTime in tutor.times[i][1]:
-				
+
 				print tutor.times[i]
 		day=tutor.times[i][0]
 		if endChain:
 			temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"\","
 			if len(temp)>10:
 				assemble+=(temp)
-	temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"\","	
+	temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"\","
 	if len(temp)>10:
-		assemble+=(temp)	
-  	
-	
+		assemble+=(temp)
+
+
 	#print person
-	#print people[person] 
+	#print people[person]
 	if assemble[-1]=="[":
 		assemble+="\"No Times Found\","
-	assemble=assemble[:-1]	
-	
+	assemble=assemble[:-1]
+
 	assemble+=("],\n");
 
-	
+
 dayOrder=tempList[8][2:8]
-print dayOrder 
+print dayOrder
 for tutor in classesList:
-	
+
 	build=[]
 	endChain=True
 	startTime=""
-	endTime=""	
+	endTime=""
 	#timeStretch
 	day=""
 	assemble+="\""+tutor.name+"\":["
 
 	for i in range(0,len(tutor.times)-1):
 		prepTime=tutor.times[i][0][1].split('-')
-		
+
 		if endChain:
-			
+
 			endTime=""
 			startTime=prepTime[0]
 			prepTime[1]=prepTime[1].strip()
@@ -217,32 +217,31 @@ for tutor in classesList:
 			#print "merging time "+str(people[person][i])+" with "+str(people[person][i+1])
 			#print startTime+"-"+ people[person][i+1][1].split("-")[1]
 			endTime=tutor.times[i+1][0][1].split("-")[1]
-				
+
 			pass
 		else:
-			
+
 			endChain=True
 			if not endTime in tutor.times[i][0][1]:
-				
+
 				print tutor.times[i]
 		day=tutor.times[i][0][0]
 		if endChain:
 			temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"      Tutor: "+tutor.times[i][1]+"\","
 			if len(temp)>10:
 				assemble+=(temp)
-	temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"      Tutor: "+tutor.times[i][1]+"\","	
+	temp=  "\""+day+" "+startTime.strip()+" - "+ endTime.strip()+"      Tutor: "+tutor.times[i][1]+"\","
 	if len(temp)>10:
-		assemble+=(temp)	
-  	
-	
+		assemble+=(temp)
+
+
 	#print person
-	#print people[person] 
+	#print people[person]
 	if assemble[-1]=="[":
 		assemble+="\"No Times Found\","
-	assemble=assemble[:-1]	
-	
+	assemble=assemble[:-1]
+
 	assemble+=("],\n");
 assemble=assemble[:-2]
 assemble+="}}";
 out.write(assemble)
-

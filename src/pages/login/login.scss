@@ -1,119 +1,117 @@
 page-login {
+	overflow: hidden;
 
-    overflow: hidden;
+	#bg-img {
+		background           : url("../assets/img/poster-white.png");
+		background-size      : cover;
+		background-position  : center center;
+		background-attachment: fixed;
+		height               : 100%;
+		overflow             : hidden;
+	}
 
-    #bg-img {
-        background: url('../assets/img/poster-white.png');
-        background-size: cover;
-        background-position: center center;
-        background-attachment: fixed;
-        height: 100%;
-        overflow: hidden;
-    }
+	.banner {
+		position  : absolute;
+		top       : 0;
+		width     : 100%;
+		margin-top: 14vh;
+	}
 
-    .banner {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        margin-top: 14vh;
-    }
+	button {
+		border-radius   : 0;
+		height          : 3em;
+		background-color: #003865;
+		font-size       : 16px;
+		width           : 93%;
+		color           : white;
+		margin          : 0 auto;
+		display         : block;
 
-    button {
-        border-radius: 0;
-        height: 3em;
-        background-color: #003865;
-        font-size: 16px;
-        width: 93%;
-        color: white;
-        margin: 0 auto;
-        display: block;
+		ion-icon {
+			padding-right: 0.5em;
+		}
+	}
 
-        ion-icon {
-            padding-right: .5em;
-        }
-    }
+	#login-form {
+		position    : absolute;
+		top         : 0;
+		left        : 0;
+		right       : 0;
+		margin-left : auto;
+		margin-right: auto;
+		width       : 80%;
+		margin-top  : 33vh;
 
-    #login-form {
-        position: absolute;
-        top: 0;
-        left: 0; 
-        right: 0; 
-        margin-left: auto; 
-        margin-right: auto; 
-        width: 80%;
-        margin-top: 33vh;
+		h2 {
+			color        : #003865;
+			margin-bottom: -.25em;
+		}
 
-        h2 {
-            color: #003865;
-            margin-bottom: -.25em;
-        }
+		p {
+			color: #003865;
+		}
 
-        p {
-            color: #003865;
-        }
+		.input {
+			position   : relative;
+			font-family: "Montserrat", sans-serif;
+		}
 
-        .input {
-            position: relative;
-            font-family: 'Montserrat', sans-serif;
-        }
+		.input input {
+			font-size       : 16px;
+			width           : 100%;
+			background-color: rgba(0, 56, 101, 0.822);
+			border          : none;
+			padding         : 0.625em;
+			color           : white;
+			margin-bottom   : 0.75em;
+			text-indent     : 32px;
+		}
 
-        .input input {
-            font-size: 16px;
-            width: 100%;
-            background-color: rgba(0, 56, 101, 0.822);
-            border: none;
-            padding: .625em;
-            color: white;
-            margin-bottom: .75em;
-            text-indent: 32px;
-        }
+		::placeholder {
+			color: #BBBCBC;
+		}
 
-        ::placeholder {
-            color: #BBBCBC;
-        }
+		.input .input-icon {
+			position : absolute;
+			top      : 5px;
+			left     : 12px;
+			color    : #BBBCBC;
+			font-size: 28px;
+		}
 
-        .input .input-icon { 
-        position: absolute;
-        top: 5px;
-        left: 12px;
-        color: #BBBCBC;
-        font-size: 28px;
-        }
+		button {
+			border-radius   : 0;
+			height          : 2.5em;
+			background-color: #003865;
+			font-size       : 16px;
+			color           : white;
+			width           : 100%;
+		}
 
-        button {
-            border-radius: 0;
-            height: 2.5em;
-            background-color: #003865;
-            font-size: 16px;
-            color: white;
-            width: 100%;
-        }
+		#guest {
+			width      : 100%;
+			margin-top : 2em;
+			text-align : center;
+			font-family: "Montserrat", sans-serif;
 
-        #guest {
-            width: 100%;
-            margin-top: 2em;
-            text-align: center;
-            font-family: 'Montserrat', sans-serif;
-    
-            p {
-                margin-bottom: .75em;
-            }
-    
-            a {
-                text-decoration: none;
-                text-transform: uppercase;
-                color: white;
-                font-size: 21px;
-                font-weight: 700;
-                text-shadow: 0 0 8px black;
-            }
-        }
-    }
+			p {
+				margin-bottom: 0.75em;
+			}
 
-    @media (min-width: 700px) {
-        #login-form {
-            width: 50%;
-            margin-top: 40vh;
-        }
-    }
+			a {
+				text-decoration: none;
+				text-transform : uppercase;
+				color          : white;
+				font-size      : 21px;
+				font-weight    : 700;
+				text-shadow    : 0 0 8px black;
+			}
+		}
+	}
+	@media (min-width: 700px) {
+		#login-form {
+			width     : 50%;
+			margin-top: 40vh;
+		}
+	}
 }

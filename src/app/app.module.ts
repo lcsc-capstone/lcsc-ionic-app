@@ -15,7 +15,7 @@ import { CalendarDropdownPage } from '../pages/calendar/calendar-dropdown';
 import { TutoringPage } from '../pages/tutoring/tutoring';
 import { RadioPage } from '../pages/radio/radio';
 import { LoginPage } from '../pages/login/login';
-import { BuildingHoursPage } from '../pages/building-hours/building-hours';		
+import { BuildingHoursPage } from '../pages/building-hours/building-hours';
 import { BuildingDetailsPage } from '../pages/building-details/building-details';
 
 
@@ -31,74 +31,74 @@ import { UserStateProvider } from '../providers/user-state/user-state';
 import { AppAvailability } from '@ionic-native/app-availability';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    NewsPage,
-    CampusMapPage,
-    ClassSchedulePage,
-    CalendarPage,
-	  CalendarDropdownPage,
-    TutoringPage,
-    RadioPage,
-    LoginPage,
-    BuildingHoursPage,		
-	  BuildingDetailsPage
-  ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    HttpClientModule,
-    IonicModule.forRoot(MyApp,{
-      platforms: {
-        android: {
-    			backButtonText: "",
-    			backButtonIcon: "md-arrow-back",
-    			iconMode: "md",
-    			modalEnter: "modal-md-slide-in",
-    			modalLeave: "modal-md-slide-out",
-    			pageTransition: "md",
-	      },
-        ios: {
-          backButtonText: "",
-			    backButtonIcon: "ios-arrow-back",
-        	iconMode: "ios",
-    			modalEnter: "modal-ios-slide-in",
-    			modalLeave: "modal-ios-slide-out",
-    			pageTransition: "ios",
-        }
-      }
-    }),
-    IonicStorageModule.forRoot()
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    NewsPage,
-    CampusMapPage,
-    ClassSchedulePage,
-    CalendarPage,
-	 CalendarDropdownPage,
-    TutoringPage,
-    RadioPage,
-    LoginPage,
-    BuildingHoursPage,		
-	  BuildingDetailsPage
-  ],
-  providers: [
-    InAppBrowser,
-    SecureStorage,
-    StatusBar,
-    SplashScreen,
-	 Calendar,
-	 Network,
-	 HTTP,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ScheduleServiceProvider,
-    CredentialsProvider,
-    UserStateProvider,
-	AppAvailability
-  ]
+	declarations: [
+		MyApp,
+		HomePage,
+		NewsPage,
+		CampusMapPage,
+		ClassSchedulePage,
+		CalendarPage,
+		CalendarDropdownPage,
+		TutoringPage,
+		RadioPage,
+		LoginPage,
+		BuildingHoursPage,
+		BuildingDetailsPage
+	],
+	imports: [
+		BrowserModule,
+		HttpModule,
+		HttpClientModule,
+		IonicModule.forRoot(MyApp, {
+			platforms: {
+				android: {
+					backButtonText: "",
+					backButtonIcon: "md-arrow-back",
+					iconMode: "md",
+					modalEnter: "modal-md-slide-in",
+					modalLeave: "modal-md-slide-out",
+					pageTransition: "md",
+				},
+				ios: {
+					backButtonText: "",
+					backButtonIcon: "ios-arrow-back",
+					iconMode: "ios",
+					modalEnter: "modal-ios-slide-in",
+					modalLeave: "modal-ios-slide-out",
+					pageTransition: "ios",
+				}
+			}
+		}),
+		IonicStorageModule.forRoot()
+	],
+	bootstrap: [IonicApp],
+	entryComponents: [
+		MyApp,
+		HomePage,
+		NewsPage,
+		CampusMapPage,
+		ClassSchedulePage,
+		CalendarPage,
+		CalendarDropdownPage,
+		TutoringPage,
+		RadioPage,
+		LoginPage,
+		BuildingHoursPage,
+		BuildingDetailsPage
+	],
+	providers: [
+		InAppBrowser,
+		SecureStorage,
+		StatusBar,
+		SplashScreen,
+		Calendar,
+		Network,
+		HTTP,
+		{ provide: ErrorHandler, useClass: IonicErrorHandler },
+		ScheduleServiceProvider,
+		CredentialsProvider,
+		UserStateProvider,
+		AppAvailability
+	]
 })
-export class AppModule {}
+export class AppModule { }
