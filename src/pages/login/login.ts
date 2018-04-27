@@ -33,10 +33,10 @@ export class LoginPage {
 		});
 	}
 
-    guestAccess() {
-      this.userState.updateUserState(UserState.Guest);
-      this.goToHomePage({});
-    }
+	guestAccess() {
+		this.userState.updateUserState(UserState.Guest);
+		this.goToHomePage({});
+	}
 
 	goToHomePage(params) {
 		if (!params) {
