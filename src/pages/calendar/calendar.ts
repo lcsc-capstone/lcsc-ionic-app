@@ -164,6 +164,7 @@ export class CalendarPage {
 	}
 
 	doInfinite(infiniteScroll) {
+		if (this.LoadedDays.length >= this.Days.length - 1) infiniteScroll.enable(false);
 		setTimeout(() => {
 			let starting = this.LoadedDays.length;
 			for (let i = starting; i < starting + 3; i++) {
