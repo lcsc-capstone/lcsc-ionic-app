@@ -50,7 +50,7 @@ export class LoginPage {
 	}
 
 	storeCredentials() {
-		this.credentialsProvider.setWarriorWebUsername(this.loginUsername);
+		this.credentialsProvider.setWarriorWebUsername(this.loginUsername.toLowerCase());
 		this.credentialsProvider.setWarriorWebPassword(this.loginPassword);
 
 		this.handleLogin();
