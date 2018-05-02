@@ -9,5 +9,8 @@ import { CalendarDropdownPage } from './calendar-dropdown';
 	imports: [
 		IonicPageModule.forChild(CalendarDropdownPage),
 	],
+	entryComponents: [
+		CalendarDropdownPage
+	]
 })
 export class CalendarDropdownPageModule { }

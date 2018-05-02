@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { NavController, PopoverController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
+import { CalendarDropdownPageModule } from './calendar-dropdown.module';
+import { CalendarDropdownPage } from './calendar-dropdown';
 import { Calendar } from '@ionic-native/calendar';
 import { AlertController } from 'ionic-angular';
 
 @Component({
 	selector: 'page-calendar',
 	templateUrl: 'calendar.html'
+})
+@NgModule({
+	imports: [
+		CalendarDropdownPageModule
+	]
 })
 export class CalendarPage {
 	public Academics;
