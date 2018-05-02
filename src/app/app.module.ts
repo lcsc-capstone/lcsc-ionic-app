@@ -13,6 +13,7 @@ import { ClassSchedulePage } from '../pages/class-schedule/class-schedule';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { TutoringPage } from '../pages/tutoring/tutoring';
 import { RadioPage } from '../pages/radio/radio';
+import { LoginPage } from '../pages/login/login';
 import { BuildingHoursPage } from '../pages/building-hours/building-hours';
 import { BuildingDetailsPage } from '../pages/building-details/building-details';
 
@@ -38,6 +39,7 @@ import { AppAvailability } from '@ionic-native/app-availability';
 		CalendarPage,
 		TutoringPage,
 		RadioPage,
+		LoginPage,
 		BuildingHoursPage,
 		BuildingDetailsPage
 	],
@@ -77,6 +79,7 @@ import { AppAvailability } from '@ionic-native/app-availability';
 		CalendarPage,
 		TutoringPage,
 		RadioPage,
+		LoginPage,
 		BuildingHoursPage,
 		BuildingDetailsPage
 	],
