@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { NavController, PopoverController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { CalendarDropdownPage } from '../calendar/calendar-dropdown';
+import { CalendarDropdownPageModule } from './calendar-dropdown.module';
+import { CalendarDropdownPage } from './calendar-dropdown';
 import { Calendar } from '@ionic-native/calendar';
 import { AlertController } from 'ionic-angular';
 
@@ -9,20 +10,11 @@ import { AlertController } from 'ionic-angular';
 	selector: 'page-calendar',
 	templateUrl: 'calendar.html'
 })
-
-@Component({
-	template: `
-	<ion-list>
-	<ion-list-header>Ionic</ion-list-header>
-	<button ion-item (click)="close()">Learn Ionic</button>
-	<button ion-item (click)="close()">Documentation</button>
-	<button ion-item (click)="close()">Showcase</button>
-	<button ion-item (click)="close()">GitHub Repo</button>
-	</ion-list>
-	`
+@NgModule({
+	imports: [
+		CalendarDropdownPageModule
+	]
 })
-
-@Component({})
 export class CalendarPage {
 	public Academics;
 	public Entertainment;
@@ -178,6 +170,7 @@ export class CalendarPage {
 	}
 
 	doInfinite(infiniteScroll) {
+		if (this.LoadedDays.length >= this.Days.length - 1) infiniteScroll.enable(false);
 		setTimeout(() => {
 			let starting = this.LoadedDays.length;
 			for (let i = starting; i < starting + 3; i++) {

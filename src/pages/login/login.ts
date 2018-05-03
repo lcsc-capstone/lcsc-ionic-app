@@ -5,7 +5,6 @@ import { CredentialsProvider } from "../../providers/credentials/credentials";
 import { UserStateProvider, UserState } from "../../providers/user-state/user-state";
 import { Platform } from 'ionic-angular';
 
-@IonicPage()
 @Component({
 	selector: 'page-login',
 	templateUrl: 'login.html',
@@ -33,10 +32,10 @@ export class LoginPage {
 		});
 	}
 
-    guestAccess() {
-      this.userState.updateUserState(UserState.Guest);
-      this.goToHomePage({});
-    }
+	guestAccess() {
+		this.userState.updateUserState(UserState.Guest);
+		this.goToHomePage({});
+	}
 
 	goToHomePage(params) {
 		if (!params) {
@@ -50,7 +49,7 @@ export class LoginPage {
 	}
 
 	storeCredentials() {
-		this.credentialsProvider.setWarriorWebUsername(this.loginUsername);
+		this.credentialsProvider.setWarriorWebUsername(this.loginUsername.toLowerCase());
 		this.credentialsProvider.setWarriorWebPassword(this.loginPassword);
 
 		this.handleLogin();
