@@ -66,11 +66,18 @@ export class CredentialsProvider {
 			content: 'Accessing Warrior Web...'
 		});
 
+
 		loader.present().then(async () => {
 			let username = await this.getWarriorWebUsername();
 			let password = await this.getWarriorWebPassword();
 
 			let browser: InAppBrowserObject = this.inAppBrowser.create(this.warrior_web_link, '_blank', 'clearcache=yes,hidden=yes');
+
+			setTimeout(() => {
+				browser.close();
+				loader.dismiss();
+				handler(false);
+			}, 30000);
 
 			let load_count = 0;
 
