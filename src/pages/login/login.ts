@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { CredentialsProvider } from "../../providers/credentials/credentials";
 import { UserStateProvider, UserState } from "../../providers/user-state/user-state";
 import { Platform } from 'ionic-angular';
+import { DeviceInfoProvider } from '../../providers/device-info/device-info';
 
 @Component({
 	selector: 'page-login',
@@ -13,22 +14,35 @@ export class LoginPage {
 	private loginUsername: string = "";
 	private loginPassword: string = "";
 
+	deviceSecured : boolean = true;
+
 	constructor(public navCtrl: NavController,
 		private credentialsProvider: CredentialsProvider,
 		navParams: NavParams,
 		private userState: UserStateProvider,
-		private platform: Platform) {
+		private platform: Platform,
+		private deviceInfo : DeviceInfoProvider) {
 
 		this.platform.ready().then((source) => {
-			let reuse: boolean = true;
-			if (navParams && navParams.get('reuse') != null) { reuse = navParams.get('reuse') };
-			if (reuse) {
-				this.credentialsProvider.warriorWebCredentialsExist().then(status => {
-					if (status) {
-						this.handleLogin();
+
+			this.deviceInfo.deviceIsSecured().then((secured) => {
+				if(secured) {
+					let reuse: boolean = true;
+					if (navParams && navParams.get('reuse') != null) { reuse = navParams.get('reuse') };
+					if (reuse) {
+						this.credentialsProvider.warriorWebCredentialsExist().then(status => {
+							if (status) {
+								this.handleLogin();
+							}
+						});
 					}
-				});
-			}
+				}
+				else {
+					alert('This device does not appear to be secured. Please secure it in the device settings.');
+					this.deviceSecured = false;
+				}
+			});
+
 		});
 	}
 
