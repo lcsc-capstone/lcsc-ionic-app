@@ -73,10 +73,14 @@ export class CredentialsProvider {
 
 			let browser: InAppBrowserObject = this.inAppBrowser.create(this.warrior_web_link, '_blank', 'clearcache=yes,hidden=yes');
 
+			let has_completed = false;
+
 			setTimeout(() => {
-				browser.close();
-				loader.dismiss();
-				handler(false);
+				if(!has_completed) {
+					browser.close();
+					loader.dismiss();
+					handler(false);
+				}
 			}, 30000);
 
 			let load_count = 0;
@@ -98,6 +102,7 @@ export class CredentialsProvider {
 						handler(result.toString() == "true"); // Implicit bool conversion any -> boolean seems to fail :/
 						loader.dismiss();
 						browser.close();
+						has_completed = true;
 					});
 				}
 
