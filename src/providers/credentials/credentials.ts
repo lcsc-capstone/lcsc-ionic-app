@@ -81,7 +81,7 @@ export class CredentialsProvider {
 					loader.dismiss();
 					handler(false);
 				}
-			}, 30000);
+			}, 90000);
 
 			let load_count = 0;
 
