@@ -81,7 +81,7 @@ export class CredentialsProvider {
 					loader.dismiss();
 					handler(false);
 				}
-			}, 90000);
+			}, 20000 ); // changed to 20 seconds
 
 			let load_count = 0;
 
