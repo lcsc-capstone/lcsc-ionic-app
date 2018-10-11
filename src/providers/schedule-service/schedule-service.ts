@@ -119,8 +119,23 @@ export class ScheduleServiceProvider {
 	getCurrentTermId(): string {
 		let date = new Date();
 		let yearStr = date.getFullYear().toString();
-		let semesterStr = (date.getMonth() >= 8 && date.getMonth() <= 12) ? "FA" : "SP";
+		let semesterStr = this.getSemesterString();
 		return yearStr + semesterStr;
+	}
+
+	getSemesterString(): string {
+		let date = new Date();
+		let month = date.getMonth();
+
+		if(month >= 8 && month <= 12) {
+			return "FA";
+		}
+		else if(month <= 5) {
+			return "SP";
+		}
+		else {
+			return "SU";
+		}
 	}
 
 	selectCurrentTerm(json, termId: string) {

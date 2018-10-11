@@ -6,9 +6,9 @@
 <ion-content no-bounce>
 	<div id="bg-img"></div> <img src="assets/img/banner.svg" class="banner" />
 	<div id="login-form">
-		<h2>View Your Schedule</h2>
-		<p>Login using WarriorWeb credentials</p>
-		<form>
+		<h2 *ngIf="deviceSecured">View Your Schedule</h2>
+		<p *ngIf="deviceSecured">Login using WarriorWeb credentials</p>
+		<form *ngIf="deviceSecured">
 			<div class="input">
 				<ion-icon name="person-outline" class="input-icon"></ion-icon> <input [(ngModel)]="loginUsername" type="text" name="userID" placeholder="Username"><br> </div>
 			<div class="input">

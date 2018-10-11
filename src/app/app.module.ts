@@ -29,6 +29,7 @@ import { ScheduleServiceProvider } from '../providers/schedule-service/schedule-
 import { CredentialsProvider } from '../providers/credentials/credentials';
 import { UserStateProvider } from '../providers/user-state/user-state';
 import { AppAvailability } from '@ionic-native/app-availability';
+import { DeviceInfoProvider } from '../providers/device-info/device-info';
 
 @NgModule({
 	declarations: [
@@ -97,7 +98,8 @@ import { AppAvailability } from '@ionic-native/app-availability';
 		ScheduleServiceProvider,
 		CredentialsProvider,
 		UserStateProvider,
-		AppAvailability
+		AppAvailability,
+    DeviceInfoProvider
 	]
 })
 export class AppModule { }
