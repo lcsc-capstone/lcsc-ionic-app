@@ -12,7 +12,7 @@ import { LoadingController } from 'ionic-angular';
 @Injectable()
 export class CredentialsProvider {
 
-	warrior_web_link = 'http://www.lcsc.edu/warriorweb/';
+	warrior_web_link = 'https://www.lcsc.edu/warriorweb/'; /* changed to https */
 	warrior_web_enter_selector = 'document.querySelector(\'[title="WarriorWeb"]\').click();';
 	warrior_web_login_selector = "document.getElementById('acctLogin').childNodes[1].click();"
 	warrior_web_error_check = 'document.querySelector(\'[class="errorText"]\') == null;';
