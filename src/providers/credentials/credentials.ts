@@ -11,12 +11,9 @@ import { LoadingController } from 'ionic-angular';
 */
 @Injectable()
 export class CredentialsProvider {
-
-	warrior_web_link = 'https://www.lcsc.edu/warriorweb/'; /* changed to https */
-	warrior_web_enter_selector = 'document.querySelector(\'[title="WarriorWeb"]\').click();';
-	warrior_web_login_selector = "document.getElementById('acctLogin').childNodes[1].click();"
-	warrior_web_error_check = 'document.querySelector(\'[class="errorText"]\') == null;';
-
+	//using student planning url for a static address
+	warrior_web_link = 'https://warriorwebss.lcsc.edu/Student/Account/Login?ReturnUrl=%2fStudent%2fPlanning%2fDegreePlans%2f';
+	warrior_web_error_check = 'document.querySelector(\'[class="esg-alert_message"]\') == null;';
 
 	credentials_warriorweb = 'credentialsWarriorWeb';
 	username_warriorweb = 'warriorWebUsername';
@@ -74,30 +71,27 @@ export class CredentialsProvider {
 			let browser: InAppBrowserObject = this.inAppBrowser.create(this.warrior_web_link, '_blank', 'clearcache=yes,hidden=yes');
 
 			let has_completed = false;
-
+			//if login takes 30 seconds close the login and site, return login timeout
 			setTimeout(() => {
 				if(!has_completed) {
 					browser.close();
 					loader.dismiss();
 					handler(false);
 				}
-			}, 20000 ); // changed to 20 seconds
+			}, 30000 ); // changed to 30 seconds
 
 			let load_count = 0;
 
 			browser.on('loadstop').subscribe(async (ev: InAppBrowserEvent) => {
+				//fills the user name and password fields on the site from user entry then clicks login button
 				if (load_count == 0) {
-					await browser.executeScript({ code: this.warrior_web_enter_selector });
-				}
-				else if (load_count == 1) {
-					await browser.executeScript({ code: this.warrior_web_login_selector });
-				}
-				else if (load_count == 2) {
 					await browser.executeScript({ code: this.getLoginUsernameFillInScript(username) });
 					await browser.executeScript({ code: this.getLoginPasswordFillInScript(password) });
-					await browser.executeScript({ code: 'document.querySelector(\'[value="SUBMIT"]\').click();' });
+					await browser.executeScript({ code: 'document.getElementById(\'login-button\').click();' });
 				}
-				else if (load_count == 3) {
+			
+				else if (load_count == 1) {
+					//check to see if site has an error message if not close the login and browser
 					await browser.executeScript({ code: this.warrior_web_error_check }).then(result => {
 						handler(result.toString() == "true"); // Implicit bool conversion any -> boolean seems to fail :/
 						loader.dismiss();
@@ -105,17 +99,20 @@ export class CredentialsProvider {
 						has_completed = true;
 					});
 				}
-
+				else{
+					console.log("Login loop past end");
+				}
 				load_count++;
+			
 			});
 		});
 	}
-
+	//fills site's username field from apps field 
 	getLoginUsernameFillInScript(username: string) {
-		return 'document.getElementById("USER_NAME").value = "' + username + '";';
+		return 'document.getElementById("UserName").value = "' + username + '";';
 	}
-
+	//fills site's password field from apps field 
 	getLoginPasswordFillInScript(password: string) {
-		return 'document.getElementById("CURR_PWD").value = "' + password + '";';
+		return 'document.getElementById("Password").value = "' + password + '";';
 	}
 }
