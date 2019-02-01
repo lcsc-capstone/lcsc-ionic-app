@@ -1,6 +1,6 @@
 import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject } from '@ionic-native/in-app-browser';
 import { Injectable } from '@angular/core';
-import { CredentialsProvider } from '../credentials/credentials';
+import { CredentialsProvider} from '../credentials/credentials';
 import { UserStateProvider, UserState } from '../user-state/user-state';
 import { LoadingController } from 'ionic-angular';
 
@@ -62,7 +62,6 @@ export class ScheduleServiceProvider {
 		}
 
 		let courseDataURL = "https://warriorwebss.lcsc.edu/Student/Planning/DegreePlans/PrintSchedule?termId=" + this.getCurrentTermId();
-
 		let username = await this.credentialsProvider.getWarriorWebUsername();
 		let password = await this.credentialsProvider.getWarriorWebPassword();
 
@@ -72,11 +71,19 @@ export class ScheduleServiceProvider {
 
 		browser.on('loadstop').subscribe(async (ev: InAppBrowserEvent) => {
 			if (load_counter == 0) {
-				this.loginToWarriorWeb(browser, username, password);
+				//this.loginToWarriorWeb(browser, username, password); //This was broken so the same method from credentialsProvider is used
+				await browser.executeScript({ code: this.credentialsProvider.getLoginUsernameFillInScript(username) });
+				await browser.executeScript({ code: this.credentialsProvider.getLoginPasswordFillInScript(password) });
+				await browser.executeScript({ code: 'document.getElementById(\'login-button\').click();' });
+				console.log("logged in");
 			}
-			else if (load_counter == 1) {
+			else{
+				console.log("inside else if");
 				let data = await this.loadScheduleData(browser);
+				console.log("got past data");
 				let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
+				console.log("printing json");
+				console.log(json);
 				let termId = this.getCurrentTermId();
 				let currentTerm = this.selectCurrentTerm(json, termId);
 
@@ -87,7 +94,6 @@ export class ScheduleServiceProvider {
 					this.hasCacheData = true;
 				}
 			}
-
 			load_counter++;
 		});
 	}
@@ -105,13 +111,6 @@ export class ScheduleServiceProvider {
 		});
 	}
 
-	async loginToWarriorWeb(browser, username, password): Promise<any> {
-		return await
-			browser.executeScript({ code: "document.getElementById('UserName').value = '" + username + "';" }).then(
-				browser.executeScript({ code: "document.getElementById('Password').value = '" + password + "';" })).then(
-					browser.executeScript({ code: this.buttonClickSource }));
-	}
-
 	async loadScheduleData(browser: InAppBrowserObject): Promise<any> {
 		return browser.executeScript({ code: this.loadScheduleDataSource });
 	}
@@ -120,13 +119,13 @@ export class ScheduleServiceProvider {
 		let date = new Date();
 		let yearStr = date.getFullYear().toString();
 		let semesterStr = this.getSemesterString();
+		
 		return yearStr + semesterStr;
 	}
 
 	getSemesterString(): string {
 		let date = new Date();
-		let month = date.getMonth();
-
+		let month = date.getMonth()+1;
 		if(month >= 8 && month <= 12) {
 			return "FA";
 		}
@@ -152,7 +151,6 @@ export class ScheduleServiceProvider {
 	}
 
 	selectCourses(term: any): any[] {
-		//alert('Selecting courses');
 		let result = [];
 
 		for (var course of term.PlannedCourses) {
