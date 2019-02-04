@@ -13,7 +13,7 @@ import { LoadingController } from 'ionic-angular';
 export class CredentialsProvider {
 	//using student planning url for a static address
 	warrior_web_link = 'https://warriorwebss.lcsc.edu/Student/Account/Login?ReturnUrl=%2fStudent%2fPlanning%2fDegreePlans%2f';
-	warrior_web_error_check = 'document.querySelector(\'[class="esg-alert_message"]\') == null;';
+	error_msg = 'document.querySelector(\'[class="esg-alert esg-alert--error"]\') == null;';
 
 	credentials_warriorweb = 'credentialsWarriorWeb';
 	username_warriorweb = 'warriorWebUsername';
@@ -92,7 +92,7 @@ export class CredentialsProvider {
 			
 				else if (load_count == 1) {
 					//check to see if site has an error message if not close the login and browser
-					await browser.executeScript({ code: this.warrior_web_error_check }).then(result => {
+					await browser.executeScript({ code: this.error_msg }).then(result => {
 						handler(result.toString() == "true"); // Implicit bool conversion any -> boolean seems to fail :/
 						loader.dismiss();
 						browser.close();
