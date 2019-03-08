@@ -30,6 +30,7 @@ import { CredentialsProvider } from '../providers/credentials/credentials';
 import { UserStateProvider } from '../providers/user-state/user-state';
 import { AppAvailability } from '@ionic-native/app-availability';
 import { DeviceInfoProvider } from '../providers/device-info/device-info';
+import {CalendarSorter} from '../providers/event-calendar/calendarSort';
 
 @NgModule({
 	declarations: [
@@ -94,6 +95,7 @@ import { DeviceInfoProvider } from '../providers/device-info/device-info';
 		Calendar,
 		Network,
 		HTTP,
+		CalendarSorter,
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		ScheduleServiceProvider,
 		CredentialsProvider,
