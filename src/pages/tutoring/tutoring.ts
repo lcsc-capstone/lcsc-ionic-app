@@ -8,9 +8,10 @@ import { NgForm } from '@angular/forms';
 })
 
 export class TutoringPage {
+	
 	public classKey = ""
 	public tutorKey = ""
-	public selection = "Tutor"
+	public selection = "Class"
 	public Time = ["Sample Time", "Sample Time"];
 	public Times = { "key": ["time", "time"] }
 	public ListName = ""
@@ -39,21 +40,17 @@ export class TutoringPage {
 			this.ClassList = JSON.parse(data.data)["classes"];
 			this.TutorList = JSON.parse(data.data)["tutors"];
 			this.Times = JSON.parse(data.data)["times"];
+			var comma = /,/gi;
+			for(var i in this.Times){
+				console.log(i);
+				console.log(this.Times[i]);
+				for(var j = 0; this.Times[i].length; j++){
+					console.log(this.Times[i][j]);
+					this.Times[i][j] = this.Times[i][j].replace(comma, "<br>");
+
+				}
+			}
 		});
-
-		//  this.ClassList.push({
-		//    name:"test"
-		//  });
-
-		//  this.http.get('http://isoptera.lcsc.edu/~jamcdonald/tutors.json', {}, {})/*.map(res => { res.json()})*/.then(data => {
-		//    //this.debug2 = JSON.parse(data['_body']).items[0].name;
-		//    this.TutorList=JSON.parse(data.data).items;
-		//  });
-		//  this.http.get('http://isoptera.lcsc.edu/~jamcdonald/times.json', {}, {})/*.map(res => { res.json()})*/.then(data => {
-		//    //this.debug2 = JSON.parse(data['_body']).items[0].name;
-		//    this.Times=JSON.parse(data.data);
-		//    alert(this.Times);
-		//  });
 
 	}
 	Submit(form: NgForm) {
@@ -61,7 +58,6 @@ export class TutoringPage {
 			this.ListName = this.classKey
 		} else if (this.selection == "Tutor") {
 			this.ListName = this.tutorKey
-
 		}
 		this.classKey = ""
 		this.tutorKey = ""
@@ -69,11 +65,14 @@ export class TutoringPage {
 		this.isSubmitted = true;
 
 		//  form.value.class;
+
 	}
+	 Tutoring: String
 	constructor(public navCtrl: NavController, public http: HTTP) {
 		this.extractData();
+		this.Tutoring = "Classes";
 	}
-
+	
 
 
 }
