@@ -9,7 +9,7 @@ import { ScheduleServiceProvider } from '../../providers/schedule-service/schedu
 export class ClassSchedulePage {
 
 	scheduleItems = [];
-
+	//pulls all classes from scheduleService provider
 	constructor(scheduleServiceProvider: ScheduleServiceProvider, private zone: NgZone) {
 		scheduleServiceProvider.getClassScheduleData((data) => {
 			this.zone.run(() => {

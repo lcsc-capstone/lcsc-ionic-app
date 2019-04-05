@@ -10,7 +10,6 @@
 		Campus News
 	</h1>
 	<div *ngIf="news != null; else noNews">
-		<!-- Added for simulator testing avoiding errors -->
 		<ion-list id="news-list6">
 			<ion-item color="none" id="news-list-item1" text-wrap (click)="openBrowser(1)"> {{ news['1']['title'] }}<br> <i>{{ news['1']['date'] }}</i> </ion-item>
 			<ion-item color="none" id="news-list-item2" text-wrap (click)="openBrowser(2)"> {{ news['2']['title'] }}<br> <i>{{ news['2']['date'] }}</i> </ion-item>

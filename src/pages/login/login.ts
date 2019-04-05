@@ -27,6 +27,7 @@ export class LoginPage {
 
 			this.deviceInfo.deviceIsSecured().then((secured) => {
 				if(secured) {
+					//checks for cached login credentials
 					let reuse: boolean = true;
 					if (navParams && navParams.get('reuse') != null) { reuse = navParams.get('reuse') };
 					if (reuse) {
@@ -45,12 +46,12 @@ export class LoginPage {
 
 		});
 	}
-
+	
 	guestAccess() {
 		this.userState.updateUserState(UserState.Guest);
 		this.goToHomePage({});
 	}
-
+	
 	goToHomePage(params) {
 		if (!params) {
 			params = { isGuest: true };

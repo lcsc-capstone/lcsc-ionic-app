@@ -71,19 +71,13 @@ export class ScheduleServiceProvider {
 
 		browser.on('loadstop').subscribe(async (ev: InAppBrowserEvent) => {
 			if (load_counter == 0) {
-				//this.loginToWarriorWeb(browser, username, password); //This was broken so the same method from credentialsProvider is used
 				await browser.executeScript({ code: this.credentialsProvider.getLoginUsernameFillInScript(username) });
 				await browser.executeScript({ code: this.credentialsProvider.getLoginPasswordFillInScript(password) });
 				await browser.executeScript({ code: 'document.getElementById(\'login-button\').click();' });
-				console.log("logged in");
 			}
 			else{
-				console.log("inside else if");
 				let data = await this.loadScheduleData(browser);
-				console.log("got past data");
 				let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
-				console.log("printing json");
-				console.log(json);
 				let termId = this.getCurrentTermId();
 				let currentTerm = this.selectCurrentTerm(json, termId);
 
@@ -114,15 +108,14 @@ export class ScheduleServiceProvider {
 	async loadScheduleData(browser: InAppBrowserObject): Promise<any> {
 		return browser.executeScript({ code: this.loadScheduleDataSource });
 	}
-
+	//creates year and semester to access site for current semester
 	getCurrentTermId(): string {
 		let date = new Date();
 		let yearStr = date.getFullYear().toString();
 		let semesterStr = this.getSemesterString();
-		
 		return yearStr + semesterStr;
 	}
-
+	//check date to return current semester abbriviation
 	getSemesterString(): string {
 		let date = new Date();
 		let month = date.getMonth()+1;
@@ -191,7 +184,7 @@ export class ScheduleServiceProvider {
 					this.appendToCourseDailyData(day, meeting_obj);
 				}
 			}
-
+			//creates each course as an object
 			let item = {
 				title: course.Title,
 				name: course.CourseName,

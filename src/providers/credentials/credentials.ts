@@ -58,9 +58,9 @@ export class CredentialsProvider {
 	}
 
 	async warriorWebAccessible(handler: (good: boolean) => void) {
-
+		//loading app message
 		let loader = this.loadingController.create({
-			content: 'Accessing Warrior Web...'
+			content: 'Loading, Go Warriors!'
 		});
 
 
@@ -78,7 +78,7 @@ export class CredentialsProvider {
 					loader.dismiss();
 					handler(false);
 				}
-			}, 30000 ); // changed to 30 seconds
+			}, 30000 );
 
 			let load_count = 0;
 
@@ -93,14 +93,11 @@ export class CredentialsProvider {
 				else if (load_count == 1) {
 					//check to see if site has an error message if not close the login and browser
 					await browser.executeScript({ code: this.error_msg }).then(result => {
-						handler(result.toString() == "true"); // Implicit bool conversion any -> boolean seems to fail :/
+						handler(result.toString() == "true"); // Implicit bool conversion any -> boolean seems to fail
 						loader.dismiss();
 						browser.close();
 						has_completed = true;
 					});
-				}
-				else{
-					console.log("Login loop past end");
 				}
 				load_count++;
 			

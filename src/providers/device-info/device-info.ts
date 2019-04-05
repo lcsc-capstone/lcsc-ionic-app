@@ -12,7 +12,7 @@ export class DeviceInfoProvider {
 
   constructor(private secureStorage : SecureStorage) {
   }
-
+//check if the device has a lock screen security
   async deviceIsSecured() : Promise<boolean> {
     try{
       let sso : SecureStorageObject = await this.secureStorage.create('test');

@@ -34,7 +34,8 @@ h1 {
 a {
 	text-decoration: none;
 	color          : #003865;
-	font-size      : 30px;
+	font-size      : 18px;
+	padding-left: 15px;
 }
 
 ion-header {
@@ -44,7 +45,9 @@ ion-header {
 		color: #003865;
 	}
 }
-
+ion-footer{
+	padding-bottom: 0.4em;
+}
 ion-header ion-icon.back-button-icon.icon {
 	color: #ffffff;
 }

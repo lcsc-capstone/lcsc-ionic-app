@@ -9,12 +9,14 @@
 	<div id="schedule">
 		<h1>Class Schedule</h1>
 		<ion-list>
+			<!--for every course display its info-->
 			<ion-item *ngFor="let item of scheduleItems">
 				<h2>{{item.title}} - {{item.name}}</h2>
 				<h3 text-wrap>{{item.description}}</h3><br>
 				<div *ngFor="let instructor of item.faculty"> Instructor(s):<br>
 					<h3><b>{{instructor}}</b></h3> </div>
 				<hr>
+				<!--display time for course meetings-->
 				<div *ngFor="let meeting of item.meetings">
 					<h3>Days: {{meeting.daysStr}}</h3>
 					<h3>{{meeting.building}}</h3>

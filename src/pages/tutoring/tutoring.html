@@ -7,51 +7,45 @@
 	</ion-toolbar>
 </ion-header>
 <ion-content padding id="page7">
-	<!-- Start page for selecting class you need a tutor for or a specific tutor -->
-	<div id="tutoring-markdown1" class="show-list-numbers-and-dots">
+	<div>
+		<ion-segment  [(ngModel)] = "Tutoring">
+			<ion-segment-button value = "Classes" (ionSelect)="selection='Class'; isSubmitted=false" >
+				<ion-label id = "segmentlabel">Classes</ion-label>
+			</ion-segment-button>
+			<ion-segment-button value = "Tutors" (ionSelect)="selection='Tutor'; isSubmitted=false">
+				<ion-label id = "segmentlabel">Tutors</ion-label>
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+	<br>
+	<div [ngSwitch] = "Tutoring">
 		<form #f="ngForm" (ngSubmit)="Submit(f)">
-			<h2>Step 1:</h2>
-			<ion-list radio-group>
-				<ion-item>
-					<ion-label>Tutors</ion-label>
-					<ion-radio value="Tutor" (ionSelect)="selection='Tutor'" checked></ion-radio>
-				</ion-item>
-				<ion-item>
-					<ion-label>Classes</ion-label>
-					<ion-radio value="Class" (ionSelect)="selection='Class'"></ion-radio>
-				</ion-item>
+			<ion-list *ngSwitchCase = "'Classes'">
+					<ion-item>
+							<ion-label id = "dropdownlabel">Select Class</ion-label>
+							<ion-select name="class" [(ngModel)]="classKey" (ionChange)="Submit(f)">
+								<ion-option *ngFor="let class of ClassList;" [value]="category">{{class.name}}</ion-option>
+							</ion-select>
+						</ion-item>
 			</ion-list>
-			<!--drop down box generated from school schedule or the schools class list-->
-			<h2>Step 2:</h2>
-			<ion-list *ngIf="selection==='Class'">
-				<ion-item>
-					<ion-label>Select Class</ion-label>
-					<ion-select name="class" [(ngModel)]="classKey" (ionChange)="Submit(f)">
-						<ion-option *ngFor="let class of ClassList;" [value]="category">{{class.name}}</ion-option>
-					</ion-select>
-				</ion-item>
+			<ion-list *ngSwitchCase = "'Tutors'">
+					<ion-item>
+							<ion-label id = "dropdownlabel">Select Tutor</ion-label>
+							<ion-select name="tutor" [(ngModel)]="tutorKey" (ionChange)="Submit(f)">
+								<ion-option *ngFor="let tutor of TutorList;" [value]="name">{{tutor.name}}</ion-option>
+							</ion-select>
+					</ion-item>
 			</ion-list>
-			<!--drop down box generated from tutors list-->
-			<ion-list *ngIf="selection==='Tutor'">
-				<ion-item>
-					<ion-label>Select Tutor</ion-label>
-					<ion-select name="tutor" [(ngModel)]="tutorKey" (ionChange)="Submit(f)">
-						<ion-option *ngFor="let tutor of TutorList;" [value]="name">{{tutor.name}}</ion-option>
-					</ion-select>
-				</ion-item>
-			</ion-list>
-			<!-- <button ion-button type="submit">Submit</button> -->
-			<!--Takes you to tutorTimes.html or tutors.html-->
-			<p> <b>Note: * denotes online tutor</b> </p>
+			<p> <b>Note: * denotes offers online tutoring</b> </p>
 		</form>
 	</div>
-	<div *ngIf="isSubmitted">
-		<h1>
-      {{ListName}}
-    </h1>
-		<ion-list>
-			<ion-item *ngFor="let slot of Time;">{{slot}}</ion-item>
-		</ion-list> <button ion-button full *ngIf="isOnline">Book Online Session</button>
-		<!--Could Link to tutorsClass.html, but is linked to tutoring.ts now -->
+    <div *ngIf="isSubmitted">
+			<h1>
+				  {{ListName}}
+			</h1>
+			<ion-list>
+				<ion-item *ngFor="let slot of Time;"><p id="times">{{slot}}</p></ion-item>
+			</ion-list> <button ion-button full *ngIf="isOnline">Book Online Session</button>
 	</div>
+    
 </ion-content>
