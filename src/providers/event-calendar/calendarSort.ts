@@ -23,6 +23,14 @@ export class CalendarSorter{
   constructor( 
     private storage: Storage,
     private http: HTTP) {
+      this.academicArray = [];
+      this.nonacademicArray = [];
+      this.Days = [];
+      this.LoadedDays = [];
+      this.Events = {};
+      this.academicEvents = {};
+      this.nonAcademicEvents = {};
+      this.merged=[];
     this.setEvents();
 
   }
@@ -57,6 +65,8 @@ export class CalendarSorter{
 				CampusRec 					- h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com
 				####################################################################### */
   setEvents() {
+
+    
     let curDay = (new Date().getDate());
     let curMonth = (new Date().getMonth() + 1); //Months are from 0-11 NOT 1-12
     let curYear = (new Date().getFullYear());
@@ -69,176 +79,171 @@ export class CalendarSorter{
     let campusRecUrl = `https://www.googleapis.com/calendar/v3/calendars/h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`;
    
     //parses and sets the calendar data into arrays in storage
-    this.http.get(academicsUrl, {}, {}).then(data => {
-      this.Academics = JSON.parse(data.data);
+    this.http.get(academicsUrl, {}, {}).then(val1=> {
+      this.Academics = JSON.parse(val1.data);
       this.storage.set('Academics', this.Academics);
-      this.http.get(entertainmentUrl, {}, {}).then(data => {
-        this.Entertainment = JSON.parse(data.data);
+      this.http.get(entertainmentUrl, {}, {}).then(val2 => {
+        this.Entertainment = JSON.parse(val2.data);
         this.storage.set('Entertainment', this.Entertainment);
-        this.http.get(athleticsUrl, {}, {}).then(data => {
-          this.Athletics = JSON.parse(data.data);
+        this.http.get(athleticsUrl, {}, {}).then(val3 => {
+          this.Athletics = JSON.parse(val3.data);
           this.storage.set('Athletics', this.Athletics);
-          this.http.get(studentActivitiesUrl, {}, {}).then(data => {
-            this.StudentActivities = JSON.parse(data.data);
+          this.http.get(studentActivitiesUrl, {}, {}).then(val4 => {
+            this.StudentActivities = JSON.parse(val4.data);
             this.storage.set('StudentActivities', this.StudentActivities);
-            this.http.get(residenceLifeUrl, {}, {}).then(data => {
-              this.ResidentLife = JSON.parse(data.data);
+            this.http.get(residenceLifeUrl, {}, {}).then(val5 => {
+              this.ResidentLife = JSON.parse(val5 .data);
               this.storage.set('ResidentLife', this.ResidentLife);
-              this.http.get(campusRecUrl, {}, {}).then(data => {
-                this.CampusRec = JSON.parse(data.data);
+              this.http.get(campusRecUrl, {}, {}).then(val6 => {
+                this.CampusRec = JSON.parse(val6.data);
                 this.storage.set('CampusRec', this.CampusRec);
-      //pulls the event arrays from storage          
-			this.storage.get('Academics').then(val1 => {
-				this.Academics = val1;
-				this.storage.get('Entertainment').then(val2 => {
-					this.Entertainment = val2;
-					this.storage.get('Athletics').then(val3 => {
-						this.Athletics = val3;
-						this.storage.get('StudentActivities').then(val4 => {
-							this.StudentActivities = val4;
-							this.storage.get('ResidentLife').then(val5 => {
-								this.ResidentLife = val5;
-								this.storage.get('CampusRec').then(val6 => {
-									this.CampusRec = val6;
-                  this.merged = [];
+                this.merged = [];
                   this.academicArray = [];
                   this.nonacademicArray = [];
                   let offset = 0;
                   //gets the array and pushes them academic events into academicArray and non academic to nonacademicarray both pushed to the merged array 
                   if(this.Academics.items.length > 0){
   									for (let i = 0; i < this.Academics.items.length; i++) {
-                      let localdate = new Date(new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-07:00')));
-                      let ls = new Date(new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  										let le = new Date(new Date((val1.items[i].end.dateTime || val1.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                      let localdate = new Date(new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-07:00')));
+                      let ls = new Date(new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  										let le = new Date(new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                       let localtime = (ls + " - " + le);
-  										this.merged.push({ StartDate: new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val1.items[i].end.dateTime || val1.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val1.items[i].summary, Description: val1.items[i].description, Calendar: val1.summary, Location: val1.items[i].location, Link: val1.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                      this.academicArray.push({ StartDate: new Date((val1.items[i].start.dateTime || val1.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val1.items[i].end.dateTime || val1.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val1.items[i].summary, Description: val1.items[i].description, Calendar: val1.summary, Location: val1.items[i].location, Link: val1.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    
+  										this.merged.push({ StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Academics.items[i].summary, Description: this.Academics.items[i].description, Calendar: this.Academics.summary, Location: this.Academics.items[i].location, Link: this.Academics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                      this.academicArray.push({ StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Academics.items[i].summary, Description: this.Academics.items[i].description, Calendar: this.Academics.summary, Location: this.Academics.items[i].location, Link: this.Academics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });                    
                     }
                   }
 									for (let i = 0; i < this.Entertainment.items.length; i++) {
-										let localdate = new Date(new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-07:00')));
-										let ls = new Date(new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-										let le = new Date(new Date((val2.items[i].end.dateTime || val2.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let localdate = new Date(new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-07:00')));
+										let ls = new Date(new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let le = new Date(new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
-										this.merged.push({ StartDate: new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val2.items[i].end.dateTime || val2.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val2.items[i].summary, Description: val2.items[i].description, Calendar: val2.summary, Location: val2.items[i].location, Link: val2.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((val2.items[i].start.dateTime || val2.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val2.items[i].end.dateTime || val2.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val2.items[i].summary, Description: val2.items[i].description, Calendar: val2.summary, Location: val2.items[i].location, Link: val2.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+										this.merged.push({ StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Entertainment.items[i].summary, Description: this.Entertainment.items[i].description, Calendar: this.Entertainment.summary, Location: this.Entertainment.items[i].location, Link: this.Entertainment.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    this.nonacademicArray.push({ StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Entertainment.items[i].summary, Description: this.Entertainment.items[i].description, Calendar: this.Entertainment.summary, Location: this.Entertainment.items[i].location, Link: this.Entertainment.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
 									for (let i = 0; i < this.Athletics.items.length; i++) {
-										let localdate = new Date(new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-07:00')));
-										let ls = new Date(new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-										let le = new Date(new Date((val3.items[i].end.dateTime || val3.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let localdate = new Date(new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-07:00')));
+										let ls = new Date(new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let le = new Date(new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
-										this.merged.push({ StartDate: new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val3.items[i].end.dateTime || val3.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val3.items[i].summary, Description: val3.items[i].description, Calendar: val3.summary, Location: val3.items[i].location, Link: val3.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((val3.items[i].start.dateTime || val3.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val3.items[i].end.dateTime || val3.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val3.items[i].summary, Description: val3.items[i].description, Calendar: val3.summary, Location: val3.items[i].location, Link: val3.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+										this.merged.push({ StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Athletics.items[i].summary, Description: this.Athletics.items[i].description, Calendar: this.Athletics.summary, Location: this.Athletics.items[i].location, Link: this.Athletics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    this.nonacademicArray.push({ StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Athletics.items[i].summary, Description: this.Athletics.items[i].description, Calendar: this.Athletics.summary, Location: this.Athletics.items[i].location, Link: this.Athletics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
 									for (let i = 0; i < this.StudentActivities.items.length; i++) {
-										let localdate = new Date(new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-07:00')));
-										let ls = new Date(new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-										let le = new Date(new Date((val4.items[i].end.dateTime || val4.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let localdate = new Date(new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')));
+										let ls = new Date(new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let le = new Date(new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
-										this.merged.push({ StartDate: new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val4.items[i].end.dateTime || val4.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val4.items[i].summary, Description: val4.items[i].description, Calendar: val4.summary, Location: val4.items[i].location, Link: val4.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((val4.items[i].start.dateTime || val4.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val4.items[i].end.dateTime || val4.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val4.items[i].summary, Description: val4.items[i].description, Calendar: val4.summary, Location: val4.items[i].location, Link: val4.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+										this.merged.push({ StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.StudentActivities.items[i].summary, Description: this.StudentActivities.items[i].description, Calendar: this.StudentActivities.summary, Location: this.StudentActivities.items[i].location, Link: this.StudentActivities.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    this.nonacademicArray.push({ StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.StudentActivities.items[i].summary, Description: this.StudentActivities.items[i].description, Calendar: this.StudentActivities.summary, Location: this.StudentActivities.items[i].location, Link: this.StudentActivities.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
 									for (let i = 0; i < this.ResidentLife.items.length; i++) {
-										let localdate = new Date(new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-07:00')));
-										let ls = new Date(new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-										let le = new Date(new Date((val5.items[i].end.dateTime || val5.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let localdate = new Date(new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-07:00')));
+										let ls = new Date(new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let le = new Date(new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
-										this.merged.push({ StartDate: new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val5.items[i].end.dateTime || val5.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val5.items[i].summary, Description: val5.items[i].description, Calendar: val5.summary, Location: val5.items[i].location, Link: val5.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((val5.items[i].start.dateTime || val5.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val5.items[i].end.dateTime || val5.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val5.items[i].summary, Description: val5.items[i].description, Calendar: val5.summary, Location: val5.items[i].location, Link: val5.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+										this.merged.push({ StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.ResidentLife.items[i].summary, Description: this.ResidentLife.items[i].description, Calendar: this.ResidentLife.summary, Location: this.ResidentLife.items[i].location, Link: this.ResidentLife.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    this.nonacademicArray.push({ StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.ResidentLife.items[i].summary, Description: this.ResidentLife.items[i].description, Calendar: this.ResidentLife.summary, Location: this.ResidentLife.items[i].location, Link: this.ResidentLife.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
 									for (let i = 0; i < this.CampusRec.items.length; i++) {
-										let localdate = new Date(new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-07:00')));
-										let ls = new Date(new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-										let le = new Date(new Date((val6.items[i].end.dateTime || val6.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let localdate = new Date(new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-07:00')));
+										let ls = new Date(new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+										let le = new Date(new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
-										this.merged.push({ StartDate: new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val6.items[i].end.dateTime || val6.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val6.items[i].summary, Description: val6.items[i].description, Calendar: val6.summary, Location: val6.items[i].location, Link: val6.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((val6.items[i].start.dateTime || val6.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((val6.items[i].end.dateTime || val6.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: val6.items[i].summary, Description: val6.items[i].description, Calendar: val6.summary, Location: val6.items[i].location, Link: val6.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+										this.merged.push({ StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.CampusRec.items[i].summary, Description: this.CampusRec.items[i].description, Calendar: this.CampusRec.summary, Location: this.CampusRec.items[i].location, Link: this.CampusRec.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    this.nonacademicArray.push({ StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.CampusRec.items[i].summary, Description: this.CampusRec.items[i].description, Calendar: this.CampusRec.summary, Location: this.CampusRec.items[i].location, Link: this.CampusRec.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
+                  let count = 0;
                   //sorts all events inside the  arrays and checks how long the event lasts
 									this.merged.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
+               
 										if ((event.EndDate - event.StartDate) > (86400000)) { // Event lasts longer than 24 hours.
-                      let len = Math.floor(((event.EndDate - event.StartDate)+86400000) / (86400000)); 
-                      for (let i = 0; i < len; i++) {//this multiday event
-                        
-                        if (!this.Events[Math.floor(((event.LocalDate.getTime() + (i * 86400000)) / 86400000))]) {//inside this if
-													this.Events[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
-                          this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000+ (i * 86400000)) / 86400000))]);
+                      let len = Math.floor(((event.EndDate - event.StartDate)) / (86400000)); 
+                      for (let i = 0; i < len+1; i++) {//this multiday event start at 0 for first day and len +1 to reach last day
+                        if (!this.Events[Math.floor(((event.LocalDate.getTime() + (i * 86400000)) / 86400000))]) {
+                          this.Events[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
+                          this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000+ (i * 86400000)) / 86400000))])
 												}
-												this.Events[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
+                        this.Events[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
                         this.Events[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
-                        let eventsStr = JSON.stringify(this.Events);
-                        console.log("PLEASE FUCKING WORK " + eventsStr);
 											}
-										} else {
-											if (!this.Events[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
-												this.Events[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
-												this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
-											}
-											this.Events[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
-											this.Events[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
-										}
+                    } 
+                    else {
+                      if(((event.LocalDate.getTime()/86400000) % 1) == 0.2916666666678793){//check for single all day event
+											  if (!this.Events[Math.floor((event.LocalDate.getTime()/ 86400000)+0.708333333333)]) {//give the compliment to make it not display a day early
+											  	this.Events[Math.floor((event.LocalDate.getTime()/ 86400000)+0.708333333333)] = { times: [] };
+											  	this.Days.push([Math.floor((event.LocalDate.getTime()/ 86400000)+0.708333333333)]);
+											  }
+											  this.Events[Math.floor((event.LocalDate.getTime()/ 86400000)+0.708333333333)][event.Summary] = event;
+											  this.Events[Math.floor((event.LocalDate.getTime()/ 86400000)+0.708333333333)]['times'].push(event.Summary);
+                      }
+                      else{//single day event with given times
+                        if (!this.Events[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
+                          this.Events[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
+                          this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
+                        }
+                        this.Events[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
+                        this.Events[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
+                      }
+                      }
                   });
+                  count += 1;
+                  console.log(count);
+                  console.log(JSON.stringify(this.Events));
                   
                   if(this.academicArray.length > 0){
-                        this.academicArray.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
-                          if ((event.EndDate - event.StartDate) > (86400000)) { // Event lasts longer than 24 hours.
-                            let len = Math.floor((event.EndDate - event.StartDate) / (86400000)); // Number of days the event lasts minus 1.
-                            for (let i = 0; i < len; i++) {
-                              if (!this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]) {
-                                this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
-                                this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]);
-                              }
-                              this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
-                              this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
-                            }
-                          } else {
-                            if (!this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
-                              this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
-                              this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
-                            }
-                            this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
-                            this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
+                    this.academicArray.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
+                      if ((event.EndDate - event.StartDate) > (86400000)) { // Event lasts longer than 24 hours.
+                        let len = Math.floor((event.EndDate - event.StartDate) / (86400000)); // Number of days the event lasts minus 1.
+                        for (let i = 0; i < len; i++) {
+                          if (!this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]) {
+                            this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
+                            this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]);
                           }
-                        });        
-                  }  
-                      this.nonacademicArray.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
-                        if ((event.EndDate - event.StartDate) > (86400000)){ // Event lasts longer than 24 hours.
-                          let len = Math.floor((event.EndDate - event.StartDate) / (86400000)); // Number of days the event lasts minus 1.
-                          for (let i = 0; i < len; i++) {
-                            if (!this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]) {
-                              this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
-                              this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]);
-                            }
-                            this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
-                            this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
-                          }
-                        } else {
-                          if (!this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
-                            this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
-                            this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
-                          }
-                          this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
-                          this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
+                          this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
+                          this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
                         }
-                      });
+                      } else {
+                        if (!this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
+                          this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
+                          this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
+                        }
+                        this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
+                        this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
+                      }
+                    });        
+              }  
+                  this.nonacademicArray.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
+                    if ((event.EndDate - event.StartDate) > (86400000)){ // Event lasts longer than 24 hours.
+                      let len = Math.floor((event.EndDate - event.StartDate) / (86400000)); // Number of days the event lasts minus 1.
+                      for (let i = 0; i < len; i++) {
+                        if (!this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]) {
+                          this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
+                          this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]);
+                        }
+                        this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
+                        this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
+                      }
+                    } else {
+                      if (!this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
+                        this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
+                        this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
+                      }
+                      this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
+                      this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
+                    }
+                  });
+                
                     
 									for (let i = 0; i < 8; i++) {
 										this.LoadedDays.push(this.Days[i]);
                   }
-              							});
-              						});
-              					});
-                      });
-              			});
-                  });
-                });
               });
             });
           });
         });
       });
-    };
+    });
+      
   }
+}
 
