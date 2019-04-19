@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HTTP } from '@ionic-native/http';
 import { stringify } from '@angular/compiler/src/util';
+import { Events } from 'ionic-angular';
+import { mergeNsAndName } from '@angular/compiler';
 
 @Injectable()
 export class CalendarSorter{
@@ -31,8 +33,6 @@ export class CalendarSorter{
       this.academicEvents = {};
       this.nonAcademicEvents = {};
       this.merged=[];
-    this.setEvents();
-
   }
 
   getMergedEvents(){ 
@@ -109,7 +109,7 @@ export class CalendarSorter{
   										let le = new Date(new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                       let localtime = (ls + " - " + le);
   										this.merged.push({ StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Academics.items[i].summary, Description: this.Academics.items[i].description, Calendar: this.Academics.summary, Location: this.Academics.items[i].location, Link: this.Academics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                      this.academicArray.push({ StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Academics.items[i].summary, Description: this.Academics.items[i].description, Calendar: this.Academics.summary, Location: this.Academics.items[i].location, Link: this.Academics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });                    
+                      //this.academicArray.push({ StartDate: new Date((this.Academics.items[i].start.dateTime || this.Academics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Academics.items[i].end.dateTime || this.Academics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Academics.items[i].summary, Description: this.Academics.items[i].description, Calendar: this.Academics.summary, Location: this.Academics.items[i].location, Link: this.Academics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });                    
                     }
                   }
 									for (let i = 0; i < this.Entertainment.items.length; i++) {
@@ -118,7 +118,7 @@ export class CalendarSorter{
 										let le = new Date(new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
 										this.merged.push({ StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Entertainment.items[i].summary, Description: this.Entertainment.items[i].description, Calendar: this.Entertainment.summary, Location: this.Entertainment.items[i].location, Link: this.Entertainment.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Entertainment.items[i].summary, Description: this.Entertainment.items[i].description, Calendar: this.Entertainment.summary, Location: this.Entertainment.items[i].location, Link: this.Entertainment.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    //this.nonacademicArray.push({ StartDate: new Date((this.Entertainment.items[i].start.dateTime || this.Entertainment.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Entertainment.items[i].end.dateTime || this.Entertainment.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Entertainment.items[i].summary, Description: this.Entertainment.items[i].description, Calendar: this.Entertainment.summary, Location: this.Entertainment.items[i].location, Link: this.Entertainment.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
 									for (let i = 0; i < this.Athletics.items.length; i++) {
 										let localdate = new Date(new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-07:00')));
@@ -126,7 +126,7 @@ export class CalendarSorter{
 										let le = new Date(new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
 										this.merged.push({ StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Athletics.items[i].summary, Description: this.Athletics.items[i].description, Calendar: this.Athletics.summary, Location: this.Athletics.items[i].location, Link: this.Athletics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Athletics.items[i].summary, Description: this.Athletics.items[i].description, Calendar: this.Athletics.summary, Location: this.Athletics.items[i].location, Link: this.Athletics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    //this.nonacademicArray.push({ StartDate: new Date((this.Athletics.items[i].start.dateTime || this.Athletics.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.Athletics.items[i].end.dateTime || this.Athletics.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.Athletics.items[i].summary, Description: this.Athletics.items[i].description, Calendar: this.Athletics.summary, Location: this.Athletics.items[i].location, Link: this.Athletics.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
 									for (let i = 0; i < this.StudentActivities.items.length; i++) {
 										let localdate = new Date(new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')));
@@ -134,7 +134,7 @@ export class CalendarSorter{
 										let le = new Date(new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
 										this.merged.push({ StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.StudentActivities.items[i].summary, Description: this.StudentActivities.items[i].description, Calendar: this.StudentActivities.summary, Location: this.StudentActivities.items[i].location, Link: this.StudentActivities.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.StudentActivities.items[i].summary, Description: this.StudentActivities.items[i].description, Calendar: this.StudentActivities.summary, Location: this.StudentActivities.items[i].location, Link: this.StudentActivities.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    //this.nonacademicArray.push({ StartDate: new Date((this.StudentActivities.items[i].start.dateTime || this.StudentActivities.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.StudentActivities.items[i].end.dateTime || this.StudentActivities.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.StudentActivities.items[i].summary, Description: this.StudentActivities.items[i].description, Calendar: this.StudentActivities.summary, Location: this.StudentActivities.items[i].location, Link: this.StudentActivities.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
 									for (let i = 0; i < this.ResidentLife.items.length; i++) {
 										let localdate = new Date(new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-07:00')));
@@ -142,7 +142,7 @@ export class CalendarSorter{
 										let le = new Date(new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
 										this.merged.push({ StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.ResidentLife.items[i].summary, Description: this.ResidentLife.items[i].description, Calendar: this.ResidentLife.summary, Location: this.ResidentLife.items[i].location, Link: this.ResidentLife.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.ResidentLife.items[i].summary, Description: this.ResidentLife.items[i].description, Calendar: this.ResidentLife.summary, Location: this.ResidentLife.items[i].location, Link: this.ResidentLife.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    //this.nonacademicArray.push({ StartDate: new Date((this.ResidentLife.items[i].start.dateTime || this.ResidentLife.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.ResidentLife.items[i].end.dateTime || this.ResidentLife.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.ResidentLife.items[i].summary, Description: this.ResidentLife.items[i].description, Calendar: this.ResidentLife.summary, Location: this.ResidentLife.items[i].location, Link: this.ResidentLife.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
 									for (let i = 0; i < this.CampusRec.items.length; i++) {
 										let localdate = new Date(new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-07:00')));
@@ -150,12 +150,10 @@ export class CalendarSorter{
 										let le = new Date(new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 										let localtime = (ls + " - " + le);
 										this.merged.push({ StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.CampusRec.items[i].summary, Description: this.CampusRec.items[i].description, Calendar: this.CampusRec.summary, Location: this.CampusRec.items[i].location, Link: this.CampusRec.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
-                    this.nonacademicArray.push({ StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.CampusRec.items[i].summary, Description: this.CampusRec.items[i].description, Calendar: this.CampusRec.summary, Location: this.CampusRec.items[i].location, Link: this.CampusRec.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
+                    //this.nonacademicArray.push({ StartDate: new Date((this.CampusRec.items[i].start.dateTime || this.CampusRec.items[i].start.date + 'T00:00:00-07:00')).getTime() + offset, EndDate: new Date((this.CampusRec.items[i].end.dateTime || this.CampusRec.items[i].end.date + 'T00:00:00-07:00')).getTime() + offset, Summary: this.CampusRec.items[i].summary, Description: this.CampusRec.items[i].description, Calendar: this.CampusRec.summary, Location: this.CampusRec.items[i].location, Link: this.CampusRec.items[i].htmlLink, LocalTime: localtime, LocalDate: localdate });
                   }
-                  let count = 0;
                   //sorts all events inside the  arrays and checks how long the event lasts
 									this.merged.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
-               
 										if ((event.EndDate - event.StartDate) > (86400000)) { // Event lasts longer than 24 hours.
                       let len = Math.floor(((event.EndDate - event.StartDate)) / (86400000)); 
                       for (let i = 0; i < len+1; i++) {//this multiday event start at 0 for first day and len +1 to reach last day
@@ -186,52 +184,51 @@ export class CalendarSorter{
                       }
                       }
                   });
-                  count += 1;
-                  console.log(count);
-                  console.log(JSON.stringify(this.Events));
-                  
-                  if(this.academicArray.length > 0){
-                    this.academicArray.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
-                      if ((event.EndDate - event.StartDate) > (86400000)) { // Event lasts longer than 24 hours.
-                        let len = Math.floor((event.EndDate - event.StartDate) / (86400000)); // Number of days the event lasts minus 1.
-                        for (let i = 0; i < len; i++) {
-                          if (!this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]) {
-                            this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
-                            this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]);
-                          }
-                          this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
-                          this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
-                        }
-                      } else {
-                        if (!this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
-                          this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
-                          this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
-                        }
-                        this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
-                        this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
-                      }
-                    });        
-              }  
-                  this.nonacademicArray.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
-                    if ((event.EndDate - event.StartDate) > (86400000)){ // Event lasts longer than 24 hours.
-                      let len = Math.floor((event.EndDate - event.StartDate) / (86400000)); // Number of days the event lasts minus 1.
-                      for (let i = 0; i < len; i++) {
-                        if (!this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]) {
-                          this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
-                          this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]);
-                        }
-                        this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
-                        this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
-                      }
-                    } else {
-                      if (!this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
-                        this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
-                        this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
-                      }
-                      this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
-                      this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
-                    }
-                  });
+                  for (let i = 0; i < this.Events[0].length; i++){
+                    
+                  }
+              //     if(this.academicArray.length > 0){
+              //       this.academicArray.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
+              //         if ((event.EndDate - event.StartDate) > (86400000)) { // Event lasts longer than 24 hours.
+              //           let len = Math.floor((event.EndDate - event.StartDate) / (86400000)); // Number of days the event lasts minus 1.
+              //           for (let i = 0; i < len; i++) {
+              //             if (!this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]) {
+              //               this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
+              //               this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]);
+              //             }
+              //             this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
+              //             this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
+              //           }
+              //         } else {
+              //           if (!this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
+              //             this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
+              //             this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
+              //           }
+              //           this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
+              //           this.academicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
+              //         }
+              //       });        
+              // }  
+              //     this.nonacademicArray.sort(function(a, b) { return a.StartDate - b.StartDate }).forEach(event => {
+              //       if ((event.EndDate - event.StartDate) > (86400000)){ // Event lasts longer than 24 hours.
+              //         let len = Math.floor((event.EndDate - event.StartDate) / (86400000)); // Number of days the event lasts minus 1.
+              //         for (let i = 0; i < len; i++) {
+              //           if (!this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]) {
+              //             this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))] = { times: [] };
+              //             this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]);
+              //           }
+              //           this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))][event.Summary] = event;
+              //           this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000 + (i * 86400000)) / 86400000))]['times'].push(event.Summary);
+              //         }
+              //       } else {
+              //         if (!this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]) {
+              //           this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))] = { times: [] };
+              //           this.Days.push([Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]);
+              //         }
+              //         this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))][event.Summary] = event;
+              //         this.nonAcademicEvents[Math.floor(((event.LocalDate.getTime() + 57600000) / 86400000))]['times'].push(event.Summary);
+              //       }
+              //     });
                 
                     
 									for (let i = 0; i < 8; i++) {
