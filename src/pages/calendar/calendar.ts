@@ -32,7 +32,7 @@ export class CalendarPage {
 	public showStudentActivities = true;
 	public showResidentLife = true;
 	public showCampusRec = true;
-	public today;
+	public todaysDate;
 
 	constructor(public atrCtrl: AlertController,
 		 public navCtrl: NavController,
@@ -94,8 +94,7 @@ export class CalendarPage {
 		for (let i = 0; i < 7; i++) {
 			this.LoadedDays.push(this.Days[i]);
 		}
-		this.today =  Math.floor(new Date().getTime()/86400000);
-		console.log("What is day returning : " + this.today);
+		this.todaysDate =  Math.floor((new Date().getTime()+86400000)/86400000);
 		
 	}
 
