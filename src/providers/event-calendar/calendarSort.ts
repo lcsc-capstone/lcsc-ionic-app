@@ -180,19 +180,25 @@ export class CalendarSorter{
                   })
 
                   let keys = Object.keys(this.Events);
+                  //event counters and list to store events
                   let academicHome = 0;
                   let nonAcademicHome = 0;
                   let namesInAcademic = [];
                   let namesInNonacademic = [];
+                  //for every day inside the event object
                   for ( let k in keys){
                     let deepKeys = Object.keys(this.Events[keys[k]])
+                    //for events in the day
                     for (let d in deepKeys){
+                      //find what calendar the event belongs to
                       let calendarName = this.Events[keys[k]][deepKeys[d]].Calendar;
+                      //get the first 3 academic events with no repeating names
                       if(calendarName == "Academics" && academicHome < 3 && (namesInAcademic.indexOf(this.Events[keys[k]][deepKeys[d]].Summary) < 0)){
                           namesInAcademic.push(this.Events[keys[k]][deepKeys[d]].Summary);
                           this.academicArray.push(this.Events[keys[k]][deepKeys[d]]);
                           academicHome += 1;
                       }
+                      //get the first 3 nonacademic events with no repeating names
                       else if (calendarName != "Academics" && calendarName != undefined && nonAcademicHome < 3 && ((namesInNonacademic.indexOf(this.Events[keys[k]][deepKeys[d]].Summary) < 0))){
                         namesInNonacademic.push(this.Events[keys[k]][deepKeys[d]].Summary);
                         this.nonacademicArray.push(this.Events[keys[k]][deepKeys[d]]);
