@@ -55,7 +55,7 @@ export class MyApp {
 
 	goToHome(params) {
 		if (!params) params = {};
-		this.navCtrl.setRoot(HomePage);
+		setTimeout(()=>{this.navCtrl.setRoot(HomePage)},300);
 	}
 
 	goToClassSchedule(params) {
