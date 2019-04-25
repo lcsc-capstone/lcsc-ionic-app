@@ -10,6 +10,7 @@
 	</ion-header>
 	<ion-content padding id="page6">
 		<a *ngFor="let day of LoadedDays">
+			<!--shows events of the same day or later -->
 			<div *ngIf="((day) >= (todaysDate) == true ) && (Events[day] | json) != ({times: []} | json)">
 				<h1 class="header" background-color="stable">{{ day*86400000 | date:'LLLL d'}}</h1>
 				<div *ngFor="let time of Events[day]['times']"> 

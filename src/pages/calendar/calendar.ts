@@ -94,6 +94,7 @@ export class CalendarPage {
 		for (let i = 0; i < 7; i++) {
 			this.LoadedDays.push(this.Days[i]);
 		}
+		//variable used in html to display events on current date or later
 		this.todaysDate =  Math.floor((new Date().getTime()+86400000)/86400000);
 		
 	}
