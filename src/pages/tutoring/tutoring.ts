@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';//use native http
 import { NgForm } from '@angular/forms';
@@ -8,6 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 
 export class TutoringPage {
+  
+  // adding the viewchild (also added to angular core import)
+  @ViewChild('pills') pills: ElementRef;
 	
 	public classKey = ""
 	public tutorKey = ""
@@ -50,6 +53,9 @@ export class TutoringPage {
 		this.tutorKey = ""
 		this.Time = this.Times[this.ListName]
 		this.isSubmitted = true;
+    
+    // Adding the view child focus
+    this.pills.nativeElement.focus();
 	}
 	Tutoring: String
 	constructor(public navCtrl: NavController, public http: HTTP) {
