@@ -10,8 +10,8 @@
 <!-- edit by casey: adding the viewchild to the ion-segment -->
 <ion-content padding id="page7" >
 	<div>
-		<ion-segment  [(ngModel)] = "Tutoring">
-			<ion-segment-button value = "Classes" (ionSelect)="selection='Class'; isSubmitted=false" #pills>
+		<ion-segment  [(ngModel)] = "Tutoring" #pills>
+			<ion-segment-button value = "Classes" (ionSelect)="selection='Class'; isSubmitted=false">
 				<ion-label id = "segmentlabel">Classes</ion-label>
 			</ion-segment-button>
 			<ion-segment-button value = "Tutors" (ionSelect)="selection='Tutor'; isSubmitted=false">
