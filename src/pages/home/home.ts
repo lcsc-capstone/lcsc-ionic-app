@@ -114,7 +114,6 @@ export class HomePage implements OnInit{
 		let prevDate;
 		let currentDate = new Date().getDay();
 		this.storage.get('last_time').then(val => {
-			console.log(this.sortedAcademic);
 			if ((prevDate != currentDate) && this.isConnected()) {
 				//call the arrays when the app goes to homepage
 				if (this.sortedAcademic == [] ||  this.sortedAcademic == undefined){
@@ -128,7 +127,6 @@ export class HomePage implements OnInit{
 						this.sortedNonAcademic = data;
 					});
 				}
-				console.log("this my nonacademic home array in init" + this.sortedNonAcademic);
 				// This code will fetch the most recent 3 news titles and links.
 				//this.storage.set('last_time', currentDate);
 				this.http.get(`https://www.lcsc.edu/news`, {}, {}).then(data => {
