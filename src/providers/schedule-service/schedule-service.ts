@@ -70,17 +70,20 @@ export class ScheduleServiceProvider {
 		let browser = this.inAppBrowser.create(courseDataURL, '_blank', 'clearcache=yes,hidden=yes');
 
 		browser.on('loadstop').subscribe(async (ev: InAppBrowserEvent) => {
-			if (load_counter == 0) {
+			if (load_counter == 0) {	
 				await browser.executeScript({ code: this.credentialsProvider.getLoginUsernameFillInScript(username) });
 				await browser.executeScript({ code: this.credentialsProvider.getLoginPasswordFillInScript(password) });
 				await browser.executeScript({ code: 'document.getElementById(\'login-button\').click();' });
 			}
 			else{
 				let data = await this.loadScheduleData(browser);
+				console.log("after script pull");
 				let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
+				console.log("create into a json");
 				let termId = this.getCurrentTermId();
+				console.log("termID");
 				let currentTerm = this.selectCurrentTerm(json, termId);
-
+				console.log("current term");
 				if (currentTerm != null) {
 					this.courses = this.selectCourses(currentTerm);
 					handler(this.courses);
@@ -88,9 +91,11 @@ export class ScheduleServiceProvider {
 					this.hasCacheData = true;
 				}
 			}
+			console.log("load count: "+load_counter);
 			load_counter++;
 		});
 	}
+	
 
 	async getTodaysClassScheduleData(handler: (data: any) => any): Promise<any> {
 		return this.getClassScheduleDataOnLoader((data) => {
@@ -100,12 +105,13 @@ export class ScheduleServiceProvider {
 			let meetings = this.courseDataDayLookup[day];
 
 			meetings = (meetings == null) ? [] : meetings;
-
+			console.log(" todays data");
 			handler(meetings);
 		});
 	}
 
 	async loadScheduleData(browser: InAppBrowserObject): Promise<any> {
+		console.log("called load schedule script");
 		return browser.executeScript({ code: this.loadScheduleDataSource });
 	}
 	//creates year and semester to access site for current semester
@@ -144,6 +150,7 @@ export class ScheduleServiceProvider {
 	}
 
 	selectCourses(term: any): any[] {
+		console.log("selected courses")
 		let result = [];
 
 		for (var course of term.PlannedCourses) {

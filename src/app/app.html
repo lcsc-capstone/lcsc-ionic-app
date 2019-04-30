@@ -33,7 +33,11 @@
 			</ion-item>
 			<ion-item menuClose color="positive" (click)="logout()" id="menu-list-item2" *ngIf="isCredentialed()">Logout
 					<ion-icon name="person" item-right></ion-icon>
-				</ion-item>
+			</ion-item>
+			<ion-item menuClose color="positive" id="menu-list-item10">
+				<a href="tel:2087922226">Call Security</a>
+				<ion-icon name="call" item-right></ion-icon>
+			</ion-item>
 			<ion-item menuClose color="positive" id="menu-list-item12">
 				<a>
 					<ion-icon name="logo-facebook" item-left (click)="openFacebook()"></ion-icon>
@@ -43,11 +47,6 @@
 				</a>
 			</ion-item>
 		</ion-list>
-
-	
 	</ion-content>
-	<ion-footer>
-		<a href="tel:2087922226">Call Security</a>
-	</ion-footer>
 </ion-menu>
 <ion-nav #mainContent [root]="rootPage"></ion-nav>

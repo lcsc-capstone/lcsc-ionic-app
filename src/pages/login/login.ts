@@ -50,14 +50,17 @@ export class LoginPage {
 	guestAccess() {
 		this.userState.updateUserState(UserState.Guest);
 		this.goToHomePage({});
+		
 	}
 	
 	goToHomePage(params) {
+		setTimeout( ()=>{
 		if (!params) {
 			params = { isGuest: true };
 			this.userState.updateUserState(UserState.Guest);
 		}
 		this.navCtrl.setRoot(HomePage, params);
+	}, 1000);
 	}
 
 	ionViewDidLoad() {

@@ -43,18 +43,18 @@ export class HomePage implements OnInit{
 		public sorted: CalendarSorter) {
 			this.sortedAcademic = [];
 			this.sortedNonAcademic = [];
-
+	//gets 3 most recent academic events for div
+	this.sorted.getAcademicEvents().then(data => {
+		this.sortedAcademic = data;
+	});
+	//gets 3 most recent nonacademic events for div
+	this.sorted.getNonacademicEvents().then(data =>{
+		this.sortedNonAcademic = data;
+	});
 		this.zone.run(() => {
 			this.schedulePulled = false;
 		});
-		//gets 3 most recent academic events for div
-		this.sorted.getAcademicEvents().then(data => {
-			this.sortedAcademic = data;
-		});
-		//gets 3 most recent nonacademic events for div
-		this.sorted.getNonacademicEvents().then(data =>{
-			this.sortedNonAcademic = data;
-		})
+	
 		if (this.isCredentialed()) {
 			//if login processes fetch classes for the day
 			this.scheduleServiceProvider.getTodaysClassScheduleData(data => {
@@ -114,9 +114,21 @@ export class HomePage implements OnInit{
 		let prevDate;
 		let currentDate = new Date().getDay();
 		this.storage.get('last_time').then(val => {
-
+			console.log(this.sortedAcademic);
 			if ((prevDate != currentDate) && this.isConnected()) {
+				//call the arrays when the app goes to homepage
+				if (this.sortedAcademic == [] ||  this.sortedAcademic == undefined){
+					this.sorted.getAcademicEvents().then(data => {
+						this.sortedAcademic = data;
+					});
+				}
 
+				if (this.sortedNonAcademic == [] ||  this.sortedNonAcademic == undefined){
+					this.sorted.getNonacademicEvents().then(data =>{
+						this.sortedNonAcademic = data;
+					});
+				}
+				console.log("this my nonacademic home array in init" + this.sortedNonAcademic);
 				// This code will fetch the most recent 3 news titles and links.
 				//this.storage.set('last_time', currentDate);
 				this.http.get(`https://www.lcsc.edu/news`, {}, {}).then(data => {
@@ -182,7 +194,6 @@ export class HomePage implements OnInit{
 		this.inAppBrowser.create(this.news[link.toString()]['link'], '_system');
 	}
 
-
 	//notification handler to add event to phone calendar
 	showConfirmAlert(event) {
 		let alertConfirm = this.atrCtrl.create({
@@ -200,7 +211,6 @@ export class HomePage implements OnInit{
 					text: 'Add',
 					handler: () => {
 						this.calendar.createEventWithOptions(event.Summary, event.Location, event.Description, new Date(event.StartDate), new Date(event.EndDate), );
-
 					}
 				}
 			]
