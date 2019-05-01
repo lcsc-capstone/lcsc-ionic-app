@@ -71,13 +71,19 @@ export class ScheduleServiceProvider {
 
 		browser.on('loadstop').subscribe(async (ev: InAppBrowserEvent) => {
 			if (load_counter == 0) {	
-				await browser.executeScript({ code: this.credentialsProvider.getLoginUsernameFillInScript(username) });
-				await browser.executeScript({ code: this.credentialsProvider.getLoginPasswordFillInScript(password) });
-				await browser.executeScript({ code: 'document.getElementById(\'login-button\').click();' });
+				browser.executeScript({ 
+					code: this.credentialsProvider.getLoginUsernameFillInScript(username) 
+				}).then( () => {
+					browser.executeScript({ 
+						code: this.credentialsProvider.getLoginPasswordFillInScript(password) 
+					}).then( () => {
+						browser.executeScript({ code: 'document.getElementById(\'login-button\').click();' });
+					});
+				});
 			}
 			else{
-				let data = await this.loadScheduleData(browser).then( d => {
-          // putting the schedule stuff into the loadScheduleData promise
+				let data = browser.executeScript({ code: this.loadScheduleDataSource }).then( d => {
+				// let data = await this.loadScheduleData(browser).then( d => {
 					console.log("Finished loading schedule; data: ");
 					console.log(d);
 					console.log("after script pull");
@@ -93,6 +99,9 @@ export class ScheduleServiceProvider {
 						browser.close();
 						this.hasCacheData = true;
 					}
+				}).catch( response => {
+					console.log("BADERROR");
+					console.log(response);
 				});
 			}
 			console.log("load count: "+load_counter);
@@ -114,10 +123,10 @@ export class ScheduleServiceProvider {
 		});
 	}
 
-	async loadScheduleData(browser: InAppBrowserObject): Promise<any> {
-		console.log("called load schedule script");
-		return browser.executeScript({ code: this.loadScheduleDataSource });
-	}
+	// async loadScheduleData(browser: InAppBrowserObject): Promise<any> {
+	// 	console.log("called load schedule script");
+	// 	return browser.executeScript({ code: this.loadScheduleDataSource });
+	// }
 	//creates year and semester to access site for current semester
 	getCurrentTermId(): string {
 		let date = new Date();
