@@ -1,5 +1,5 @@
 import { Component, ViewChild,ElementRef } from '@angular/core';
-import { NavController} from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';//use native http
 import { NgForm } from '@angular/forms';
 @Component({
@@ -8,8 +8,14 @@ import { NgForm } from '@angular/forms';
 })
 
 export class TutoringPage {
-  
-  // adding the viewchild (also added to angular core import)
+	
+	Tutoring: String
+	constructor(public navCtrl: NavController, public http: HTTP, public loadingCtrl: LoadingController) {
+		this.extractData();
+		this.Tutoring = "Classes";
+	
+	}
+	// adding the viewchild (also added to angular core import)
   @ViewChild('pills') pills: ElementRef;
 	
 	public classKey = ""
@@ -44,7 +50,9 @@ export class TutoringPage {
 
 	}
 	Submit(form: NgForm) {
-	
+    // added loading
+		const loader = this.loadingCtrl.create();
+		loader.present();
 		if (this.selection == "Class") {
 			this.ListName = this.classKey
 		} else if (this.selection == "Tutor") {
@@ -54,14 +62,9 @@ export class TutoringPage {
 		this.tutorKey = ""
 		this.Time = this.Times[this.ListName]
 		this.isSubmitted = true;
-    
-    // Adding the view child focus
-    this.pills.nativeElement.focus();
-	}
-	Tutoring: String
-	constructor(public navCtrl: NavController, public http: HTTP) {
-		this.extractData();
-		this.Tutoring = "Classes";
-
+		
+		// Adding the view child focus
+		this.pills.nativeElement.focus();
+		loader.dismiss();
 	}
 }
