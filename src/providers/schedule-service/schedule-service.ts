@@ -77,22 +77,23 @@ export class ScheduleServiceProvider {
 			}
 			else{
 				let data = await this.loadScheduleData(browser).then( d => {
+          // putting the schedule stuff into the loadScheduleData promise
 					console.log("Finished loading schedule; data: ");
 					console.log(d);
+					console.log("after script pull");
+					let json = JSON.parse(d[0].replace("var result =", "").replace("};", "}"));
+					console.log("create into a json");
+					let termId = this.getCurrentTermId();
+					console.log("termID");
+					let currentTerm = this.selectCurrentTerm(json, termId);
+					console.log("current term");
+					if (currentTerm != null) {
+						this.courses = this.selectCourses(currentTerm);
+						handler(this.courses);
+						browser.close();
+						this.hasCacheData = true;
+					}
 				});
-				console.log("after script pull");
-				let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
-				console.log("create into a json");
-				let termId = this.getCurrentTermId();
-				console.log("termID");
-				let currentTerm = this.selectCurrentTerm(json, termId);
-				console.log("current term");
-				if (currentTerm != null) {
-					this.courses = this.selectCourses(currentTerm);
-					handler(this.courses);
-					browser.close();
-					this.hasCacheData = true;
-				}
 			}
 			console.log("load count: "+load_counter);
 			load_counter++;
