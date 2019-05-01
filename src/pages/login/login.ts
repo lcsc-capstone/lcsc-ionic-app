@@ -50,7 +50,6 @@ export class LoginPage {
 	guestAccess() {
 		this.userState.updateUserState(UserState.Guest);
 		this.goToHomePage({});
-		
 	}
 	
 	goToHomePage(params) {
@@ -69,7 +68,6 @@ export class LoginPage {
 	storeCredentials() {
 		this.credentialsProvider.setWarriorWebUsername(this.loginUsername.toLowerCase());
 		this.credentialsProvider.setWarriorWebPassword(this.loginPassword);
-
 		this.handleLogin();
 	}
 

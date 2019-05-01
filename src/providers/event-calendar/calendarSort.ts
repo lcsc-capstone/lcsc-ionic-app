@@ -178,7 +178,7 @@ export class CalendarSorter{
                       }
                       }
                   })
-
+                  console.log("this is the days " + this.Days);
                   let keys = Object.keys(this.Events);
                   //event counters and list to store events
                   let academicHome = 0;

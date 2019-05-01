@@ -76,7 +76,10 @@ export class ScheduleServiceProvider {
 				await browser.executeScript({ code: 'document.getElementById(\'login-button\').click();' });
 			}
 			else{
-				let data = await this.loadScheduleData(browser);
+				let data = await this.loadScheduleData(browser).then( d => {
+					console.log("Finished loading schedule; data: ");
+					console.log(d);
+				});
 				console.log("after script pull");
 				let json = JSON.parse(data[0].replace("var result =", "").replace("};", "}"));
 				console.log("create into a json");

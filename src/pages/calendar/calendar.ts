@@ -87,6 +87,8 @@ export class CalendarPage {
 				});
 			});
 		});
+		//variable used in html to display events on current date or later due to utc we add 7 hours less than a day 
+		this.todaysDate = Math.floor((new Date().getTime() + 25200000)/86400000);
 		this.sorted.getMergedEvents().then(data =>{
 			this.Events=data;
 		});
@@ -94,9 +96,6 @@ export class CalendarPage {
 		for (let i = 0; i < 7; i++) {
 			this.LoadedDays.push(this.Days[i]);
 		}
-		//variable used in html to display events on current date or later due to utc we add 7 hours less than a day 
-		this.todaysDate =  Math.floor((new Date().getTime()+61200000)/86400000);
-		
 	}
 
 	doInfinite(infiniteScroll) {

@@ -1,5 +1,5 @@
 import { Component, ViewChild,ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';//use native http
 import { NgForm } from '@angular/forms';
 @Component({
@@ -44,6 +44,7 @@ export class TutoringPage {
 
 	}
 	Submit(form: NgForm) {
+	
 		if (this.selection == "Class") {
 			this.ListName = this.classKey
 		} else if (this.selection == "Tutor") {
@@ -61,5 +62,6 @@ export class TutoringPage {
 	constructor(public navCtrl: NavController, public http: HTTP) {
 		this.extractData();
 		this.Tutoring = "Classes";
+
 	}
 }
