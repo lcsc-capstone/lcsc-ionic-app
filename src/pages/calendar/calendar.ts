@@ -93,6 +93,13 @@ export class CalendarPage {
 			this.Events=data;
 		});
 		this.Days = this.sorted.getDays();
+		for(let i = 0; i <this.Days.length;i++){
+			if(parseInt(this.Days[i]) < this.todaysDate){
+			let index = this.Days.indexOf(this.Days[i]);
+			console.log("index" + index);
+			this.Days.splice(index,1);
+			}
+		}
 		for (let i = 0; i < 7; i++) {
 			this.LoadedDays.push(this.Days[i]);
 		}
