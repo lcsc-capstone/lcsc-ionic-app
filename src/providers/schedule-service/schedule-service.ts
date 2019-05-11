@@ -83,16 +83,12 @@ export class ScheduleServiceProvider {
 			}
 			else{
 				let data = browser.executeScript({ code: this.loadScheduleDataSource }).then( d => {
-				// let data = await this.loadScheduleData(browser).then( d => {
-					console.log("Finished loading schedule; data: ");
-					console.log(d);
-					console.log("after script pull");
+					//parses the script element after formatting it into a json object
 					let json = JSON.parse(d[0].replace("var result =", "").replace("};", "}"));
-					console.log("create into a json");
 					let termId = this.getCurrentTermId();
-					console.log("termID");
+					//checks the items in the json for current term
 					let currentTerm = this.selectCurrentTerm(json, termId);
-					console.log("current term");
+					//if there are courses create course objects
 					if (currentTerm != null) {
 						this.courses = this.selectCourses(currentTerm);
 						handler(this.courses);
@@ -104,30 +100,19 @@ export class ScheduleServiceProvider {
 					console.log(response);
 				});
 			}
-			console.log("load count: "+load_counter);
 			load_counter++;
 		});
 	}
-	
 
 	async getTodaysClassScheduleData(handler: (data: any) => any): Promise<any> {
 		return this.getClassScheduleDataOnLoader((data) => {
-
 			let day = new Date().getDay();
-
 			let meetings = this.courseDataDayLookup[day];
-
 			meetings = (meetings == null) ? [] : meetings;
-			console.log(" todays data");
 			handler(meetings);
 		});
 	}
-
-	// async loadScheduleData(browser: InAppBrowserObject): Promise<any> {
-	// 	console.log("called load schedule script");
-	// 	return browser.executeScript({ code: this.loadScheduleDataSource });
-	// }
-	//creates year and semester to access site for current semester
+	//used for the end of the url
 	getCurrentTermId(): string {
 		let date = new Date();
 		let yearStr = date.getFullYear().toString();
@@ -158,12 +143,10 @@ export class ScheduleServiceProvider {
 				break;
 			}
 		}
-
 		return currentTerm;
 	}
 
 	selectCourses(term: any): any[] {
-		console.log("selected courses")
 		let result = [];
 
 		for (var course of term.PlannedCourses) {
@@ -244,17 +227,14 @@ export class ScheduleServiceProvider {
 				result += "Saturday, ";
 			}
 		}
-
 		result = (result.endsWith(", ")) ? result.substring(0, result.length - 2) : result;
 		return result;
 	}
 
 	appendToCourseDailyData(day: number, data: any) {
-
 		if (this.courseDataDayLookup[day] == null) {
 			this.courseDataDayLookup[day] = [];
 		}
-
 		this.courseDataDayLookup[day].push(data);
 	}
 

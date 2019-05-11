@@ -22,7 +22,6 @@ export class BuildingHoursPage {
 			.subscribe(data => {
 				for (let b in data['buildings']) {
 					this.buildings.push(data['buildings'][b]);
-					//console.log(data['buildings'][b]);
 				}
 				loading.dismiss();
 			});

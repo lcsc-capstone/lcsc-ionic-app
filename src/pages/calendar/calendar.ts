@@ -96,7 +96,6 @@ export class CalendarPage {
 		for(let i = 0; i <this.Days.length;i++){
 			if(parseInt(this.Days[i]) < this.todaysDate){
 			let index = this.Days.indexOf(this.Days[i]);
-			console.log("index" + index);
 			this.Days.splice(index,1);
 			}
 		}
