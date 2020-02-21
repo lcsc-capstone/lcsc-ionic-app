@@ -146,34 +146,27 @@ export class HomePage {
 					this.storage.set('news', this.news);
 				}).catch(err => { alert(err) });
 
-				/* #######################################################################
-				Academics 					- 0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com
-				Entertainment 				- m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com
-				Athletics 					- d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com
-				StudentActivities 		- l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com
-				ResidentLife 				- gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com
-				CampusRec 					- h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com
-				####################################################################### */
+				/* removed */
 				let curDay = (new Date().getDate());
 				let curMonth = (new Date().getMonth() + 1); //Months are from 0-11 NOT 1-12
 				let curYear = (new Date().getFullYear());
 
-				this.http.get(`https://www.googleapis.com/calendar/v3/calendars/0rn5mgclnhc7htmh0ht0cc5pgk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+				this.http.get(`https://www.googleapis.com/calendar/v3/calendars/   /events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
 					this.Academics = JSON.parse(data.data);
 					this.storage.set('Academics', this.Academics);
-					this.http.get(`https://www.googleapis.com/calendar/v3/calendars/m6h2d5afcjfnmaj8qr7o96q89c@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+					this.http.get(`https://www.googleapis.com/calendar/v3/calendars/   /events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
 						this.Entertainment = JSON.parse(data.data);
 						this.storage.set('Entertainment', this.Entertainment);
-						this.http.get(`https://www.googleapis.com/calendar/v3/calendars/d6jbgjhudph2mpef1cguhn4g9g@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+						this.http.get(`https://www.googleapis.com/calendar/v3/calendars/   /events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
 							this.Athletics = JSON.parse(data.data);
 							this.storage.set('Athletics', this.Athletics);
-							this.http.get(`https://www.googleapis.com/calendar/v3/calendars/l9qpkh5gb7dhjqv8nm0mn098fk@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+							this.http.get(`https://www.googleapis.com/calendar/v3/calendars/   /events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
 								this.StudentActivities = JSON.parse(data.data);
 								this.storage.set('StudentActivities', this.StudentActivities);
-								this.http.get(`https://www.googleapis.com/calendar/v3/calendars/gqv0n6j15pppdh0t8adgc1n1ts@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+								this.http.get(`https://www.googleapis.com/calendar/v3/calendars/   /events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
 									this.ResidentLife = JSON.parse(data.data);
 									this.storage.set('ResidentLife', this.ResidentLife);
-									this.http.get(`https://www.googleapis.com/calendar/v3/calendars/h4j413d3q0uftb2crk0t92jjlc@group.calendar.google.com/events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
+									this.http.get(`https://www.googleapis.com/calendar/v3/calendars/   /events?maxResults=2500&timeMin=${curYear}-0${curMonth}-${curDay}T00:00:00-07:00&timeMax=${curYear + 1}-0${curMonth}-${curDay}T00:00:00-07:00&singleEvents=true&key=AIzaSyASiprsGk5LMBn1eCRZbupcnC1RluJl_q0`, {}, {}).then(data => {
 										this.CampusRec = JSON.parse(data.data);
 										this.storage.set('CampusRec', this.CampusRec);
 
